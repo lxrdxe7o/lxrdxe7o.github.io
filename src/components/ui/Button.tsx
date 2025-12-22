@@ -1,5 +1,14 @@
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import styles from './Button.module.css';
+
+interface ButtonProps extends Omit<HTMLMotionProps<'a'>, 'href'> {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  href?: string;
+  icon?: string;
+  external?: boolean;
+  onClick?: () => void;
+}
 
 export function Button({ 
   children, 
@@ -9,7 +18,7 @@ export function Button({
   external = false,
   onClick,
   ...props 
-}) {
+}: ButtonProps) {
   const className = `${styles.btn} ${styles[variant]}`;
   
   const content = (
@@ -41,7 +50,6 @@ export function Button({
       onClick={onClick}
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.98 }}
-      {...props}
     >
       {content}
     </motion.button>

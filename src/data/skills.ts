@@ -2,7 +2,9 @@
 //  Skills Data - Add/edit skills here
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const skillCategories = [
+import type { SkillCategory } from '../types';
+
+export const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     skills: [

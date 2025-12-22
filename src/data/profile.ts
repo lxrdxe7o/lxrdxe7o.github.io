@@ -2,7 +2,9 @@
 //  Profile Data - Edit your info here
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const profile = {
+import type { Profile } from '../types';
+
+export const profile: Profile = {
   name: 'xero',
   roles: [
     'Full-Stack Developer',

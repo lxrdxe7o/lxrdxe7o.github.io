@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import { Badge } from './Badge';
+import type { Project } from '../../types';
 import styles from './Card.module.css';
 
-export function Card({ 
-  project, 
-  index = 0 
-}) {
+interface CardProps {
+  project: Project;
+  index?: number;
+}
+
+export function Card({ project, index = 0 }: CardProps) {
   const { title, icon, description, tags, accentTag, features, github, featured } = project;
 
   return (

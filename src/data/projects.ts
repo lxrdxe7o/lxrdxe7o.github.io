@@ -2,7 +2,9 @@
 //  Projects Data - Add/edit projects here
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const projects = [
+import type { Project } from '../types';
+
+export const projects: Project[] = [
   {
     id: 'krakenvim',
     title: 'KrakenVim',
