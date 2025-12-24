@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Radial glow behind hero */
+/* Radial glow behind hero - VoidZero purple */
 .hero::before {
   content: '';
   position: absolute;
@@ -18,7 +18,7 @@
   transform: translate(-50%, -50%);
   width: min(800px, 150vw);
   height: min(800px, 150vw);
-  background: radial-gradient(circle, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
   pointer-events: none;
   animation: pulseGlow 8s ease-in-out infinite;
 }
@@ -44,8 +44,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(126, 231, 135, 0.1);
-  border: 1px solid rgba(126, 231, 135, 0.3);
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 50px;
   font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: var(--accent-secondary);
@@ -54,20 +54,20 @@
 }
 
 @keyframes badgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(126, 231, 135, 0.3); }
-  50% { box-shadow: 0 0 20px 5px rgba(126, 231, 135, 0.1); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.3); }
+  50% { box-shadow: 0 0 20px 5px rgba(168, 85, 247, 0.1); }
 }
 
 .badgeDot {
   width: 8px;
   height: 8px;
-  background: var(--accent-secondary);
+  background: var(--accent-primary);
   border-radius: 50%;
   animation: blink 1s ease-in-out infinite;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--accent-secondary); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--accent-primary); }
   50% { opacity: 0.3; box-shadow: none; }
 }
 
@@ -141,15 +141,15 @@
   flex-wrap: wrap;
 }
 
-/* Code Window */
+/* Code Window - VoidZero Style */
 .codeWindow {
-  background: rgba(22, 27, 34, 0.9);
+  background: rgba(18, 18, 18, 0.9);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 
+  box-shadow:
     var(--shadow-card),
-    0 0 60px rgba(88, 166, 255, 0.1);
+    0 0 60px rgba(168, 85, 247, 0.08);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -157,10 +157,10 @@
 
 .codeWindow:hover {
   transform: translateY(-8px) rotate(1deg);
-  box-shadow: 
+  box-shadow:
     var(--shadow-hover),
-    0 0 80px rgba(88, 166, 255, 0.15);
-  border-color: rgba(88, 166, 255, 0.3);
+    0 0 80px rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
 }
 
 .codeHeader {
@@ -168,7 +168,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: rgba(30, 35, 44, 0.8);
+  background: rgba(10, 10, 10, 0.8);
   border-bottom: 1px solid var(--border-color);
 }
 

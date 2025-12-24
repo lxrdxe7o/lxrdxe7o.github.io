@@ -42,17 +42,17 @@
 
 .primary {
   background: var(--gradient-primary);
-  color: var(--bg-primary);
-  box-shadow: 
-    0 0 20px rgba(88, 166, 255, 0.4),
-    0 4px 15px rgba(88, 166, 255, 0.3);
+  color: #ffffff;
+  box-shadow:
+    0 0 20px rgba(168, 85, 247, 0.4),
+    0 4px 15px rgba(168, 85, 247, 0.3);
 }
 
 .primary:hover {
-  box-shadow: 
-    0 0 40px rgba(88, 166, 255, 0.6),
-    0 8px 25px rgba(88, 166, 255, 0.4);
-  color: var(--bg-primary);
+  box-shadow:
+    0 0 40px rgba(168, 85, 247, 0.6),
+    0 8px 25px rgba(168, 85, 247, 0.4);
+  color: #ffffff;
   transform: translateY(-3px);
 }
 
@@ -66,11 +66,11 @@
 
 .secondary:hover {
   border-color: var(--accent-primary);
-  background: rgba(88, 166, 255, 0.1);
+  background: rgba(168, 85, 247, 0.1);
   color: var(--accent-primary);
-  box-shadow: 
-    0 0 25px rgba(88, 166, 255, 0.2),
-    inset 0 0 15px rgba(88, 166, 255, 0.05);
+  box-shadow:
+    0 0 25px rgba(168, 85, 247, 0.2),
+    inset 0 0 15px rgba(168, 85, 247, 0.05);
   transform: translateY(-3px);
 }
 
