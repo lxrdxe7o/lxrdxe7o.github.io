@@ -3,43 +3,43 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Core Colors */
-  --bg-primary: #0a0e14;
-  --bg-secondary: #0d1117;
-  --bg-card: rgba(22, 27, 34, 0.8);
-  --bg-card-hover: rgba(30, 35, 44, 0.9);
-  
+  /* Core Colors - VoidZero Style */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: rgba(18, 18, 18, 0.8);
+  --bg-card-hover: rgba(26, 26, 26, 0.9);
+
   /* Text Colors */
-  --text-primary: #f0f6fc;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  
-  /* Accent Colors */
-  --accent-primary: #58a6ff;
-  --accent-secondary: #7ee787;
-  --accent-tertiary: #d2a8ff;
-  --accent-warning: #f0883e;
-  --accent-danger: #f85149;
-  
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+
+  /* Accent Colors - Purple/Violet Theme */
+  --accent-primary: #a855f7;
+  --accent-secondary: #c084fc;
+  --accent-tertiary: #e879f9;
+  --accent-warning: #f59e0b;
+  --accent-danger: #ef4444;
+
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #58a6ff 0%, #7ee787 100%);
-  --gradient-hero: linear-gradient(135deg, #0a0e14 0%, #161b22 50%, #0d1117 100%);
-  --gradient-card: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(126, 231, 135, 0.05) 100%);
-  
+  --gradient-primary: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+  --gradient-hero: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  --gradient-card: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(192, 132, 252, 0.04) 100%);
+
   /* Effects */
-  --glow-primary: 0 0 20px rgba(88, 166, 255, 0.4);
-  --glow-secondary: 0 0 20px rgba(126, 231, 135, 0.4);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 12px 40px rgba(88, 166, 255, 0.2);
-  
+  --glow-primary: 0 0 24px rgba(168, 85, 247, 0.5);
+  --glow-secondary: 0 0 24px rgba(192, 132, 252, 0.4);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 12px 40px rgba(168, 85, 247, 0.25);
+
   /* Borders */
-  --border-color: rgba(48, 54, 61, 0.7);
-  --border-glow: rgba(88, 166, 255, 0.5);
-  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(168, 85, 247, 0.5);
+
   /* Spacing */
   --section-padding: 4rem 0;
   --container-max: 1200px;
-  
+
   /* Animation */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;

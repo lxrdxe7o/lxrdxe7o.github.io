@@ -1,5 +1,5 @@
 .card {
-  background: rgba(22, 27, 34, 0.8);
+  background: rgba(18, 18, 18, 0.8);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 1.75rem;
@@ -34,7 +34,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(88, 166, 255, 0.05),
+    rgba(168, 85, 247, 0.05),
     transparent
   );
   transition: left 0.5s ease;
@@ -43,10 +43,10 @@
 
 .card:hover {
   border-color: var(--accent-primary);
-  box-shadow: 
+  box-shadow:
     var(--shadow-hover),
-    0 0 40px rgba(88, 166, 255, 0.1),
-    inset 0 0 30px rgba(88, 166, 255, 0.02);
+    0 0 40px rgba(168, 85, 247, 0.1),
+    inset 0 0 30px rgba(168, 85, 247, 0.02);
   transform: translateY(-8px) scale(1.01);
 }
 
@@ -62,15 +62,15 @@
   grid-column: span 2;
   background: linear-gradient(
     135deg,
-    rgba(88, 166, 255, 0.08) 0%,
-    rgba(126, 231, 135, 0.04) 50%,
-    rgba(210, 168, 255, 0.06) 100%
+    rgba(168, 85, 247, 0.08) 0%,
+    rgba(192, 132, 252, 0.04) 50%,
+    rgba(232, 121, 249, 0.06) 100%
   );
-  border-color: rgba(88, 166, 255, 0.2);
+  border-color: rgba(168, 85, 247, 0.2);
 }
 
 .featured::before {
-  background: linear-gradient(90deg, #58a6ff, #7ee787, #d2a8ff);
+  background: linear-gradient(90deg, #a855f7, #c084fc, #e879f9);
 }
 
 .header {
@@ -84,13 +84,13 @@
 
 .icon {
   font-size: 2.5rem;
-  filter: drop-shadow(0 0 10px rgba(88, 166, 255, 0.3));
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .card:hover .icon {
   transform: scale(1.15) rotate(-5deg);
-  filter: drop-shadow(0 0 20px rgba(88, 166, 255, 0.5));
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
 }
 
 .badges {
@@ -152,16 +152,16 @@
   transition: all 0.3s ease;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  background: rgba(88, 166, 255, 0.05);
+  background: rgba(168, 85, 247, 0.05);
   border: 1px solid transparent;
 }
 
 .link:hover {
   color: var(--text-primary);
-  background: rgba(88, 166, 255, 0.15);
-  border-color: rgba(88, 166, 255, 0.3);
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
   gap: 0.75rem;
-  box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
 }
 
 /* Responsive */

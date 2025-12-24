@@ -1,7 +1,7 @@
 .badge {
   padding: 0.25rem 0.75rem;
-  background: rgba(88, 166, 255, 0.1);
-  border: 1px solid rgba(88, 166, 255, 0.2);
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 50px;
   font-size: 0.75rem;
   color: var(--text-secondary);
@@ -9,7 +9,7 @@
 }
 
 .accent {
-  background: rgba(126, 231, 135, 0.1);
-  border-color: rgba(126, 231, 135, 0.3);
+  background: rgba(192, 132, 252, 0.1);
+  border-color: rgba(192, 132, 252, 0.3);
   color: var(--accent-secondary);
 }
