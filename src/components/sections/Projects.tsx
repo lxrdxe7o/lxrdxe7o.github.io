@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card } from '../ui';
+import { Card, VectorBackground } from '../ui';
 import { projects } from '../../data/projects';
 import styles from './Projects.module.css';
 
@@ -13,14 +13,18 @@ export function Projects() {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className={styles.title}>
-        <span className={styles.icon}>🚀</span> Featured Projects
-      </h2>
+      <VectorBackground />
       
-      <div className={styles.grid}>
-        {projects.map((project, index) => (
-          <Card key={project.id} project={project} index={index} />
-        ))}
+      <div className={styles.content}>
+        <h2 className={styles.title}>
+          <span className={styles.icon}>🚀</span> Featured Projects
+        </h2>
+        
+        <div className={styles.grid}>
+          {projects.map((project, index) => (
+            <Card key={project.id} project={project} index={index} />
+          ))}
+        </div>
       </div>
     </motion.section>
   );

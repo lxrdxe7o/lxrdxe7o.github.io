@@ -21,48 +21,48 @@ export const projects: Project[] = [
     featured: false
   },
   {
-    id: 'quantum-airways',
-    title: 'Quantum Airways',
-    icon: '✈️',
-    description: 'A quantum-secure airline booking system implementing Post-Quantum Cryptography (PQC) with Kyber-512, Dilithium3, and QRNG to protect against future quantum threats.',
-    tags: ['Python', 'TypeScript'],
-    accentTag: 'PQC',
+    id: 'hachi',
+    title: 'Hachi',
+    icon: '🐝',
+    description: 'A powerful, modular utility tool designed for efficiency and speed. Features advanced automation capabilities and seamless system integration.',
+    tags: ['Rust', 'CLI'],
+    accentTag: 'System',
     features: [
-      '🛡️ NIST FIPS 203 & 204 compliant',
-      '🐳 Full Docker containerization',
-      '🌐 Modern Vite + Flask stack'
+      '⚡ Blazing fast execution',
+      '🔌 Modular plugin architecture',
+      '🛠️ extensive system control'
     ],
-    github: 'https://github.com/lxrdxe7o/tora-neko-311',
+    github: 'https://github.com/lxrdxe7o/hachi',
     featured: false
   },
   {
-    id: 'hospital-management',
-    title: 'Hospital Management System',
-    icon: '🏥',
-    description: 'A high-performance, modular C application for hospital management featuring a professional ncurses-based TUI with custom memory management, binary data persistence, and visual themes.',
-    tags: ['C'],
-    accentTag: 'ncurses',
+    id: 'xero-shell',
+    title: 'Xero Shell',
+    icon: '🐚',
+    description: 'A custom, lightweight shell environment designed for power users. Features advanced auto-completion, syntax highlighting, and a plugin system.',
+    tags: ['C', 'Shell'],
+    accentTag: 'Terminal',
     features: [
-      '🎮 Professional TUI interface',
-      '💾 Custom core library in C11',
-      '📊 Patient, Doctor & Ward management'
+      '🎨 Custom syntax highlighting',
+      '🚀 Advanced auto-completion',
+      '🔌 Plugin system support'
     ],
-    github: 'https://github.com/lxrdxe7o/shiro-nekoo-115',
+    github: 'https://github.com/lxrdxe7o/xero-shell',
     featured: false
   },
   {
-    id: 'vehicle-shop',
-    title: 'Vehicle Shop System',
-    icon: '🚗',
-    description: 'A modern JavaFX vehicle management system featuring a stunning dark aesthetic with animated backgrounds, floating geometric shapes, and seamless data persistence.',
-    tags: ['Java'],
-    accentTag: 'JavaFX',
+    id: 'deaddrop',
+    title: 'DeadDrop',
+    icon: '🔒',
+    description: 'A cyber-minimalist secure file sharing platform featuring 3D encryption mesh visualization and end-to-end encryption.',
+    tags: ['Next.js', 'Three.js', 'Crypto'],
+    accentTag: 'Security',
     features: [
-      '🎨 Custom animated backgrounds',
-      '✨ AtlantaFX Dracula theme',
-      '🔍 Advanced live filtering'
+      '🔒 End-to-End Encryption',
+      '🕸️ 3D Mesh Visualization',
+      '⏱️ Ephemeral generic storage'
     ],
-    github: 'https://github.com/lxrdxe7o/kuro-nekoo-215',
+    github: 'https://github.com/lxrdxe7o/DeadDrop',
     featured: false
   },
   {

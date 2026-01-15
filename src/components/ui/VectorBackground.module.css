@@ -1,0 +1,56 @@
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  color: var(--accent-color);
+}
+
+.gearLarge {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 400px;
+  height: 400px;
+  opacity: 0.2;
+}
+
+.circuit {
+  position: absolute;
+  top: 40%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  opacity: 0.15;
+}
+
+.hexagons {
+  position: absolute;
+  bottom: -10%;
+  right: 10%;
+  width: 250px;
+  height: 250px;
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .gearLarge {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .circuit {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .hexagons {
+    width: 120px;
+    height: 120px;
+  }
+}
