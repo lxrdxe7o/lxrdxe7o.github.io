@@ -1,8 +1,8 @@
 :root {
-  --color-bg: #000000;
-  --color-bg-elevated: #0a0a0a;
-  --color-surface: #111111;
-  --color-border: #1a1a1a;
+  --color-bg: #0a0308;
+  --color-bg-elevated: #120610;
+  --color-surface: #1a0a14;
+  --color-border: #2a1020;
 
   --color-primary: #a855f7;
   --color-primary-light: #c084fc;
@@ -52,6 +52,7 @@ html {
 
 body {
   font-family: var(--font-sans);
+  background: radial-gradient(ellipse at 50% 50%, #1a0515 0%, #0d0208 40%, #050103 100%);
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -73,6 +74,9 @@ a {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  background: radial-gradient(ellipse at 30% 20%, rgba(60, 10, 40, 0.4) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(40, 5, 50, 0.3) 0%, transparent 45%),
+              radial-gradient(ellipse at 50% 50%, #1a0515 0%, #0d0208 40%, #050103 100%);
 }
 
 .content {
@@ -153,11 +157,67 @@ a {
   background-clip: text;
 }
 
+.xero-text {
+  display: inline-flex;
+}
+
+.xero-letter {
+  display: inline-block;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-accent-pink) 25%,
+    var(--color-accent-blue) 50%,
+    var(--color-accent-pink) 75%,
+    var(--color-primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite, glow-pulse 2.5s ease-in-out infinite;
+  animation-delay: 1.3s, 1.3s;
+  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.3));
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.3)); }
+  50% { filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.4)); }
+}
+
 .hero-description {
   font-size: 1.25rem;
   color: var(--color-text-secondary);
   max-width: 600px;
   margin: 0 auto var(--spacing-lg);
+  min-height: 3.2em;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--color-primary);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: cursor-blink 0.7s step-end infinite;
+  box-shadow: 0 0 8px var(--color-primary), 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+.hero-title .typewriter-cursor {
+  height: 0.85em;
+  width: 4px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-buttons {

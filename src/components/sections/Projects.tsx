@@ -2,28 +2,40 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    title: 'Hyprland Dotfiles',
-    description: 'Custom Arch Linux + Hyprland configuration with wallust dynamic theming, featuring 45+ automation scripts.',
-    tags: ['Linux', 'Shell', 'Hyprland'],
-    link: '#',
+    title: 'KrakenVim',
+    description: 'A modern, highly customizable Neovim configuration built for speed and aesthetics, featuring a custom dashboard and curated plugins.',
+    tags: ['Lua', 'Neovim', 'Productivity'],
+    link: 'https://github.com/lxrdxe7o/KrakenVim',
   },
   {
-    title: '3D Portfolio',
-    description: 'Interactive WebGL portfolio with Three.js, featuring particle systems and dynamic geometry.',
-    tags: ['React', 'Three.js', 'WebGL'],
-    link: '#',
+    title: 'dotfiles',
+    description: 'Personal Arch Linux + Hyprland configuration featuring a highly customized workflow with Waybar, Rofi, and Kitty.',
+    tags: ['Shell', 'Linux', 'Hyprland'],
+    link: 'https://github.com/lxrdxe7o/dotfiles',
   },
   {
-    title: 'API Framework',
-    description: 'High-performance REST API framework built with Node.js and TypeScript, featuring automatic documentation.',
-    tags: ['Node.js', 'TypeScript', 'API'],
-    link: '#',
+    title: 'xero-shell',
+    description: 'A Golden Noir-themed Wayland shell for Hyprland built with Quickshell, featuring OLED-optimized colors and pill-shaped widgets.',
+    tags: ['QML', 'Wayland', 'Hyprland'],
+    link: 'https://github.com/lxrdxe7o/xero-shell',
   },
   {
-    title: 'CLI Tools Suite',
-    description: 'Collection of productivity CLI tools written in Rust and Python for developer workflows.',
-    tags: ['Rust', 'Python', 'CLI'],
-    link: '#',
+    title: 'DeadDrop',
+    description: 'Secure, zero-knowledge file sharing platform with client-side encryption, built with React, FastAPI and WebAssembly.',
+    tags: ['React', 'FastAPI', 'WASM'],
+    link: 'https://github.com/lxrdxe7o/DeadDrop',
+  },
+  {
+    title: 'hachi',
+    description: 'A modern TUI for managing ASUS ROG laptops on Linux, featuring power profile management and a cyberpunk aesthetic.',
+    tags: ['Rust', 'TUI', 'Linux'],
+    link: 'https://github.com/lxrdxe7o/hachi',
+  },
+  {
+    title: 'mikeneko',
+    description: 'High-performance Discord music bot built with TypeScript, discord.js v14, and Lavalink v4, supporting multiple audio sources.',
+    tags: ['TypeScript', 'Discord.js', 'Lavalink'],
+    link: 'https://github.com/lxrdxe7o/mikeneko',
   },
 ]
 

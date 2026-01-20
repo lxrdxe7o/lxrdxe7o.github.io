@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 const skills = [
   { name: 'TypeScript', level: 95 },
   { name: 'React', level: 92 },
-  { name: 'Node.js', level: 88 },
+  { name: 'Rust', level: 85 },
+  { name: 'Linux/Arch', level: 98 },
+  { name: 'Lua', level: 90 },
   { name: 'Python', level: 85 },
-  { name: 'Linux', level: 90 },
-  { name: 'WebGL/Three.js', level: 80 },
 ]
 
 export default function About() {
@@ -32,10 +32,10 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <p>
-            A passionate developer with expertise in full-stack development and a deep love for Linux systems. I thrive on creating elegant solutions to complex problems and constantly push the boundaries of what's possible with code.
+            I am a full-stack developer and Linux enthusiast with a deep passion for systems programming and creating highly customized workflows. My expertise spans from building scalable web applications with React and TypeScript to crafting performant terminal utilities with Rust.
           </p>
           <p>
-            When I'm not coding, you'll find me customizing my Arch Linux setup, contributing to open source projects, or exploring the latest in web technologies.
+             I specialize in "ricing" Unix systems, developing aesthetic Wayland shells, and optimizing developer tools like Neovim. Whether it's architecting zero-knowledge security platforms or designing immersive UI experiences, I'm constantly pushing the intersection of performance and design.
           </p>
         </motion.div>
 
