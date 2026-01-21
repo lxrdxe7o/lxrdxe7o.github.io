@@ -635,23 +635,32 @@ function ShootingStars({ maxStars = 3, spawnInterval = 2 }: { maxStars?: number,
 // ============================================
 // MAIN EXPORT
 // ============================================
-export default function AbyssBackground() {
+interface AbyssBackgroundProps {
+  isMobile?: boolean
+  isLowEnd?: boolean
+}
+
+export default function AbyssBackground({ isMobile = false, isLowEnd = false }: AbyssBackgroundProps) {
+  // Reduce particle counts significantly on mobile devices for better performance
+  const starCount = isLowEnd ? 800 : isMobile ? 1500 : 4000
+  const dustCount = isLowEnd ? 0 : isMobile ? 150 : 600
+
   return (
     <group>
       {/* Base layer - deep space */}
       <DeepSpaceBackdrop />
 
-      {/* Layer 1 - Volumetric nebulae */}
-      <NebulaLayers />
+      {/* Layer 1 - Volumetric nebulae - skip on low-end devices */}
+      {!isLowEnd && <NebulaLayers />}
 
-      {/* Layer 2 - Star field */}
-      <StarField count={4000} />
+      {/* Layer 2 - Star field - reduced count on mobile */}
+      <StarField count={starCount} />
 
-      {/* Layer 3 - Cosmic dust */}
-      <CosmicDust count={600} />
+      {/* Layer 3 - Cosmic dust - reduced count on mobile, disabled on low-end */}
+      {dustCount > 0 && <CosmicDust count={dustCount} />}
 
-      {/* Layer 4 - Shooting stars */}
-      <ShootingStars />
+      {/* Layer 4 - Shooting stars - disabled on mobile for performance */}
+      {!isMobile && <ShootingStars />}
     </group>
   )
 }
