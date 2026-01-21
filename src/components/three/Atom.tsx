@@ -8,7 +8,14 @@ interface NucleonProps {
   scrollVelocityRef: React.MutableRefObject<number>
 }
 
-function Nucleon({ position, isProton, scrollVelocityRef }: NucleonProps) {
+interface NucleonProps {
+  position: [number, number, number]
+  isProton: boolean
+  scrollVelocityRef: React.MutableRefObject<number>
+  isMobile?: boolean
+}
+
+function Nucleon({ position, isProton, scrollVelocityRef, isMobile = false }: NucleonProps) {
   const meshRef = useRef<THREE.Mesh>(null!)
   const originalPos = useRef(position)
   const jitterRef = useRef({ x: 0, y: 0, z: 0 })
@@ -40,9 +47,12 @@ function Nucleon({ position, isProton, scrollVelocityRef }: NucleonProps) {
     }
   })
 
+  // Reduce geometry detail on mobile
+  const segments = isMobile ? 12 : 24
+
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.38, 24, 24]} />
+      <sphereGeometry args={[0.38, segments, segments]} />
       <meshStandardMaterial
         color={color}
         emissive={emissiveColor}
@@ -57,9 +67,10 @@ function Nucleon({ position, isProton, scrollVelocityRef }: NucleonProps) {
 interface NucleusProps {
   scrollVelocityRef: React.MutableRefObject<number>
   nucleusPulseRef: React.MutableRefObject<number>
+  isMobile?: boolean
 }
 
-function Nucleus({ scrollVelocityRef, nucleusPulseRef }: NucleusProps) {
+function Nucleus({ scrollVelocityRef, nucleusPulseRef, isMobile = false }: NucleusProps) {
   const groupRef = useRef<THREE.Group>(null!)
 
   // Generate nucleon positions in a clustered sphere arrangement
@@ -108,6 +119,8 @@ function Nucleus({ scrollVelocityRef, nucleusPulseRef }: NucleusProps) {
     }
   })
 
+  const glowSegments = isMobile ? 16 : 32
+
   return (
     <group ref={groupRef}>
       {/* Nucleons */}
@@ -117,12 +130,13 @@ function Nucleus({ scrollVelocityRef, nucleusPulseRef }: NucleusProps) {
           position={nucleon.position}
           isProton={nucleon.isProton}
           scrollVelocityRef={scrollVelocityRef}
+          isMobile={isMobile}
         />
       ))}
 
       {/* Inner glow */}
       <mesh>
-        <sphereGeometry args={[1.4, 32, 32]} />
+        <sphereGeometry args={[1.4, glowSegments, glowSegments]} />
         <meshBasicMaterial
           color="#c084fc"
           transparent
@@ -133,7 +147,7 @@ function Nucleus({ scrollVelocityRef, nucleusPulseRef }: NucleusProps) {
 
       {/* Outer glow */}
       <mesh>
-        <sphereGeometry args={[1.8, 32, 32]} />
+        <sphereGeometry args={[1.8, glowSegments, glowSegments]} />
         <meshBasicMaterial
           color="#a855f7"
           transparent
@@ -152,6 +166,7 @@ interface ElectronRingProps {
   color: string
   scrollVelocityRef: React.MutableRefObject<number>
   speed: number
+  isMobile?: boolean
 }
 
 function ElectronRing({
@@ -160,7 +175,8 @@ function ElectronRing({
   electronCount,
   color,
   scrollVelocityRef,
-  speed
+  speed,
+  isMobile = false
 }: ElectronRingProps) {
   const groupRef = useRef<THREE.Group>(null!)
   const electronsRef = useRef<THREE.Group>(null!)
@@ -179,11 +195,16 @@ function ElectronRing({
     }
   })
 
+  // Reduce geometry detail on mobile
+  const torusSegments = isMobile ? 8 : 16
+  const torusRadialSegments = isMobile ? 50 : 100
+  const electronSegments = isMobile ? 8 : 16
+
   return (
     <group ref={groupRef} rotation={rotation}>
       {/* Orbital ring */}
       <mesh>
-        <torusGeometry args={[radius, 0.02, 16, 100]} />
+        <torusGeometry args={[radius, 0.02, torusSegments, torusRadialSegments]} />
         <meshBasicMaterial color={color} transparent opacity={0.3} />
       </mesh>
 
@@ -200,7 +221,7 @@ function ElectronRing({
                 0
               ]}
             >
-              <sphereGeometry args={[0.15, 16, 16]} />
+              <sphereGeometry args={[0.15, electronSegments, electronSegments]} />
               <meshStandardMaterial
                 color={color}
                 emissive={color}
@@ -224,6 +245,7 @@ interface SingleAtomProps {
   orbitRadius?: number
   orbitSpeed?: number
   angleOffset?: number
+  isMobile?: boolean
 }
 
 function SingleAtom({
@@ -234,12 +256,14 @@ function SingleAtom({
   orbitAngleRef,
   orbitRadius = 0,
   orbitSpeed = 1,
-  angleOffset = 0
+  angleOffset = 0,
+  isMobile = false
 }: SingleAtomProps) {
   const groupRef = useRef<THREE.Group>(null!)
   const localRotationRef = useRef({ x: 0, y: 0 })
 
-  const rings = [
+  // Reduce number of electron rings on mobile (3 instead of 6)
+  const allRings = [
     { radius: 2.5, rotation: [0, 0, 0] as [number, number, number], electronCount: 2, color: '#a855f7', speed: 1.2 },
     { radius: 3.5, rotation: [Math.PI / 2, 0, 0] as [number, number, number], electronCount: 2, color: '#c084fc', speed: 1.1 },
     { radius: 4.5, rotation: [Math.PI / 3, 0, Math.PI / 6] as [number, number, number], electronCount: 3, color: '#ec4899', speed: 0.9 },
@@ -247,6 +271,8 @@ function SingleAtom({
     { radius: 6.5, rotation: [-Math.PI / 4, Math.PI / 4, 0] as [number, number, number], electronCount: 4, color: '#6366f1', speed: 0.7 },
     { radius: 7.5, rotation: [Math.PI / 5, -Math.PI / 3, Math.PI / 8] as [number, number, number], electronCount: 4, color: '#818cf8', speed: 0.6 },
   ]
+
+  const rings = isMobile ? allRings.slice(0, 3) : allRings
 
   useFrame(() => {
     const velocity = scrollVelocityRef.current
@@ -277,6 +303,7 @@ function SingleAtom({
       <Nucleus
         scrollVelocityRef={scrollVelocityRef}
         nucleusPulseRef={nucleusPulseRef}
+        isMobile={isMobile}
       />
 
       {rings.map((ring, index) => (
@@ -288,13 +315,18 @@ function SingleAtom({
           color={ring.color}
           scrollVelocityRef={scrollVelocityRef}
           speed={ring.speed}
+          isMobile={isMobile}
         />
       ))}
     </group>
   )
 }
 
-export default function Atom() {
+interface AtomProps {
+  isMobile?: boolean
+}
+
+export default function Atom({ isMobile = false }: AtomProps) {
   const lastScrollRef = useRef(0)
   const scrollVelocityRef = useRef(0)
   const nucleusPulseRef = useRef(0)
@@ -324,9 +356,8 @@ export default function Atom() {
     }
   })
 
-  // Small atoms orbiting around the main atom - 9 atoms equally spaced
-  const atomCount = 9
-  const smallAtoms = [
+  // Small atoms orbiting around the main atom - reduce from 9 to 4 on mobile
+  const allSmallAtoms = [
     { scale: 0.25, orbitRadius: 12, orbitSpeed: 0.8 },
     { scale: 0.18, orbitRadius: 14, orbitSpeed: 0.8 },
     { scale: 0.22, orbitRadius: 16, orbitSpeed: 0.8 },
@@ -336,7 +367,12 @@ export default function Atom() {
     { scale: 0.17, orbitRadius: 15, orbitSpeed: 0.8 },
     { scale: 0.14, orbitRadius: 17, orbitSpeed: 0.8 },
     { scale: 0.19, orbitRadius: 12, orbitSpeed: 0.8 },
-  ].map((atom, index) => ({
+  ]
+
+  const atomsToRender = isMobile ? allSmallAtoms.slice(0, 4) : allSmallAtoms
+  const atomCount = atomsToRender.length
+
+  const smallAtoms = atomsToRender.map((atom, index) => ({
     ...atom,
     angleOffset: (index / atomCount) * Math.PI * 2, // Equally spaced around the circle
   }))
@@ -348,6 +384,7 @@ export default function Atom() {
         scale={1}
         scrollVelocityRef={scrollVelocityRef}
         nucleusPulseRef={nucleusPulseRef}
+        isMobile={isMobile}
       />
 
       {/* Smaller orbiting atoms */}
@@ -361,6 +398,7 @@ export default function Atom() {
           orbitRadius={atom.orbitRadius}
           orbitSpeed={atom.orbitSpeed}
           angleOffset={atom.angleOffset}
+          isMobile={isMobile}
         />
       ))}
     </group>
