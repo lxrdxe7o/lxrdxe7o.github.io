@@ -899,7 +899,6 @@ function Moon({ parentSize, scrollVelocityRef, isMobile = false }: MoonProps) {
 // ============================================================================
 
 function Planet({
-  name,
   color,
   emissive,
   size,
@@ -940,13 +939,11 @@ function Planet({
   const planetRef = useRef<THREE.Mesh>(null!)
   const orbitAngleRef = useRef(angleOffset)
 
-  const [texture, bumpMap, normalMap, specularMap, cloudsMap, ringMap] = useTexture([
+  const [texture, bumpMap, normalMap, specularMap] = useTexture([
     textureUrl || DEFAULT_TEXTURE,
     bumpMapUrl || DEFAULT_TEXTURE,
     normalMapUrl || DEFAULT_TEXTURE,
-    specularMapUrl || DEFAULT_TEXTURE,
-    cloudsMapUrl || DEFAULT_TEXTURE,
-    ringMapUrl || DEFAULT_TEXTURE
+    specularMapUrl || DEFAULT_TEXTURE
   ])
 
   // Clean empty/default textures to null
