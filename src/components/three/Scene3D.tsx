@@ -1,13 +1,28 @@
 import { Canvas } from '@react-three/fiber'
-import { Suspense, useMemo } from 'react'
-import Atom from './Atom'
+import { Suspense, useMemo, useState, useEffect } from 'react'
+import SolarSystem from './SolarSystem'
 import AbyssBackground from './AbyssBackground'
 
-// Detect mobile device
-const isMobile = () => {
-  if (typeof window === 'undefined') return false
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-         window.innerWidth < 768
+// Responsive mobile detection hook
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                     window.innerWidth < 768
+      setIsMobile(mobile)
+    }
+
+    // Initial check
+    checkMobile()
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  return isMobile
 }
 
 // Detect low-end device (simplified check)
@@ -21,29 +36,30 @@ const isLowEndDevice = () => {
 }
 
 export default function Scene3D() {
-  const mobile = useMemo(() => isMobile(), [])
+  const mobile = useIsMobile()
   const lowEnd = useMemo(() => isLowEndDevice(), [])
 
   // Adjust settings based on device capabilities
   const dpr: [number, number] = mobile ? [1, 1.5] : [1, 2]
   const antialias = !lowEnd
 
+  // Camera settings - move back on mobile to see more
+  const cameraPosition: [number, number, number] = mobile ? [0, 5, 50] : [0, 5, 35]
+  const fov = mobile ? 75 : 65
+
   return (
     <div className="scene-container">
       <Canvas
-        camera={{ position: [0, 0, 20], fov: 60 }}
+        camera={{ position: cameraPosition, fov }}
         gl={{ antialias, alpha: false, powerPreference: mobile ? 'low-power' : 'high-performance' }}
         dpr={dpr}
         performance={{ min: mobile ? 0.5 : 0.75 }}
       >
         <Suspense fallback={null}>
           <AbyssBackground isMobile={mobile} isLowEnd={lowEnd} />
-          <ambientLight intensity={0.3} color="#1a0515" />
-          <pointLight position={[10, 10, 10]} intensity={1.8} color="#a855f7" />
-          <pointLight position={[-10, -10, -10]} intensity={1.0} color="#ec4899" />
-          {!mobile && <pointLight position={[0, 0, 15]} intensity={0.6} color="#c084fc" />}
-          {!mobile && <pointLight position={[-15, 5, 5]} intensity={0.4} color="#7c3aed" />}
-          <Atom isMobile={mobile} />
+          <ambientLight intensity={0.03} color="#FFFFFF" />
+          {/* Main light source is now inside the Sun in SolarSystem.tsx */}
+          <SolarSystem isMobile={mobile} />
         </Suspense>
       </Canvas>
     </div>
