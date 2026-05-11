@@ -1,21 +1,17 @@
-import Scene3D from '@components/three/Scene3D'
-import Hero from '@components/sections/Hero'
-import About from '@components/sections/About'
-import Projects from '@components/sections/Projects'
-import Contact from '@components/sections/Contact'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
 
-function App() {
-  return (
-    <>
-      <Scene3D />
-      <main className="content">
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
-    </>
-  )
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
+
+// Create the router
+const router = createRouter({ routeTree })
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
 }
 
-export default App
+export default function App() {
+  return <RouterProvider router={router} />
+}
