@@ -1,5 +1,6 @@
 import SectionHeader from '@/components/shared/SectionHeader'
 import GlassCard from '@/components/shared/GlassCard'
+import { motion } from 'framer-motion'
 
 const uses = [
   {
@@ -37,13 +38,35 @@ const uses = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut' }
+  }
+}
+
 export default function UsesContent() {
   return (
     <div className="page-content">
       <SectionHeader tag="My Setup" title="What I Use" icon="⬡" />
-      <div className="uses-grid">
+      <motion.div 
+        className="uses-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {uses.map((cat) => (
-          <div key={cat.category} className="uses-category">
+          <motion.div key={cat.category} variants={itemVariants} className="uses-category">
             <h3 className="uses-category-title">{cat.category}</h3>
             <div className="uses-items">
               {cat.items.map((item) => (
@@ -53,9 +76,9 @@ export default function UsesContent() {
                 </GlassCard>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import SectionHeader from '@/components/shared/SectionHeader'
+import { motion } from 'framer-motion'
 
 const skills = [
   { name: 'TypeScript', level: 95, category: 'Languages' },
@@ -17,12 +18,34 @@ const skills = [
 
 const categories = ['Languages', 'Frameworks', '3D/Graphics', 'Tools', 'Database', 'DevOps']
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+}
+
 export default function AboutContent() {
   return (
     <div className="page-content">
       <SectionHeader tag="About Me" title="Who I Am" icon="⚛" />
-      <div className="about-section">
-        <div className="about-bio">
+      <motion.div 
+        className="about-section"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants} className="about-bio">
           <p>
             I'm a full-stack developer with a deep passion for systems programming,
             Linux, and building performant web applications. I thrive at the intersection
@@ -37,10 +60,10 @@ export default function AboutContent() {
             When I'm not coding, you'll find me exploring new technologies, contributing
             to open source, or diving into systems programming concepts.
           </p>
-        </div>
+        </motion.div>
         <div className="skills-grid">
           {categories.map(cat => (
-            <div key={cat} className="skill-category">
+            <motion.div key={cat} variants={itemVariants} className="skill-category">
               <h3 className="skill-category-title">{cat}</h3>
               <div className="skill-items">
                 {skills.filter(s => s.category === cat).map(skill => (
@@ -50,15 +73,21 @@ export default function AboutContent() {
                       <span className="skill-level">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div className="skill-progress" style={{ width: `${skill.level}%` }} />
+                      <motion.div 
+                        className="skill-progress" 
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

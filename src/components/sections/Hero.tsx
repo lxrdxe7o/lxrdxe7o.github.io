@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { LightBeamButton } from '../shared/LightBeamButton'
 
 const hiText = "Hi, I'm "
 const xeroLetters = ['x', 'e', 'r', 'o']
@@ -93,12 +94,12 @@ export default function Hero() {
           animate={phase === 'done' ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          <a href="#projects" className="btn btn-primary">
+          <LightBeamButton href="#projects" className="btn btn-primary">
             View Projects
-          </a>
-          <a href="#contact" className="btn btn-secondary">
+          </LightBeamButton>
+          <LightBeamButton href="#contact" className="btn btn-secondary">
             Get in Touch
-          </a>
+          </LightBeamButton>
         </motion.div>
       </motion.div>
       <motion.div

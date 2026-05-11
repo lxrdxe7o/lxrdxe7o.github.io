@@ -28,9 +28,9 @@ function RootComponent() {
     <div className="app-root">
       <SceneEngine />
       <Navbar onMenuToggle={() => setMobileMenuOpen(true)} />
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} route={location.pathname === '/' ? 'home' : location.pathname.split('/')[1]} />
       <main className="content">
-        <PageTransition>
+        <PageTransition routeKey={location.pathname}>
           <Suspense fallback={<div className="loading-screen"><div className="loader" /></div>}>
             <Outlet />
           </Suspense>
