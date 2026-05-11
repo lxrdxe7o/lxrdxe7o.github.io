@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { navLinks } from './navLinks'
+import { LightBeamButton } from '@/components/shared/LightBeamButton'
 
 export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
   return (
@@ -36,7 +37,7 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
           ))}
         </ul>
 
-        <button
+        <LightBeamButton
           className="mobile-menu-toggle"
           onClick={onMenuToggle}
           aria-label="Toggle mobile menu"
@@ -44,7 +45,7 @@ export default function Navbar({ onMenuToggle }: { onMenuToggle: () => void }) {
           <span className="hamburger-line" />
           <span className="hamburger-line" />
           <span className="hamburger-line" />
-        </button>
+        </LightBeamButton>
       </div>
     </nav>
   )

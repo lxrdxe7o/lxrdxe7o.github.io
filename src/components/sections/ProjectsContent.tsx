@@ -1,5 +1,7 @@
 import SectionHeader from '@/components/shared/SectionHeader'
 import GlassCard from '@/components/shared/GlassCard'
+import { LightBeamButton } from '@/components/shared/LightBeamButton'
+import { motion } from 'framer-motion'
 
 const projects = [
   {
@@ -40,26 +42,50 @@ const projects = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+}
+
 export default function ProjectsContent() {
   return (
     <div className="page-content">
       <SectionHeader tag="My Work" title="Featured Projects" icon="⚙" />
-      <div className="projects-grid">
+      <motion.div 
+        className="projects-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {projects.map((project) => (
-          <GlassCard key={project.title} className="project-card">
-            <h3 className="project-title">{project.title}</h3>
-            <p className="project-description">{project.description}</p>
-            <div className="project-tech">
-              {project.tech.map(t => (
-                <span key={t} className="tech-tag">{t}</span>
-              ))}
-            </div>
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
-              View on GitHub →
-            </a>
-          </GlassCard>
+          <motion.div key={project.title} variants={itemVariants}>
+            <GlassCard className="project-card">
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
+              <div className="project-tech">
+                {project.tech.map(t => (
+                  <span key={t} className="tech-tag">{t}</span>
+                ))}
+              </div>
+              <LightBeamButton href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                View on GitHub →
+              </LightBeamButton>
+            </GlassCard>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

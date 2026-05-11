@@ -4,6 +4,7 @@ import { useLocation } from '@tanstack/react-router'
 import * as THREE from 'three'
 
 // Lazy-load new scene presets
+const SolarSystemScene = lazy(() => import('./presets/SolarSystemScene'))
 const QuantumAtomScene = lazy(() => import('./presets/QuantumAtomScene'))
 const OrbitalStationScene = lazy(() => import('./presets/OrbitalStationScene'))
 const WormholeScene = lazy(() => import('./presets/WormholeScene'))
@@ -14,7 +15,7 @@ const PulsarScene = lazy(() => import('./presets/PulsarScene'))
 const ConstellationScene = lazy(() => import('./presets/ConstellationScene'))
 
 const sceneComponents: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
-  '/': QuantumAtomScene, // Use QuantumAtom for home (more neutral than SolarSystem)
+  '/': SolarSystemScene,
   '/about': QuantumAtomScene,
   '/projects': OrbitalStationScene,
   '/experience': WormholeScene,
@@ -23,7 +24,7 @@ const sceneComponents: Record<string, React.LazyExoticComponent<React.ComponentT
   '/notes': CrimsonVoidScene,
   '/now': PulsarScene,
   '/contact': ConstellationScene,
-  '/blog': ConstellationScene, // fallback
+  '/blog': SolarSystemScene, // fallback
 }
 
 const CANVAS_CAMERA = { position: [0, 5, 15] as const, fov: 60 }

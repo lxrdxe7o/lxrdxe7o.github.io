@@ -1,4 +1,5 @@
 import SectionHeader from '@/components/shared/SectionHeader'
+import { motion } from 'framer-motion'
 
 const timeline = [
   {
@@ -21,13 +22,35 @@ const timeline = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+}
+
 export default function ExperienceContent() {
   return (
     <div className="page-content">
       <SectionHeader tag="Timeline" title="Professional Journey" icon="◈" />
-      <div className="timeline">
+      <motion.div 
+        className="timeline"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {timeline.map((item, i) => (
-          <div key={i} className="timeline-item">
+          <motion.div key={i} variants={itemVariants} className="timeline-item">
             <div className="timeline-marker" />
             <div className="timeline-content">
               <span className="timeline-year">{item.year}</span>
@@ -35,9 +58,9 @@ export default function ExperienceContent() {
               <span className="timeline-company">{item.company}</span>
               <p className="timeline-description">{item.description}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

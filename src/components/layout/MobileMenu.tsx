@@ -1,9 +1,11 @@
 import { Link } from '@tanstack/react-router'
 import { navLinks } from './navLinks'
+import { LightBeamButton } from '@/components/shared/LightBeamButton'
 
 interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
+  route?: string // Keep it optional if needed elsewhere, but don't force usage here
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
@@ -14,9 +16,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div className="mobile-menu-drawer" onClick={(e) => e.stopPropagation()}>
         <div className="mobile-menu-header">
           <span className="mobile-menu-title">Navigation</span>
-          <button className="mobile-menu-close" onClick={onClose} aria-label="Close menu">
+          <LightBeamButton className="mobile-menu-close" onClick={onClose} aria-label="Close menu">
             ✕
-          </button>
+          </LightBeamButton>
         </div>
         <nav className="mobile-nav">
           {navLinks.map((link) => (

@@ -1,5 +1,6 @@
 import SectionHeader from '@/components/shared/SectionHeader'
 import GlassCard from '@/components/shared/GlassCard'
+import { motion } from 'framer-motion'
 
 const nowItems = [
   {
@@ -25,13 +26,35 @@ const nowItems = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut' }
+  }
+}
+
 export default function NowContent() {
   return (
     <div className="page-content">
       <SectionHeader tag="Currently" title="What I'm Working On" icon="⚡" />
-      <div className="now-section">
+      <motion.div 
+        className="now-section"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {nowItems.map((section) => (
-          <div key={section.category} className="now-category">
+          <motion.div key={section.category} variants={itemVariants} className="now-category">
             <h3 className="now-category-title">{section.category}</h3>
             <div className="now-items">
               {section.items.map((item) => (
@@ -41,9 +64,9 @@ export default function NowContent() {
                 </GlassCard>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
