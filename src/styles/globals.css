@@ -4,13 +4,13 @@
   --color-surface: #1a0a14;
   --color-border: #2a1020;
 
-  --color-primary: #a855f7;
-  --color-primary-light: #c084fc;
-  --color-primary-dark: #7c3aed;
+  --color-primary: #ef233c;
+  --color-primary-light: #ff4d66;
+  --color-primary-dark: #cc1a30;
 
-  --color-accent-pink: #ec4899;
-  --color-accent-blue: #6366f1;
-  --color-accent-cyan: #22d3ee;
+  --color-accent-pink: #ef233c;
+  --color-accent-blue: #ef233c;
+  --color-accent-cyan: #ff4d66;
 
   --color-text: #ffffff;
   --color-text-secondary: #a0a0a0;
@@ -35,8 +35,8 @@
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
 
-  --glow-primary: 0 0 30px rgba(168, 85, 247, 0.3);
-  --glow-pink: 0 0 30px rgba(236, 72, 153, 0.3);
+  --glow-primary: 0 0 30px rgba(239, 35, 60, 0.3);
+  --glow-pink: 0 0 30px rgba(239, 35, 60, 0.3);
 }
 
 *, *::before, *::after {

@@ -9,6 +9,13 @@
     "dist",
     "public"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lxrdxe7o/lxrdxe7o.me.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

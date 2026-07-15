@@ -6,18 +6,18 @@ import * as THREE from 'three'
 // Lazy-load new scene presets
 const SolarSystemScene = lazy(() => import('./presets/SolarSystemScene'))
 const QuantumAtomScene = lazy(() => import('./presets/QuantumAtomScene'))
-const OrbitalStationScene = lazy(() => import('./presets/OrbitalStationScene'))
 const WormholeScene = lazy(() => import('./presets/WormholeScene'))
 const CrystalCavernScene = lazy(() => import('./presets/CrystalCavernScene'))
 const DigitalMatrixScene = lazy(() => import('./presets/DigitalMatrixScene'))
 const CrimsonVoidScene = lazy(() => import('./presets/CrimsonVoidScene'))
 const PulsarScene = lazy(() => import('./presets/PulsarScene'))
 const ConstellationScene = lazy(() => import('./presets/ConstellationScene'))
+const BackgroundScene = lazy(() => import('./presets/BackgroundScene'))
 
 const sceneComponents: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
   '/': SolarSystemScene,
   '/about': QuantumAtomScene,
-  '/projects': OrbitalStationScene,
+  '/projects': BackgroundScene,
   '/experience': WormholeScene,
   '/skills': CrystalCavernScene,
   '/uses': DigitalMatrixScene,
@@ -40,13 +40,28 @@ export default function SceneEngine() {
   const { pathname } = useLocation()
 
   const SceneComponent = useMemo((): SceneComponent => {
-    // Try exact path first
     if (sceneComponents[pathname]) {
       return sceneComponents[pathname]
     }
-    // Fallback to root scene
     return sceneComponents['/'] || (() => null)
   }, [pathname])
+
+  if (pathname === '/') {
+    return null
+  }
+
+  // Render HTML/CSS scenes directly without Three.js Canvas
+  const isHtmlScene = pathname === '/projects'
+
+  if (isHtmlScene) {
+    return (
+      <div className="scene-container">
+        <Suspense fallback={null}>
+          <SceneComponent />
+        </Suspense>
+      </div>
+    )
+  }
 
   return (
     <div className="scene-container">
