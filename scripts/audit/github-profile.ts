@@ -3,6 +3,25 @@ import * as path from 'node:path';
 import type { RepositoryEvidence } from '../../src/types/audit';
 import { formatReportMarkdown, generateAuditReport } from './content-gap-report';
 
+interface RawGitHubRepo {
+  name: string;
+  full_name: string;
+  html_url: string;
+  private: boolean;
+  description: string | null;
+  language: string | null;
+  topics?: string[];
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
+  stargazers_count?: number;
+  forks_count?: number;
+  fork?: boolean;
+  archived?: boolean;
+  license?: { spdx_id?: string; name?: string } | null;
+  homepage?: string | null;
+}
+
 export async function fetchGitHubRepositories(username: string): Promise<RepositoryEvidence[]> {
   const url = `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`;
   const headers: Record<string, string> = {
@@ -19,7 +38,8 @@ export async function fetchGitHubRepositories(username: string): Promise<Reposit
     if (!response.ok) {
       throw new Error(`GitHub API responded with status ${response.status}`);
     }
-    const rawRepos = (await response.json()) as any[];
+    const rawRepos = (await response.json()) as RawGitHubRepo[];
+
 
     return rawRepos.map((repo) => ({
       name: repo.name,
