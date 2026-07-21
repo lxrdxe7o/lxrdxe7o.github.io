@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 .tanstack/
 .empryo/
+
+# Task 1 behavioral baseline working data
+.superpowers/
+artifacts/baseline/
+artifacts/playwright/
+test-results/
+playwright-report/

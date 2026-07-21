@@ -20,7 +20,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck:baseline": "tsc --noEmit -p tsconfig.scripts.json",
+    "test:baseline": "playwright test tests/visual/baseline-capture.spec.ts",
+    "test:baseline:list": "playwright test tests/visual/baseline-capture.spec.ts --list",
+    "capture:current": "playwright test tests/visual/baseline-capture.spec.ts --grep @capture-current",
+    "capture:reference": "node --experimental-strip-types scripts/reference/capture-reference.ts"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",
@@ -37,6 +42,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@playwright/test": "1.61.1",
     "@tanstack/router-devtools": "^1.166.13",
     "@types/node": "^25.6.2",
     "@types/react": "^18.3.12",
