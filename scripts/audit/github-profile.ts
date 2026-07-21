@@ -62,7 +62,19 @@ export async function runAudit(username = 'lxrdxe7o') {
   fs.writeFileSync(rawPath, JSON.stringify(repos, null, 2));
   console.log(`[Audit] Saved raw evidence cache to ${rawPath}`);
 
-  const report = generateAuditReport(username, repos);
+  const userApprovedFlagships = [
+    'xero-dev',
+    'krakenvim',
+    'hachi',
+    'mikeneko',
+    'shiro-nekoo-115',
+    'deaddrop',
+    'dotfiles',
+    'tora-neko-311',
+    'kuro-nekoo-215',
+  ];
+  const report = generateAuditReport(username, repos, userApprovedFlagships);
+
   const markdown = formatReportMarkdown(report);
 
   const reportPath = path.join(reportDir, 'portfolio-audit.md');

@@ -1,20 +1,45 @@
 import type { AuditReport, CurationCandidate, RepositoryEvidence } from '../../src/types/audit';
 import { scoreAndClassifyRepository } from './repository-signals';
 
-export function generateAuditReport(username: string, repos: RepositoryEvidence[]): AuditReport {
+export function generateAuditReport(username: string, repos: RepositoryEvidence[], userFlagshipSlugs?: string[]): AuditReport {
   const candidates: CurationCandidate[] = repos.map((repo) => scoreAndClassifyRepository(repo));
 
-  const flagshipCandidates = candidates
-    .filter((c) => c.classification === 'flagship')
-    .sort((a, b) => b.score - a.score)
-    .map((candidate, idx) => ({ ...candidate, proposedOrder: idx + 1 }));
+  let flagshipCandidates: CurationCandidate[] = [];
+  let remainingCandidates: CurationCandidate[] = [];
 
-  const archiveCandidates = candidates
+  if (userFlagshipSlugs && userFlagshipSlugs.length > 0) {
+    for (const slug of userFlagshipSlugs) {
+      const found = candidates.find((c) => c.slug === slug || c.evidence.name.toLowerCase() === slug);
+      if (found) {
+        found.classification = 'flagship';
+        flagshipCandidates.push(found);
+      }
+    }
+    for (const candidate of candidates) {
+      if (!flagshipCandidates.some((f) => f.slug === candidate.slug)) {
+        if (candidate.classification === 'flagship') {
+          candidate.classification = 'archive';
+        }
+        remainingCandidates.push(candidate);
+      }
+    }
+  } else {
+    flagshipCandidates = candidates.filter((c) => c.classification === 'flagship').sort((a, b) => b.score - a.score);
+    remainingCandidates = candidates.filter((c) => c.classification !== 'flagship');
+  }
+
+  flagshipCandidates.forEach((c, idx) => {
+    c.proposedOrder = idx + 1;
+  });
+
+  const archiveCandidates = remainingCandidates
     .filter((c) => c.classification === 'archive')
     .sort((a, b) => b.score - a.score)
     .map((candidate, idx) => ({ ...candidate, proposedOrder: flagshipCandidates.length + idx + 1 }));
 
-  const excludedCandidates = candidates.filter((c) => c.classification === 'excluded');
+  const excludedCandidates = remainingCandidates.filter((c) => c.classification === 'excluded');
+
+
 
   const missingUserFacts: string[] = [];
   const mediaProductionNeeds: string[] = [];
