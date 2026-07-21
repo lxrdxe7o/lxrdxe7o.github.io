@@ -1,0 +1,30 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "experience",
+    "path": "/experience",
+    "label": "Experience"
+  },
+  "state": {
+    "id": "mobile-touch",
+    "label": "Mobile touch",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/experience",
+  "artifactPath": "artifacts/baseline/current/mobile-touch/experience.failed.json",
+  "capturedAt": "2026-07-21T00:26:50.221Z",
+  "status": "failed",
+  "limitation": "page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4173/experience\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

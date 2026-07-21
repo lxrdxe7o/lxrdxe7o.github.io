@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "notes",
+    "path": "/notes",
+    "label": "Notes"
+  },
+  "state": {
+    "id": "mobile-touch",
+    "label": "Mobile touch",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/notes",
+  "artifactPath": "artifacts/baseline/current/mobile-touch/notes.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [
+      "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/7543b8a9-e3b7-4974-af3a-8538e9847eb6:18:19)"
+    ],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

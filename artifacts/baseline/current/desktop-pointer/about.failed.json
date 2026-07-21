@@ -1,0 +1,30 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "about",
+    "path": "/about",
+    "label": "About"
+  },
+  "state": {
+    "id": "desktop-pointer",
+    "label": "Desktop pointer",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "pointer",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/about",
+  "artifactPath": "artifacts/baseline/current/desktop-pointer/about.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

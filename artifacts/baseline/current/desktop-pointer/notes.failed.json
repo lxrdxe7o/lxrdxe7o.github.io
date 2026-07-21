@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "notes",
+    "path": "/notes",
+    "label": "Notes"
+  },
+  "state": {
+    "id": "desktop-pointer",
+    "label": "Desktop pointer",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "pointer",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/notes",
+  "artifactPath": "artifacts/baseline/current/desktop-pointer/notes.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [
+      "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/dbf2d1d6-afe8-4750-89c7-f1e5c480817e:18:19)"
+    ],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

@@ -1,0 +1,338 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&f[]=general-sans@300,400,500,600,700&display=swap');
+
+.about-page-wrapper {
+  /* Color Palette */
+  --bg-matte: #181818;
+  --text-primary: #EBDCC4;
+  --text-secondary: #B6A596;
+  --accent-primary: #DC9F85;
+  --border-color: #66473B;
+  --dark-details: #35211A;
+  
+  background-color: var(--bg-matte);
+  color: var(--text-primary);
+  font-family: 'General Sans', sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fractal Noise Overlay */
+.about-page-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* Minimal Navigation */
+.nav-minimal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.nav-brand {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-spacer {
+  flex-grow: 1;
+  height: 1px;
+  background-color: var(--dark-details);
+  margin: 0 32px;
+}
+
+.nav-status {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--dark-details);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Hero Section */
+.hero-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 32px 60px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.hero-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.hero-label-line {
+  width: 24px;
+  height: 1px;
+  background-color: var(--accent-primary);
+}
+
+.hero-label-text {
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.hero-title-container {
+  position: relative;
+}
+
+.hero-title {
+  font-family: 'Clash Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11.5vw;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  color: var(--text-primary);
+}
+
+.hero-title-back {
+  font-family: 'Clash Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11.5vw;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border-color);
+  user-select: none;
+}
+
+/* Bottom Grid Section */
+.bottom-section {
+  padding: 0 32px 60px;
+  box-sizing: border-box;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--dark-details);
+  margin-bottom: 48px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.exclusivity-col {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.exclusivity-text {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 300;
+  line-height: 1.625; /* leading-relaxed */
+  color: var(--text-secondary);
+  margin: 0 0 32px 0;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+}
+
+.status-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.form-col {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.email-form {
+  display: flex;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.email-input {
+  flex-grow: 1;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  padding: 16px 20px;
+  color: var(--text-primary);
+  font-family: 'General Sans', sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: var(--border-color);
+}
+
+.email-input:focus {
+  border-color: var(--accent-primary);
+}
+
+.email-button {
+  background-color: var(--accent-primary);
+  color: var(--bg-matte);
+  border: 1px solid var(--accent-primary);
+  border-radius: 0 4px 4px 0;
+  padding: 0 32px;
+  font-family: 'General Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.email-button:hover {
+  opacity: 0.9;
+}
+
+.form-caption {
+  font-size: 12px;
+  color: var(--dark-details);
+}
+
+/* Rotating Badge */
+.rotating-badge {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--dark-details);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.badge-text-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateText 12s linear infinite;
+}
+
+.badge-text-path {
+  fill: var(--dark-details);
+  font-family: 'General Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+@keyframes rotateText {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-break {
+    display: block;
+  }
+  
+  .nav-minimal {
+    padding: 24px 20px;
+  }
+  
+  .hero-section {
+    padding: 100px 20px 40px;
+  }
+  
+  .hero-title, .hero-title-back {
+    font-size: 16vw;
+    white-space: pre-line;
+  }
+  
+  .bottom-section {
+    padding: 0 20px 40px;
+  }
+  
+  .rotating-badge {
+    bottom: auto;
+    top: 100px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .badge-text-path {
+    font-size: 16px;
+  }
+}

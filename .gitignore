@@ -25,9 +25,5 @@ dist-ssr
 .tanstack/
 .empryo/
 
-# Task 1 behavioral baseline working data
-.superpowers/
-artifacts/baseline/
-artifacts/playwright/
-test-results/
-playwright-report/
+# Astro
+.astro/

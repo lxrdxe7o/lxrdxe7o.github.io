@@ -1,0 +1,25 @@
+{
+  "target": "reference",
+  "subject": {
+    "id": "footer",
+    "path": "/",
+    "label": "Footer"
+  },
+  "state": {
+    "id": "desktop-sound-gate",
+    "label": "Desktop sound gate",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "pointer",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": true
+  },
+  "url": "https://rogierdeboeve.com/",
+  "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/footer.blocked.json",
+  "capturedAt": "2026-07-20T21:26:27.513Z",
+  "status": "blocked",
+  "limitation": "locator.count: Target page, context or browser has been closed"
+}

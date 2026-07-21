@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "uses",
+    "path": "/uses",
+    "label": "Uses"
+  },
+  "state": {
+    "id": "desktop-keyboard",
+    "label": "Desktop keyboard-only",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "keyboard",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/uses",
+  "artifactPath": "artifacts/baseline/current/desktop-keyboard/uses.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [
+      "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/ccd48edd-3295-4ea8-9d7c-82a03ba4be2c:18:19)"
+    ],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

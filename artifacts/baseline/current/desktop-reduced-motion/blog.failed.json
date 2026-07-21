@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "blog",
+    "path": "/blog",
+    "label": "Blog"
+  },
+  "state": {
+    "id": "desktop-reduced-motion",
+    "label": "Desktop reduced motion",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "keyboard",
+    "reducedMotion": "reduce",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/blog",
+  "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/blog.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [
+      "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
+    ]
+  }
+}

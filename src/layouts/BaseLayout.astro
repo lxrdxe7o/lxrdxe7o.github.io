@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  routeId: string;
+  image?: string;
+}
+
+const { title, description, canonical, routeId, image } = Astro.props;
+
+import SiteHeader from '../components/shell/SiteHeader.astro';
+import SiteFooter from '../components/shell/SiteFooter.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {image && <meta property="og:image" content={image} />}
+  </head>
+  <body id={routeId}>
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

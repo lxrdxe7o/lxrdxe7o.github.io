@@ -1,0 +1,30 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "home",
+    "path": "/",
+    "label": "Home"
+  },
+  "state": {
+    "id": "mobile-touch",
+    "label": "Mobile touch",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/",
+  "artifactPath": "artifacts/baseline/current/mobile-touch/home.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

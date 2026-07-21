@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "uses",
+    "path": "/uses",
+    "label": "Uses"
+  },
+  "state": {
+    "id": "desktop-reduced-motion",
+    "label": "Desktop reduced motion",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "keyboard",
+    "reducedMotion": "reduce",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/uses",
+  "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/uses.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [
+      "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/bfbb2c8c-86ca-4638-bc78-5fae954adb84:18:19)"
+    ],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

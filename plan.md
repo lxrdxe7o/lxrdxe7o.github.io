@@ -365,10 +365,10 @@ Every task follows the same delivery cycle:
 - Add scripts for `dev`, `build`, `preview`, `check`, `lint`, `test`, `test:unit`, `test:e2e`, `test:a11y`, `test:visual`, and `test:perf`.
 
 **Tests and validation:**
-- [ ] Write route tests that expect HTTP 200, one `h1`, a skip link, a main landmark, and route-specific canonical metadata.
-- [ ] Confirm the tests fail before route creation and pass after migration.
-- [ ] Run `npm run check`, `npm run lint`, `npm run test:e2e -- tests/e2e/route-parity.spec.ts`, and `npm run build`.
-- [ ] Inspect the built HTML with JavaScript disabled and verify navigation and core content remain available.
+- [x] Write route tests that expect HTTP 200, one `h1`, a skip link, a main landmark, and route-specific canonical metadata.
+- [x] Confirm the tests fail before route creation and pass after migration.
+- [x] Run `npm run check`, `npm run lint`, `npm run test:e2e -- tests/e2e/route-parity.spec.ts`, and `npm run build`.
+- [x] Inspect the built HTML with JavaScript disabled and verify navigation and core content remain available.
 
 **Demo:** Navigate every preserved route in the Astro preview and disable JavaScript to show a complete, readable route-parity shell.
 

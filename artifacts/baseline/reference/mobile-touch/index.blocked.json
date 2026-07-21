@@ -1,0 +1,25 @@
+{
+  "target": "reference",
+  "subject": {
+    "id": "index",
+    "path": "/",
+    "label": "Index"
+  },
+  "state": {
+    "id": "mobile-touch",
+    "label": "Mobile touch",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "soundGate": false
+  },
+  "url": "https://rogierdeboeve.com/",
+  "artifactPath": "artifacts/baseline/reference/mobile-touch/index.blocked.json",
+  "capturedAt": "2026-07-20T21:43:55.454Z",
+  "status": "blocked",
+  "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+}

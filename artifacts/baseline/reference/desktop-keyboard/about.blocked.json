@@ -1,0 +1,25 @@
+{
+  "target": "reference",
+  "subject": {
+    "id": "about",
+    "path": "/",
+    "label": "About"
+  },
+  "state": {
+    "id": "desktop-keyboard",
+    "label": "Desktop keyboard-only",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "keyboard",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "https://rogierdeboeve.com/",
+  "artifactPath": "artifacts/baseline/reference/desktop-keyboard/about.blocked.json",
+  "capturedAt": "2026-07-20T21:43:55.454Z",
+  "status": "blocked",
+  "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+}

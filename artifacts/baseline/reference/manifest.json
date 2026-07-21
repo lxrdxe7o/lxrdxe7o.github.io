@@ -1,0 +1,1995 @@
+{
+  "schemaVersion": 1,
+  "target": "reference",
+  "source": {
+    "kind": "public-observation-only",
+    "origin": "https://rogierdeboeve.com/",
+    "constraints": [
+      "No reference source code, shaders, protected assets, or media were inspected or copied.",
+      "Only explicit silent-entry controls may be activated.",
+      "Reference screenshots are internal ignored parity evidence and must never ship."
+    ]
+  },
+  "generatedAt": "2026-07-20T21:43:55.454Z",
+  "approvedStates": [
+    {
+      "id": "desktop-pointer",
+      "label": "Desktop pointer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "pointer",
+      "reducedMotion": "no-preference",
+      "touch": false,
+      "soundGate": false
+    },
+    {
+      "id": "mobile-touch",
+      "label": "Mobile touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "input": "touch",
+      "reducedMotion": "no-preference",
+      "touch": true,
+      "soundGate": false
+    },
+    {
+      "id": "desktop-keyboard",
+      "label": "Desktop keyboard-only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "keyboard",
+      "reducedMotion": "no-preference",
+      "touch": false,
+      "soundGate": false
+    },
+    {
+      "id": "desktop-reduced-motion",
+      "label": "Desktop reduced motion",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "keyboard",
+      "reducedMotion": "reduce",
+      "touch": false,
+      "soundGate": false
+    },
+    {
+      "id": "desktop-sound-gate",
+      "label": "Desktop sound gate",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "input": "pointer",
+      "reducedMotion": "no-preference",
+      "touch": false,
+      "soundGate": true
+    }
+  ],
+  "audioSafety": [
+    {
+      "safe": false,
+      "automaticAudioDetected": false,
+      "silentPathAudioDetected": true,
+      "reasons": [
+        "Audio activity was detected after choosing silent entry."
+      ],
+      "stateId": "desktop-pointer",
+      "status": "unsafe"
+    },
+    {
+      "safe": false,
+      "automaticAudioDetected": false,
+      "silentPathAudioDetected": false,
+      "reasons": [
+        "Silent-path audio safety through entry completion could not be verified."
+      ],
+      "stateId": "mobile-touch",
+      "status": "blocked"
+    },
+    {
+      "safe": false,
+      "automaticAudioDetected": false,
+      "silentPathAudioDetected": false,
+      "reasons": [
+        "Silent-path audio safety could not be verified because silent entry was not exercised."
+      ],
+      "stateId": "desktop-keyboard",
+      "status": "blocked"
+    },
+    {
+      "safe": false,
+      "automaticAudioDetected": false,
+      "silentPathAudioDetected": false,
+      "reasons": [
+        "Silent-path audio safety could not be verified because silent entry was not exercised."
+      ],
+      "stateId": "desktop-reduced-motion",
+      "status": "blocked"
+    },
+    {
+      "safe": false,
+      "automaticAudioDetected": false,
+      "silentPathAudioDetected": true,
+      "reasons": [
+        "Audio activity was detected after choosing silent entry."
+      ],
+      "stateId": "desktop-sound-gate",
+      "status": "unsafe"
+    }
+  ],
+  "records": [
+    {
+      "target": "reference",
+      "subject": {
+        "id": "loader",
+        "path": "/",
+        "label": "Loader"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/loader.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "entry",
+        "path": "/",
+        "label": "Entry gate"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/entry.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/home.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "index",
+        "path": "/",
+        "label": "Index"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/index.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "project",
+        "path": "/",
+        "label": "Project sequence"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/hashgraph-vc/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/project.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Hashgraph VC - Rogier de Boevé",
+        "headings": [
+          "Hashgraph VC",
+          "GC 2026"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "TO INDEX TO INDEX",
+          "VIEW LIVE VIEW LIVE",
+          "NEXT PROJECT GC 2026",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 2,
+        "scrollHeight": 4469,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "about",
+        "path": "/",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/about/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/about.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - About",
+        "headings": [
+          "ABOUT ME",
+          "BRANDS I'VE WORKED FOR",
+          "AGENCIES I'VE WORKED WITH",
+          "RECOGNITION",
+          "SERVICES",
+          "CONTACT",
+          "Tools",
+          "DEVELOPMENT",
+          "DESIGN",
+          "Resources",
+          "FONTS",
+          "SOUND FX"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "say hi",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 2846,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "About",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "footer",
+        "path": "/",
+        "label": "Footer"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/about/",
+      "artifactPath": "artifacts/baseline/reference/desktop-pointer/footer.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - About",
+        "headings": [
+          "ABOUT ME",
+          "BRANDS I'VE WORKED FOR",
+          "AGENCIES I'VE WORKED WITH",
+          "RECOGNITION",
+          "SERVICES",
+          "CONTACT",
+          "Tools",
+          "DEVELOPMENT",
+          "DESIGN",
+          "Resources",
+          "FONTS",
+          "SOUND FX"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "say hi",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 2846,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "About",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "loader",
+        "path": "/",
+        "label": "Loader"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/loader.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "TWITTER",
+          "INSTAGRAM",
+          "E-MAIL",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT"
+        ],
+        "socialLinks": [
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 844,
+        "viewportHeight": 844,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "entry",
+        "path": "/",
+        "label": "Entry gate"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/entry.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "TWITTER",
+          "INSTAGRAM",
+          "E-MAIL",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT"
+        ],
+        "socialLinks": [
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 844,
+        "viewportHeight": 844,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/home.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "index",
+        "path": "/",
+        "label": "Index"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/index.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "project",
+        "path": "/",
+        "label": "Project sequence"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/project.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "about",
+        "path": "/",
+        "label": "About"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/about.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "footer",
+        "path": "/",
+        "label": "Footer"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/mobile-touch/footer.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "Silent entry was activated, but entry completion was not observable because the gate remained input-active."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "loader",
+        "path": "/",
+        "label": "Loader"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/loader.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "entry",
+        "path": "/",
+        "label": "Entry gate"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/entry.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/home.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "index",
+        "path": "/",
+        "label": "Index"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/index.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "project",
+        "path": "/",
+        "label": "Project sequence"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/project.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "about",
+        "path": "/",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/about.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "footer",
+        "path": "/",
+        "label": "Footer"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-keyboard/footer.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "loader",
+        "path": "/",
+        "label": "Loader"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/loader.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": true,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "entry",
+        "path": "/",
+        "label": "Entry gate"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/entry.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": true,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/home.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "index",
+        "path": "/",
+        "label": "Index"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/index.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "project",
+        "path": "/",
+        "label": "Project sequence"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/project.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "about",
+        "path": "/",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/about.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "footer",
+        "path": "/",
+        "label": "Footer"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-reduced-motion/footer.blocked.json",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "blocked",
+      "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "loader",
+        "path": "/",
+        "label": "Loader"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/loader.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "entry",
+        "path": "/",
+        "label": "Entry gate"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/entry.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/home.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 0,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 0
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "index",
+        "path": "/",
+        "label": "Index"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/index.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - Creative Developer",
+        "headings": [],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "VIEW PROJECT VIEW PROJECT",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 900,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "project",
+        "path": "/",
+        "label": "Project sequence"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/hashgraph-vc/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/project.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Hashgraph VC - Rogier de Boevé",
+        "headings": [
+          "Hashgraph VC",
+          "GC 2026"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "TO INDEX TO INDEX",
+          "VIEW LIVE VIEW LIVE",
+          "NEXT PROJECT GC 2026",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 2,
+        "scrollHeight": 4469,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "body",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "about",
+        "path": "/",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/about/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/about.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - About",
+        "headings": [
+          "ABOUT ME",
+          "BRANDS I'VE WORKED FOR",
+          "AGENCIES I'VE WORKED WITH",
+          "RECOGNITION",
+          "SERVICES",
+          "CONTACT",
+          "Tools",
+          "DEVELOPMENT",
+          "DESIGN",
+          "Resources",
+          "FONTS",
+          "SOUND FX"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "say hi",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 2846,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "About",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    },
+    {
+      "target": "reference",
+      "subject": {
+        "id": "footer",
+        "path": "/",
+        "label": "Footer"
+      },
+      "state": {
+        "id": "desktop-sound-gate",
+        "label": "Desktop sound gate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": true
+      },
+      "url": "https://rogierdeboeve.com/about/",
+      "artifactPath": "artifacts/baseline/reference/desktop-sound-gate/footer.png",
+      "capturedAt": "2026-07-20T21:43:55.454Z",
+      "status": "captured",
+      "observation": {
+        "title": "Rogier de Boevé - About",
+        "headings": [
+          "ABOUT ME",
+          "BRANDS I'VE WORKED FOR",
+          "AGENCIES I'VE WORKED WITH",
+          "RECOGNITION",
+          "SERVICES",
+          "CONTACT",
+          "Tools",
+          "DEVELOPMENT",
+          "DESIGN",
+          "Resources",
+          "FONTS",
+          "SOUND FX"
+        ],
+        "controls": [
+          "V-004",
+          "Rogier de Boevé",
+          "Work",
+          "About",
+          "Twitter",
+          "Instagram",
+          "E-mail",
+          "say hi",
+          "TWITTER",
+          "INSTAGRAM",
+          "HELLO@ROGIERDEBOEVE.COM",
+          "Work",
+          "About"
+        ],
+        "socialLinks": [
+          "Twitter",
+          "Instagram",
+          "TWITTER",
+          "INSTAGRAM"
+        ],
+        "availabilityText": [
+          "AVAILABLE FOR FREELANCE"
+        ],
+        "canvasCount": 1,
+        "mediaElementCount": 0,
+        "scrollHeight": 2846,
+        "viewportHeight": 900,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "focusedElement": "About",
+        "audio": {
+          "mediaPlayAttempts": 0,
+          "audioContextResumeAttempts": 2,
+          "playingMediaElements": 0,
+          "runningAudioContexts": 1
+        },
+        "readinessWarnings": []
+      }
+    }
+  ]
+}

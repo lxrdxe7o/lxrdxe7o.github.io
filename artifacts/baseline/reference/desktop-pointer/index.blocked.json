@@ -1,0 +1,25 @@
+{
+  "target": "reference",
+  "subject": {
+    "id": "index",
+    "path": "/",
+    "label": "Index"
+  },
+  "state": {
+    "id": "desktop-pointer",
+    "label": "Desktop pointer",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "pointer",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:43975/",
+  "artifactPath": "artifacts/baseline/reference/desktop-pointer/index.blocked.json",
+  "capturedAt": "2026-01-15T12:00:00.000Z",
+  "status": "blocked",
+  "limitation": "No observable Index control was available after silent entry."
+}

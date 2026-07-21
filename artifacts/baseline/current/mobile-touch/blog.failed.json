@@ -1,0 +1,32 @@
+{
+  "target": "current",
+  "subject": {
+    "id": "blog",
+    "path": "/blog",
+    "label": "Blog"
+  },
+  "state": {
+    "id": "mobile-touch",
+    "label": "Mobile touch",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "touch",
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:4173/blog",
+  "artifactPath": "artifacts/baseline/current/mobile-touch/blog.failed.json",
+  "capturedAt": "2026-07-20T19:03:46.768Z",
+  "status": "failed",
+  "limitation": "mask.map is not a function",
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [
+      "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "target": "reference",
+  "subject": {
+    "id": "footer",
+    "path": "/",
+    "label": "Footer"
+  },
+  "state": {
+    "id": "desktop-pointer",
+    "label": "Desktop pointer",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "input": "pointer",
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "soundGate": false
+  },
+  "url": "http://127.0.0.1:35709/",
+  "artifactPath": "artifacts/baseline/reference/desktop-pointer/footer.blocked.json",
+  "capturedAt": "2026-01-15T12:00:00.000Z",
+  "status": "blocked",
+  "limitation": "No explicit silent-entry control became observable; no entry option was activated."
+}
