@@ -1,6 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects } from '../../lib/content/getProjects';
+
+const projects = await getProjects();
 ---
 <BaseLayout title="Projects" description="My Projects" routeId="projects">
   <h1>Projects</h1>
+  {projects.length === 0 ? (
+    <p>No projects published yet.</p>
+  ) : (
+    <ul>
+      {projects.map((project) => (
+        <li>
+          <h2>{project.data.title}</h2>
+          <p>{project.data.summary}</p>
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>

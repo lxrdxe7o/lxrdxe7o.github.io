@@ -1,6 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getNotes } from '../../lib/content/getNotes';
+
+const notes = await getNotes();
 ---
 <BaseLayout title="Notes" description="My Notes" routeId="notes">
   <h1>Notes</h1>
+  {notes.length === 0 ? (
+    <p>No notes published yet.</p>
+  ) : (
+    <ul>
+      {notes.map((note) => (
+        <li>
+          <h2>{note.data.title}</h2>
+          <time datetime={note.data.date.toISOString()}>
+            {note.data.date.toISOString().slice(0, 10)}
+          </time>
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>
