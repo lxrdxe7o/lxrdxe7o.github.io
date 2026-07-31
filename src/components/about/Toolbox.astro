@@ -1,0 +1,18 @@
+---
+import { toolbox } from '../../data/skills';
+---
+{toolbox.length > 0 && (
+  <section class="toolbox" aria-labelledby="toolbox-heading">
+    <p>Documented tools</p>
+    <h2 id="toolbox-heading">Toolbox</h2>
+    <ul>{toolbox.map((item) => <li>{item}</li>)}</ul>
+  </section>
+)}
+
+<style>
+  .toolbox { padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  .toolbox > p { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  h2 { margin-top: var(--space-4); }
+  ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin-top: var(--space-8); border-top: 1px solid var(--color-border); }
+  li { padding: var(--space-4) 0; border-bottom: 1px solid var(--color-border); color: var(--color-fg-muted); }
+</style>

@@ -1,0 +1,38 @@
+---
+import { experienceEntries } from '../../data/experience';
+---
+<section class="experience-list" aria-labelledby="experience-list-heading">
+  <div class="experience-list__heading">
+    <p>Verified project record</p>
+    <h2 id="experience-list-heading">Selected evidence</h2>
+  </div>
+  <ol>
+    {experienceEntries.filter((entry) => entry.fact.publishable).map((entry) => (
+      <li>
+        <time datetime={String(entry.year)}>{entry.year}</time>
+        <div>
+          <h3>{entry.project}</h3>
+          <p class="experience-list__role">{entry.role}</p>
+          <p>{entry.summary}</p>
+          <ul aria-label={`Evidence for ${entry.project}`}>
+            {entry.evidence.map((evidence) => <li><a href={evidence.href} target="_blank" rel="noopener noreferrer">{evidence.label}<span aria-hidden="true"> ↗</span></a></li>)}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .experience-list { padding-block: var(--space-section); }
+  .experience-list__heading { display: grid; gap: var(--space-4); }
+  .experience-list__heading > p { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  ol { margin-top: var(--space-12); border-top: 1px solid var(--color-border); }
+  ol > li { display: grid; grid-template-columns: minmax(4rem, .2fr) minmax(0, 1fr); gap: var(--space-6); padding-block: var(--space-8); border-bottom: 1px solid var(--color-border); }
+  time, .experience-list__role { color: var(--color-fg-muted); font-family: var(--font-family-mono); font-size: var(--text-mono); }
+  h3 { font-size: var(--text-h2); }
+  h3 + p { margin-top: var(--space-2); }
+  .experience-list__role + p { margin-top: var(--space-4); max-inline-size: 65ch; color: var(--color-fg-muted); }
+  ul { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-top: var(--space-4); }
+  a { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: .25em; }
+</style>

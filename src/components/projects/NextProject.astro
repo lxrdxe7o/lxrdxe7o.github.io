@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+}
+
+const { title, slug } = Astro.props;
+---
+<nav class="next-project" aria-label="Flagship project loop">
+  <p>Continue the selected work loop</p>
+  <a href={`/projects/${slug}`} aria-label={`Next project: ${title}`}>
+    <span>Next project</span>
+    <strong>{title}</strong>
+    <span aria-hidden="true">→</span>
+  </a>
+</nav>
+
+<style>
+  .next-project { padding-block: var(--space-section); }
+  .next-project > p {
+    font-family: var(--font-family-mono);
+    color: var(--color-fg-muted);
+    font-size: var(--text-mono);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3) var(--space-6);
+    align-items: end;
+    min-block-size: 8rem;
+    margin-top: var(--space-6);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+  }
+
+  a > span:first-child {
+    grid-column: 1 / -1;
+    color: var(--color-accent-text);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  strong {
+    font-size: clamp(2rem, 7vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  a > span:last-child { color: var(--color-accent-text); font-size: clamp(2rem, 5vw, 4rem); }
+</style>

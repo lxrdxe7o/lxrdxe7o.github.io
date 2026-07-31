@@ -1,0 +1,54 @@
+---
+import { contactLinks } from '../../data/contact';
+---
+<ul class="contact-links">
+  {contactLinks.map((link) => (
+    <li>
+      <span class="contact-links__label">{link.label}</span>
+      <div>
+        <a
+          href={link.href}
+          aria-label={link.accessibleLabel}
+          target={link.kind === 'external' ? '_blank' : undefined}
+          rel={link.kind === 'external' ? 'noopener noreferrer' : undefined}
+        >{link.display}<span aria-hidden="true"> {link.kind === 'external' ? '↗' : '→'}</span></a>
+        {link.kind === 'email' && <button type="button" data-copy-button data-copy-value={link.display} aria-label="Copy email address" hidden>Copy</button>}
+      </div>
+    </li>
+  ))}
+</ul>
+<p class="contact-links__status" data-copy-status aria-live="polite"></p>
+
+<script>
+  const bindContactCopy = () => {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-button]').forEach((button) => {
+      button.hidden = !navigator.clipboard;
+      if (button.dataset.bound === 'true') return;
+      button.dataset.bound = 'true';
+      button.addEventListener('click', async () => {
+        const status = document.querySelector<HTMLElement>('[data-copy-status]');
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyValue ?? '');
+          if (status) status.textContent = 'Email address copied.';
+          button.textContent = 'Copied';
+        } catch {
+          if (status) status.textContent = 'Copy was unavailable. Select the email address instead.';
+        }
+      });
+    });
+  };
+  bindContactCopy();
+  document.addEventListener('astro:page-load', bindContactCopy);
+</script>
+
+<style>
+  .contact-links { border-top: 1px solid var(--color-border); }
+  li { display: grid; gap: var(--space-4); padding-block: var(--space-6); border-bottom: 1px solid var(--color-border); }
+  @media (min-width: 48rem) { li { grid-template-columns: minmax(7rem, .25fr) minmax(0, 1fr); align-items: center; } }
+  .contact-links__label { color: var(--color-fg-muted); font-family: var(--font-family-mono); font-size: var(--text-mono); }
+  li > div { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); min-inline-size: 0; }
+  a { font-size: clamp(1.1rem, 3vw, 1.75rem); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: .25em; }
+  button { min-block-size: 2.75rem; padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); color: var(--color-accent-text); }
+  button[hidden] { display: none; }
+  .contact-links__status { min-block-size: 1.5em; margin-top: var(--space-3); color: var(--color-fg-muted); font-family: var(--font-family-mono); font-size: var(--text-mono); }
+</style>

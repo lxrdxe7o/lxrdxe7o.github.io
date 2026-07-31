@@ -1,0 +1,72 @@
+---
+---
+
+<div
+  data-experience-canvas-host
+  data-renderer-mode="static"
+  data-renderer-attempts="0"
+  data-renderer-creations="0"
+  transition:persist="experience-canvas"
+>
+  <canvas data-experience-canvas aria-hidden="true"></canvas>
+  <p data-renderer-fallback role="status" aria-live="polite" hidden>
+    The interactive background is unavailable. All portfolio content remains accessible.
+  </p>
+</div>
+
+<script>
+  import { getExperienceRuntime } from '../../runtime/core/runtime-singleton';
+  import { createBrowserRenderer } from '../../runtime/rendering/browser';
+  import type { Renderer } from '../../runtime/rendering/Renderer';
+  import type { RenderingSurface } from '../../runtime/rendering/types';
+
+  type RendererHost = HTMLElement & {
+    experienceRenderer?: Renderer;
+  };
+
+  const runtime = getExperienceRuntime();
+  let activeHost: RendererHost | null = null;
+
+  const bindPersistentCanvas = async (): Promise<void> => {
+    const host = document.querySelector<RendererHost>('[data-experience-canvas-host]');
+    if (!host) return;
+    activeHost = host;
+    if (host.experienceRenderer) return;
+    const canvas = host.querySelector<HTMLCanvasElement>('[data-experience-canvas]');
+    const fallback = host.querySelector<HTMLElement>('[data-renderer-fallback]');
+    if (!canvas || !fallback) return;
+
+    runtime.boot();
+    const surface: RenderingSurface = { host, canvas, fallback };
+    const renderer = createBrowserRenderer(surface, runtime);
+    Object.defineProperty(host, 'experienceRenderer', {
+      value: renderer,
+      configurable: true,
+      writable: false,
+    });
+    host.dataset.rendererBound = 'true';
+    await renderer.initialize();
+  };
+
+  if (document.documentElement.dataset.experienceCanvasBootstrap !== 'true') {
+    document.documentElement.dataset.experienceCanvasBootstrap = 'true';
+    const onPageLoad = (): void => {
+      void bindPersistentCanvas();
+    };
+    const onBeforeUnload = (): void => runtime.destroy();
+    document.addEventListener('astro:page-load', onPageLoad);
+    window.addEventListener('beforeunload', onBeforeUnload, { once: true });
+    runtime.registerTeardown(() => {
+      document.removeEventListener('astro:page-load', onPageLoad);
+      window.removeEventListener('beforeunload', onBeforeUnload);
+      void activeHost?.experienceRenderer?.destroy();
+      if (activeHost) {
+        delete activeHost.experienceRenderer;
+        delete activeHost.dataset.rendererBound;
+      }
+      delete document.documentElement.dataset.experienceCanvasBootstrap;
+    });
+  }
+
+  void bindPersistentCanvas();
+</script>

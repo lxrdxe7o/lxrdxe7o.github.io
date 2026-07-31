@@ -1,0 +1,57 @@
+---
+import type { ArchiveRecord } from '../../data/projects';
+
+interface Props {
+  records: readonly ArchiveRecord[];
+  visibleSlugs: readonly string[];
+}
+const { records, visibleSlugs } = Astro.props;
+const visible = new Set(visibleSlugs);
+---
+<section class="archive-list" aria-labelledby="archive-results-heading">
+  <div class="archive-list__summary">
+    <h2 id="archive-results-heading">Project record</h2>
+    <p data-archive-count aria-live="polite">{visibleSlugs.length} project{visibleSlugs.length === 1 ? '' : 's'}</p>
+  </div>
+  <ol>
+    {records.map((record) => (
+      <li
+        data-archive-item
+        data-search={`${record.title} ${record.summary} ${record.type} ${record.technologies.join(' ')}`}
+        data-type={record.type}
+        data-technologies={record.technologies.join('|')}
+        data-year={record.year ? String(record.year) : ''}
+        data-status={record.status ?? ''}
+        hidden={!visible.has(record.slug)}
+      >
+        <a
+          href={record.href}
+          target={record.href.startsWith('https://') ? '_blank' : undefined}
+          rel={record.href.startsWith('https://') ? 'noopener noreferrer' : undefined}
+        >
+          <span class="archive-list__title">{record.title}</span>
+          <span class="archive-list__summary-text">{record.summary}</span>
+          <span class="archive-list__meta">{[record.year, record.type, ...record.technologies].filter(Boolean).join(' · ')}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+  <p class="archive-list__empty" data-archive-empty hidden={visibleSlugs.length !== 0}>No projects match those filters. Clear a filter or try a broader search.</p>
+</section>
+
+<style>
+  .archive-list { padding-block: var(--space-8) var(--space-section); }
+  .archive-list__summary { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
+  .archive-list__summary h2 { font-size: var(--text-h3); }
+  .archive-list__summary p { color: var(--color-fg-muted); font-family: var(--font-family-mono); font-size: var(--text-mono); }
+  ol { margin-top: var(--space-6); border-top: 1px solid var(--color-border); }
+  li { margin: 0; border-bottom: 1px solid var(--color-border); }
+  li[hidden] { display: none; }
+  a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3) var(--space-6); min-block-size: 7rem; padding-block: var(--space-6); text-decoration: none; }
+  .archive-list__title { font-size: var(--text-h3); }
+  .archive-list__summary-text { grid-column: 1; max-inline-size: 65ch; color: var(--color-fg-muted); }
+  .archive-list__meta { grid-column: 1; color: var(--color-fg-muted); font: var(--text-mono)/1.5 var(--font-family-mono); overflow-wrap: anywhere; }
+  a > span:last-child { grid-column: 2; grid-row: 1 / span 3; align-self: center; color: var(--color-accent-text); font-size: 1.5rem; }
+  .archive-list__empty { margin-top: var(--space-12); padding: var(--space-8) 0; color: var(--color-fg-muted); }
+</style>

@@ -1,0 +1,37 @@
+---
+interface Heading { depth: number; slug: string; text: string; }
+interface Props { headings: readonly Heading[]; }
+const { headings } = Astro.props;
+const visibleHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+{visibleHeadings.length > 0 && (
+  <nav class="table-of-contents" aria-label="On this page">
+    <p>On this page</p>
+    <ol>{visibleHeadings.map((heading) => <li data-depth={heading.depth}><a href={`#${heading.slug}`} data-toc-link={heading.slug}>{heading.text}</a></li>)}</ol>
+  </nav>
+)}
+
+<script>
+  const bindToc = () => {
+    if (!('IntersectionObserver' in window)) return;
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+    const headings = links.map((link) => document.getElementById(link.dataset.tocLink ?? '')).filter((heading): heading is HTMLElement => Boolean(heading));
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries.find((entry) => entry.isIntersecting)?.target.id;
+      if (!current) return;
+      links.forEach((link) => link.toggleAttribute('aria-current', link.dataset.tocLink === current));
+    }, { rootMargin: '-15% 0px -70%' });
+    headings.forEach((heading) => observer.observe(heading));
+  };
+  bindToc();
+  document.addEventListener('astro:page-load', bindToc);
+</script>
+
+<style>
+  .table-of-contents { padding: var(--space-6) 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .table-of-contents > p { color: var(--color-fg-muted); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  ol { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+  li[data-depth='3'] { padding-inline-start: var(--space-4); }
+  a { display: inline-block; min-block-size: 2rem; padding-block: var(--space-1); color: var(--color-fg-muted); text-decoration: none; }
+  a[aria-current] { color: var(--color-accent-text); }
+</style>

@@ -1,0 +1,99 @@
+---
+/**
+ * Sound and silent entry are equal, first-class choices presented only after
+ * critical assets have actually finished loading. No audio is requested,
+ * decoded or played before one of these buttons is pressed.
+ *
+ * The gate starts hidden, so a visitor without JavaScript is never blocked.
+ */
+---
+
+<div
+  class="entry-gate"
+  data-entry-gate
+  data-state="closed"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="entry-gate-title"
+  aria-describedby="entry-gate-description"
+  hidden
+>
+  <div class="entry-gate__panel">
+    <p class="entry-gate__eyebrow">Ishraful Haque — Full-Stack Developer</p>
+    <h2 class="entry-gate__title" id="entry-gate-title">lxrdxe7o</h2>
+    <p class="entry-gate__description" id="entry-gate-description">
+      This portfolio has an optional soundtrack. Both paths show exactly the same work.
+    </p>
+    <div class="entry-gate__actions">
+      <button type="button" data-entry="sound">Enter with sound</button>
+      <button type="button" data-entry="silent">Enter without sound</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .entry-gate {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-entry-gate, 95);
+    display: grid;
+    place-items: center;
+    padding: var(--space-6);
+    background: var(--color-bg);
+  }
+
+  .entry-gate[hidden] {
+    display: none;
+  }
+
+  .entry-gate__panel {
+    display: grid;
+    gap: var(--space-4);
+    max-inline-size: 44ch;
+  }
+
+  .entry-gate__eyebrow {
+    color: var(--color-accent-text);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .entry-gate__title {
+    font-size: clamp(3rem, 11vw, 6rem);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  .entry-gate__description {
+    color: var(--color-fg-muted);
+    font-size: var(--text-body-lg);
+  }
+
+  .entry-gate__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-start: var(--space-4);
+  }
+
+  button {
+    min-block-size: 2.75rem;
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    background: transparent;
+    color: var(--color-fg);
+    font-size: var(--text-body);
+    cursor: pointer;
+  }
+
+  button[data-entry='sound'] {
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+  }
+
+  button:hover {
+    border-color: var(--color-accent);
+  }
+</style>

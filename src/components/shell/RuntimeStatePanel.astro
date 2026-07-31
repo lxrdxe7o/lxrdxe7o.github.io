@@ -1,0 +1,164 @@
+<details class="runtime-panel" data-runtime-panel>
+  <summary>Runtime state</summary>
+  <div class="runtime-panel__controls" aria-label="Runtime state controls">
+    <button type="button" data-runtime-action="boot">Boot</button>
+    <button type="button" data-runtime-action="load">Complete load</button>
+    <button type="button" data-runtime-action="enter-sound">Enter with sound</button>
+    <button type="button" data-runtime-action="enter-silent">Enter silently</button>
+    <button type="button" data-runtime-action="index-open">Open index</button>
+    <button type="button" data-runtime-action="index-close">Close index</button>
+    <label>
+      Navigation target
+      <input type="text" value="/about" data-runtime-target />
+    </label>
+    <button type="button" data-runtime-action="prepare-navigation">Prepare navigation</button>
+    <button type="button" data-runtime-action="commit-navigation">Commit navigation</button>
+    <button type="button" data-runtime-action="mute">Mute</button>
+    <button type="button" data-runtime-action="unmute">Unmute</button>
+    <button type="button" data-runtime-action="degrade">Trigger degradation</button>
+  </div>
+  <pre class="runtime-panel__snapshot" aria-live="polite" data-runtime-snapshot></pre>
+</details>
+
+<script>
+  import { getExperienceRuntime } from '../../runtime/core/runtime-singleton';
+
+  const panel = document.querySelector<HTMLElement>('[data-runtime-panel]');
+  if (panel && panel.dataset.bound !== 'true') {
+    panel.dataset.bound = 'true';
+    const runtime = getExperienceRuntime();
+    const output = panel.querySelector<HTMLElement>('[data-runtime-snapshot]');
+    const target = panel.querySelector<HTMLInputElement>('[data-runtime-target]');
+
+    const render = () => {
+      if (output) output.textContent = JSON.stringify(runtime.getSnapshot(), null, 2);
+    };
+
+    const onClick = (event: MouseEvent) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>(
+        'button[data-runtime-action]',
+      );
+      if (!button) return;
+
+      switch (button.dataset.runtimeAction) {
+        case 'boot':
+          runtime.boot();
+          break;
+        case 'load':
+          runtime.completeLoading();
+          break;
+        case 'enter-sound':
+          runtime.enter('sound');
+          break;
+        case 'enter-silent':
+          runtime.enter('silent');
+          break;
+        case 'index-open':
+          runtime.setIndexOpen(true);
+          break;
+        case 'index-close':
+          runtime.setIndexOpen(false);
+          break;
+        case 'prepare-navigation':
+          runtime.prepareNavigation(target?.value || '/about');
+          break;
+        case 'commit-navigation':
+          runtime.commitNavigation();
+          break;
+        case 'mute':
+          runtime.setMuted(true);
+          break;
+        case 'unmute':
+          runtime.setMuted(false);
+          break;
+        case 'degrade':
+          runtime.degrade({
+            code: 'development-demo',
+            message: 'Recoverable degradation triggered from the development panel.',
+          });
+          break;
+      }
+    };
+
+    const unsubscribe = runtime.subscribe(render);
+    panel.addEventListener('click', onClick);
+    runtime.registerTeardown(() => {
+      unsubscribe();
+      panel.removeEventListener('click', onClick);
+      delete panel.dataset.bound;
+    });
+    render();
+  }
+</script>
+
+<style>
+  .runtime-panel {
+    position: fixed;
+    inset-block-end: var(--space-3);
+    inset-inline-end: var(--space-3);
+    z-index: var(--z-skip-link);
+    inline-size: min(28rem, calc(100vw - 2 * var(--space-3)));
+    max-block-size: calc(100dvh - 2 * var(--space-3));
+    overflow: auto;
+    padding: var(--space-3);
+    border: var(--border-width-hairline) solid var(--color-border-strong);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+  }
+
+  summary,
+  button {
+    min-block-size: 2.75rem;
+    touch-action: manipulation;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .runtime-panel__controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin-block-start: var(--space-3);
+  }
+
+  button,
+  input {
+    border: var(--border-width-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-fg);
+  }
+
+  button {
+    padding: var(--space-2);
+  }
+
+  button:hover {
+    border-color: var(--color-accent);
+  }
+
+  label {
+    display: grid;
+    grid-column: 1 / -1;
+    gap: var(--space-1);
+  }
+
+  input {
+    min-block-size: 2.75rem;
+    padding-inline: var(--space-2);
+    font: inherit;
+  }
+
+  .runtime-panel__snapshot {
+    margin-block-start: var(--space-3);
+    overflow: auto;
+    white-space: pre-wrap;
+  }
+</style>

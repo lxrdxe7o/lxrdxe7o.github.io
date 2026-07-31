@@ -1,0 +1,118 @@
+---
+interface Props {
+  query: string;
+  type: string;
+  technology: string;
+  year: string;
+  status: string;
+  types: readonly string[];
+  technologies: readonly string[];
+  years: readonly string[];
+  statuses: readonly string[];
+}
+
+const { query, type, technology, year, status, types, technologies, years, statuses } = Astro.props;
+---
+<form class="archive-filters" action="/archive" method="get" data-archive-filters>
+  <label class="archive-filters__search">
+    <span>Search projects</span>
+    <input type="search" name="q" value={query} autocomplete="off" placeholder="Title, summary, or technology" />
+  </label>
+  <label><span>Type</span><select name="type"><option value="">All types</option>{types.map((value) => <option value={value} selected={type === value}>{value}</option>)}</select></label>
+  <label><span>Technology</span><select name="technology"><option value="">All technologies</option>{technologies.map((value) => <option value={value} selected={technology === value}>{value}</option>)}</select></label>
+  <label><span>Year</span><select name="year"><option value="">All years</option>{years.map((value) => <option value={value} selected={year === value}>{value}</option>)}</select></label>
+  <label><span>Status</span><select name="status"><option value="">All statuses</option>{statuses.map((value) => <option value={value} selected={status === value}>{value}</option>)}</select></label>
+  <button type="submit">Apply filters</button>
+</form>
+
+<script>
+  const normalize = (value: string) => value.trim().toLocaleLowerCase();
+
+  const bindArchiveFilters = () => {
+    const form = document.querySelector<HTMLFormElement>('[data-archive-filters]');
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    const apply = () => {
+      const data = new FormData(form);
+      const query = normalize(String(data.get('q') ?? ''));
+      const type = String(data.get('type') ?? '');
+      const technology = String(data.get('technology') ?? '');
+      const year = String(data.get('year') ?? '');
+      const status = String(data.get('status') ?? '');
+      let count = 0;
+
+      document.querySelectorAll<HTMLElement>('[data-archive-item]').forEach((item) => {
+        const matches = (!query || normalize(item.dataset.search ?? '').includes(query))
+          && (!type || item.dataset.type === type)
+          && (!technology || (item.dataset.technologies ?? '').split('|').includes(technology))
+          && (!year || item.dataset.year === year)
+          && (!status || item.dataset.status === status);
+        item.hidden = !matches;
+        if (matches) count += 1;
+      });
+
+      const params = new URLSearchParams();
+      for (const [key, value] of [['q', String(data.get('q') ?? '').trim()], ['type', type], ['technology', technology], ['year', year], ['status', status]]) {
+        if (value) params.set(key, value);
+      }
+      const serialized = params.toString();
+      const nextUrl = `${window.location.pathname}${serialized ? `?${serialized}` : ''}`;
+      window.history.replaceState({}, '', nextUrl);
+
+      const countNode = document.querySelector<HTMLElement>('[data-archive-count]');
+      if (countNode) countNode.textContent = `${count} project${count === 1 ? '' : 's'}`;
+      const emptyNode = document.querySelector<HTMLElement>('[data-archive-empty]');
+      if (emptyNode) emptyNode.hidden = count !== 0;
+    };
+
+    const paramsFromUrl = new URLSearchParams(window.location.search);
+    for (const name of ['q', 'type', 'technology', 'year', 'status']) {
+      const control = form.elements.namedItem(name);
+      const value = paramsFromUrl.get(name);
+      if (value !== null && control instanceof HTMLInputElement) control.value = value;
+      if (value !== null && control instanceof HTMLSelectElement) control.value = value;
+    }
+
+    form.addEventListener('input', apply);
+    form.addEventListener('change', apply);
+    form.addEventListener('submit', (event) => { event.preventDefault(); apply(); });
+    apply();
+  };
+
+  bindArchiveFilters();
+  document.addEventListener('astro:page-load', bindArchiveFilters);
+</script>
+
+<style>
+  .archive-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    gap: var(--space-4);
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .archive-filters__search { grid-column: 1 / -1; }
+  label { display: grid; gap: var(--space-2); min-inline-size: 0; }
+  label > span { color: var(--color-fg-muted); font-family: var(--font-family-mono); font-size: var(--text-mono); }
+  input, select {
+    inline-size: 100%;
+    min-block-size: 2.75rem;
+    padding: var(--space-3);
+    color: var(--color-fg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    font: inherit;
+  }
+  input { font-size: 1rem; }
+  button {
+    align-self: end;
+    min-block-size: 2.75rem;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-accent);
+    color: var(--color-fg);
+    border-radius: var(--radius-sm);
+  }
+</style>

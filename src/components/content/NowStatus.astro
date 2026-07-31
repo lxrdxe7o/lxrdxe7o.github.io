@@ -1,0 +1,28 @@
+---
+import { formatEditorialDate } from '../../data/editorial';
+import { nowEntries, nowReviewedAt } from '../../data/now';
+const entries = nowEntries.filter((entry) => entry.fact.publishable);
+---
+<section class="now-status" aria-labelledby="now-status-heading">
+  <div>
+    <p class="now-status__label">Current public status</p>
+    <h2 id="now-status-heading">What is current</h2>
+    <p class="now-status__review">Reviewed <time data-reviewed-at datetime={nowReviewedAt.toISOString()}>{formatEditorialDate(nowReviewedAt)}</time></p>
+  </div>
+  {entries.length > 0 ? (
+    <dl>{entries.map((entry) => <div><dt>{entry.label}</dt><dd>{entry.fact.value}</dd></div>)}</dl>
+  ) : (
+    <p>No current-status statement has been approved for publication.</p>
+  )}
+</section>
+
+<style>
+  .now-status { display: grid; gap: var(--space-12); padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  .now-status__label { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h2 { margin-top: var(--space-4); }
+  .now-status__review { margin-top: var(--space-4); color: var(--color-fg-muted); }
+  dl > div { display: grid; gap: var(--space-3); padding-block: var(--space-6); border-top: 1px solid var(--color-border); }
+  @media (min-width: 48rem) { dl > div { grid-template-columns: minmax(9rem, .3fr) minmax(0, 1fr); } }
+  dt { color: var(--color-fg-muted); font-family: var(--font-family-mono); }
+  dd { margin: 0; max-inline-size: 70ch; font-size: var(--text-body-lg); }
+</style>

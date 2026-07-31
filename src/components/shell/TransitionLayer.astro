@@ -1,0 +1,26 @@
+---
+/**
+ * Covers the document only for the brief swap window so a half-replaced page
+ * cannot receive clicks. It is inert at every other moment, including when
+ * JavaScript is unavailable.
+ */
+---
+
+<div class="transition-layer" data-transition-layer data-blocking="false" aria-hidden="true"></div>
+
+<style>
+  .transition-layer {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-transition, 80);
+    pointer-events: none;
+    opacity: 0;
+    background: var(--color-bg);
+  }
+
+  .transition-layer[data-blocking='true'] {
+    /* Blocks interaction without hiding content mid-transition. */
+    pointer-events: auto;
+    opacity: 0.001;
+  }
+</style>

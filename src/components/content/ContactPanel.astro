@@ -1,0 +1,20 @@
+---
+import ContactLinks from './ContactLinks.astro';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<section class:list={['contact-panel', { 'contact-panel--compact': compact }]} aria-labelledby={compact ? 'project-contact-heading' : 'contact-panel-heading'}>
+  <p class="contact-panel__label">Direct contact</p>
+  <h2 id={compact ? 'project-contact-heading' : 'contact-panel-heading'}>{compact ? 'Start a conversation' : 'Contact Ishraful Haque'}</h2>
+  <p>No form and no tracking. Use email for a direct message or GitHub for public project context.</p>
+  <ContactLinks />
+</section>
+
+<style>
+  .contact-panel { padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  .contact-panel__label { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h2 { max-inline-size: 18ch; margin-top: var(--space-4); font-size: clamp(2rem, 6vw, 4.5rem); letter-spacing: -0.04em; }
+  h2 + p { margin-top: var(--space-4); color: var(--color-fg-muted); }
+  :global(.contact-links) { margin-top: var(--space-8); }
+  .contact-panel--compact h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+</style>

@@ -1,0 +1,38 @@
+---
+import { formatEditorialDate } from '../../data/editorial';
+import { usesEntries, usesReviewedAt } from '../../data/uses';
+const categories = [...new Set(usesEntries.map((entry) => entry.category))];
+---
+<section class="uses-list" aria-labelledby="uses-list-heading">
+  <div class="uses-list__intro">
+    <h2 id="uses-list-heading">Documented setup</h2>
+    <p>Only tools supported by public project evidence are listed.</p>
+    <p>Reviewed <time data-reviewed-at datetime={usesReviewedAt.toISOString()}>{formatEditorialDate(usesReviewedAt)}</time></p>
+  </div>
+  {categories.map((category) => (
+    <section aria-labelledby={`uses-${category.toLowerCase()}`}>
+      <h3 id={`uses-${category.toLowerCase()}`}>{category}</h3>
+      <ul>
+        {usesEntries.filter((entry) => entry.category === category && entry.fact.publishable).map((entry) => (
+          <li>
+            <h4>{entry.link ? <a href={entry.link} target="_blank" rel="noopener noreferrer">{entry.fact.value.item}<span aria-hidden="true"> ↗</span></a> : entry.fact.value.item}</h4>
+            <p>{entry.fact.value.purpose}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</section>
+
+<style>
+  .uses-list { padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  .uses-list__intro { display: grid; gap: var(--space-3); }
+  .uses-list__intro p { color: var(--color-fg-muted); }
+  .uses-list > section { display: grid; gap: var(--space-6); margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
+  @media (min-width: 48rem) { .uses-list > section { grid-template-columns: minmax(9rem, .3fr) minmax(0, 1fr); } }
+  h3 { font: var(--text-mono)/1.5 var(--font-family-mono); color: var(--color-accent-text); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  li + li { margin-top: var(--space-8); }
+  h4 { font-size: var(--text-body-lg); }
+  h4 + p { margin-top: var(--space-2); color: var(--color-fg-muted); }
+  a { text-decoration: underline; text-underline-offset: .25em; }
+</style>

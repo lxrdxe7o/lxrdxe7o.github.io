@@ -1,0 +1,125 @@
+---
+import type { MediaAssetDescriptor, MediaManifest, VideoAssetFormat } from '../../types/media';
+import ProjectPicture from './ProjectPicture.astro';
+
+interface Props {
+  manifest?: MediaManifest;
+  excludeAssetId?: string;
+}
+
+const { manifest, excludeAssetId } = Astro.props;
+const assets = manifest?.assets.filter((asset) => asset.id !== excludeAssetId && !manifest.assets.some((candidate) => candidate.kind === 'video' && candidate.posterAssetId === asset.id)) ?? [];
+const posterFor = (asset: MediaAssetDescriptor) => manifest?.assets.find((candidate) => candidate.id === asset.posterAssetId);
+const videoSources = (asset: MediaAssetDescriptor) => asset.variants
+  .filter((variant) => ['mp4', 'webm'].includes(variant.format))
+  .map((variant) => ({ src: variant.path, type: `video/${variant.format as VideoAssetFormat}` }));
+---
+{assets.length > 0 && (
+  <section class="project-media" aria-labelledby="project-media-heading">
+    <h2 id="project-media-heading">Project media</h2>
+    <div class="project-media__sequence">
+      {assets.map((asset) => asset.kind === 'image' ? (
+        <figure class:list={['project-media__item', { 'project-media__item--narrow': asset.aspectRatio < 1 }]}>
+          <ProjectPicture asset={asset} sizes={asset.aspectRatio < 1 ? '(min-width: 48rem) 42rem, 90vw' : '(min-width: 72rem) 72rem, 100vw'} />
+          {asset.alt && <figcaption>{asset.alt}</figcaption>}
+        </figure>
+      ) : (
+        <figure class="project-media__item project-media__item--video">
+          <video
+            controls
+            muted
+            playsinline
+            preload="none"
+            poster={posterFor(asset)?.variants[0]?.path}
+            aria-label={asset.alt}
+            data-video-enhance
+            data-sources={JSON.stringify(videoSources(asset))}
+          >
+            <p>Video playback is optional. The poster image documents the same interface state.</p>
+          </video>
+          {posterFor(asset) && <div class="project-media__reduced-poster"><ProjectPicture asset={posterFor(asset)!} /></div>}
+          <figcaption>{asset.alt}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}
+
+<script>
+  type VideoSource = { src: string; type: string };
+
+  const enhanceVideo = (video: HTMLVideoElement) => {
+    if (video.dataset.enhanced === 'true') return;
+    if (window.matchMedia('(prefers-reduced-data: reduce)').matches) {
+      video.dataset.reducedData = 'true';
+      return;
+    }
+    const sources = JSON.parse(video.dataset.sources ?? '[]') as VideoSource[];
+    for (const item of sources) {
+      const source = document.createElement('source');
+      source.src = item.src;
+      source.type = item.type;
+      video.append(source);
+    }
+    video.dataset.enhanced = 'true';
+    video.load();
+  };
+
+  const bindVideos = () => {
+    document.querySelectorAll<HTMLVideoElement>('[data-video-enhance]').forEach((video) => {
+      if (video.dataset.bound === 'true') return;
+      video.dataset.bound = 'true';
+      video.addEventListener('pointerdown', () => enhanceVideo(video), { once: true });
+      video.addEventListener('focusin', () => enhanceVideo(video), { once: true });
+    });
+  };
+
+  bindVideos();
+  document.addEventListener('astro:page-load', bindVideos);
+</script>
+
+<style>
+  .project-media {
+    padding-block: var(--space-section);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .project-media__sequence {
+    display: grid;
+    gap: clamp(3rem, 9vw, 9rem);
+    margin-top: var(--space-8);
+  }
+
+  .project-media__item { margin: 0; }
+  .project-media__item--narrow { max-inline-size: 42rem; margin-inline: auto; }
+
+  video {
+    inline-size: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+  }
+
+  figcaption {
+    margin-top: var(--space-3);
+    max-inline-size: 70ch;
+    color: var(--color-fg-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+  }
+
+  .project-media__reduced-poster { display: none; }
+
+  @media (prefers-reduced-data: reduce) {
+    video { display: none; }
+    .project-media__reduced-poster { display: block; }
+  }
+</style>

@@ -1,0 +1,9 @@
+---
+import { recognition } from '../../data/profile';
+---
+{recognition.length > 0 && (
+  <section aria-labelledby="recognition-heading">
+    <h2 id="recognition-heading">Recognition</h2>
+    <ul>{recognition.map((item) => <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.name}</a><p>{item.context}</p></li>)}</ul>
+  </section>
+)}

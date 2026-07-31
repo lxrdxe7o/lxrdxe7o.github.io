@@ -1,0 +1,56 @@
+---
+import type { MediaAssetDescriptor, ImageAssetFormat } from '../../types/media';
+
+interface Props {
+  asset: MediaAssetDescriptor;
+  eager?: boolean;
+  sizes?: string;
+  class?: string;
+}
+
+const { asset, eager = false, sizes = '(min-width: 72rem) 72rem, 100vw', class: className = '' } = Astro.props;
+const imageVariants = asset.variants.filter((variant) => ['avif', 'webp', 'jpeg'].includes(variant.format));
+const formats: ImageAssetFormat[] = ['avif', 'webp', 'jpeg'];
+const sourceGroups = formats.map((format) => ({
+  format,
+  variants: imageVariants.filter((variant) => variant.format === format).sort((a, b) => a.width - b.width),
+})).filter((group) => group.variants.length > 0);
+const fallbackVariants = sourceGroups.find((group) => group.format === 'jpeg')?.variants
+  ?? sourceGroups.find((group) => group.format === 'webp')?.variants
+  ?? sourceGroups[0]?.variants
+  ?? [];
+const fallback = fallbackVariants[fallbackVariants.length - 1];
+const mime = (format: ImageAssetFormat) => `image/${format === 'jpeg' ? 'jpeg' : format}`;
+---
+{fallback && (
+  <picture class:list={['project-picture', className]}>
+    {sourceGroups.map((group) => (
+      <source
+        type={mime(group.format)}
+        srcset={group.variants.map((variant) => `${variant.path} ${variant.width}w`).join(', ')}
+        sizes={sizes}
+      />
+    ))}
+    <img
+      src={fallback.path}
+      width={fallback.width}
+      height={fallback.height}
+      alt={asset.decorative ? '' : (asset.alt ?? '')}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      decoding="async"
+    />
+  </picture>
+)}
+
+<style>
+  .project-picture,
+  .project-picture img {
+    inline-size: 100%;
+  }
+
+  .project-picture img {
+    background: var(--color-bg-raised);
+    object-fit: cover;
+  }
+</style>

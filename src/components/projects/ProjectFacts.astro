@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>['data'];
+}
+
+const { project } = Astro.props;
+const facts = [
+  project.year ? { label: 'Year', values: [String(project.year)] } : undefined,
+  project.roles.length ? { label: project.roles.length === 1 ? 'Role' : 'Roles', values: project.roles } : undefined,
+  project.technologies.length ? { label: 'Technology', values: project.technologies } : undefined,
+  project.status ? { label: 'Status', values: [project.status] } : undefined,
+].filter(Boolean) as Array<{ label: string; values: string[] }>;
+---
+{facts.length > 0 && (
+  <section class="project-facts" aria-labelledby="project-facts-heading">
+    <h2 id="project-facts-heading">Project facts</h2>
+    <dl>
+      {facts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.values.join(' · ')}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}
+
+<style>
+  .project-facts {
+    padding-block: var(--space-section);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  dl { margin-top: var(--space-8); }
+  dl > div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  dt { color: var(--color-fg-muted); }
+  dd { margin: 0; overflow-wrap: anywhere; }
+</style>

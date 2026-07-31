@@ -1,0 +1,84 @@
+---
+/**
+ * Real loading progress driven by `AssetManager` byte weights.
+ *
+ * Visibility is keyed off the runtime phase on the root element, so with
+ * JavaScript disabled this overlay never renders and route content is
+ * immediately readable.
+ */
+---
+
+<div class="loader" data-loader data-loader-state="idle">
+  <p class="loader__mark">lxrdxe7o</p>
+  <div
+    class="loader__track"
+    data-loader-bar
+    role="progressbar"
+    aria-labelledby="loader-label"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+  >
+    <span class="loader__fill"></span>
+  </div>
+  <p class="loader__status" id="loader-label">
+    Loading <span data-loader-value>0</span>%
+  </p>
+</div>
+
+<style>
+  .loader {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-loader, 90);
+    display: none;
+    grid-template-rows: 1fr auto auto;
+    align-content: end;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    background: var(--color-bg);
+  }
+
+  /* Only the loading phases reveal the overlay; no JS means no phase. */
+  :global(:root[data-runtime-phase='booting']) .loader,
+  :global(:root[data-runtime-phase='loading']) .loader {
+    display: grid;
+  }
+
+  .loader__mark {
+    align-self: end;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .loader__track {
+    position: relative;
+    block-size: 1px;
+    inline-size: 100%;
+    background: var(--color-border);
+  }
+
+  .loader__fill {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    display: block;
+    inline-size: calc(var(--loader-progress, 0) * 100%);
+    background: var(--color-accent);
+    transition: inline-size 180ms linear;
+  }
+
+  .loader__status {
+    color: var(--color-fg-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loader__fill {
+      transition: none;
+    }
+  }
+</style>

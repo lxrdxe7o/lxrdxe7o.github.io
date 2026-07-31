@@ -1,0 +1,68 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>['data'];
+}
+
+const { project } = Astro.props;
+const links = [
+  project.live ? { label: 'Open live project', url: project.live } : undefined,
+  project.repository ? { label: 'View source repository', url: project.repository } : undefined,
+  ...(project.links ?? []),
+].filter(Boolean) as Array<{ label: string; url: string }>;
+---
+<section class="project-synopsis" aria-labelledby="project-synopsis-heading">
+  <p class="project-synopsis__label">Synopsis</p>
+  <div>
+    <h2 id="project-synopsis-heading">What is documented</h2>
+    <p>{project.summary}</p>
+    {links.length > 0 && (
+      <ul class="project-synopsis__links" aria-label="Project links">
+        {links.map((link) => (
+          <li><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}<span aria-hidden="true"> ↗</span></a></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>
+
+<style>
+  .project-synopsis {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-section);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 48rem) {
+    .project-synopsis { grid-template-columns: minmax(9rem, 0.35fr) minmax(0, 1fr); }
+  }
+
+  .project-synopsis__label {
+    font-family: var(--font-family-mono);
+    color: var(--color-fg-muted);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  h2 { max-inline-size: 18ch; }
+  h2 + p { margin-top: var(--space-6); color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+
+  .project-synopsis__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  a {
+    display: inline-block;
+    min-block-size: 2.75rem;
+    padding-block: var(--space-2);
+    color: var(--color-accent-text);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+</style>

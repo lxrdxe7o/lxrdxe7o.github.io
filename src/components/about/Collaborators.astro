@@ -1,0 +1,9 @@
+---
+import { collaborators } from '../../data/profile';
+---
+{collaborators.length > 0 && (
+  <section aria-labelledby="collaborators-heading">
+    <h2 id="collaborators-heading">Collaborators</h2>
+    <ul>{collaborators.map((item) => <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.name}</a><p>{item.context}</p></li>)}</ul>
+  </section>
+)}

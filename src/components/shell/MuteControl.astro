@@ -1,0 +1,56 @@
+---
+/**
+ * Always-available mute control. It appears only once sound entry has been
+ * chosen, stays labelled for screen readers, and reflects the authoritative
+ * runtime audio state rather than tracking its own boolean.
+ */
+---
+
+<button
+  type="button"
+  class="mute-control"
+  data-mute-control
+  data-muted="false"
+  aria-pressed="false"
+  aria-label="Mute sound"
+  hidden
+>
+  <span class="mute-control__icon" aria-hidden="true"></span>
+  <span data-mute-label>Sound on</span>
+</button>
+
+<style>
+  .mute-control {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: 2.75rem;
+    padding-inline: var(--space-3);
+    border: 1px solid var(--color-border-strong);
+    background: transparent;
+    color: var(--color-fg-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    cursor: pointer;
+  }
+
+  .mute-control[hidden] {
+    display: none;
+  }
+
+  .mute-control:hover {
+    border-color: var(--color-accent);
+    color: var(--color-fg);
+  }
+
+  .mute-control__icon {
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .mute-control[data-muted='true'] .mute-control__icon {
+    background: var(--color-border-strong);
+  }
+</style>

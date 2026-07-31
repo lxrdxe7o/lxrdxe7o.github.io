@@ -1,0 +1,42 @@
+---
+import { capabilityGroups } from '../../data/skills';
+---
+<section class="capability-groups" aria-labelledby="capabilities-heading">
+  <div class="capability-groups__intro">
+    <p>Capabilities</p>
+    <h2 id="capabilities-heading">Evidence, not scores</h2>
+  </div>
+  <div class="capability-groups__list">
+    {capabilityGroups.map((group) => (
+      <section aria-labelledby={`capability-${group.title.toLowerCase().replace(/\s+/g, '-')}`}>
+        <h3 id={`capability-${group.title.toLowerCase().replace(/\s+/g, '-')}`}>{group.title}</h3>
+        <ul>
+          {group.capabilities.filter((capability) => capability.fact.publishable).map((capability) => (
+            <li>
+              <h4>{capability.name}</h4>
+              <p>{capability.context}</p>
+              <ul aria-label={`Evidence for ${capability.name}`}>
+                {capability.evidence.map((evidence) => <li><a href={evidence.href} target="_blank" rel="noopener noreferrer">{evidence.label}<span aria-hidden="true"> ↗</span></a></li>)}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</section>
+
+<style>
+  .capability-groups { padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  .capability-groups__intro > p { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  .capability-groups__intro h2 { margin-top: var(--space-4); }
+  .capability-groups__list { display: grid; gap: var(--space-12); margin-top: var(--space-12); }
+  @media (min-width: 64rem) { .capability-groups__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .capability-groups__list > section { border-top: 1px solid var(--color-border); padding-top: var(--space-6); }
+  h3 { font-size: var(--text-h3); }
+  section > ul > li { margin-top: var(--space-8); }
+  h4 { font-size: var(--text-body-lg); }
+  h4 + p { margin-top: var(--space-3); color: var(--color-fg-muted); }
+  li ul { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+  a { color: var(--color-accent-text); font-family: var(--font-family-mono); font-size: var(--text-mono); text-decoration: underline; text-underline-offset: .25em; }
+</style>

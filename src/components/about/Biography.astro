@@ -1,0 +1,22 @@
+---
+import { biographyFacts, profileValue } from '../../data/profile';
+
+const paragraphs = biographyFacts.filter((fact) => fact.publishable);
+---
+<section class="biography" aria-labelledby="biography-heading">
+  <p class="biography__label">Profile</p>
+  <div>
+    <h2 id="biography-heading">{profileValue('name')}</h2>
+    <p class="biography__title">{profileValue('title')} · {profileValue('mark')}</p>
+    {paragraphs.map((fact) => <p>{fact.value}</p>)}
+  </div>
+</section>
+
+<style>
+  .biography { display: grid; gap: var(--space-8); padding-block: var(--space-section); border-top: 1px solid var(--color-border); }
+  @media (min-width: 48rem) { .biography { grid-template-columns: minmax(9rem, .35fr) minmax(0, 1fr); } }
+  .biography__label { font: var(--text-mono)/1.5 var(--font-family-mono); color: var(--color-accent-text); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  h2 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: -0.04em; }
+  .biography__title { margin-top: var(--space-3); color: var(--color-fg-muted); font-family: var(--font-family-mono); }
+  .biography__title ~ p { max-inline-size: 70ch; margin-top: var(--space-6); color: var(--color-fg-muted); font-size: var(--text-body-lg); line-height: var(--leading-relaxed); }
+</style>

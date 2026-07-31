@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { MediaAssetDescriptor } from '../../types/media';
+import ProjectPicture from './ProjectPicture.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>['data'];
+  hero?: MediaAssetDescriptor;
+  presentation: 'flagship' | 'archive';
+}
+
+const { project, hero, presentation } = Astro.props;
+---
+<header class="project-hero">
+  <div class="project-hero__copy">
+    <p class="project-hero__eyebrow">{presentation === 'flagship' ? 'Selected project' : 'Project archive'}</p>
+    <h1>{project.title}</h1>
+    <p class="project-hero__summary">{project.summary}</p>
+  </div>
+  {hero && <ProjectPicture asset={hero} eager={true} class="project-hero__media" />}
+</header>
+
+<style>
+  .project-hero {
+    display: grid;
+    gap: clamp(2rem, 6vw, 6rem);
+    min-block-size: min(78vh, 54rem);
+    align-content: center;
+    padding-block: clamp(2rem, 8vw, 8rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-hero__copy {
+    display: grid;
+    gap: var(--space-6);
+    max-inline-size: 72rem;
+  }
+
+  .project-hero__eyebrow {
+    font-family: var(--font-family-mono);
+    color: var(--color-accent-text);
+    font-size: var(--text-mono);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-inline-size: 14ch;
+    font-size: clamp(3.25rem, 10vw, 6rem);
+    letter-spacing: -0.04em;
+  }
+
+  .project-hero__summary {
+    max-inline-size: 58ch;
+    color: var(--color-fg-muted);
+    font-size: var(--text-body-lg);
+  }
+
+  .project-hero__media {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+</style>
