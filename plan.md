@@ -70,11 +70,11 @@ The redesign must replace that fragmented direction with one coherent identity s
 
 ### 2.4 Design dials
 
-| Dial | Approved value | Consequence |
-|---|---:|---|
-| Design variance | 9/10 | Bold composition, unusual scale, and strong visual authorship are encouraged. |
-| Motion intensity | 10/10 | The full experience may be highly kinetic, with complete reduced-motion alternatives. |
-| Visual density | 3/10 | Keep interfaces sparse, editorial, and image-led; avoid dashboard density and nested card grids. |
+| Dial             | Approved value | Consequence                                                                                      |
+| ---------------- | -------------: | ------------------------------------------------------------------------------------------------ |
+| Design variance  |           9/10 | Bold composition, unusual scale, and strong visual authorship are encouraged.                    |
+| Motion intensity |          10/10 | The full experience may be highly kinetic, with complete reduced-motion alternatives.            |
+| Visual density   |           3/10 | Keep interfaces sparse, editorial, and image-led; avoid dashboard density and nested card grids. |
 
 ## 3. Research Findings
 
@@ -170,12 +170,12 @@ The state machine is authoritative. UI controls dispatch events and render from 
 
 ### 4.3 Adaptive rendering tiers
 
-| Tier | Selection | Rendering behavior |
-|---|---|---|
-| Static | no WebGL, reduced data, runtime failure, or explicit fallback | Responsive images/posters, semantic content, no canvas dependency |
-| Low | constrained GPU, sustained frame pressure, or battery-sensitive mobile | DPR capped at 1, reduced particles, simplified materials, 30 FPS target |
-| Medium | typical mobile/tablet and integrated desktop GPU | DPR capped at 1.5, moderate post-processing, 45-60 FPS target |
-| High | capable desktop with stable frame budget | DPR capped at 2, complete scene detail and transition treatment, 60 FPS target |
+| Tier   | Selection                                                              | Rendering behavior                                                             |
+| ------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Static | no WebGL, reduced data, runtime failure, or explicit fallback          | Responsive images/posters, semantic content, no canvas dependency              |
+| Low    | constrained GPU, sustained frame pressure, or battery-sensitive mobile | DPR capped at 1, reduced particles, simplified materials, 30 FPS target        |
+| Medium | typical mobile/tablet and integrated desktop GPU                       | DPR capped at 1.5, moderate post-processing, 45-60 FPS target                  |
+| High   | capable desktop with stable frame budget                               | DPR capped at 2, complete scene detail and transition treatment, 60 FPS target |
 
 Quality changes use hysteresis. A sustained regression can lower one tier; an upgrade requires a substantially longer stable interval. Quality never oscillates frame-by-frame.
 
@@ -193,31 +193,31 @@ Quality changes use hysteresis. A sustained regression can lower one tier; an up
 
 All npm dependency declarations use exact versions without `^`, `~`, `latest`, or wildcard ranges.
 
-| Package/tool | Version | Role |
-|---|---:|---|
-| Node.js | 22.22.3 | Build and tooling runtime |
-| Astro | 7.1.2 | Static routes, content, and navigation shell |
-| `@astrojs/mdx` | 7.0.3 | Typed MDX pages |
-| TypeScript | 6.0.3 | Strict type checking |
-| `@astrojs/check` | 0.9.9 | Astro and TypeScript validation |
-| Three.js | 0.185.1 | Persistent WebGL renderer |
-| `@alienkitty/alien.js` | 1.2.0 | WebGL utilities and transition primitives |
-| `@alienkitty/space.js` | 1.2.0 | Scene and spatial utilities |
-| Motion | 12.42.2 | DOM animation timelines |
-| Lenis | 1.3.25 | Conditional smooth scrolling |
-| Howler.js | 2.2.4 | Opt-in audio playback and crossfades |
-| `@types/howler` | 2.2.13 | Audio types |
-| Sharp | 0.35.3 | Deterministic image transformation |
-| Vitest | 4.1.10 | Unit and integration tests |
-| Playwright | 1.61.1 | Browser, visual, and interaction tests |
-| `@axe-core/playwright` | 4.12.1 | Automated accessibility checks |
-| Lighthouse CI | 0.15.1 | Performance budgets |
-| `web-vitals` | 5.3.0 | Field-compatible metric instrumentation |
-| ESLint | 10.7.0 | Static analysis |
-| `eslint-plugin-astro` | 3.0.1 | Astro lint rules |
-| `typescript-eslint` | 8.64.0 | TypeScript lint rules |
-| Geist | 1.7.2 | Open-source display and sans family |
-| JetBrains Mono | 2.304 | Open-source mono font, self-hosted |
+| Package/tool           | Version | Role                                         |
+| ---------------------- | ------: | -------------------------------------------- |
+| Node.js                | 22.22.3 | Build and tooling runtime                    |
+| Astro                  |   7.1.2 | Static routes, content, and navigation shell |
+| `@astrojs/mdx`         |   7.0.3 | Typed MDX pages                              |
+| TypeScript             |   6.0.3 | Strict type checking                         |
+| `@astrojs/check`       |   0.9.9 | Astro and TypeScript validation              |
+| Three.js               | 0.185.1 | Persistent WebGL renderer                    |
+| `@alienkitty/alien.js` |   1.2.0 | WebGL utilities and transition primitives    |
+| `@alienkitty/space.js` |   1.2.0 | Scene and spatial utilities                  |
+| Motion                 | 12.42.2 | DOM animation timelines                      |
+| Lenis                  |  1.3.25 | Conditional smooth scrolling                 |
+| Howler.js              |   2.2.4 | Opt-in audio playback and crossfades         |
+| `@types/howler`        |  2.2.13 | Audio types                                  |
+| Sharp                  |  0.35.3 | Deterministic image transformation           |
+| Vitest                 |  4.1.10 | Unit and integration tests                   |
+| Playwright             |  1.61.1 | Browser, visual, and interaction tests       |
+| `@axe-core/playwright` |  4.12.1 | Automated accessibility checks               |
+| Lighthouse CI          |  0.15.1 | Performance budgets                          |
+| `web-vitals`           |   5.3.0 | Field-compatible metric instrumentation      |
+| ESLint                 |  10.7.0 | Static analysis                              |
+| `eslint-plugin-astro`  |   3.0.1 | Astro lint rules                             |
+| `typescript-eslint`    |  8.64.0 | TypeScript lint rules                        |
+| Geist                  |   1.7.2 | Open-source display and sans family          |
+| JetBrains Mono         |   2.304 | Open-source mono font, self-hosted           |
 
 Before installation, implementation must verify package names, published versions, licenses, and peer compatibility against official package metadata. If an approved version is unavailable or incompatible, stop and present evidence before substituting it.
 
@@ -319,6 +319,7 @@ Every task follows the same delivery cycle:
 **Objective:** Create a reproducible evidence set for current-route behavior and the reference's observable layout, loader, entry, navigation, project sequence, transitions, responsive states, and reduced-motion behavior before migration begins.
 
 **Files:**
+
 - Modify: `package.json`, `.gitignore`
 - Create: `playwright.config.ts`, `scripts/reference/capture-reference.ts`, `scripts/reference/capture-current.ts`
 - Create: `tests/visual/baseline-capture.spec.ts`, `tests/fixtures/viewports.ts`
@@ -326,6 +327,7 @@ Every task follows the same delivery cycle:
 - Generate and ignore: `artifacts/baseline/current/`, `artifacts/baseline/reference/`
 
 **Implementation guidance:**
+
 - Pin Playwright and add deterministic capture scripts for desktop, mobile, keyboard-only, reduced-motion, and sound-gate states.
 - Record route inventory, content order, cursor/pointer responses, index behavior, scroll milestones, page handoffs, and fallback behavior.
 - Keep reference captures internal to parity analysis; never ship them as portfolio assets.
@@ -333,10 +335,11 @@ Every task follows the same delivery cycle:
 - Document behaviors rather than reverse-engineering or reproducing reference source.
 
 **Tests and validation:**
-- [ ] Run the baseline test against the current local site and verify every existing route produces a screenshot and manifest row.
-- [ ] Run the reference capture only against public pages and verify sound is never enabled automatically.
-- [ ] Validate that each manifest contains unique artifact paths and all approved viewport/preference combinations.
-- [ ] Review `behavioral-baseline.md` against the generated evidence and record known gaps explicitly.
+
+- [x] Run the baseline test against the current local site and verify every existing route produces a screenshot and manifest row.
+- [x] Run the reference capture only against public pages and verify sound is never enabled automatically.
+- [x] Validate that each manifest contains unique artifact paths and all approved viewport/preference combinations.
+- [x] Review `behavioral-baseline.md` against the generated evidence and record known gaps explicitly.
 
 **Demo:** Open the generated baseline index and compare current/reference desktop, mobile, reduced-motion, loader, home, Index, project, About, and footer states side by side.
 
@@ -345,6 +348,7 @@ Every task follows the same delivery cycle:
 **Objective:** Replace the React/Vite/TanStack application shell with an Astro build that preserves every existing route and renders useful semantic content before client JavaScript runs.
 
 **Files:**
+
 - Modify: `package.json`, `tsconfig.json`, `.gitignore`
 - Replace: `vite.config.ts` with `astro.config.mjs`
 - Create: `.node-version`, `.nvmrc`, `eslint.config.js`, `vitest.config.ts`
@@ -354,10 +358,12 @@ Every task follows the same delivery cycle:
 - Remove after parity passes: React entry points, TanStack route generation, R3F shell, and obsolete React-only configuration
 
 **Interfaces:**
+
 - Produces a common `BaseLayout` contract with `title`, `description`, `canonical`, `routeId`, `image`, and optional structured-data props.
 - Produces stable semantic landmarks `header`, `nav`, `main#main-content`, and `footer` used by all later tasks.
 
 **Implementation guidance:**
+
 - Install the approved packages at exact versions and remove React, ReactDOM, TanStack, R3F, Drei, Framer Motion, and Vite-specific dependencies once no retained code imports them.
 - Configure Astro static output, MDX integration, strict TypeScript, path aliases, and the future client router.
 - Preserve route URLs and place existing verified text into semantic route shells without carrying over glass-card styling.
@@ -365,10 +371,11 @@ Every task follows the same delivery cycle:
 - Add scripts for `dev`, `build`, `preview`, `check`, `lint`, `test`, `test:unit`, `test:e2e`, `test:a11y`, `test:visual`, and `test:perf`.
 
 **Tests and validation:**
-- [ ] Write route tests that expect HTTP 200, one `h1`, a skip link, a main landmark, and route-specific canonical metadata.
-- [ ] Confirm the tests fail before route creation and pass after migration.
-- [ ] Run `npm run check`, `npm run lint`, `npm run test:e2e -- tests/e2e/route-parity.spec.ts`, and `npm run build`.
-- [ ] Inspect the built HTML with JavaScript disabled and verify navigation and core content remain available.
+
+- [x] Write route tests that expect HTTP 200, one `h1`, a skip link, a main landmark, and route-specific canonical metadata.
+- [x] Confirm the tests fail before route creation and pass after migration.
+- [x] Run `npm run check`, `npm run lint`, `npm run test:e2e -- tests/e2e/route-parity.spec.ts`, and `npm run build`.
+- [x] Inspect the built HTML with JavaScript disabled and verify navigation and core content remain available.
 
 **Demo:** Navigate every preserved route in the Astro preview and disable JavaScript to show a complete, readable route-parity shell.
 
@@ -377,6 +384,7 @@ Every task follows the same delivery cycle:
 **Objective:** Establish repository-based MDX and strict schemas so projects, writing, notes, and experiments cannot publish incomplete or unverified facts.
 
 **Files:**
+
 - Create: `src/content.config.ts`, `src/types/content.ts`, `src/data/facts.ts`
 - Create: `src/content/projects/`, `src/content/writing/`, `src/content/notes/`, `src/content/lab/`
 - Create: `src/lib/content/getProjects.ts`, `src/lib/content/getWriting.ts`, `src/lib/content/getNotes.ts`, `src/lib/content/getExperiments.ts`
@@ -384,21 +392,24 @@ Every task follows the same delivery cycle:
 - Modify: project, writing, notes, and lab route shells to read collections
 
 **Interfaces:**
+
 - `ProjectEntry` includes slug, title, summary, publication state, featured rank, repository/live URLs, roles, technologies, year when verified, media manifest, credits, and fact provenance.
 - `ArticleEntry`, `NoteEntry`, and `ExperimentEntry` expose typed listing metadata and MDX body rendering.
 - `Fact<T>` carries `value`, `source`, `verifiedAt`, and `publishable`.
 
 **Implementation guidance:**
+
 - Reject invalid URLs, duplicate slugs, missing accessible media text, inconsistent dates, and public entries with non-publishable facts.
 - Permit draft entries to retain private editorial gaps while excluding them from production lists, feeds, sitemaps, and route generation.
 - Keep MDX component scope explicit; do not permit arbitrary client scripts in authored content.
 - Add sorting utilities with deterministic tie-breaking.
 
 **Tests and validation:**
-- [ ] Add fixtures that prove valid content parses and that invented metrics, malformed media manifests, duplicate slugs, and public unverified claims fail schema validation.
-- [ ] Verify draft content never appears in production collection queries.
-- [ ] Verify collection order is stable across repeated test runs.
-- [ ] Run the content unit suite, Astro check, and a production build.
+
+- [x] Add fixtures that prove valid content parses and that invented metrics, malformed media manifests, duplicate slugs, and public unverified claims fail schema validation.
+- [x] Verify draft content never appears in production collection queries.
+- [x] Verify collection order is stable across repeated test runs.
+- [x] Run the content unit suite, Astro check, and a production build.
 
 **Demo:** Render fixture-backed collection indexes and one MDX detail page while showing that an invalid public entry stops the build with an actionable schema message.
 
@@ -407,6 +418,7 @@ Every task follows the same delivery cycle:
 **Objective:** Produce an evidence-backed shortlist of flagship projects and supporting archive entries without inventing claims or choosing projects before examining the public work.
 
 **Files:**
+
 - Create: `scripts/audit/github-profile.ts`, `scripts/audit/repository-signals.ts`, `scripts/audit/content-gap-report.ts`
 - Create: `src/types/audit.ts`
 - Create: `tests/unit/repository-signals.test.ts`, `tests/integration/project-audit.test.ts`
@@ -414,10 +426,12 @@ Every task follows the same delivery cycle:
 - Create after approval: selected entries in `src/content/projects/`
 
 **Interfaces:**
+
 - `RepositoryEvidence` records source URL, visibility, description, languages, topics, timestamps, release/activity signals, available screenshots, live deployment, and locally verifiable documentation.
 - `CurationCandidate` records evidence-based strengths, content gaps, visual-production potential, maintenance state, and a proposed flagship/archive classification.
 
 **Implementation guidance:**
+
 - Read public profile and repository data through authenticated local tooling when available, without uploading private code or secrets.
 - Cache raw responses for reproducibility and separate factual fields from editorial interpretation.
 - Score presentation potential transparently; stars or activity alone must not determine selection.
@@ -425,10 +439,11 @@ Every task follows the same delivery cycle:
 - Present the ranked recommendation, proposed case-study order, required user facts, and media-production needs for approval.
 
 **Tests and validation:**
-- [ ] Use fixtures to test missing descriptions, archived repositories, forks, sparse histories, absent licenses, live deployments, and duplicate project aliases.
-- [ ] Verify the same evidence produces the same ranking and report.
-- [ ] Verify blocked claims cannot enter public MDX.
-- [ ] Review the report manually against the linked public sources.
+
+- [x] Use fixtures to test missing descriptions, archived repositories, forks, sparse histories, absent licenses, live deployments, and duplicate project aliases.
+- [x] Verify the same evidence produces the same ranking and report.
+- [x] Verify blocked claims cannot enter public MDX.
+- [x] Review the report manually against the linked public sources.
 
 **Demo:** Present an audit report with recommended flagship projects, archive candidates, evidence links, copy drafts, known gaps, and proposed project order.
 
@@ -439,6 +454,7 @@ Every task follows the same delivery cycle:
 **Objective:** Generate original, repeatable screenshots, responsive crops, posters, videos, and manifests for approved projects.
 
 **Files:**
+
 - Create: `scripts/capture/capture-project.ts`, `scripts/capture/capture-config.ts`
 - Create: `scripts/media/process-images.ts`, `scripts/media/encode-video.ts`, `scripts/media/build-manifest.ts`, `scripts/media/check-ffmpeg.ts`
 - Create: `src/types/media.ts`, `tests/unit/media-manifest.test.ts`, `tests/integration/media-pipeline.test.ts`
@@ -446,10 +462,12 @@ Every task follows the same delivery cycle:
 - Create: `src/data/media-manifests/`
 
 **Interfaces:**
+
 - `MediaManifest` exposes stable asset IDs, source provenance, width, height, aspect ratio, format, byte size, poster relationship, alt text, reduced-data selection, and preload priority.
 - Capture configuration consumes an approved project slug, route URL, deterministic fixture/seed, viewport set, and capture milestones.
 
 **Implementation guidance:**
+
 - Capture only projects the user owns or has permission to present.
 - Stabilize fonts, dates, network data, animation time, and random seeds before capture.
 - Use Sharp for AVIF/WebP/JPEG variants and responsive sizes. Use a checked FFmpeg installation for muted WebM/MP4 loops and record encoder/version metadata.
@@ -457,10 +475,11 @@ Every task follows the same delivery cycle:
 - Require accessible alt text and a poster for every video.
 
 **Tests and validation:**
-- [ ] Test manifest determinism, responsive candidate ordering, required alt text, poster linkage, and maximum file budgets.
-- [ ] Run the same fixture capture twice and compare hashes for deterministic still output.
-- [ ] Verify encoded videos are muted, loop-safe, seekable, and paired with still fallbacks.
-- [ ] Load a generated manifest through the Astro project route and verify responsive source selection.
+
+- [x] Test manifest determinism, responsive candidate ordering, required alt text, poster linkage, and maximum file budgets.
+- [x] Run the same fixture capture twice and compare hashes for deterministic still output.
+- [x] Verify encoded videos are muted, loop-safe, seekable, and paired with still fallbacks.
+- [x] Load a generated manifest through the Astro project route and verify responsive source selection.
 
 **Demo:** Run one command for an approved project and show the generated desktop/mobile stills, poster, video loop, manifest, and route integration.
 
@@ -469,6 +488,7 @@ Every task follows the same delivery cycle:
 **Objective:** Replace generic glassmorphism and route-specific colors with a coherent, sparse editorial system that works before animation and WebGL load.
 
 **Files:**
+
 - Create: `src/styles/tokens.css`, `src/styles/base.css`, `src/styles/components.css`, `src/styles/utilities.css`, `src/styles/motion.css`
 - Create: `src/components/shell/BrandMark.astro`, `PrimaryNavigation.astro`, `Availability.astro`, `SocialLinks.astro`, `RouteFrame.astro`
 - Create: `public/fonts/geist/`, `public/fonts/jetbrains-mono/`, `public/fonts/licenses/`
@@ -476,10 +496,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/visual/static-shell.spec.ts`, `tests/accessibility/navigation.spec.ts`
 
 **Interfaces:**
+
 - CSS exposes primitive, semantic, and component tokens for color, type, spacing, border, focus, layering, and motion duration.
 - The global accent is restrained crimson; route differences come from composition and media, not independent palettes.
 
 **Implementation guidance:**
+
 - Self-host only required font files and weights, preload the smallest critical subset, and use metric-compatible fallbacks.
 - Build fluid typography around oversized display text, compact mono metadata, readable long-form body text, and controlled line lengths.
 - Avoid gradients, heavy shadows, default pill styling, excessive borders, and cards nested inside cards.
@@ -487,10 +509,11 @@ Every task follows the same delivery cycle:
 - Use logical properties and layout primitives that work in narrow and zoomed viewports.
 
 **Tests and validation:**
-- [ ] Add visual snapshots for home, listing, case-study, article, and utility page shells at mobile and desktop widths.
-- [ ] Test keyboard order, skip link, visible focus, target size, and contrast.
-- [ ] Verify fonts are served locally with correct licenses and no external font request occurs.
-- [ ] Run CSS/layout snapshots with JavaScript disabled.
+
+- [x] Add visual snapshots for home, listing, case-study, article, and utility page shells at mobile and desktop widths.
+- [x] Test keyboard order, skip link, visible focus, target size, and contrast.
+- [x] Verify fonts are served locally with correct licenses and no external font request occurs.
+- [x] Run CSS/layout snapshots with JavaScript disabled.
 
 **Demo:** Show all route archetypes sharing one recognizable crimson editorial system at 375, 768, 1440, and 200% zoom.
 
@@ -499,22 +522,26 @@ Every task follows the same delivery cycle:
 **Objective:** Create one deterministic authority for boot, loading, entry choice, active state, navigation, Index visibility, mute state, degraded state, and teardown.
 
 **Files:**
+
 - Create: `src/runtime/core/types.ts`, `events.ts`, `state.ts`, `reducer.ts`, `ExperienceRuntime.ts`, `runtime-singleton.ts`
 - Create: `src/runtime/core/capabilities.ts`, `preferences.ts`
 - Create: `tests/unit/runtime-reducer.test.ts`, `tests/integration/runtime-lifecycle.test.ts`
 - Modify: `src/layouts/BaseLayout.astro` to install the persistent runtime root
 
 **Interfaces:**
+
 - `ExperienceRuntime` provides `boot`, `enter`, `prepareNavigation`, `commitNavigation`, `setRoute`, `setIndexOpen`, `setMuted`, `subscribe`, `getSnapshot`, and `destroy`.
 - State snapshots are immutable and include phase, route, entry mode, audio state, index state, navigation target, quality tier, capability flags, and recoverable error.
 
 **Implementation guidance:**
+
 - Model legal transitions explicitly and reject impossible events without corrupting state.
 - Read reduced-motion, reduced-data, pointer, WebGL, visibility, and stored consent capabilities during boot.
 - Keep browser globals behind injected adapters so the reducer and lifecycle can run in Vitest.
 - Emit state changes through one subscription channel consumed by shell controls, renderer, audio, and navigation.
 
 **Tests and validation:**
+
 - [ ] Test every legal transition and representative illegal transitions as a table-driven reducer suite.
 - [ ] Verify two boot calls do not create duplicate listeners or runtime instances.
 - [ ] Verify destroy releases listeners and later events have no effect.
@@ -527,6 +554,7 @@ Every task follows the same delivery cycle:
 **Objective:** Introduce the single-canvas renderer and an original restrained scene foundation that survives route changes without leaking resources.
 
 **Files:**
+
 - Create: `src/components/shell/ExperienceCanvas.astro`
 - Create: `src/runtime/rendering/Renderer.ts`, `SceneController.ts`, `CameraRig.ts`, `RenderLoop.ts`, `ResourceTracker.ts`
 - Create: `src/runtime/rendering/scenes/BaseScene.ts`, `HomeScene.ts`, `StaticScene.ts`
@@ -535,10 +563,12 @@ Every task follows the same delivery cycle:
 - Modify: `BaseLayout.astro`, runtime singleton
 
 **Interfaces:**
+
 - Scene states implement `prepare(manifest)`, `enter(previous)`, `update(frame)`, `resize(viewport)`, `exit(next)`, and `dispose()`.
 - `ResourceTracker` owns textures, render targets, geometries, materials, and listeners by route/feature scope.
 
 **Implementation guidance:**
+
 - Use a seeded pseudo-random generator for geometry, particles, timing variation, and capture reproducibility.
 - Keep one `requestAnimationFrame` loop and pause rendering when hidden or when static mode is active.
 - Bound DPR from the start and resize through one observer.
@@ -546,6 +576,7 @@ Every task follows the same delivery cycle:
 - Do not port current R3F components directly; translate only validated visual ideas into resource-owned Three.js modules.
 
 **Tests and validation:**
+
 - [ ] Verify repeated route changes retain exactly one canvas and one renderer.
 - [ ] Verify every tracked resource is released when its scope ends.
 - [ ] Verify fixed seeds produce stable scene manifests.
@@ -558,15 +589,18 @@ Every task follows the same delivery cycle:
 **Objective:** Maintain the best stable visual tier each device can sustain without unbounded DPR, oscillation, or inaccessible failure.
 
 **Files:**
+
 - Create: `src/runtime/quality/types.ts`, `QualityController.ts`, `FrameBudgetMonitor.ts`, `quality-presets.ts`, `device-hints.ts`
 - Create: `tests/unit/quality-controller.test.ts`, `tests/integration/frame-budget.test.ts`
 - Modify: renderer, scene controller, runtime state
 
 **Interfaces:**
+
 - `QualityController` emits static, low, medium, or high profiles containing DPR cap, target FPS, particle multiplier, post-processing level, texture budget, and update cadence.
 - `FrameBudgetMonitor` consumes frame timestamps and reports stable pressure using rolling windows and hysteresis.
 
 **Implementation guidance:**
+
 - Start conservatively from capability hints, then adapt from measured frame behavior.
 - Lower quality after sustained frame pressure and upgrade only after a longer stable interval.
 - Apply profile changes at safe scene boundaries or through gradual parameter blending.
@@ -574,6 +608,7 @@ Every task follows the same delivery cycle:
 - Expose a development-only overlay with tier, DPR, frame time, draw calls, triangles, and texture memory estimates.
 
 **Tests and validation:**
+
 - [ ] Feed synthetic frame streams and verify downgrade, recovery, hysteresis, and non-oscillation.
 - [ ] Verify DPR never exceeds the selected profile cap.
 - [ ] Verify reduced-data and no-WebGL capabilities force static mode.
@@ -586,16 +621,19 @@ Every task follows the same delivery cycle:
 **Objective:** Replace scattered input listeners with one passive, frame-coalesced signal layer and add conditional Lenis scrolling without breaking native behavior.
 
 **Files:**
+
 - Create: `src/runtime/input/InputManager.ts`, `PointerSignal.ts`, `KeyboardSignal.ts`, `ViewportSignal.ts`
 - Create: `src/runtime/scroll/ScrollManager.ts`, `scroll-policy.ts`, `scroll-state.ts`
 - Create: `tests/unit/input-normalization.test.ts`, `tests/unit/scroll-policy.test.ts`, `tests/e2e/input-modes.spec.ts`
 - Modify: runtime and renderer to consume normalized signals
 
 **Interfaces:**
+
 - `InputSnapshot` includes normalized pointer position, delta, velocity, modality, pressed state, focus visibility, and inactivity.
 - `ScrollSnapshot` includes position, progress, velocity, direction, section, and restoration intent.
 
 **Implementation guidance:**
+
 - Use pointer events and passive listeners, coalesce updates into animation frames, and avoid framework state for high-frequency movement.
 - Preserve native scrolling for reduced motion, keyboard navigation, coarse pointers when beneficial, nested scroll regions, and unsupported environments.
 - Cancel or settle motion before focus jumps and route swaps.
@@ -603,6 +641,7 @@ Every task follows the same delivery cycle:
 - Map keyboard activation to every interaction that otherwise depends on hover or pointer proximity.
 
 **Tests and validation:**
+
 - [ ] Test coordinate normalization, velocity decay, modality switching, and listener cleanup.
 - [ ] Verify reduced motion disables Lenis and preserves native scroll.
 - [ ] Verify PageUp, PageDown, Home, End, Space, tab navigation, touch, and wheel input remain functional.
@@ -615,16 +654,19 @@ Every task follows the same delivery cycle:
 **Objective:** Replace cosmetic loading with manifest-driven critical asset acquisition, progress reporting, cancellation, caching, and graceful partial failure.
 
 **Files:**
+
 - Create: `src/runtime/assets/types.ts`, `AssetManager.ts`, `AssetQueue.ts`, `loaders.ts`, `route-assets.ts`
 - Create: `src/components/shell/Loader.astro`, `EntryGate.astro`
 - Create: `tests/unit/asset-queue.test.ts`, `tests/integration/loader-progress.test.ts`, `tests/e2e/loading-failure.spec.ts`
 - Modify: runtime, route manifests, BaseLayout
 
 **Interfaces:**
+
 - `AssetDescriptor` declares ID, URL, type, byte weight, priority, route scope, criticality, and fallback.
 - `AssetManager.loadScope(scope, signal)` reports weighted progress and returns successes plus recoverable failures.
 
 **Implementation guidance:**
+
 - Include critical fonts, initial media, shaders, textures, and scene data in weighted progress.
 - Show determinate progress when byte information is available and honest item progress otherwise.
 - Prevent stale route requests from updating state after cancellation.
@@ -632,6 +674,7 @@ Every task follows the same delivery cycle:
 - Allow noncritical failures to degrade to posters/static assets; provide retry and continue-silent choices for recoverable critical failures.
 
 **Tests and validation:**
+
 - [ ] Test weighted progress monotonicity, duplicate request coalescing, cancellation, retry, timeout, and fallback selection.
 - [ ] Verify the loader never reports 100% before all critical assets settle.
 - [ ] Simulate a failed texture and failed audio file and confirm the site remains usable.
@@ -644,6 +687,7 @@ Every task follows the same delivery cycle:
 **Objective:** Deliver a consent-safe original sound system with sound/silent entry, ambience, interaction cues, crossfades, persistence, mute, and full no-audio parity.
 
 **Files:**
+
 - Create: `src/runtime/audio/types.ts`, `AudioManager.ts`, `AudioBus.ts`, `audio-manifest.ts`
 - Create: `scripts/audio/build-audio.ts`, `scripts/audio/validate-audio.ts`
 - Create: `public/audio/` with original produced masters and optimized derivatives
@@ -652,10 +696,12 @@ Every task follows the same delivery cycle:
 - Modify: entry gate, global shell controls, route manifests
 
 **Interfaces:**
+
 - Audio buses are `master`, `ambience`, `interface`, and `transition` with bounded gain.
 - `AudioManager` exposes `unlock`, `setMode`, `setMuted`, `crossfadeRoute`, `playCue`, `suspend`, and `destroy`.
 
 **Implementation guidance:**
+
 - Produce an original minimal dark-tech palette from synthesis, procedural processing, and clearly licensed source material.
 - Never request audio playback before a user gesture.
 - Keep silent entry visually and functionally identical; no timing or navigation logic may depend on audible playback.
@@ -663,6 +709,7 @@ Every task follows the same delivery cycle:
 - Persist consent and mute state locally, but keep the control discoverable and screen-reader labeled.
 
 **Tests and validation:**
+
 - [ ] Verify no play call occurs before explicit sound entry.
 - [ ] Verify silent entry loads no nonessential audio and all routes/interactions complete.
 - [ ] Verify crossfades cancel safely during rapid navigation and no orphan sound remains.
@@ -676,6 +723,7 @@ Every task follows the same delivery cycle:
 **Objective:** Turn static Astro routes into one continuous experience with coordinated content swaps, persistent canvas transitions, focus restoration, and interruption safety.
 
 **Files:**
+
 - Create: `src/runtime/navigation/NavigationController.ts`, `astro-events.ts`, `focus-manager.ts`, `history-state.ts`
 - Create: `src/runtime/transitions/TransitionController.ts`, `DomTransition.ts`, `RenderTransition.ts`, `transition-presets.ts`
 - Create: `src/components/shell/TransitionLayer.astro`
@@ -683,10 +731,12 @@ Every task follows the same delivery cycle:
 - Modify: BaseLayout, runtime, renderer, route manifests
 
 **Interfaces:**
+
 - Navigation phases are request, outgoing, prepare, swap, incoming, settle, and cancelled.
 - Transition presets consume source route, target route, direction, quality tier, motion preference, and navigation cause.
 
 **Implementation guidance:**
+
 - Coordinate Astro ClientRouter events with runtime phases rather than adding independent page timers.
 - Capture the outgoing scene to a render target only on supported tiers and blend into the target scene with original shader logic.
 - Use transform/opacity DOM animation and prevent interaction only during the shortest required swap window.
@@ -694,6 +744,7 @@ Every task follows the same delivery cycle:
 - Move focus to the new main heading after navigation while preserving expected history and scroll behavior.
 
 **Tests and validation:**
+
 - [ ] Test phase ordering, cancellation, duplicate destination requests, browser history, and failed preparation.
 - [ ] Verify one canvas and runtime survive at least 50 route changes.
 - [ ] Verify focus and document title update after each route.
@@ -706,12 +757,14 @@ Every task follows the same delivery cycle:
 **Objective:** Build the final home composition around `lxrdxe7o`, the professional title, signature, availability, social links, and a direct path into selected work.
 
 **Files:**
+
 - Create: `src/components/shell/HomeHero.astro`, `HeroIdentity.astro`, `HeroMeta.astro`, `WorkPrompt.astro`
 - Create: `src/runtime/rendering/scenes/HomeScene.ts`, `src/runtime/transitions/home-sequence.ts`
 - Modify: `src/pages/index.astro`, route assets, tokens
 - Create: `tests/e2e/home-experience.spec.ts`, `tests/visual/home.spec.ts`, `tests/accessibility/home.spec.ts`
 
 **Implementation guidance:**
+
 - Give `lxrdxe7o` dominant scale and let `Full-Stack Developer` plus `Ishraful Haque` clarify identity without competing.
 - Keep the first viewport sparse and purposeful, with Work/About controls, availability, and social links placed as editorial anchors.
 - Build original cursor/touch depth and restrained scene responses from normalized input.
@@ -719,6 +772,7 @@ Every task follows the same delivery cycle:
 - Use responsive art direction rather than shrinking the desktop composition mechanically.
 
 **Tests and validation:**
+
 - [ ] Verify exact identity strings, heading hierarchy, route links, social labels, and availability source.
 - [ ] Verify no essential text is clipped from 320px width through large desktop and at 200% zoom.
 - [ ] Verify pointer effects are decorative and keyboard/touch users receive equivalent navigation.
@@ -731,16 +785,19 @@ Every task follows the same delivery cycle:
 **Objective:** Create a high-impact project listing with approved flagship order, responsive media previews, deterministic pointer physics, and accessible non-hover controls.
 
 **Files:**
+
 - Create: `src/components/projects/ProjectIndex.astro`, `ProjectIndexItem.astro`, `ProjectPreview.astro`, `ProjectMeta.astro`
 - Create: `src/runtime/rendering/scenes/WorkScene.ts`, `src/runtime/rendering/controllers/PreviewController.ts`
 - Modify: `src/pages/projects/index.astro`, project query utilities, route assets
 - Create: `tests/unit/preview-controller.test.ts`, `tests/e2e/project-index.spec.ts`, `tests/visual/project-index.spec.ts`
 
 **Interfaces:**
+
 - Preview state consumes active slug, input snapshot, viewport, media manifest, quality tier, and motion preference.
 - Every project row remains a semantic link with title, concise verified role/year metadata when available, and accessible preview description.
 
 **Implementation guidance:**
+
 - Derive order only from the Task 4 approved curation.
 - Use velocity smoothing, bounds, and deterministic easing for pointer previews; avoid direct DOM writes outside the controller's frame update.
 - On touch and keyboard, reveal previews through focus/selection and provide a clear activation step.
@@ -748,6 +805,7 @@ Every task follows the same delivery cycle:
 - Keep list typography dominant and visual decoration subordinate to project recognition.
 
 **Tests and validation:**
+
 - [ ] Test preview bounds, velocity decay, active-item switching, route cleanup, and reduced-motion behavior.
 - [ ] Verify every approved flagship appears once and draft/archive entries follow their publication rules.
 - [ ] Verify keyboard, screen reader, touch, and pointer paths can inspect and open every project.
@@ -760,16 +818,19 @@ Every task follows the same delivery cycle:
 **Objective:** Provide a global animated Index that exposes all expanded routes while preserving Work/About prominence and robust modal navigation behavior.
 
 **Files:**
+
 - Create: `src/components/shell/SiteIndex.astro`, `IndexRouteList.astro`, `IndexProjectList.astro`, `IndexFooter.astro`
 - Create: `src/runtime/navigation/IndexController.ts`, `src/runtime/transitions/index-sequence.ts`
 - Modify: primary navigation, runtime state, route data
 - Create: `tests/unit/index-controller.test.ts`, `tests/e2e/site-index.spec.ts`, `tests/accessibility/site-index.spec.ts`
 
 **Interfaces:**
+
 - Index state exposes closed, opening, open, closing, and navigating phases.
 - Navigation data groups primary routes, content routes, utility routes, projects, social links, and availability without duplicating hardcoded labels.
 
 **Implementation guidance:**
+
 - Treat the Index as a modal navigation surface with focus containment, Escape close, opener restoration, background inertness, and scroll lock.
 - Keep Work and About visually primary; include Projects, Experience, Skills, Uses, Writing, Notes, Lab, Now, Archive, Contact, and Home.
 - Animate stagger, counter, and background scene response from one interruptible timeline.
@@ -777,6 +838,7 @@ Every task follows the same delivery cycle:
 - Close and transition through the same NavigationController used by ordinary links.
 
 **Tests and validation:**
+
 - [ ] Test legal open/close/interruption transitions and focus restoration.
 - [ ] Verify the background cannot receive pointer or keyboard interaction while open.
 - [ ] Verify all public routes and project entries are represented exactly once.
@@ -789,6 +851,7 @@ Every task follows the same delivery cycle:
 **Objective:** Ship complete, production-quality case studies for the two highest-ranked projects approved in Task 4 and establish the reusable next-project loop.
 
 **Files:**
+
 - Create: `src/pages/projects/[slug].astro`
 - Create: `src/layouts/ProjectLayout.astro`
 - Create: `src/components/projects/ProjectHero.astro`, `ProjectSynopsis.astro`, `ProjectFacts.astro`, `ProjectMedia.astro`, `ProjectNarrative.astro`, `NextProject.astro`
@@ -796,10 +859,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/integration/project-pages.test.ts`, `tests/e2e/project-loop.spec.ts`, `tests/visual/project-case-study.spec.ts`
 
 **Interfaces:**
+
 - `ProjectLayout` consumes a validated `ProjectEntry`, adjacent approved entries, and the project's media manifest.
 - Next-project resolution wraps deterministically from the final flagship to the first.
 
 **Implementation guidance:**
+
 - Follow the approved editorial sequence while varying media composition enough to suit each project's actual material.
 - Show only verified role, year, client/agency, outcome, repository, and live-link fields.
 - Make videos controllable, muted by default, poster-backed, pauseable, and absent in reduced-data mode.
@@ -807,6 +872,7 @@ Every task follows the same delivery cycle:
 - End every case study with an unmistakable next-project handoff and global contact path.
 
 **Tests and validation:**
+
 - [ ] Verify generated slugs, metadata fields, media order, optional links, credits, and next-project wrapping.
 - [ ] Verify MDX headings produce a logical outline and media has alt text or an explicit decorative role.
 - [ ] Verify video pause/control behavior and static/reduced-data alternatives.
@@ -819,22 +885,26 @@ Every task follows the same delivery cycle:
 **Objective:** Finish every approved flagship case study and place credible secondary work in a searchable, lightweight archive without reducing the quality of the flagship loop.
 
 **Files:**
+
 - Create: remaining approved `src/content/projects/*.mdx` entries and media manifests
 - Create: `src/pages/archive.astro`, `src/components/content/ArchiveList.astro`, `ArchiveFilters.astro`
 - Modify: project queries, Work index, Site Index, route manifests
 - Create: `tests/integration/project-coverage.test.ts`, `tests/e2e/archive.spec.ts`, `tests/visual/archive.spec.ts`
 
 **Interfaces:**
+
 - Archive filters derive from validated project type, technology, year when verified, and status; URLs encode filter state.
 - Every published project belongs to exactly one flagship/archive presentation path while retaining one canonical detail URL when a detail page exists.
 
 **Implementation guidance:**
+
 - Apply the established case-study system to each approved flagship with project-specific pacing and media.
 - Keep archive rows concise and factual; omit unavailable fields rather than filling them with inferred values.
 - Support text search and filter controls with progressive enhancement and a complete unfiltered server-rendered list.
 - Maintain deterministic next-project order and prevent archived entries from entering the flagship loop unless approved.
 
 **Tests and validation:**
+
 - [ ] Assert that every approved project has valid content, required media, credits, canonical metadata, and correct classification.
 - [ ] Test filter combinations, URL restoration, no-results messaging, and JavaScript-disabled output.
 - [ ] Test the complete flagship next-project cycle for one visit per project before wrapping.
@@ -847,16 +917,19 @@ Every task follows the same delivery cycle:
 **Objective:** Turn identity, biography, work history, capabilities, recognition, tools, and collaborators into an editorial About system without invented credentials or proficiency meters.
 
 **Files:**
+
 - Create: `src/data/profile.ts`, `src/data/experience.ts`, `src/data/skills.ts`
 - Create: `src/components/about/Biography.astro`, `ExperienceList.astro`, `CapabilityGroups.astro`, `Recognition.astro`, `Collaborators.astro`, `Toolbox.astro`, `Credits.astro`
 - Modify: `src/pages/about.astro`, `src/pages/experience.astro`, `src/pages/skills.astro`
 - Create: `tests/unit/profile-facts.test.ts`, `tests/e2e/about-routes.spec.ts`, `tests/accessibility/about-routes.spec.ts`
 
 **Interfaces:**
+
 - Profile records use the same `Fact<T>` provenance model as project content.
 - Capability groups express evidence and usage context, not arbitrary percentage scores.
 
 **Implementation guidance:**
+
 - Draft biography and labels from verified public facts, then keep claims requiring confirmation unpublished.
 - Omit empty collaborators, clients, awards, or recognition modules rather than presenting decorative fiction.
 - Connect skills to actual projects or repositories where evidence exists.
@@ -864,6 +937,7 @@ Every task follows the same delivery cycle:
 - Include sound, font, asset, and technical credits where applicable.
 
 **Tests and validation:**
+
 - [ ] Verify no unpublished fact renders and every external entity link is valid and safely attributed.
 - [ ] Verify date ordering and open-ended experience labels without inventing start/end dates.
 - [ ] Verify capability groups have evidence references and no proficiency bars appear.
@@ -876,17 +950,20 @@ Every task follows the same delivery cycle:
 **Objective:** Complete the supporting route system with factual, maintained, and conversion-oriented content that shares the main experience language.
 
 **Files:**
+
 - Create: `src/data/uses.ts`, `src/data/now.ts`, `src/data/contact.ts`
 - Create: `src/components/content/UsesList.astro`, `NowStatus.astro`, `ContactPanel.astro`, `ContactLinks.astro`
 - Modify: `src/pages/uses.astro`, `src/pages/now.astro`, `src/pages/archive.astro`, `src/pages/contact.astro`
 - Create: `tests/unit/utility-content.test.ts`, `tests/e2e/utility-routes.spec.ts`, `tests/accessibility/contact.spec.ts`
 
 **Interfaces:**
+
 - Uses entries include category, item, purpose, optional link, and verification date.
 - Now entries include a user-approved statement and visible last-reviewed date.
 - Contact links are configured once and reused by home, Index, footer, and Contact.
 
 **Implementation guidance:**
+
 - Publish only currently verified hardware, software, services, workflow, availability, and contact methods.
 - Make Contact direct and low-friction; prefer explicit links over a data-collecting form unless the user later approves a backend.
 - Protect email display from accidental malformed links while keeping it accessible and copyable.
@@ -894,6 +971,7 @@ Every task follows the same delivery cycle:
 - Add visible maintenance dates to time-sensitive Uses and Now content.
 
 **Tests and validation:**
+
 - [ ] Validate contact URI schemes, external-link behavior, labels, and copyable text.
 - [ ] Verify time-sensitive entries expose review dates and expired entries fail editorial validation.
 - [ ] Verify all utility routes work without JavaScript and at 200% zoom.
@@ -906,6 +984,7 @@ Every task follows the same delivery cycle:
 **Objective:** Replace the external blog handoff with native MDX indexes and article/note pages optimized for reading, code, media, feeds, and keyboard navigation.
 
 **Files:**
+
 - Create: `src/pages/writing/index.astro`, `src/pages/writing/[slug].astro`, `src/pages/notes/[slug].astro`
 - Modify: `src/pages/blog.astro`, `src/pages/notes/index.astro`
 - Create: `src/layouts/ArticleLayout.astro`, `src/components/content/ArticleIndex.astro`, `TableOfContents.astro`, `CodeBlock.astro`, `ReadingProgress.astro`
@@ -913,10 +992,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/integration/article-rendering.test.ts`, `tests/e2e/writing.spec.ts`, `tests/accessibility/article.spec.ts`
 
 **Interfaces:**
+
 - `/blog` renders or redirects internally to the native Writing index with correct canonical handling.
 - Article layout consumes validated article metadata, generated headings, optional series navigation, and related public entries.
 
 **Implementation guidance:**
+
 - Prioritize readable measure, anchor links, code overflow, captions, citations, and stable heading IDs.
 - Use progressive enhancement for reading progress and table-of-contents highlighting.
 - Keep article WebGL behavior ambient and low-cost so it never harms reading or selection.
@@ -924,6 +1005,7 @@ Every task follows the same delivery cycle:
 - Do not create synthetic posts merely to populate the index.
 
 **Tests and validation:**
+
 - [ ] Test MDX components, heading slug stability, code rendering, related-entry filtering, drafts, and empty-series behavior.
 - [ ] Verify `/blog` no longer depends on the external domain and canonical URLs do not duplicate content.
 - [ ] Verify print styling, text selection, keyboard anchors, 200% zoom, and JavaScript-disabled reading.
@@ -936,6 +1018,7 @@ Every task follows the same delivery cycle:
 **Objective:** Add a safe, reusable Lab route for original interactive experiments and integrate the first deterministic experiment with the existing renderer and fallback system.
 
 **Files:**
+
 - Create: `src/pages/lab/index.astro`, `src/pages/lab/[slug].astro`
 - Create: `src/layouts/LabLayout.astro`, `src/components/lab/LabIndex.astro`, `ExperimentControls.astro`, `ExperimentFallback.astro`
 - Create: `src/runtime/rendering/scenes/lab/ExperimentRegistry.ts`, `FieldExperiment.ts`
@@ -943,10 +1026,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/unit/experiment-registry.test.ts`, `tests/e2e/lab.spec.ts`, `tests/visual/lab.spec.ts`
 
 **Interfaces:**
+
 - Experiments declare ID, title, seed, capability requirements, quality profiles, control schema, fallback poster, and cleanup method.
 - Lab controls synchronize to URL parameters using validated finite ranges.
 
 **Implementation guidance:**
+
 - Build the first experiment as an original seeded field/particle study that uses the persistent render loop and ResourceTracker.
 - Keep controls compact, keyboard operable, labeled, resettable, and shareable through URL state.
 - Provide a still fallback and explanation when WebGL or required capability is unavailable.
@@ -954,6 +1039,7 @@ Every task follows the same delivery cycle:
 - Prevent experimental code from bypassing runtime ownership or creating another canvas.
 
 **Tests and validation:**
+
 - [ ] Test registry uniqueness, parameter parsing, seed determinism, bounds, reset, and cleanup.
 - [ ] Verify one renderer/canvas remains active across Lab and non-Lab routes.
 - [ ] Verify controls work by keyboard and expose current values to assistive technology.
@@ -966,6 +1052,7 @@ Every task follows the same delivery cycle:
 **Objective:** Extend Lab with one static repository-data visualization and one opt-in audio-reactive experiment while preserving privacy, determinism, and silent parity.
 
 **Files:**
+
 - Create: `scripts/audit/build-public-repo-dataset.ts`, `src/data/generated/repository-dataset.json`
 - Create: `src/runtime/rendering/scenes/lab/RepositoryMapExperiment.ts`, `AudioFieldExperiment.ts`
 - Create: corresponding approved Lab MDX entries and fallback media
@@ -973,10 +1060,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/unit/repository-dataset.test.ts`, `tests/unit/audio-analysis.test.ts`, `tests/e2e/lab-advanced.spec.ts`
 
 **Interfaces:**
+
 - Repository visualization consumes a versioned static dataset generated from approved public facts; it performs no visitor-time GitHub request.
 - Audio-reactive input consumes normalized analysis bands from the site's own ambience only after sound consent and receives deterministic synthetic values in silent mode.
 
 **Implementation guidance:**
+
 - Strip private, identifying, or irrelevant repository payload fields before committing the static dataset.
 - Encode language/activity relationships honestly and explain what each visual mapping represents.
 - Never request microphone access.
@@ -984,6 +1073,7 @@ Every task follows the same delivery cycle:
 - Apply the same quality profiles, cleanup, accessibility controls, and poster fallbacks as the first experiment.
 
 **Tests and validation:**
+
 - [ ] Verify dataset allowlists, deterministic generation, source timestamps, and exclusion of private fields.
 - [ ] Verify audio analysis begins only after consent and stops on mute/suspend/destroy.
 - [ ] Verify silent mode produces stable visual behavior without hidden audio playback.
@@ -996,6 +1086,7 @@ Every task follows the same delivery cycle:
 **Objective:** Make every public route discoverable, shareable, canonical, and resilient to legacy URLs without leaking drafts or unverified metadata.
 
 **Files:**
+
 - Create: `src/components/content/Seo.astro`, `src/lib/seo/metadata.ts`, `structured-data.ts`, `social-card.ts`
 - Create: `src/pages/rss.xml.ts`, `src/pages/sitemap-index.xml.ts`, `src/pages/robots.txt.ts`
 - Create: `scripts/media/generate-social-cards.ts`, `public/social/`
@@ -1003,10 +1094,12 @@ Every task follows the same delivery cycle:
 - Create: `tests/unit/seo-metadata.test.ts`, `tests/integration/feeds.test.ts`, `tests/e2e/seo.spec.ts`
 
 **Interfaces:**
+
 - Metadata generation consumes route/content metadata and returns canonical URL, title, description, robots policy, Open Graph, social card, and structured data.
 - Only public collection entries enter feeds, sitemaps, related content, or social-card generation.
 
 **Implementation guidance:**
+
 - Create unique titles/descriptions and original generated cards using the portfolio's typography and approved media.
 - Add Person, WebSite, CreativeWork/SoftwareSourceCode, Article, and Breadcrumb structured data only when supported by verified facts.
 - Preserve current route URLs and provide permanent redirects only where a canonical route is intentionally consolidated, including `/blog` handling.
@@ -1014,6 +1107,7 @@ Every task follows the same delivery cycle:
 - Include alternate feed links and valid publication/update dates only when verified.
 
 **Tests and validation:**
+
 - [ ] Test canonical uniqueness, draft exclusion, absolute URLs, card dimensions, and structured-data required fields.
 - [ ] Validate RSS/XML output and robots behavior for production versus preview.
 - [ ] Crawl built output for broken internal links, redirect chains, missing metadata, and orphan pages.
@@ -1026,6 +1120,7 @@ Every task follows the same delivery cycle:
 **Objective:** Ensure the portfolio remains coherent when WebGL, JavaScript, audio, media, navigation, or third-party links fail, and harden the static deployment boundary.
 
 **Files:**
+
 - Create: `src/components/shell/RuntimeFallback.astro`, `ErrorNotice.astro`, `OfflineNotice.astro`
 - Create: `src/pages/500.astro` where supported by the deployment target
 - Create: `src/runtime/core/ErrorBoundary.ts`, `src/runtime/assets/fallback-policy.ts`
@@ -1034,10 +1129,12 @@ Every task follows the same delivery cycle:
 - Modify: all media components and runtime bootstrap
 
 **Interfaces:**
+
 - Runtime errors map to recoverable static, retryable asset, unsupported capability, or terminal route states.
 - Fallback policy maps each critical asset/feature to a local poster, static composition, silent path, or semantic content path.
 
 **Implementation guidance:**
+
 - Catch initialization and route-transition failures and return control to semantic content rather than leaving a blocked overlay.
 - Add local posters and explicit dimensions for every animated/video/WebGL-dependent region.
 - Configure a restrictive content security policy compatible with local assets, no inline-eval runtime, secure referrer policy, MIME protection, and safe external-link rel values.
@@ -1045,6 +1142,7 @@ Every task follows the same delivery cycle:
 - Make error language concise, actionable, and nontechnical for visitors while logging useful development detail locally.
 
 **Tests and validation:**
+
 - [ ] Disable JavaScript, WebGL, audio codecs, selected images, video, and route fetches in browser tests.
 - [ ] Verify navigation, project content, writing, contact, and mute controls degrade correctly for each applicable failure.
 - [ ] Verify error notices are focus-managed, dismissible when appropriate, and announced without trapping users.
@@ -1057,15 +1155,18 @@ Every task follows the same delivery cycle:
 **Objective:** Compare the implemented experience against approved reference/current baselines and tune hierarchy, pacing, interaction weight, scene response, and sound without copying protected assets.
 
 **Files:**
+
 - Create: `scripts/reference/build-parity-report.ts`, `tests/visual/parity.spec.ts`
 - Create: `docs/reference/parity-scorecard.md`
 - Modify: tokens, transition presets, route scene parameters, motion sequences, and audio mix based on evidence
 - Generate and ignore: `artifacts/parity/`
 
 **Interfaces:**
+
 - Scorecard categories are loader/entry, home hierarchy, navigation/Index, project sequencing, route transitions, pointer/touch response, scroll pacing, audio behavior, responsive composition, and fallback parity.
 
 **Implementation guidance:**
+
 - Capture matching viewport, preference, and route states with stable seeds and animation milestones.
 - Review side-by-side and temporal recordings; use image differences only as a regression aid, not as a target for copied pixels.
 - Tune original values for perceived mass, timing, continuity, text rhythm, and media reveal.
@@ -1073,6 +1174,7 @@ Every task follows the same delivery cycle:
 - Require no-audio and reduced-motion experiences to communicate the same route state and hierarchy.
 
 **Tests and validation:**
+
 - [ ] Produce captures for every scorecard category at approved desktop/mobile widths.
 - [ ] Verify transition duration, interruption, and state milestones through browser timing assertions.
 - [ ] Verify audio crossfade envelopes and cue ownership through deterministic audio tests.
@@ -1085,12 +1187,14 @@ Every task follows the same delivery cycle:
 **Objective:** Meet the acceptance matrix across assistive technology behaviors, browser floor, Core Web Vitals budgets, sustained frame rate, memory stability, and responsive layouts.
 
 **Files:**
+
 - Create: `lighthouserc.json`, `tests/accessibility/full-audit.spec.ts`, `tests/performance/budgets.spec.ts`, `tests/e2e/browser-matrix.spec.ts`
 - Create: `scripts/qa/route-matrix.ts`, `scripts/qa/memory-smoke.ts`
 - Create: `docs/qa/accessibility-report.md`, `docs/qa/browser-report.md`, `docs/qa/performance-report.md`
 - Modify: affected components/runtime/assets based on failures
 
 **Implementation guidance:**
+
 - Test keyboard-only flows, screen-reader semantics, focus management, target size, contrast, zoom, forced colors, motion/data preferences, and media controls.
 - Run current/previous Chromium, Firefox, WebKit/Safari-equivalent automation, real iOS Safari 16+ checks where available, and current Android Chrome checks.
 - Measure cold/warm route loads, long tasks, Web Vitals, asset weight, request count, canvas count, frame rate, and memory after navigation loops.
@@ -1098,6 +1202,7 @@ Every task follows the same delivery cycle:
 - Keep route-specific budgets so a Lab experiment cannot hide regressions in the content experience.
 
 **Tests and validation:**
+
 - [ ] Achieve zero serious/critical automated axe violations and manually verify the behaviors automation cannot judge.
 - [ ] Meet LCP, INP, CLS, one-canvas, 60/30 FPS, and resource-stability targets on the agreed test profiles.
 - [ ] Pass the full browser/viewport/preference route matrix or document an approved platform-specific fallback.
@@ -1110,6 +1215,7 @@ Every task follows the same delivery cycle:
 **Objective:** Freeze approved content and assets, remove superseded code, wire continuous validation, and produce a reproducible static release candidate without committing or deploying unless separately authorized.
 
 **Files:**
+
 - Modify: `package.json`, lockfile, CI workflow, deployment configuration, all final approved content
 - Remove: obsolete React/TanStack/R3F source, dead styles, unused assets, temporary development overlays, and superseded configuration
 - Create: `scripts/qa/release-check.ts`, `tests/integration/release-manifest.test.ts`
@@ -1117,10 +1223,12 @@ Every task follows the same delivery cycle:
 - Generate: production `dist/` release artifact
 
 **Interfaces:**
+
 - CI runs install with a frozen lockfile, license check, check, lint, unit/integration tests, Astro build, browser smoke, accessibility audit, visual regression, and performance budgets.
 - Release manifest records content revision, asset hashes, route inventory, dependency versions, build environment, and approval status.
 
 **Implementation guidance:**
+
 - Present all biography, availability, experience, project, recognition, Uses, Now, and contact copy for final user approval.
 - Verify every shipped asset has ownership or distributable-license evidence and every dependency remains approved.
 - Remove all legacy imports and prove no React, TanStack, R3F, Drei, Framer Motion, route-rainbow, generic glass-card, or external-blog behavior remains.
@@ -1128,6 +1236,7 @@ Every task follows the same delivery cycle:
 - Do not commit, push, publish, or deploy until the user explicitly authorizes that separate action.
 
 **Tests and validation:**
+
 - [ ] Run a frozen clean install followed by `npm run check`, `npm run lint`, `npm run test`, `npm run build`, browser smoke, accessibility, visual, and Lighthouse CI suites.
 - [ ] Verify all expected routes exist in the build and no draft/unverified content appears.
 - [ ] Verify dependency, font, audio, media, and attribution manifests are complete.
