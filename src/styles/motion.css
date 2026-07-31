@@ -1,0 +1,76 @@
+/**
+ * Motion tokens and the reduced-motion contract.
+ *
+ * This file only declares durations/easings and the global
+ * `prefers-reduced-motion` override for the static shell (hover/focus
+ * transitions, the brand-mark cursor blink). The animated route-transition
+ * and WebGL motion system arrives in later tasks and must read these same
+ * custom properties rather than redeclaring its own.
+ */
+:root {
+  --duration-instant: 100ms;
+  --duration-fast: 180ms;
+  --duration-base: 280ms;
+  --duration-slow: 480ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes availability-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.brand-mark__cursor {
+  animation: cursor-blink 1.1s step-end infinite;
+}
+
+.availability__dot[data-status='available'] {
+  animation: availability-pulse 2.4s var(--ease-standard) infinite;
+}
+
+/**
+ * The single global reduced-motion contract: every future animation layer
+ * (Motion timelines, Lenis, the WebGL transition system) must degrade to
+ * this or an equivalent instant/near-instant state, never to nothing —
+ * content still needs to reach its resting position.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .brand-mark__cursor {
+    animation: none;
+    opacity: 1;
+  }
+
+  .availability__dot[data-status='available'] {
+    animation: none;
+    opacity: 1;
+  }
+}

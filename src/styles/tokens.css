@@ -1,0 +1,106 @@
+/**
+ * Design tokens: primitive -> semantic -> component.
+ *
+ * One dark, restrained-crimson identity for the whole site. Route
+ * differences come from composition and media (per BaseLayout/RouteFrame
+ * usage), never from a second palette. Keep this file free of selectors
+ * beyond `:root` — it declares values, `base.css` applies them.
+ */
+:root {
+  /* ---- Primitive: neutral scale (warm graphite, not cool gray) ---- */
+  --neutral-950: #0a0a0b;
+  --neutral-900: #111113;
+  --neutral-800: #191a1c;
+  --neutral-700: #26272a;
+  --neutral-600: #3a3b3f;
+  --neutral-500: #5c5d61;
+  --neutral-400: #85868a;
+  --neutral-300: #b3b3b6;
+  --neutral-200: #d4d3cf;
+  --neutral-100: #ece9e2;
+  --neutral-050: #f5f3ee;
+
+  /* ---- Primitive: crimson scale (the one accent) ---- */
+  --crimson-900: #33100e;
+  --crimson-700: #7a2521;
+  --crimson-600: #a4302a;
+  --crimson-500: #c4372f;
+  --crimson-400: #d8493f;
+  --crimson-300: #e8776d;
+
+  /* ---- Primitive: type ---- */
+  --font-family-sans:
+    'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-family-mono:
+    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  /* ---- Primitive: spacing (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-48: 12rem;
+
+  /* ---- Semantic: color ---- */
+  --color-bg: var(--neutral-950);
+  --color-bg-raised: var(--neutral-900);
+  --color-border: var(--neutral-700);
+  --color-border-strong: var(--neutral-600);
+  --color-fg: var(--neutral-050);
+  --color-fg-muted: var(--neutral-400);
+  --color-fg-subtle: var(--neutral-500);
+  --color-accent: var(--crimson-500);
+  --color-accent-hover: var(--crimson-400);
+  --color-accent-muted: var(--crimson-700);
+  /* AA-safe (6.87:1 on --color-bg) crimson for use as small text — the raw
+     accent (3.71:1) only clears the non-text 3:1 threshold, so borders,
+     dots, and fills use --color-accent while any text treatment uses this. */
+  --color-accent-text: var(--crimson-300);
+  --color-focus-ring: var(--crimson-400);
+  --color-selection-bg: var(--crimson-700);
+  --color-selection-fg: var(--neutral-050);
+
+  /* ---- Semantic: type scale (fluid, viewport-aware) ---- */
+  --text-display: clamp(3.25rem, 2.25rem + 6vw, 9rem);
+  --text-h1: clamp(2.25rem, 1.6rem + 3vw, 4.25rem);
+  --text-h2: clamp(1.625rem, 1.35rem + 1.4vw, 2.5rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-mono: 0.8125rem;
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.08em;
+
+  /* ---- Semantic: layout ---- */
+  --content-max-width: 76rem;
+  --measure: 38rem;
+  --space-section: clamp(4rem, 3rem + 5vw, 9rem);
+  --space-inline: clamp(1.25rem, 1rem + 2.5vw, 3rem);
+
+  /* ---- Semantic: border / shape ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --border-width-hairline: 1px;
+
+  /* ---- Semantic: layering ---- */
+  --z-header: 40;
+  --z-skip-link: 100;
+
+  /* ---- Component: header ---- */
+  --header-block-size: clamp(3.5rem, 3rem + 1.5vw, 4.5rem);
+}

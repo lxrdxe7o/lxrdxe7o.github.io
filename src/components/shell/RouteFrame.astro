@@ -1,0 +1,24 @@
+---
+/**
+ * The one layout primitive every route's content renders inside. Reserves
+ * consistent inline/block margins so no route needs to reinvent spacing,
+ * and gives every route archetype the same editorial rhythm regardless of
+ * what WebGL/media sits behind it later.
+ *
+ * - default: centered, `--content-max-width` wide — listings, home, utility pages.
+ * - `wide`: no max-width — full-bleed media/hero sections.
+ * - `prose`: constrained to the shared reading measure — article/case-study bodies.
+ */
+interface Props {
+  variant?: 'default' | 'wide' | 'prose';
+  as?: keyof HTMLElementTagNameMap;
+}
+
+const { variant = 'default', as: Tag = 'div' }: Props = Astro.props;
+
+const variantClass =
+  variant === 'wide' ? 'route-frame--wide' : variant === 'prose' ? 'route-frame--prose' : '';
+---
+<Tag class={`route-frame ${variantClass}`.trim()}>
+  <slot />
+</Tag>

@@ -1,26 +1,13 @@
 ---
+import BrandMark from './BrandMark.astro';
+import PrimaryNavigation from './PrimaryNavigation.astro';
 ---
-<header>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  <nav aria-label="Main Navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/projects">Projects</a></li>
-    </ul>
-  </nav>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <BrandMark />
+    <div class="site-header__end">
+      <PrimaryNavigation />
+    </div>
+  </div>
 </header>
-<style>
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: #000;
-    color: white;
-    padding: 8px;
-    z-index: 100;
-  }
-  .skip-link:focus {
-    top: 0;
-  }
-</style>

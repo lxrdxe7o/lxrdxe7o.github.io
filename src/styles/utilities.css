@@ -1,0 +1,52 @@
+/**
+ * Small, genuinely-reused utility classes. This is not a utility-first
+ * framework — keep it to primitives that would otherwise be copy-pasted
+ * across component styles.
+ */
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reveals when it (or a descendant) receives focus — used for skip links
+   and other focus-only affordances that must stay hidden otherwise. */
+.u-visually-hidden:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: revert;
+  margin: revert;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Constrains a block to the shared reading measure (~65ch at body size). */
+.u-measure {
+  max-width: var(--measure);
+}
+
+/* Constrains a block to the shared wide content width. */
+.u-content-width {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+/* Compact, uppercase, tracked mono label — route eyebrows, metadata,
+   status text. The one place tracked-caps is used, so it stays legible
+   as a deliberate signal rather than a decorative default. */
+.u-eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-mono);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}

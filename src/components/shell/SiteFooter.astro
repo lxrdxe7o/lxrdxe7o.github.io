@@ -1,5 +1,29 @@
 ---
+import { secondaryLinks } from '../../data/navigation';
+import SocialLinks from './SocialLinks.astro';
+
+const currentPath = Astro.url.pathname;
 ---
-<footer>
-  <p>&copy; {new Date().getFullYear()} Ishraful Haque. All rights reserved.</p>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <nav aria-label="Secondary">
+      <ul class="footer-nav__list">
+        {secondaryLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="footer-nav__link"
+              aria-current={currentPath.startsWith(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="site-footer__meta-group">
+      <SocialLinks />
+      <p class="footer-meta">&copy; {new Date().getFullYear()} Ishraful Haque</p>
+    </div>
+  </div>
 </footer>

@@ -1,0 +1,20 @@
+---
+/**
+ * A small status readout (dot + label). Deliberately monochrome-plus-accent:
+ * only the `available` state uses the crimson accent, so this never
+ * introduces a second (e.g. green/amber) status palette. Callers must
+ * supply `label` explicitly — this component has no default copy, since
+ * availability wording requires the approval the plan's content rules
+ * call for (see Task 20) and must never be invented here.
+ */
+interface Props {
+  status: 'available' | 'limited' | 'unavailable';
+  label: string;
+}
+
+const { status, label } = Astro.props;
+---
+<p class="availability">
+  <span class="availability__dot" data-status={status} aria-hidden="true"></span>
+  <span>{label}</span>
+</p>

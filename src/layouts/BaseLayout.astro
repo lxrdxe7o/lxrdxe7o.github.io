@@ -1,16 +1,24 @@
 ---
+import SiteHeader from '../components/shell/SiteHeader.astro';
+import SiteFooter from '../components/shell/SiteFooter.astro';
+import RouteFrame from '../components/shell/RouteFrame.astro';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/components.css';
+import '../styles/utilities.css';
+import '../styles/motion.css';
+
 interface Props {
   title: string;
   description: string;
   canonical?: string;
   routeId: string;
   image?: string;
+  /** Layout variant for the content inside `<main>`. Defaults to the standard content width. */
+  frame?: 'default' | 'wide' | 'prose';
 }
 
-const { title, description, canonical, routeId, image } = Astro.props;
-
-import SiteHeader from '../components/shell/SiteHeader.astro';
-import SiteFooter from '../components/shell/SiteFooter.astro';
+const { title, description, canonical, routeId, image, frame = 'default' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -18,15 +26,32 @@ import SiteFooter from '../components/shell/SiteFooter.astro';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0b" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
     {image && <meta property="og:image" content={image} />}
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/geist/Geist-Regular.woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2"
+      crossorigin="anonymous"
+    />
   </head>
   <body id={routeId}>
     <SiteHeader />
-    <main id="main-content">
-      <slot />
+    <main id="main-content" tabindex="-1">
+      <RouteFrame variant={frame}>
+        <slot />
+      </RouteFrame>
     </main>
     <SiteFooter />
   </body>

@@ -1,0 +1,21 @@
+---
+import type { NavLink } from '../../data/navigation';
+import { socialLinks } from '../../data/navigation';
+
+interface Props {
+  links?: readonly NavLink[];
+}
+
+const { links = socialLinks } = Astro.props;
+---
+{links.length > 0 && (
+  <ul class="social-links">
+    {links.map((link) => (
+      <li>
+        <a href={link.href} class="social-links__link" rel="me noopener noreferrer" target="_blank">
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}
