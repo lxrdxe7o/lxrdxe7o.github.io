@@ -1,7 +1,14 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/shell/SiteHeader.astro';
 import SiteFooter from '../components/shell/SiteFooter.astro';
 import RouteFrame from '../components/shell/RouteFrame.astro';
+import RuntimeStatePanel from '../components/shell/RuntimeStatePanel.astro';
+import ExperienceCanvas from '../components/shell/ExperienceCanvas.astro';
+import Loader from '../components/shell/Loader.astro';
+import EntryGate from '../components/shell/EntryGate.astro';
+import TransitionLayer from '../components/shell/TransitionLayer.astro';
+import MuteControl from '../components/shell/MuteControl.astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components.css';
@@ -45,14 +52,79 @@ const { title, description, canonical, routeId, image, frame = 'default' } = Ast
       href="/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2"
       crossorigin="anonymous"
     />
+    <ClientRouter />
+    <style is:global>
+      /* Persistent runtime controls sit above content, below the entry gate. */
+      .runtime-controls {
+        position: fixed;
+        inset-block-start: var(--space-3);
+        inset-inline-end: var(--space-3);
+        z-index: var(--z-header);
+        display: flex;
+        gap: var(--space-2);
+      }
+
+      /* Scrolling is suspended only while a modal surface owns the page. */
+      :root[data-scroll-locked] body {
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body id={routeId}>
+    <div id="experience-runtime-root" data-runtime-root transition:persist="experience-runtime">
+      <ExperienceCanvas />
+      <TransitionLayer />
+      <Loader />
+      <EntryGate />
+      <div class="runtime-controls">
+        <MuteControl />
+      </div>
+      <p
+        class="u-visually-hidden"
+        data-runtime-announcer
+        role="status"
+        aria-live="polite"
+        transition:persist="runtime-announcer"
+      ></p>
+      {import.meta.env.DEV && <RuntimeStatePanel />}
+    </div>
     <SiteHeader />
     <main id="main-content" tabindex="-1">
       <RouteFrame variant={frame}>
         <slot />
       </RouteFrame>
     </main>
-    <SiteFooter />
+    <SiteFooter />    <script>
+      import { getExperienceRuntime } from '../runtime/core/runtime-singleton';
+      import { bootstrapExperience } from '../runtime/bootstrap';
+
+      const root = document.querySelector<HTMLElement>('[data-runtime-root]');
+      if (root) {
+        const runtime = getExperienceRuntime();
+        const syncPhase = () => {
+          const snapshot = runtime.getSnapshot();
+          root.dataset.runtimePhase = snapshot.phase;
+          // The loader and gate overlays key their visibility off the root
+          // element, so no-JS visitors never see either of them.
+          document.documentElement.dataset.runtimePhase = snapshot.phase;
+        };
+
+        if (root.dataset.runtimeBound !== 'true') {
+          root.dataset.runtimeBound = 'true';
+          const unsubscribe = runtime.subscribe(syncPhase);
+          runtime.registerTeardown(() => {
+            unsubscribe();
+            delete root.dataset.runtimeBound;
+            delete root.dataset.runtimePhase;
+            delete document.documentElement.dataset.runtimePhase;
+          });
+        }
+
+        syncPhase();
+        // Owns input, scroll, quality, assets, audio and navigation. The
+        // renderer and the single animation loop belong to ExperienceCanvas.
+        bootstrapExperience();
+      }
+    </script>
   </body>
 </html>

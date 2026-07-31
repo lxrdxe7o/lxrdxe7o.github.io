@@ -99,6 +99,9 @@
 
   /* ---- Semantic: layering ---- */
   --z-header: 40;
+  --z-transition: 80;
+  --z-loader: 90;
+  --z-entry-gate: 95;
   --z-skip-link: 100;
 
   /* ---- Component: header ---- */

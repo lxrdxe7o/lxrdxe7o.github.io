@@ -1,0 +1,89 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ReadingProgress from '../components/content/ReadingProgress.astro';
+import TableOfContents from '../components/content/TableOfContents.astro';
+import { formatEditorialDate } from '../data/editorial';
+
+interface Heading { depth: number; slug: string; text: string; }
+interface ArticleListItem {
+  slug: string;
+  title: string;
+  description?: string;
+  date: Date;
+  tags?: readonly string[];
+  href: string;
+}
+interface Props {
+  kind: 'writing' | 'note';
+  title: string;
+  description?: string;
+  date: Date;
+  updatedDate?: Date;
+  tags?: readonly string[];
+  slug: string;
+  headings?: readonly Heading[];
+  related?: readonly ArticleListItem[];
+}
+
+const { kind, title, description, date, updatedDate, tags = [], slug, headings = [], related = [] } = Astro.props;
+const canonical = kind === 'writing' ? `/writing/${slug}` : `/notes/${slug}`;
+---
+<BaseLayout title={`${title} — lxrdxe7o`} description={description ?? `${title} by Ishraful Haque`} canonical={canonical} routeId={`${kind}-${slug}`}>
+  <ReadingProgress />
+  <article class="article-layout">
+    <header class="article-layout__header">
+      <p>{kind === 'writing' ? 'Writing' : 'Note'}</p>
+      <h1>{title}</h1>
+      {description && <p class="article-layout__description">{description}</p>}
+      <div class="article-layout__meta">
+        <time datetime={date.toISOString()}>{formatEditorialDate(date)}</time>
+        {updatedDate && <span>Updated <time datetime={updatedDate.toISOString()}>{formatEditorialDate(updatedDate)}</time></span>}
+        {tags.length > 0 && <span>{tags.join(' · ')}</span>}
+      </div>
+    </header>
+    <TableOfContents headings={headings} />
+    <div class="article-layout__body prose" data-article-body>
+      <slot />
+    </div>
+    {related.length > 0 && (
+      <aside class="article-layout__related" aria-labelledby="related-content-heading">
+        <h2 id="related-content-heading">Related reading</h2>
+        <ul>{related.map((entry) => <li><a href={entry.href}>{entry.title}</a></li>)}</ul>
+      </aside>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .article-layout { max-inline-size: 75ch; margin-inline: auto; }
+  .article-layout__header { padding-block: clamp(2rem, 8vw, 7rem); border-bottom: 1px solid var(--color-border); }
+  .article-layout__header > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 15ch; margin-top: var(--space-4); font-size: clamp(2.75rem, 9vw, 6rem); letter-spacing: -0.04em; }
+  .article-layout__description { margin-top: var(--space-6); color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+  .article-layout__meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin-top: var(--space-8); color: var(--color-fg-muted); font: var(--text-mono)/1.5 var(--font-family-mono); }
+  :global(.table-of-contents) { margin-top: var(--space-8); }
+  .article-layout__body { padding-block: var(--space-section); color: var(--color-fg-muted); font-size: var(--text-body-lg); line-height: var(--leading-relaxed); }
+  .article-layout__body :global(h2), .article-layout__body :global(h3), .article-layout__body :global(h4) { scroll-margin-top: calc(var(--header-block-size) + var(--space-6)); color: var(--color-fg); }
+  .article-layout__body :global(h2) { margin-top: var(--space-12); }
+  .article-layout__body :global(h3) { margin-top: var(--space-8); }
+  .article-layout__body :global(p), .article-layout__body :global(ul), .article-layout__body :global(ol), .article-layout__body :global(blockquote) { margin-top: var(--space-6); }
+  .article-layout__body :global(ul), .article-layout__body :global(ol) { padding-inline-start: 1.5rem; }
+  .article-layout__body :global(ul) { list-style: disc; }
+  .article-layout__body :global(ol) { list-style: decimal; }
+  .article-layout__body :global(pre) { max-inline-size: 100%; margin-top: var(--space-8); padding: var(--space-4); overflow-x: auto; background: var(--color-bg-raised); border: 1px solid var(--color-border); }
+  .article-layout__body :global(code) { font-family: var(--font-family-mono); font-size: .9em; }
+  .article-layout__body :global(img) { inline-size: 100%; margin-top: var(--space-8); }
+  .article-layout__related { padding-block: var(--space-8); border-top: 1px solid var(--color-border); }
+  .article-layout__related h2 { font-size: var(--text-h3); }
+  .article-layout__related ul { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .article-layout__related a { display: inline-block; min-block-size: 2.75rem; padding-block: var(--space-2); color: var(--color-accent-text); text-decoration: underline; text-underline-offset: .25em; }
+  @media (prefers-reduced-motion: reduce) { .article-layout, .article-layout * { scroll-behavior: auto !important; } }
+  @media print {
+    :global(body) { background: #fff !important; color: #000 !important; }
+    :global(#experience-runtime-root), :global(.site-header), :global(.site-footer), :global(.table-of-contents), :global(.reading-progress), .article-layout__related { display: none !important; }
+    .article-layout { max-inline-size: none; color: #000; }
+    .article-layout__header, .article-layout__body { color: #000; }
+    .article-layout__body :global(a) { color: #000; text-decoration: underline; }
+    .article-layout__body :global(pre) { white-space: pre-wrap; overflow-wrap: anywhere; border-color: #777; }
+  }
+</style>

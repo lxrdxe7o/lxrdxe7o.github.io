@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { MediaManifest } from '../types/media';
+import BaseLayout from './BaseLayout.astro';
+import ProjectHero from '../components/projects/ProjectHero.astro';
+import ProjectSynopsis from '../components/projects/ProjectSynopsis.astro';
+import ProjectFacts from '../components/projects/ProjectFacts.astro';
+import ProjectMedia from '../components/projects/ProjectMedia.astro';
+import ProjectNarrative from '../components/projects/ProjectNarrative.astro';
+import NextProject from '../components/projects/NextProject.astro';
+import ContactPanel from '../components/content/ContactPanel.astro';
+import { classifyProject, selectProjectHeroAsset } from '../data/projects';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  nextProject?: CollectionEntry<'projects'>;
+  mediaManifest?: MediaManifest;
+}
+
+const { project, nextProject, mediaManifest } = Astro.props;
+const hero = selectProjectHeroAsset(mediaManifest);
+const presentation = classifyProject(project.data.slug) ?? 'archive';
+---
+<BaseLayout
+  title={`${project.data.title} — lxrdxe7o`}
+  description={project.data.summary}
+  canonical={`/projects/${project.data.slug}`}
+  routeId={`project-${project.data.slug}`}
+>
+  <article class="project-case-study" data-project-presentation={presentation}>
+    <ProjectHero project={project.data} hero={hero} presentation={presentation} />
+    <ProjectSynopsis project={project.data} />
+    <ProjectFacts project={project.data} />
+    <ProjectMedia manifest={mediaManifest} excludeAssetId={hero?.id} />
+    <ProjectNarrative><slot /></ProjectNarrative>
+    {project.data.credits?.length && (
+      <section class="project-credits" aria-labelledby="project-credits-heading">
+        <h2 id="project-credits-heading">Credits</h2>
+        <ul>{project.data.credits.map((credit) => <li>{credit}</li>)}</ul>
+      </section>
+    )}
+    {nextProject && <NextProject title={nextProject.data.title} slug={nextProject.data.slug} />}
+    <ContactPanel compact={true} />
+  </article>
+</BaseLayout>
+
+<style>
+  .project-case-study { inline-size: 100%; }
+  .project-credits { padding-block: var(--space-section); border-bottom: 1px solid var(--color-border); }
+  .project-credits h2 { font: var(--text-mono)/1.5 var(--font-family-mono); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .project-credits ul { margin-top: var(--space-6); }
+  .project-credits li { padding-block: var(--space-3); border-top: 1px solid var(--color-border); }
+</style>
