@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import UsesList from '../components/content/UsesList.astro';
 ---
-<BaseLayout title="Uses" description="What I use" routeId="uses">
-  <h1>Uses</h1>
+<BaseLayout title="Uses — lxrdxe7o" description="Verified tools and workflow references" canonical="/uses" routeId="uses">
+  <header class="page-heading"><p>Uses</p><h1>Documented tools</h1><p>A narrow, review-dated list based on public project evidence. Unverified hardware and services are omitted.</p></header>
+  <UsesList />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(58vh, 34rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

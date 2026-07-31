@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactPanel from '../components/content/ContactPanel.astro';
 ---
-<BaseLayout title="Contact" description="Contact Me" routeId="contact">
-  <h1>Contact</h1>
+<BaseLayout title="Contact — Ishraful Haque" description="Direct contact links for Ishraful Haque" canonical="/contact" routeId="contact">
+  <header class="page-heading"><p>Contact</p><h1>One direct path</h1><p>Use the canonical email address for a private message, or GitHub for public project context.</p></header>
+  <ContactPanel />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(58vh, 34rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 65ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

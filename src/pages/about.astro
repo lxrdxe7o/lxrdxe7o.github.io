@@ -1,6 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Biography from '../components/about/Biography.astro';
+import Recognition from '../components/about/Recognition.astro';
+import Collaborators from '../components/about/Collaborators.astro';
+import Credits from '../components/about/Credits.astro';
 ---
-<BaseLayout title="About" description="About Ishraful Haque" routeId="about">
-  <h1>About Me</h1>
+<BaseLayout title="About — Ishraful Haque" description="Verified profile and project context for Ishraful Haque" canonical="/about" routeId="about">
+  <header class="page-heading"><p>About</p><h1>Ishraful Haque</h1><p>A factual profile assembled from approved identity and public project evidence.</p></header>
+  <Biography />
+  <Recognition />
+  <Collaborators />
+  <Credits />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(60vh, 36rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

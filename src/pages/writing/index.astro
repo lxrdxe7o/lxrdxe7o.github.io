@@ -1,18 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleIndex from '../../components/content/ArticleIndex.astro';
-import { getNotes } from '../../lib/content/getNotes';
-const entries = (await getNotes({ includeDrafts: false })).map((entry) => ({
+import { getWriting } from '../../lib/content/getWriting';
+const entries = (await getWriting({ includeDrafts: false })).map((entry) => ({
   slug: entry.data.slug,
   title: entry.data.title,
-  date: entry.data.date,
+  description: entry.data.description,
+  date: entry.data.publishDate,
   tags: entry.data.tags,
-  href: `/notes/${entry.data.slug}`,
+  href: `/writing/${entry.data.slug}`,
 }));
 ---
-<BaseLayout title="Notes — lxrdxe7o" description="Short technical notes by Ishraful Haque" canonical="/notes" routeId="notes">
-  <header class="page-heading"><p>Notes</p><h1>Notes</h1><p>Short-form records published from approved local MDX source.</p></header>
-  <ArticleIndex kind="notes" {entries} />
+<BaseLayout title="Writing — lxrdxe7o" description="Native long-form writing by Ishraful Haque" canonical="/writing" routeId="writing">
+  <header class="page-heading"><p>Writing</p><h1>Writing</h1><p>Long-form articles published from approved local MDX source.</p></header>
+  <ArticleIndex kind="writing" {entries} />
 </BaseLayout>
 <style>
   .page-heading { display: grid; gap: var(--space-4); min-block-size: min(52vh, 30rem); align-content: center; }

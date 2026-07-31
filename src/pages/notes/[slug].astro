@@ -1,0 +1,38 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import CodeBlock from '../../components/content/CodeBlock.astro';
+import { getNotes } from '../../lib/content/getNotes';
+import { filterRelatedEditorialEntries } from '../../data/editorial';
+
+export async function getStaticPaths() {
+  const entries = await getNotes({ includeDrafts: false });
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<'notes'>; }
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const allEntries = await getNotes({ includeDrafts: false });
+const relatedSource = allEntries.map((candidate) => ({
+  slug: candidate.data.slug,
+  draft: candidate.data.draft,
+  tags: candidate.data.tags,
+  title: candidate.data.title,
+  date: candidate.data.date,
+  href: `/notes/${candidate.data.slug}`,
+}));
+const related = filterRelatedEditorialEntries(relatedSource, entry.data.slug, entry.data.tags);
+---
+<ArticleLayout
+  kind="note"
+  title={entry.data.title}
+  date={entry.data.date}
+  tags={entry.data.tags}
+  slug={entry.data.slug}
+  {headings}
+  {related}
+>
+  <Content components={{ CodeBlock }} />
+</ArticleLayout>

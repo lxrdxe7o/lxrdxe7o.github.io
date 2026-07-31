@@ -1,0 +1,34 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { getProjects } from '../../lib/content/getProjects';
+import {
+  isApprovedProjectSlug,
+  projectMediaManifests,
+  resolveNextProjectSlug,
+} from '../../data/projects';
+
+export async function getStaticPaths() {
+  const projects = (await getProjects({ includeDrafts: false })).filter((entry) => isApprovedProjectSlug(entry.data.slug));
+  const bySlug = new Map(projects.map((entry) => [entry.data.slug, entry]));
+  return projects.map((project) => {
+    const nextSlug = resolveNextProjectSlug(project.data.slug);
+    return {
+      params: { slug: project.data.slug },
+      props: { project, nextProject: nextSlug ? bySlug.get(nextSlug) : undefined },
+    };
+  });
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  nextProject?: CollectionEntry<'projects'>;
+}
+const { project, nextProject } = Astro.props;
+const { Content } = await render(project);
+const mediaManifest = isApprovedProjectSlug(project.data.slug) ? projectMediaManifests[project.data.slug] : undefined;
+---
+<ProjectLayout project={project} nextProject={nextProject} mediaManifest={mediaManifest}>
+  <Content />
+</ProjectLayout>

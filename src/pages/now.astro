@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NowStatus from '../components/content/NowStatus.astro';
 ---
-<BaseLayout title="Now" description="What I'm doing now" routeId="now">
-  <h1>Now</h1>
+<BaseLayout title="Now — lxrdxe7o" description="Review-dated current public work status" canonical="/now" routeId="now">
+  <header class="page-heading"><p>Now</p><h1>Current public work</h1><p>A maintained snapshot of statements supported by the approved project record.</p></header>
+  <NowStatus />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(58vh, 34rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 15ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

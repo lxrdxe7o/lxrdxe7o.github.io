@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArchiveFilters from '../components/content/ArchiveFilters.astro';
+import ArchiveList from '../components/content/ArchiveList.astro';
+import {
+  ARCHIVE_PROJECTS,
+  filterArchiveRecords,
+  type ArchiveFilters as Filters,
+} from '../data/projects';
+
+const records = ARCHIVE_PROJECTS;
+const current: Filters = {
+  query: Astro.url.searchParams.get('q') ?? '',
+  type: Astro.url.searchParams.get('type') ?? '',
+  technology: Astro.url.searchParams.get('technology') ?? '',
+  year: Astro.url.searchParams.get('year') ?? '',
+  status: Astro.url.searchParams.get('status') ?? '',
+};
+const visible = filterArchiveRecords(records, current);
+const unique = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b));
+const types = unique(records.map((record) => record.type));
+const technologies = unique(records.flatMap((record) => [...record.technologies]));
+const years = unique(records.flatMap((record) => record.year ? [String(record.year)] : [])).reverse();
+const statuses = unique(records.flatMap((record) => record.status ? [record.status] : []));
+---
+<BaseLayout title="Archive — lxrdxe7o" description="Evidence-backed secondary project archive" canonical="/archive" routeId="archive">
+  <header class="archive-header">
+    <p>Secondary work</p>
+    <h1>Archive</h1>
+    <p>Concise records for approved public repositories outside the nine-project flagship loop.</p>
+  </header>
+  <ArchiveFilters
+    query={current.query ?? ''}
+    type={current.type ?? ''}
+    technology={current.technology ?? ''}
+    year={current.year ?? ''}
+    status={current.status ?? ''}
+    {types}
+    {technologies}
+    {years}
+    {statuses}
+  />
+  <ArchiveList records={records} visibleSlugs={visible.map((record) => record.slug)} />
+</BaseLayout>
+
+<style>
+  .archive-header { display: grid; gap: var(--space-4); padding-block: clamp(2rem, 7vw, 6rem); }
+  .archive-header > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .archive-header h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  .archive-header h1 + p { max-inline-size: 65ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

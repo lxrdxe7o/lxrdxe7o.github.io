@@ -1,26 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleIndex from '../components/content/ArticleIndex.astro';
 import { getWriting } from '../lib/content/getWriting';
-
-const articles = await getWriting();
+const entries = (await getWriting({ includeDrafts: false })).map((entry) => ({
+  slug: entry.data.slug,
+  title: entry.data.title,
+  description: entry.data.description,
+  date: entry.data.publishDate,
+  tags: entry.data.tags,
+  href: `/writing/${entry.data.slug}`,
+}));
 ---
-<BaseLayout title="Blog" description="My Blog" routeId="blog">
-  <h1>Blog</h1>
-  {articles.length === 0 ? (
-    <p>No articles published yet.</p>
-  ) : (
-    <ul>
-      {articles.map((article) => (
-        <li>
-          <article>
-            <h2>{article.data.title}</h2>
-            <p>{article.data.description}</p>
-            <time datetime={article.data.publishDate.toISOString()}>
-              {article.data.publishDate.toISOString().slice(0, 10)}
-            </time>
-          </article>
-        </li>
-      ))}
-    </ul>
-  )}
+<BaseLayout title="Writing — lxrdxe7o" description="Native long-form writing by Ishraful Haque" canonical="/writing" routeId="blog">
+  <header class="page-heading"><p>Native archive</p><h1>Writing</h1><p>The former Blog entry point now renders the same local Writing collection. No external handoff is required.</p></header>
+  <ArticleIndex kind="writing" {entries} />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(52vh, 30rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceList from '../components/about/ExperienceList.astro';
 ---
-<BaseLayout title="Experience" description="My Experience" routeId="experience">
-  <h1>Experience</h1>
+<BaseLayout title="Experience — Ishraful Haque" description="Verified project experience for Ishraful Haque" canonical="/experience" routeId="experience">
+  <header class="page-heading"><p>Experience</p><h1>Project record</h1><p>No employer history or date range is inferred here. Each entry points to public project evidence.</p></header>
+  <ExperienceList />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(58vh, 34rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

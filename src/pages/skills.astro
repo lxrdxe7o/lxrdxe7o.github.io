@@ -1,6 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CapabilityGroups from '../components/about/CapabilityGroups.astro';
+import Toolbox from '../components/about/Toolbox.astro';
 ---
-<BaseLayout title="Skills" description="My Skills" routeId="skills">
-  <h1>Skills</h1>
+<BaseLayout title="Skills — Ishraful Haque" description="Evidence-backed capabilities and tools" canonical="/skills" routeId="skills">
+  <header class="page-heading"><p>Skills</p><h1>Capabilities in context</h1><p>Technologies are connected to public work. There are no proficiency percentages or unsupported rankings.</p></header>
+  <CapabilityGroups />
+  <Toolbox />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(58vh, 34rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 16ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>
