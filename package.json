@@ -28,23 +28,34 @@
     "test:a11y": "playwright test --project a11y",
     "test:visual": "playwright test --project visual",
     "test:perf": "playwright test --project perf",
-    "capture:project": "node scripts/capture/capture-project.ts"
+    "capture:project": "node scripts/capture/capture-project.ts",
+    "audio:build": "node scripts/audio/build-audio.ts",
+    "audio:validate": "node scripts/audio/validate-audio.ts"
   },
   "dependencies": {
+    "@alienkitty/alien.js": "1.2.0",
+    "@alienkitty/space.js": "1.2.0",
     "@astrojs/mdx": "7.0.3",
     "astro": "7.1.2",
-    "sharp": "0.35.3"
+    "howler": "2.2.4",
+    "lenis": "1.3.25",
+    "motion": "12.42.2",
+    "sharp": "0.35.3",
+    "three": "0.185.1"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.9",
     "@axe-core/playwright": "4.12.1",
-    "@playwright/test": "^1.61.1",
+    "@playwright/test": "1.61.1",
+    "@types/howler": "2.2.13",
+    "@types/three": "0.185.0",
     "eslint": "10.7.0",
     "eslint-plugin-astro": "3.0.1",
     "playwright": "1.61.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.64.0",
     "vitest": "4.1.10",
+    "web-vitals": "5.3.0",
     "yaml": "2.9.0"
   }
 }
