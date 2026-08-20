@@ -199,7 +199,6 @@ const fragmentShader = `
       // Distance to pointer for local hover effect
       // Normalize pointer from screen space (-1 to 1) to UV space (0 to 1)
       vec2 pointerUv = uPointer * 0.5 + 0.5;
-      pointerUv.y = 1.0 - pointerUv.y; // Flip Y for WebGL vs DOM
       
       float dist = distance(gridUv, pointerUv);
       
