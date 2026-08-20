@@ -4,9 +4,11 @@ import Biography from '../components/about/Biography.astro';
 import Recognition from '../components/about/Recognition.astro';
 import Collaborators from '../components/about/Collaborators.astro';
 import Credits from '../components/about/Credits.astro';
+import CustomCursor from '../components/shell/CustomCursor.astro';
 ---
 <BaseLayout title="About — Ishraful Haque" description="Verified profile and project context for Ishraful Haque" canonical="/about" routeId="about">
-  <header class="page-heading"><p>About</p><h1>Ishraful Haque</h1><p>A factual profile assembled from approved identity and public project evidence.</p></header>
+  <CustomCursor />
+  <header class="page-heading"><p>About</p><h1>ABOUT</h1><p>A factual profile assembled from approved identity and public project evidence.</p></header>
   <Biography />
   <Recognition />
   <Collaborators />

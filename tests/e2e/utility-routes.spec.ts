@@ -29,3 +29,11 @@ test('Contact exposes direct email and GitHub paths without a form', async ({ pa
     page.locator('a[href="https://github.com/lxrdxe7o"]', { hasText: 'github.com/lxrdxe7o' }),
   ).toBeVisible();
 });
+
+test('About and Contact pages render correctly (plan compat)', async ({ page }) => {
+  await page.goto('/about');
+  await expect(page.locator('h1')).toHaveText('ABOUT');
+  
+  await page.goto('/contact');
+  await expect(page.locator('h1')).toHaveText('CONTACT');
+});

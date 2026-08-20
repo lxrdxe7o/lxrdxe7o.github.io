@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactPanel from '../components/content/ContactPanel.astro';
+import CustomCursor from '../components/shell/CustomCursor.astro';
 ---
 <BaseLayout title="Contact — Ishraful Haque" description="Direct contact links for Ishraful Haque" canonical="/contact" routeId="contact">
-  <header class="page-heading"><p>Contact</p><h1>One direct path</h1><p>Use the canonical email address for a private message, or GitHub for public project context.</p></header>
+  <CustomCursor />
+  <header class="page-heading"><p>Contact</p><h1>CONTACT</h1><p>Use the canonical email address for a private message, or GitHub for public project context.</p></header>
   <ContactPanel />
 </BaseLayout>
 <style>
