@@ -7,8 +7,14 @@ export type RuntimePhase =
   | 'index-open'
   | 'navigating'
   | 'degraded'
-  | 'destroyed';
-
+  | 'destroyed'
+  // Plan compat: capitalized phases for minimal state machine
+  | 'Booting'
+  | 'Loading'
+  | 'EntryGate'
+  | 'ActiveSilent'
+  | 'ActiveSound'
+  | 'Degraded';
 export type EntryMode = 'sound' | 'silent' | null;
 export type AudioState = 'unknown' | 'silent' | 'enabled' | 'muted';
 export type IndexState = 'closed' | 'open';
@@ -41,6 +47,12 @@ export interface RuntimeSnapshot {
   readonly qualityTier: QualityTier;
   readonly capabilities: CapabilityFlags;
   readonly recoverableError: RecoverableRuntimeError | null;
+}
+
+// Plan compat: minimal state shape for Phase 2 tasks
+export interface RuntimeState {
+  phase: RuntimePhase;
+  muted: boolean;
 }
 
 export interface CapabilityAdapter {

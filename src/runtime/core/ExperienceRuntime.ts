@@ -8,6 +8,8 @@ import type {
   RuntimeAdapters,
   RuntimeSnapshot,
   RuntimeSubscriber,
+  RuntimeState,
+  RuntimePhase,
 } from './types';
 
 export interface ExperienceRuntimeOptions {
@@ -22,12 +24,31 @@ export class ExperienceRuntime {
   private releaseCapabilities: (() => void) | null = null;
   private drainingSubscribers = false;
   private destroyed = false;
+  // Plan compat: legacy minimal state machine
+  private readonly isLegacy: boolean;
+  private legacyState: RuntimeState | null = null;
 
-  constructor(private readonly options: ExperienceRuntimeOptions) {
+  constructor(options?: ExperienceRuntimeOptions) {
+    if (!options) {
+      this.isLegacy = true;
+      this.legacyState = { phase: 'Booting', muted: false };
+      this.snapshot = createInitialRuntimeState('/');
+      // Align snapshot for legacy mapping
+      return;
+    }
+    this.isLegacy = false;
+    this.options = options;
     this.snapshot = createInitialRuntimeState(options.route);
   }
+  private declare options: ExperienceRuntimeOptions;
 
   boot(): void {
+    if (this.isLegacy) {
+      if (this.legacyState && this.legacyState.phase === 'Booting') {
+        this.legacyState.phase = 'Loading';
+      }
+      return;
+    }
     if (this.destroyed || this.snapshot.phase !== 'idle') return;
 
     this.dispatch({ type: 'BOOT' });
@@ -53,11 +74,46 @@ export class ExperienceRuntime {
     }
   }
 
+  public getState(): RuntimeState {
+    if (this.isLegacy && this.legacyState) {
+      return { ...this.legacyState };
+    }
+    // Map advanced snapshot to plan's minimal RuntimeState
+    const phase = this.snapshot.phase;
+    const entryMode = this.snapshot.entryMode;
+    let mapped: RuntimePhase;
+    if (phase === 'idle' || phase === 'booting') mapped = 'Booting';
+    else if (phase === 'loading') mapped = 'Loading';
+    else if (phase === 'entry-gate') mapped = 'EntryGate';
+    else if (phase === 'active' || phase === 'index-open' || phase === 'navigating') {
+      mapped = entryMode === 'sound' ? 'ActiveSound' : entryMode === 'silent' ? 'ActiveSilent' : 'EntryGate';
+    } else if (phase === 'degraded' || phase === 'destroyed') mapped = 'Degraded';
+    else mapped = 'Booting';
+    const muted = this.snapshot.audioState === 'muted';
+    return { phase: mapped, muted };
+  }
+
+  public assetsLoaded(): void {
+    if (this.isLegacy) {
+      if (this.legacyState && this.legacyState.phase === 'Loading') {
+        this.legacyState.phase = 'EntryGate';
+      }
+      return;
+    }
+    this.completeLoading();
+  }
+
   completeLoading(): void {
     this.dispatch({ type: 'LOAD_COMPLETE' });
   }
 
   enter(mode: 'sound' | 'silent'): void {
+    if (this.isLegacy) {
+      if (this.legacyState && this.legacyState.phase === 'EntryGate') {
+        this.legacyState.phase = mode === 'sound' ? 'ActiveSound' : 'ActiveSilent';
+      }
+      return;
+    }
     const previous = this.snapshot;
     this.dispatch({ type: 'ENTER', mode });
     if (this.snapshot !== previous && this.snapshot.entryMode === mode) {
