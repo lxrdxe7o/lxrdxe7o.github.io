@@ -12,6 +12,7 @@ import MuteControl from '../components/shell/MuteControl.astro';
 import RuntimeFallback from '../components/shell/RuntimeFallback.astro';
 import OfflineNotice from '../components/shell/OfflineNotice.astro';
 import SiteIndex from '../components/shell/SiteIndex.astro';
+import CornerFrame from '../components/shell/CornerFrame.astro';
 import Seo from '../components/content/Seo.astro';
 import type { StructuredDataBlock } from '../lib/seo/metadata';
 import '../styles/tokens.css';
@@ -19,7 +20,6 @@ import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/utilities.css';
 import '../styles/motion.css';
-
 interface Props {
   title: string;
   description: string;
@@ -104,6 +104,7 @@ const seoPath = canonical ?? Astro.url.pathname;
     </style>
   </head>
   <body id={routeId}>
+    <CornerFrame />
     <div id="experience-runtime-root" data-runtime-root>
       <ExperienceCanvas />
       <TransitionLayer />
