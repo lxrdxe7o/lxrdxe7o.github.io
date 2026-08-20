@@ -36,7 +36,7 @@ const presentation = classifyProject(project.data.slug) ?? 'archive';
     {project.data.credits?.length && (
       <section class="project-credits" aria-labelledby="project-credits-heading">
         <h2 id="project-credits-heading">Credits</h2>
-        <ul>{project.data.credits.map((credit) => <li>{credit}</li>)}</ul>
+        <ul>{project.data.credits.map((credit: string) => <li>{credit}</li>)}</ul>
       </section>
     )}
     {nextProject && <NextProject title={nextProject.data.title} slug={nextProject.data.slug} />}

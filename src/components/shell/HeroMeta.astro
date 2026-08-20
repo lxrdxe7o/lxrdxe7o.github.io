@@ -1,0 +1,59 @@
+---
+/**
+ * Editorial anchors under the home identity: Work/About emphasis,
+ * availability, and social links in one sparse strip.
+ */
+import Availability from './Availability.astro';
+import SocialLinks from './SocialLinks.astro';
+import { primaryLinks } from '../../data/navigation';
+import { nowStatus } from '../../data/now';
+
+interface Props {
+  availabilityLabel: string;
+}
+
+const { availabilityLabel } = Astro.props;
+---
+
+<div class="hero-meta">
+  <nav class="hero-meta__primary" aria-label="Primary routes on this page">
+    {primaryLinks.map((link) => (
+      <a href={link.href} class="hero-meta__link">{link.label}</a>
+    ))}
+  </nav>
+  <Availability status={nowStatus.availability} label={availabilityLabel} />
+  <SocialLinks />
+</div>
+
+<style>
+  .hero-meta {
+    display: grid;
+    gap: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    padding-block-start: var(--space-6);
+  }
+
+  .hero-meta__primary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .hero-meta__link {
+    min-block-size: 2.75rem;
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    font-size: var(--text-body);
+  }
+
+  .hero-meta__link:hover {
+    border-color: var(--color-accent);
+  }
+
+  @media (min-width: 48rem) {
+    .hero-meta {
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
+  }
+</style>

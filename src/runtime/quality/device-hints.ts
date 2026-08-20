@@ -1,5 +1,6 @@
 import type { CapabilityFlags, PointerCapability, QualityTier } from '../core/types';
 import type { DeviceHints } from './types';
+import { isStaticForced } from './types';
 
 /**
  * The subset of `navigator` this module reads, declared as an interface so
@@ -49,6 +50,7 @@ export function createDeviceHints(
         : null,
     saveData: environment.saveData === true,
     batterySensitive: environment.batterySensitive === true,
+    explicitStaticMode: false,
   });
 }
 
@@ -64,7 +66,7 @@ function isConstrained(hints: DeviceHints): boolean {
  * frame behaviour, not this function, is what earns a higher tier later.
  */
 export function selectStartupTier(hints: DeviceHints): QualityTier {
-  if (!hints.webgl || hints.reducedData || hints.saveData) return 'static';
+  if (isStaticForced(hints)) return 'static';
   if (isConstrained(hints)) return 'low';
 
   const pointer: PointerCapability = hints.pointer;
@@ -76,7 +78,7 @@ export function selectStartupTier(hints: DeviceHints): QualityTier {
 
 /** The best tier this device is ever allowed to reach. */
 export function selectCeilingTier(hints: DeviceHints): QualityTier {
-  if (!hints.webgl || hints.reducedData || hints.saveData) return 'static';
+  if (isStaticForced(hints)) return 'static';
   if (hints.pointer === 'coarse' || hints.pointer === 'none') return 'medium';
   if (isConstrained(hints)) return 'medium';
   return 'high';

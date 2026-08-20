@@ -17,9 +17,9 @@
     "touch": false,
     "soundGate": true
   },
-  "url": "http://127.0.0.1:4173/blog",
+  "url": "http://localhost:4321/blog",
   "artifactPath": "artifacts/baseline/current/desktop-sound-gate/blog.gap.json",
-  "capturedAt": "2026-07-21T00:46:56.163Z",
+  "capturedAt": "2026-08-17T21:49:55.451Z",
   "status": "gap",
   "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
 }

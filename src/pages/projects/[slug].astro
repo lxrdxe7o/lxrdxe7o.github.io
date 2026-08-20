@@ -7,6 +7,7 @@ import {
   isApprovedProjectSlug,
   projectMediaManifests,
   resolveNextProjectSlug,
+  type ApprovedProjectSlug,
 } from '../../data/projects';
 
 export async function getStaticPaths() {
@@ -27,7 +28,9 @@ interface Props {
 }
 const { project, nextProject } = Astro.props;
 const { Content } = await render(project);
-const mediaManifest = isApprovedProjectSlug(project.data.slug) ? projectMediaManifests[project.data.slug] : undefined;
+const mediaManifest = isApprovedProjectSlug(project.data.slug)
+  ? projectMediaManifests[project.data.slug as ApprovedProjectSlug]
+  : undefined;
 ---
 <ProjectLayout project={project} nextProject={nextProject} mediaManifest={mediaManifest}>
   <Content />

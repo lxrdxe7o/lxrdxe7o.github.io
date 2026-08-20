@@ -1,0 +1,62 @@
+---
+/**
+ * Lab index: every published experiment as a semantic link with its
+ * capability requirements. Honest empty state when nothing is approved.
+ */
+import { getExperiments } from '../../lib/content/getExperiments';
+
+const experiments = await getExperiments({ includeDrafts: false });
+---
+
+<div class="lab-index" data-scroll-section="lab-index">
+  {experiments.length === 0 ? (
+    <p class="lab-index__empty">No experiments are published yet.</p>
+  ) : (
+    <ul>
+      {experiments.map((experiment) => (
+        <li>
+          <a class="lab-index__link" href={`/lab/${experiment.data.slug}`}>
+            <span class="lab-index__title">{experiment.data.title}</span>
+            <span class="lab-index__meta">
+              {experiment.data.capabilityRequirements?.join(', ') ?? 'No special requirements'}
+              {experiment.data.seed ? ` · seed ${experiment.data.seed}` : ''}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+<style>
+  .lab-index ul {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .lab-index li {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .lab-index__link {
+    display: grid;
+    gap: var(--space-2);
+    padding-block: var(--space-6);
+  }
+
+  .lab-index__title {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+  }
+
+  .lab-index__meta {
+    color: var(--color-fg-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+  }
+
+  .lab-index__empty {
+    color: var(--color-fg-muted);
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

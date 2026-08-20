@@ -8,6 +8,14 @@ export interface NowEntry {
 
 export const nowReviewedAt = EDITORIAL_VERIFIED_AT;
 
+export const nowStatus: Readonly<{
+  availability: 'available' | 'limited' | 'unavailable';
+  label: string;
+}> = Object.freeze({
+  availability: 'available',
+  label: 'Available for select full-stack projects',
+});
+
 export const nowEntries: readonly NowEntry[] = [
   {
     label: 'Public work',

@@ -78,7 +78,6 @@ export interface SurfaceDataset {
 
 export interface SurfaceElement {
   readonly dataset: SurfaceDataset;
-  hidden?: boolean;
 }
 
 export interface HostSurface extends SurfaceElement {
@@ -87,13 +86,13 @@ export interface HostSurface extends SurfaceElement {
 }
 
 export interface CanvasSurface extends SurfaceElement {
-  hidden: boolean;
+  hidden: boolean | string;
 }
 
 export interface RenderingSurface {
   readonly host: HostSurface;
   readonly canvas: CanvasSurface;
-  readonly fallback: SurfaceElement & { hidden: boolean };
+  readonly fallback: SurfaceElement & { hidden: boolean | string };
 }
 
 export type RenderingMode = 'enhanced' | 'static';

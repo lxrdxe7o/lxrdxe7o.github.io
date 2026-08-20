@@ -1,21 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getProjects } from '../../lib/content/getProjects';
-
-const projects = await getProjects();
+import ProjectIndex from '../../components/projects/ProjectIndex.astro';
 ---
-<BaseLayout title="Projects" description="My Projects" routeId="projects">
-  <h1>Projects</h1>
-  {projects.length === 0 ? (
-    <p>No projects published yet.</p>
-  ) : (
-    <ul>
-      {projects.map((project) => (
-        <li>
-          <h2>{project.data.title}</h2>
-          <p>{project.data.summary}</p>
-        </li>
-      ))}
-    </ul>
-  )}
+
+<BaseLayout title="Work — lxrdxe7o" description="Selected independent software work by Ishraful Haque" canonical="/projects" routeId="projects">
+  <header class="page-heading"><p>Work</p><h1>Projects</h1><p>Independent software work with verified roles, years, and links. Flagship case studies lead; secondary work follows the same factual rules.</p></header>
+  <ProjectIndex />
 </BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(56vh, 32rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

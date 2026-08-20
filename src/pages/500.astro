@@ -1,0 +1,49 @@
+---
+/**
+ * Static 500 error page. Astro only serves this through a hosting platform's
+ * error handler, but keeping the route local means the design language and
+ * recovery links stay consistent when a platform supports it.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Something went wrong — lxrdxe7o" description="The page could not be displayed." routeId="500" noindex={true}>
+  <header class="error-heading">
+    <p>Error</p>
+    <h1>Something went wrong</h1>
+    <p>The page could not be displayed. Everything else on the site should still work — try the links below.</p>
+  </header>
+  <nav aria-label="Recovery links" class="recovery-links">
+    <a href="/">Home</a>
+    <a href="/projects">Work</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</BaseLayout>
+
+<style>
+  .error-heading {
+    display: grid;
+    gap: var(--space-4);
+    min-block-size: min(58vh, 34rem);
+    align-content: center;
+  }
+  .error-heading > p:first-child {
+    color: var(--color-accent-text);
+    font: var(--text-mono)/1.5 var(--font-family-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+  h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  .recovery-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding-block-start: var(--space-6);
+  }
+  .recovery-links a {
+    min-block-size: 2.75rem;
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid var(--color-border-strong);
+  }
+</style>

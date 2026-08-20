@@ -333,10 +333,10 @@ Every task follows the same delivery cycle:
 - Document behaviors rather than reverse-engineering or reproducing reference source.
 
 **Tests and validation:**
-- [ ] Run the baseline test against the current local site and verify every existing route produces a screenshot and manifest row.
-- [ ] Run the reference capture only against public pages and verify sound is never enabled automatically.
-- [ ] Validate that each manifest contains unique artifact paths and all approved viewport/preference combinations.
-- [ ] Review `behavioral-baseline.md` against the generated evidence and record known gaps explicitly.
+- [x] Run the baseline test against the current local site and verify every existing route produces a screenshot and manifest row.
+- [x] Run the reference capture only against public pages and verify sound is never enabled automatically.
+- [x] Validate that each manifest contains unique artifact paths and all approved viewport/preference combinations.
+- [x] Review `behavioral-baseline.md` against the generated evidence and record known gaps explicitly.
 
 **Demo:** Open the generated baseline index and compare current/reference desktop, mobile, reduced-motion, loader, home, Index, project, About, and footer states side by side.
 
@@ -395,10 +395,10 @@ Every task follows the same delivery cycle:
 - Add sorting utilities with deterministic tie-breaking.
 
 **Tests and validation:**
-- [ ] Add fixtures that prove valid content parses and that invented metrics, malformed media manifests, duplicate slugs, and public unverified claims fail schema validation.
-- [ ] Verify draft content never appears in production collection queries.
-- [ ] Verify collection order is stable across repeated test runs.
-- [ ] Run the content unit suite, Astro check, and a production build.
+- [x] Add fixtures that prove valid content parses and that invented metrics, malformed media manifests, duplicate slugs, and public unverified claims fail schema validation.
+- [x] Verify draft content never appears in production collection queries.
+- [x] Verify collection order is stable across repeated test runs.
+- [x] Run the content unit suite, Astro check, and a production build.
 
 **Demo:** Render fixture-backed collection indexes and one MDX detail page while showing that an invalid public entry stops the build with an actionable schema message.
 
@@ -425,10 +425,10 @@ Every task follows the same delivery cycle:
 - Present the ranked recommendation, proposed case-study order, required user facts, and media-production needs for approval.
 
 **Tests and validation:**
-- [ ] Use fixtures to test missing descriptions, archived repositories, forks, sparse histories, absent licenses, live deployments, and duplicate project aliases.
-- [ ] Verify the same evidence produces the same ranking and report.
-- [ ] Verify blocked claims cannot enter public MDX.
-- [ ] Review the report manually against the linked public sources.
+- [x] Use fixtures to test missing descriptions, archived repositories, forks, sparse histories, absent licenses, live deployments, and duplicate project aliases.
+- [x] Verify the same evidence produces the same ranking and report.
+- [x] Verify blocked claims cannot enter public MDX.
+- [x] Review the report manually against the linked public sources.
 
 **Demo:** Present an audit report with recommended flagship projects, archive candidates, evidence links, copy drafts, known gaps, and proposed project order.
 
@@ -457,10 +457,10 @@ Every task follows the same delivery cycle:
 - Require accessible alt text and a poster for every video.
 
 **Tests and validation:**
-- [ ] Test manifest determinism, responsive candidate ordering, required alt text, poster linkage, and maximum file budgets.
-- [ ] Run the same fixture capture twice and compare hashes for deterministic still output.
-- [ ] Verify encoded videos are muted, loop-safe, seekable, and paired with still fallbacks.
-- [ ] Load a generated manifest through the Astro project route and verify responsive source selection.
+- [x] Test manifest determinism, responsive candidate ordering, required alt text, poster linkage, and maximum file budgets.
+- [x] Run the same fixture capture twice and compare hashes for deterministic still output.
+- [x] Verify encoded videos are muted, loop-safe, seekable, and paired with still fallbacks.
+- [x] Load a generated manifest through the Astro project route and verify responsive source selection.
 
 **Demo:** Run one command for an approved project and show the generated desktop/mobile stills, poster, video loop, manifest, and route integration.
 
@@ -487,10 +487,10 @@ Every task follows the same delivery cycle:
 - Use logical properties and layout primitives that work in narrow and zoomed viewports.
 
 **Tests and validation:**
-- [ ] Add visual snapshots for home, listing, case-study, article, and utility page shells at mobile and desktop widths.
-- [ ] Test keyboard order, skip link, visible focus, target size, and contrast.
-- [ ] Verify fonts are served locally with correct licenses and no external font request occurs.
-- [ ] Run CSS/layout snapshots with JavaScript disabled.
+- [x] Add visual snapshots for home, listing, case-study, article, and utility page shells at mobile and desktop widths.
+- [x] Test keyboard order, skip link, visible focus, target size, and contrast.
+- [x] Verify fonts are served locally with correct licenses and no external font request occurs.
+- [x] Run CSS/layout snapshots with JavaScript disabled.
 
 **Demo:** Show all route archetypes sharing one recognizable crimson editorial system at 375, 768, 1440, and 200% zoom.
 
@@ -515,10 +515,10 @@ Every task follows the same delivery cycle:
 - Emit state changes through one subscription channel consumed by shell controls, renderer, audio, and navigation.
 
 **Tests and validation:**
-- [ ] Test every legal transition and representative illegal transitions as a table-driven reducer suite.
-- [ ] Verify two boot calls do not create duplicate listeners or runtime instances.
-- [ ] Verify destroy releases listeners and later events have no effect.
-- [ ] Verify stored sound preference is read without initiating playback.
+- [x] Test every legal transition and representative illegal transitions as a table-driven reducer suite.
+- [x] Verify two boot calls do not create duplicate listeners or runtime instances.
+- [x] Verify destroy releases listeners and later events have no effect.
+- [x] Verify stored sound preference is read without initiating playback.
 
 **Demo:** Use a development state panel to trigger boot, load completion, sound/silent entry, Index open/close, navigation, mute, and degraded transitions while displaying one authoritative snapshot.
 
@@ -546,10 +546,10 @@ Every task follows the same delivery cycle:
 - Do not port current R3F components directly; translate only validated visual ideas into resource-owned Three.js modules.
 
 **Tests and validation:**
-- [ ] Verify repeated route changes retain exactly one canvas and one renderer.
-- [ ] Verify every tracked resource is released when its scope ends.
-- [ ] Verify fixed seeds produce stable scene manifests.
-- [ ] Run a browser smoke test with WebGL enabled and disabled.
+- [x] Verify repeated route changes retain exactly one canvas and one renderer.
+- [x] Verify every tracked resource is released when its scope ends.
+- [x] Verify fixed seeds produce stable scene manifests.
+- [x] Run a browser smoke test with WebGL enabled and disabled.
 
 **Demo:** Navigate between existing route shells while one canvas persists, the original scene responds smoothly, and a debug counter shows stable renderer/resource totals.
 
@@ -574,10 +574,10 @@ Every task follows the same delivery cycle:
 - Expose a development-only overlay with tier, DPR, frame time, draw calls, triangles, and texture memory estimates.
 
 **Tests and validation:**
-- [ ] Feed synthetic frame streams and verify downgrade, recovery, hysteresis, and non-oscillation.
-- [ ] Verify DPR never exceeds the selected profile cap.
-- [ ] Verify reduced-data and no-WebGL capabilities force static mode.
-- [ ] Run a throttled browser scenario and confirm the renderer reaches a stable 30 FPS profile.
+- [x] Feed synthetic frame streams and verify downgrade, recovery, hysteresis, and non-oscillation.
+- [x] Verify DPR never exceeds the selected profile cap.
+- [x] Verify reduced-data and no-WebGL capabilities force static mode.
+- [x] Run a throttled browser scenario and confirm the renderer reaches a stable 30 FPS profile.
 
 **Demo:** Simulate GPU pressure and show live degradation from high to medium to low without losing content, followed by cautious recovery after stability.
 
@@ -603,10 +603,10 @@ Every task follows the same delivery cycle:
 - Map keyboard activation to every interaction that otherwise depends on hover or pointer proximity.
 
 **Tests and validation:**
-- [ ] Test coordinate normalization, velocity decay, modality switching, and listener cleanup.
-- [ ] Verify reduced motion disables Lenis and preserves native scroll.
-- [ ] Verify PageUp, PageDown, Home, End, Space, tab navigation, touch, and wheel input remain functional.
-- [ ] Verify hash navigation and browser back/forward restore expected positions.
+- [x] Test coordinate normalization, velocity decay, modality switching, and listener cleanup.
+- [x] Verify reduced motion disables Lenis and preserves native scroll.
+- [x] Verify PageUp, PageDown, Home, End, Space, tab navigation, touch, and wheel input remain functional.
+- [x] Verify hash navigation and browser back/forward restore expected positions.
 
 **Demo:** Control the same home and project interactions with mouse, touch emulation, and keyboard while switching reduced motion on and off.
 
@@ -632,10 +632,10 @@ Every task follows the same delivery cycle:
 - Allow noncritical failures to degrade to posters/static assets; provide retry and continue-silent choices for recoverable critical failures.
 
 **Tests and validation:**
-- [ ] Test weighted progress monotonicity, duplicate request coalescing, cancellation, retry, timeout, and fallback selection.
-- [ ] Verify the loader never reports 100% before all critical assets settle.
-- [ ] Simulate a failed texture and failed audio file and confirm the site remains usable.
-- [ ] Verify the entry gate receives focus only after critical loading is complete.
+- [x] Test weighted progress monotonicity, duplicate request coalescing, cancellation, retry, timeout, and fallback selection.
+- [x] Verify the loader never reports 100% before all critical assets settle.
+- [x] Simulate a failed texture and failed audio file and confirm the site remains usable.
+- [x] Verify the entry gate receives focus only after critical loading is complete.
 
 **Demo:** Throttle the network, watch real progress advance, cancel a navigation, retry a failed asset, and enter a functional fallback experience.
 
@@ -663,11 +663,11 @@ Every task follows the same delivery cycle:
 - Persist consent and mute state locally, but keep the control discoverable and screen-reader labeled.
 
 **Tests and validation:**
-- [ ] Verify no play call occurs before explicit sound entry.
-- [ ] Verify silent entry loads no nonessential audio and all routes/interactions complete.
-- [ ] Verify crossfades cancel safely during rapid navigation and no orphan sound remains.
-- [ ] Verify stored consent, mute toggle, visibility suspension, and failed audio fallback.
-- [ ] Validate file duration, channels, loudness ceiling, loop boundaries, format support, and license manifest.
+- [x] Verify no play call occurs before explicit sound entry.
+- [x] Verify silent entry loads no nonessential audio and all routes/interactions complete.
+- [x] Verify crossfades cancel safely during rapid navigation and no orphan sound remains.
+- [x] Verify stored consent, mute toggle, visibility suspension, and failed audio fallback.
+- [x] Validate file duration, channels, loudness ceiling, loop boundaries, format support, and license manifest.
 
 **Demo:** Enter once with sound and once silently, navigate across routes, toggle mute, reload to show persistence, and remove an audio asset to show graceful fallback.
 
@@ -694,10 +694,10 @@ Every task follows the same delivery cycle:
 - Move focus to the new main heading after navigation while preserving expected history and scroll behavior.
 
 **Tests and validation:**
-- [ ] Test phase ordering, cancellation, duplicate destination requests, browser history, and failed preparation.
-- [ ] Verify one canvas and runtime survive at least 50 route changes.
-- [ ] Verify focus and document title update after each route.
-- [ ] Verify reduced motion uses a short non-spatial fade and static mode performs a standard accessible route change.
+- [x] Test phase ordering, cancellation, duplicate destination requests, browser history, and failed preparation.
+- [x] Verify one canvas and runtime survive at least 50 route changes.
+- [x] Verify focus and document title update after each route.
+- [x] Verify reduced motion uses a short non-spatial fade and static mode performs a standard accessible route change.
 
 **Demo:** Navigate repeatedly through header links, Index links, project next links, and browser history while DOM and WebGL transitions remain synchronized.
 
@@ -719,10 +719,10 @@ Every task follows the same delivery cycle:
 - Use responsive art direction rather than shrinking the desktop composition mechanically.
 
 **Tests and validation:**
-- [ ] Verify exact identity strings, heading hierarchy, route links, social labels, and availability source.
-- [ ] Verify no essential text is clipped from 320px width through large desktop and at 200% zoom.
-- [ ] Verify pointer effects are decorative and keyboard/touch users receive equivalent navigation.
-- [ ] Compare home captures against the approved baseline for hierarchy, pacing, and negative space without copying assets.
+- [x] Verify exact identity strings, heading hierarchy, route links, social labels, and availability source.
+- [x] Verify no essential text is clipped from 320px width through large desktop and at 200% zoom.
+- [x] Verify pointer effects are decorative and keyboard/touch users receive equivalent navigation.
+- [x] Compare home captures against the approved baseline for hierarchy, pacing, and negative space without copying assets.
 
 **Demo:** Enter through sound and silent paths on desktop and mobile, interact with the identity scene, and reach Work/About with keyboard, touch, and pointer.
 
@@ -748,10 +748,10 @@ Every task follows the same delivery cycle:
 - Keep list typography dominant and visual decoration subordinate to project recognition.
 
 **Tests and validation:**
-- [ ] Test preview bounds, velocity decay, active-item switching, route cleanup, and reduced-motion behavior.
-- [ ] Verify every approved flagship appears once and draft/archive entries follow their publication rules.
-- [ ] Verify keyboard, screen reader, touch, and pointer paths can inspect and open every project.
-- [ ] Verify videos stop when hidden or when another preview becomes active.
+- [x] Test preview bounds, velocity decay, active-item switching, route cleanup, and reduced-motion behavior.
+- [x] Verify every approved flagship appears once and draft/archive entries follow their publication rules.
+- [x] Verify keyboard, screen reader, touch, and pointer paths can inspect and open every project.
+- [x] Verify videos stop when hidden or when another preview becomes active.
 
 **Demo:** Browse all approved flagship projects with mouse, keyboard, and mobile touch while previews remain smooth, bounded, and data-aware.
 
@@ -777,10 +777,10 @@ Every task follows the same delivery cycle:
 - Close and transition through the same NavigationController used by ordinary links.
 
 **Tests and validation:**
-- [ ] Test legal open/close/interruption transitions and focus restoration.
-- [ ] Verify the background cannot receive pointer or keyboard interaction while open.
-- [ ] Verify all public routes and project entries are represented exactly once.
-- [ ] Verify opening at narrow width, landscape mobile, 200% zoom, and with reduced motion.
+- [x] Test legal open/close/interruption transitions and focus restoration.
+- [x] Verify the background cannot receive pointer or keyboard interaction while open.
+- [x] Verify all public routes and project entries are represented exactly once.
+- [x] Verify opening at narrow width, landscape mobile, 200% zoom, and with reduced motion.
 
 **Demo:** Open the Index from multiple routes, navigate its complete route map, close with Escape/backdrop/control, and show correct focus restoration.
 
@@ -807,10 +807,10 @@ Every task follows the same delivery cycle:
 - End every case study with an unmistakable next-project handoff and global contact path.
 
 **Tests and validation:**
-- [ ] Verify generated slugs, metadata fields, media order, optional links, credits, and next-project wrapping.
-- [ ] Verify MDX headings produce a logical outline and media has alt text or an explicit decorative role.
-- [ ] Verify video pause/control behavior and static/reduced-data alternatives.
-- [ ] Navigate the two-project loop repeatedly and confirm no asset, listener, scroll, or WebGL growth.
+- [x] Verify generated slugs, metadata fields, media order, optional links, credits, and next-project wrapping.
+- [x] Verify MDX headings produce a logical outline and media has alt text or an explicit decorative role.
+- [x] Verify video pause/control behavior and static/reduced-data alternatives.
+- [x] Navigate the two-project loop repeatedly and confirm no asset, listener, scroll, or WebGL growth.
 
 **Demo:** Present both complete case studies from Work through next-project handoff and back to the first project on desktop and mobile.
 
@@ -835,10 +835,10 @@ Every task follows the same delivery cycle:
 - Maintain deterministic next-project order and prevent archived entries from entering the flagship loop unless approved.
 
 **Tests and validation:**
-- [ ] Assert that every approved project has valid content, required media, credits, canonical metadata, and correct classification.
-- [ ] Test filter combinations, URL restoration, no-results messaging, and JavaScript-disabled output.
-- [ ] Test the complete flagship next-project cycle for one visit per project before wrapping.
-- [ ] Run visual snapshots for each case-study archetype and archive breakpoint.
+- [x] Assert that every approved project has valid content, required media, credits, canonical metadata, and correct classification.
+- [x] Test filter combinations, URL restoration, no-results messaging, and JavaScript-disabled output.
+- [x] Test the complete flagship next-project cycle for one visit per project before wrapping.
+- [x] Run visual snapshots for each case-study archetype and archive breakpoint.
 
 **Demo:** Navigate the complete flagship loop, then discover secondary projects through the Archive's search/filter experience.
 
@@ -864,10 +864,10 @@ Every task follows the same delivery cycle:
 - Include sound, font, asset, and technical credits where applicable.
 
 **Tests and validation:**
-- [ ] Verify no unpublished fact renders and every external entity link is valid and safely attributed.
-- [ ] Verify date ordering and open-ended experience labels without inventing start/end dates.
-- [ ] Verify capability groups have evidence references and no proficiency bars appear.
-- [ ] Run keyboard, heading, contrast, responsive, and reduced-motion checks across all three routes.
+- [x] Verify no unpublished fact renders and every external entity link is valid and safely attributed.
+- [x] Verify date ordering and open-ended experience labels without inventing start/end dates.
+- [x] Verify capability groups have evidence references and no proficiency bars appear.
+- [x] Run keyboard, heading, contrast, responsive, and reduced-motion checks across all three routes.
 
 **Demo:** Browse About, Experience, and Skills as one coherent factual narrative, with every visible claim traceable to an approved source.
 
@@ -894,10 +894,10 @@ Every task follows the same delivery cycle:
 - Add visible maintenance dates to time-sensitive Uses and Now content.
 
 **Tests and validation:**
-- [ ] Validate contact URI schemes, external-link behavior, labels, and copyable text.
-- [ ] Verify time-sensitive entries expose review dates and expired entries fail editorial validation.
-- [ ] Verify all utility routes work without JavaScript and at 200% zoom.
-- [ ] Verify Contact is reachable from every route archetype within one navigation action.
+- [x] Validate contact URI schemes, external-link behavior, labels, and copyable text.
+- [x] Verify time-sensitive entries expose review dates and expired entries fail editorial validation.
+- [x] Verify all utility routes work without JavaScript and at 200% zoom.
+- [x] Verify Contact is reachable from every route archetype within one navigation action.
 
 **Demo:** Show verified setup/current-status content, browse Archive, and complete a contact action from home, Index, a project, and Contact.
 
@@ -924,10 +924,10 @@ Every task follows the same delivery cycle:
 - Do not create synthetic posts merely to populate the index.
 
 **Tests and validation:**
-- [ ] Test MDX components, heading slug stability, code rendering, related-entry filtering, drafts, and empty-series behavior.
-- [ ] Verify `/blog` no longer depends on the external domain and canonical URLs do not duplicate content.
-- [ ] Verify print styling, text selection, keyboard anchors, 200% zoom, and JavaScript-disabled reading.
-- [ ] Run axe checks on index, long article, code-heavy note, and empty optional metadata states.
+- [x] Test MDX components, heading slug stability, code rendering, related-entry filtering, drafts, and empty-series behavior.
+- [x] Verify `/blog` no longer depends on the external domain and canonical URLs do not duplicate content.
+- [x] Verify print styling, text selection, keyboard anchors, 200% zoom, and JavaScript-disabled reading.
+- [x] Run axe checks on index, long article, code-heavy note, and empty optional metadata states.
 
 **Demo:** Open native Writing from `/blog`, read a complete MDX entry, navigate headings and related content, and print a clean article view.
 
@@ -954,10 +954,10 @@ Every task follows the same delivery cycle:
 - Prevent experimental code from bypassing runtime ownership or creating another canvas.
 
 **Tests and validation:**
-- [ ] Test registry uniqueness, parameter parsing, seed determinism, bounds, reset, and cleanup.
-- [ ] Verify one renderer/canvas remains active across Lab and non-Lab routes.
-- [ ] Verify controls work by keyboard and expose current values to assistive technology.
-- [ ] Verify low/static quality profiles preserve meaning and route navigation.
+- [x] Test registry uniqueness, parameter parsing, seed determinism, bounds, reset, and cleanup.
+- [x] Verify one renderer/canvas remains active across Lab and non-Lab routes.
+- [x] Verify controls work by keyboard and expose current values to assistive technology.
+- [x] Verify low/static quality profiles preserve meaning and route navigation.
 
 **Demo:** Open the first Lab experiment, change and share parameters, replay the same seed, switch quality modes, and navigate away with zero retained resources.
 
@@ -984,9 +984,9 @@ Every task follows the same delivery cycle:
 - Apply the same quality profiles, cleanup, accessibility controls, and poster fallbacks as the first experiment.
 
 **Tests and validation:**
-- [ ] Verify dataset allowlists, deterministic generation, source timestamps, and exclusion of private fields.
+- [x] Verify dataset allowlists, deterministic generation, source timestamps, and exclusion of private fields.
 - [ ] Verify audio analysis begins only after consent and stops on mute/suspend/destroy.
-- [ ] Verify silent mode produces stable visual behavior without hidden audio playback.
+- [x] Verify silent mode produces stable visual behavior without hidden audio playback.
 - [ ] Run route, cleanup, keyboard, reduced-motion, and static fallback tests for both experiments.
 
 **Demo:** Explore an evidence-based public repository map, then compare the audio-reactive experiment in sound and silent modes without microphone permission.
@@ -1014,10 +1014,10 @@ Every task follows the same delivery cycle:
 - Include alternate feed links and valid publication/update dates only when verified.
 
 **Tests and validation:**
-- [ ] Test canonical uniqueness, draft exclusion, absolute URLs, card dimensions, and structured-data required fields.
-- [ ] Validate RSS/XML output and robots behavior for production versus preview.
-- [ ] Crawl built output for broken internal links, redirect chains, missing metadata, and orphan pages.
-- [ ] Verify representative social cards remain legible at small preview sizes.
+- [x] Test canonical uniqueness, draft exclusion, absolute URLs, card dimensions, and structured-data required fields.
+- [x] Validate RSS/XML output and robots behavior for production versus preview.
+- [x] Crawl built output for broken internal links, redirect chains, missing metadata, and orphan pages.
+- [x] Verify representative social cards remain legible at small preview sizes.
 
 **Demo:** Inspect a home, project, article, note, and Lab page in a metadata preview; open valid feeds and test legacy redirects.
 
@@ -1045,10 +1045,10 @@ Every task follows the same delivery cycle:
 - Make error language concise, actionable, and nontechnical for visitors while logging useful development detail locally.
 
 **Tests and validation:**
-- [ ] Disable JavaScript, WebGL, audio codecs, selected images, video, and route fetches in browser tests.
-- [ ] Verify navigation, project content, writing, contact, and mute controls degrade correctly for each applicable failure.
-- [ ] Verify error notices are focus-managed, dismissible when appropriate, and announced without trapping users.
-- [ ] Verify production headers and external links against the security policy.
+- [x] Disable JavaScript, WebGL, audio codecs, selected images, video, and route fetches in browser tests.
+- [x] Verify navigation, project content, writing, contact, and mute controls degrade correctly for each applicable failure.
+- [x] Verify error notices are focus-managed, dismissible when appropriate, and announced without trapping users.
+- [x] Verify production headers and external links against the security policy.
 
 **Demo:** Run a failure-mode matrix and show a usable static portfolio under no JavaScript, no WebGL, blocked media, failed route transition, and failed audio conditions.
 
@@ -1073,10 +1073,10 @@ Every task follows the same delivery cycle:
 - Require no-audio and reduced-motion experiences to communicate the same route state and hierarchy.
 
 **Tests and validation:**
-- [ ] Produce captures for every scorecard category at approved desktop/mobile widths.
-- [ ] Verify transition duration, interruption, and state milestones through browser timing assertions.
-- [ ] Verify audio crossfade envelopes and cue ownership through deterministic audio tests.
-- [ ] Review and resolve every high-severity parity gap or document an approved intentional difference.
+- [x] Produce captures for every scorecard category at approved desktop/mobile widths.
+- [x] Verify transition duration, interruption, and state milestones through browser timing assertions.
+- [x] Verify audio crossfade envelopes and cue ownership through deterministic audio tests.
+- [x] Review and resolve every high-severity parity gap or document an approved intentional difference.
 
 **Demo:** Present the parity scorecard and synchronized recordings showing the original portfolio reaching the approved reference quality bar across full, silent, reduced-motion, and mobile modes.
 
@@ -1098,10 +1098,10 @@ Every task follows the same delivery cycle:
 - Keep route-specific budgets so a Lab experiment cannot hide regressions in the content experience.
 
 **Tests and validation:**
-- [ ] Achieve zero serious/critical automated axe violations and manually verify the behaviors automation cannot judge.
-- [ ] Meet LCP, INP, CLS, one-canvas, 60/30 FPS, and resource-stability targets on the agreed test profiles.
-- [ ] Pass the full browser/viewport/preference route matrix or document an approved platform-specific fallback.
-- [ ] Repeat a 50-route navigation loop and confirm no sustained listener, WebGL resource, media, or heap growth.
+- [x] Achieve zero serious/critical automated axe violations and manually verify the behaviors automation cannot judge.
+- [x] Meet LCP, INP, CLS, one-canvas, 60/30 FPS, and resource-stability targets on the agreed test profiles.
+- [x] Pass the full browser/viewport/preference route matrix or document an approved platform-specific fallback.
+- [x] Repeat a 50-route navigation loop and confirm no sustained listener, WebGL resource, media, or heap growth.
 
 **Demo:** Review the QA reports and run representative accessibility, browser, low-end performance, and long-session scenarios live.
 
@@ -1128,10 +1128,10 @@ Every task follows the same delivery cycle:
 - Do not commit, push, publish, or deploy until the user explicitly authorizes that separate action.
 
 **Tests and validation:**
-- [ ] Run a frozen clean install followed by `npm run check`, `npm run lint`, `npm run test`, `npm run build`, browser smoke, accessibility, visual, and Lighthouse CI suites.
-- [ ] Verify all expected routes exist in the build and no draft/unverified content appears.
-- [ ] Verify dependency, font, audio, media, and attribution manifests are complete.
-- [ ] Verify the clean build reproduces the same release-manifest asset hashes.
+- [x] Run a frozen clean install followed by `npm run check`, `npm run lint`, `npm run test`, `npm run build`, browser smoke, accessibility, visual, and Lighthouse CI suites.
+- [x] Verify all expected routes exist in the build and no draft/unverified content appears.
+- [x] Verify dependency, font, audio, media, and attribution manifests are complete.
+- [x] Verify the clean build reproduces the same release-manifest asset hashes.
 - [ ] Complete user content and experience approval with no unresolved release-blocking issue.
 
 **Demo:** Serve the clean production artifact and complete the end-to-end release checklist across entry, home, Index, Work, all project loops, About/supporting routes, Writing, Notes, Lab, Archive, Contact, silent mode, reduced motion, static mode, and representative mobile/desktop browsers.

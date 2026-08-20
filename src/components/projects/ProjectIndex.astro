@@ -1,0 +1,119 @@
+---
+/**
+ * High-impact project listing with flagship order and verified metadata.
+ * Every row remains a semantic link with accessible preview description.
+ */
+import { getProjects } from '../../lib/content/getProjects';
+import {
+  classifyProject,
+  isApprovedProjectSlug,
+  projectMediaManifests,
+  selectProjectHeroAsset,
+  type ApprovedProjectSlug,
+} from '../../data/projects';
+import ProjectPicture from './ProjectPicture.astro';
+
+const projects = await getProjects({ includeDrafts: false });
+const flagged = projects.map((project) => {
+  const slug = project.data.slug;
+  return {
+    entry: project,
+    presentation: classifyProject(slug) ?? 'archive',
+    hero: isApprovedProjectSlug(slug)
+      ? selectProjectHeroAsset(projectMediaManifests[slug as ApprovedProjectSlug])
+      : undefined,
+  };
+});
+---
+
+<div class="project-index" data-scroll-section="project-index">
+  <ul>
+    {flagged.map(({ entry, presentation, hero }) => (
+      <li class:list={['project-index__item', `project-index__item--${presentation}`]}>
+        <a class="project-index__link" href={`/projects/${entry.data.slug}`}>
+          {hero && <ProjectPicture asset={hero} class="project-index__preview" />}
+          <span class="project-index__rank" aria-hidden="true">
+            {entry.data.featured ? String(entry.data.featured).padStart(2, '0') : '—'}
+          </span>
+          <span class="project-index__body">
+            <span class="project-index__title">{entry.data.title}</span>
+            <span class="project-index__meta">
+              {entry.data.roles.join(', ')}
+              {entry.data.year ? ` · ${entry.data.year}` : ''}
+            </span>
+            <span class="project-index__summary">{entry.data.summary}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .project-index ul {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .project-index__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-index__link {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4) var(--space-6);
+    padding-block: var(--space-6);
+    align-items: start;
+  }
+
+  .project-index__preview {
+    grid-column: 1 / -1;
+    max-inline-size: 100%;
+  }
+
+  @media (min-width: 48rem) {
+    .project-index__preview {
+      grid-column: auto;
+      grid-row: span 2;
+      inline-size: min(22rem, 32vw);
+    }
+  }
+
+  .project-index__rank {
+    color: var(--color-accent-text);
+    font: var(--text-mono)/1.5 var(--font-family-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .project-index__body {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .project-index__title {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+  }
+
+  .project-index__meta {
+    color: var(--color-fg-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+  }
+
+  .project-index__summary {
+    max-inline-size: 68ch;
+    color: var(--color-fg-muted);
+    font-size: var(--text-body);
+  }
+
+  .project-index__item--archive .project-index__title {
+    font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  }
+
+  @media (min-width: 48rem) {
+    .project-index__link {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+  }
+</style>

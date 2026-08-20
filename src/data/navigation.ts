@@ -22,6 +22,7 @@ export const secondaryLinks: readonly NavLink[] = [
   { label: 'Uses', href: '/uses' },
   { label: 'Writing', href: '/blog' },
   { label: 'Notes', href: '/notes' },
+  { label: 'Lab', href: '/lab' },
   { label: 'Now', href: '/now' },
   { label: 'Contact', href: '/contact' },
 ];

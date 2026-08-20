@@ -1,0 +1,46 @@
+---
+/**
+ * Shown when the visitor has no network connection for client-side requests.
+ * The statically served page remains fully readable; this only announces
+ * that dynamic features (audio, route prefetching) are temporarily gone.
+ */
+---
+
+<div class="offline-notice" role="status" aria-live="polite" hidden data-offline-notice>
+  <p>You are offline. This page is still fully readable; interactive extras will return when you reconnect.</p>
+</div>
+
+<script>
+  const syncOfflineState = () => {
+    const notice = document.querySelector<HTMLElement>('[data-offline-notice]');
+    if (!notice) return;
+    notice.hidden = navigator.onLine;
+  };
+  syncOfflineState();
+  window.addEventListener('online', syncOfflineState);
+  window.addEventListener('offline', syncOfflineState);
+  document.addEventListener('astro:page-load', syncOfflineState);
+</script>
+
+<style>
+  .offline-notice {
+    position: fixed;
+    inset-block-start: var(--space-3);
+    inset-inline: 50%;
+    translate: -50% 0;
+    z-index: var(--z-toast, 80);
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-bg-raised, #101014);
+    color: var(--color-fg);
+  }
+
+  .offline-notice[hidden] {
+    display: none;
+  }
+
+  .offline-notice p {
+    margin: 0;
+    font-size: var(--text-body);
+  }
+</style>

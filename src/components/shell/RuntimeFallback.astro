@@ -1,0 +1,78 @@
+---
+/**
+ * Visible, focus-managed error notice shown only when the runtime degrades.
+ * Never traps focus: it announces politely, offers an explicit dismiss, and
+ * remains hidden while the enhanced experience is healthy.
+ */
+---
+
+<div class="runtime-fallback" data-runtime-fallback hidden>
+  <p role="status" aria-live="polite" data-runtime-fallback-message>
+    Something could not load on this page. The essential content is still available.
+  </p>
+  <button type="button" data-dismiss-error aria-label="Dismiss this message">Dismiss</button>
+</div>
+
+<script>
+  const bindDismiss = () => {
+    document.querySelectorAll<HTMLElement>('[data-dismiss-error]').forEach((button) => {
+      if (button.dataset.bound === 'true') return;
+      button.dataset.bound = 'true';
+      button.addEventListener('click', () => {
+        const fallback = button.closest<HTMLElement>('[data-runtime-fallback]');
+        fallback?.remove();
+        document.querySelector<HTMLElement>('#main-content')?.focus();
+      });
+    });
+  };
+  bindDismiss();
+  document.addEventListener('astro:page-load', bindDismiss);
+</script>
+
+<style>
+  .runtime-fallback {
+    position: fixed;
+    inset-block-end: var(--space-6);
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    z-index: var(--z-toast, 80);
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    max-inline-size: min(34rem, calc(100vw - 2rem));
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-accent);
+    background: var(--color-bg-raised, #101014);
+    color: var(--color-fg);
+  }
+
+  /* The runtime removes the hidden attribute when the phase degrades. */
+  .runtime-fallback:not([hidden]) {
+    display: flex;
+  }
+
+  .runtime-fallback p {
+    margin: 0;
+    font-size: var(--text-body);
+  }
+
+  .runtime-fallback button {
+    min-block-size: 2.5rem;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-accent-text);
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .runtime-fallback:not([hidden]) {
+      animation: error-notice-in 220ms ease-out both;
+    }
+  }
+
+  @keyframes error-notice-in {
+    from { opacity: 0; translate: -50% 0.5rem; }
+    to { opacity: 1; translate: -50% 0; }
+  }
+</style>

@@ -1,0 +1,7 @@
+# Redirect configuration for static hosting.
+
+# /blog is consolidated into the native Writing index.
+/blog            /writing   301
+
+# Legacy single-page route artifacts are intentionally NOT redirected:
+# unknown paths fall through to the static 404.

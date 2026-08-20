@@ -1,0 +1,62 @@
+---
+import {
+  absoluteUrl,
+  isProductionOriginConfigured,
+  robotsPolicy,
+  serializeStructuredData,
+  sitePersonData,
+  type StructuredDataBlock,
+} from '../../lib/seo/metadata';
+import { defaultSocialCard, SOCIAL_CARD_HEIGHT, SOCIAL_CARD_WIDTH, type SocialCardSpec } from '../../lib/seo/social-card';
+
+interface Props {
+  path: string;
+  title: string;
+  description: string;
+  image?: string;
+  structuredData?: readonly StructuredDataBlock[];
+  publishedAt?: Date;
+  updatedAt?: Date;
+}
+
+const {
+  path,
+  title,
+  description,
+  image,
+  structuredData = [],
+  publishedAt,
+  updatedAt,
+} = Astro.props;
+
+const canonical = absoluteUrl(path);
+const card: SocialCardSpec = image
+  ? { path: image, label: title }
+  : defaultSocialCard;
+const cardUrl = absoluteUrl(card.path);
+const robots = robotsPolicy(path, {
+  production: import.meta.env.PROD,
+  originConfigured: isProductionOriginConfigured(),
+});
+const graph: StructuredDataBlock[] = [...structuredData];
+if (graph.length === 0) graph.push(sitePersonData);
+---
+
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+<meta property="og:site_name" content="lxrdxe7o" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={cardUrl} />
+<meta property="og:image:width" content={String(SOCIAL_CARD_WIDTH)} />
+<meta property="og:image:height" content={String(SOCIAL_CARD_HEIGHT)} />
+<meta property="og:image:alt" content={card.label} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={cardUrl} />
+{publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
+{updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
+<script type="application/ld+json" set:html={serializeStructuredData(graph)} />

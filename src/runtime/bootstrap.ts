@@ -58,6 +58,12 @@ export function bootstrapExperience(): void {
   // Idempotent: ExperienceCanvas may already have booted the runtime.
   runtime.boot();
 
+  // The Site Index component reads this bridge to keep modal state inside the
+  // one authoritative runtime instead of a second competing boolean.
+  (window as unknown as { __lxrdxe7oRuntime?: unknown }).__lxrdxe7oRuntime = {
+    setIndexOpen: (open: boolean) => runtime.setIndexOpen(open),
+  };
+
   const frameBus = getFrameBus();
   const readSnapshot = (): RuntimeSnapshot => runtime.getSnapshot();
 
@@ -70,12 +76,11 @@ export function bootstrapExperience(): void {
 
   const quality = new QualityController({
     hints: createDeviceHints(readSnapshot().capabilities, readDeviceEnvironment()),
-    clock: { now: () => performance.now() },
+    onChange: (profile) => {
+      runtime.setQualityTier(profile.tier);
+    },
   });
-  runtime.setQualityTier(quality.getTier());
-  const releaseQuality = quality.subscribe((profile) => {
-    runtime.setQualityTier(profile.tier);
-  });
+  runtime.setQualityTier(quality.profile.tier);
 
   /* --------------------------------------------------------------- scroll */
 
@@ -194,8 +199,8 @@ export function bootstrapExperience(): void {
   const releaseFrames = frameBus.subscribe((frame) => {
     input.tick(frame.time);
     scroll.tick(frame.time);
-    if (quality.sampleFrame(frame.delta)) {
-      root.dataset.qualityTier = quality.getTier();
+    if (quality.sampleFrame(frame.time)) {
+      root.dataset.qualityTier = quality.profile.tier;
     }
   });
 
@@ -219,7 +224,10 @@ export function bootstrapExperience(): void {
       lastPhase = snapshot.phase;
       if (snapshot.phase === 'entry-gate') revealEntryGate();
       if (snapshot.phase === 'active') hideLoaderAndGate();
-      if (snapshot.phase === 'degraded') hideLoaderAndGate();
+      if (snapshot.phase === 'degraded') {
+        hideLoaderAndGate();
+        revealRuntimeFallback();
+      }
     }
 
     audio.setMuted(snapshot.audioState === 'muted');
@@ -248,14 +256,31 @@ export function bootstrapExperience(): void {
     gate.querySelector<HTMLElement>('[data-entry="silent"]')?.focus();
   }
 
+  function revealRuntimeFallback(): void {
+    const fallback = document.querySelector<HTMLElement>('[data-runtime-fallback]');
+    if (!fallback) return;
+    // `hidden` has an !important rule in base.css; remove the attribute so
+    // the degraded-phase layout can actually show the notice.
+    fallback.hidden = false;
+  }
+
   function hideLoaderAndGate(): void {
     const gate = document.querySelector<HTMLElement>('[data-entry-gate]');
     if (gate) {
       gate.hidden = true;
       gate.dataset.state = 'closed';
     }
+    // The loader has served its purpose; remove it rather than leaving a
+    // hidden progressbar with stale semantics in the accessibility tree.
     for (const loader of document.querySelectorAll<HTMLElement>('[data-loader]')) {
-      loader.hidden = true;
+      loader.remove();
+    }
+    // Focus leaves the removed gate and returns to the document start, so
+    // the first tab stop is the skip link and keyboard users land where the
+    // document begins. FocusManager restores focus on navigation afterward.
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && active.closest('[data-entry-gate]')) {
+      active.blur();
     }
   }
 
@@ -363,7 +388,6 @@ export function bootstrapExperience(): void {
   runtime.registerTeardown(() => {
     releaseFrames();
     releaseRuntime();
-    releaseQuality();
     releaseProgress();
     releaseAstro();
     document.removeEventListener('visibilitychange', onVisibilityChange);

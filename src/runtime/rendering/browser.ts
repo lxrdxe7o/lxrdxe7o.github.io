@@ -10,6 +10,7 @@ import type { ExperienceRuntime } from '../core/ExperienceRuntime';
 import { Renderer } from './Renderer';
 import { SceneController } from './SceneController';
 import { HomeScene } from './scenes/HomeScene';
+import { FieldExperiment } from './scenes/lab/FieldExperiment';
 import { StaticScene } from './scenes/StaticScene';
 import type {
   FrameRequestCallback,
@@ -85,7 +86,7 @@ export class BrowserRenderingAdapter implements RenderingAdapter {
   observeResize(surface: RenderingSurface, listener: () => void): () => void {
     if (typeof ResizeObserver !== 'undefined') {
       const observer = new ResizeObserver(() => listener());
-      observer.observe(surface.host as Element);
+      observer.observe(surface.host as unknown as Element);
       return () => observer.disconnect();
     }
     window.addEventListener('resize', listener, { passive: true });
@@ -163,10 +164,11 @@ export function createBrowserRenderer(
     createSceneController: (tracker) =>
       new SceneController({
         tracker,
-        createScene: ({ manifest, scope }) =>
-          manifest.qualityTier === 'static'
-            ? new StaticScene(scope, manifest.route)
-            : new HomeScene(scope, manifest.route),
+        createScene: ({ manifest, scope }) => {
+          if (manifest.qualityTier === 'static') return new StaticScene(scope, manifest.route);
+          if (manifest.route.startsWith('/lab')) return new FieldExperiment(scope, manifest.route);
+          return new HomeScene(scope, manifest.route);
+        },
       }),
   });
 }

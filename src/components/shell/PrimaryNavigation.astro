@@ -7,7 +7,7 @@ function isCurrent(href: string): boolean {
   return href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 }
 ---
-<nav aria-label="Primary">
+<nav aria-label="Primary site navigation">
   <ul class="primary-nav__list">
     {primaryLinks.map((link) => (
       <li>

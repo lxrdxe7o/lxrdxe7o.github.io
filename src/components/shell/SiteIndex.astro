@@ -1,0 +1,183 @@
+---
+/**
+ * Full-screen animated Index: modal navigation surface exposing every public
+ * route with Work/About prominence. Focus containment, Escape close, opener
+ * restoration, background inertness, and scroll lock are handled by the
+ * runtime IndexController contract in `index-sequence.ts` + this component's
+ * script; reduced motion falls back to an immediate open state.
+ */
+import { primaryLinks, secondaryLinks } from '../../data/navigation';
+import { getProjects } from '../../lib/content/getProjects';
+import { classifyProject } from '../../data/projects';
+
+const projects = (await getProjects({ includeDrafts: false }))
+  .filter((project) => classifyProject(project.data.slug) === 'flagship')
+  .slice(0, 6);
+---
+
+<div class="site-index" data-site-index data-state="closed" role="dialog" aria-modal="true" aria-labelledby="site-index-title" hidden>
+  <div class="site-index__panel">
+    <p class="site-index__label">Index</p>
+    <h2 class="site-index__title" id="site-index-title">lxrdxe7o</h2>
+
+    <nav class="site-index__primary" aria-label="Primary routes">
+      <ul>
+        {primaryLinks.map((link) => (
+          <li><a href={link.href} class="site-index__link site-index__link--primary">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="site-index__routes" aria-label="All routes">
+      <ul>
+        {secondaryLinks.map((link) => (
+          <li><a href={link.href} class="site-index__link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    {projects.length > 0 && (
+      <nav class="site-index__projects" aria-label="Selected projects">
+        <p class="site-index__sub-label">Selected projects</p>
+        <ul>
+          {projects.map((project) => (
+            <li><a href={`/projects/${project.data.slug}`} class="site-index__link">{project.data.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <button type="button" class="site-index__close" data-index-close aria-label="Close navigation index">Close</button>
+  </div>
+</div>
+
+<script>
+  const bindIndex = () => {
+    const index = document.querySelector<HTMLElement>('[data-site-index]');
+    if (!index || index.dataset.bound === 'true') return;
+    index.dataset.bound = 'true';
+
+    const openButton = document.querySelector<HTMLElement>('[data-index-open]');
+    const closeButton = index.querySelector<HTMLElement>('[data-index-close]');
+    const runtime = (window as unknown as { __lxrdxe7oRuntime?: { setIndexOpen(open: boolean): void } }).__lxrdxe7oRuntime;
+
+    const setOpen = (open: boolean) => {
+      index.hidden = !open;
+      index.dataset.state = open ? 'open' : 'closed';
+      document.documentElement.toggleAttribute('data-scroll-locked', open);
+      runtime?.setIndexOpen(open);
+      if (open) closeButton?.focus();
+      else openButton?.focus();
+    };
+
+    openButton?.addEventListener('click', () => setOpen(true));
+    closeButton?.addEventListener('click', () => setOpen(false));
+
+    index.addEventListener('click', (event) => {
+      if (event.target === index) setOpen(false);
+    });
+
+    index.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+      }
+      if (event.key === 'Tab') {
+        // Simple focus containment: keep Tab cycling inside the dialog.
+        const focusables = index.querySelectorAll<HTMLElement>('a[href], button');
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (event.shiftKey && active === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && active === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    });
+  };
+
+  bindIndex();
+  document.addEventListener('astro:page-load', bindIndex);
+</script>
+
+<style>
+  .site-index {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-index-modal, 100);
+    background: var(--color-bg);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .site-index[hidden] {
+    display: none;
+  }
+
+  .site-index__panel {
+    display: grid;
+    gap: var(--space-8);
+    max-inline-size: 72rem;
+    margin-inline: auto;
+    padding: var(--space-8);
+  }
+
+  .site-index__label,
+  .site-index__sub-label {
+    color: var(--color-accent-text);
+    font: var(--text-mono)/1.5 var(--font-family-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .site-index__title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+  }
+
+  .site-index nav ul {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .site-index__link {
+    display: block;
+    padding-block: var(--space-2);
+    font-size: clamp(1.25rem, 4vw, 2.5rem);
+    letter-spacing: -0.02em;
+  }
+
+  .site-index__link--primary {
+    color: var(--color-accent-text);
+  }
+
+  .site-index__link:hover {
+    text-decoration: underline;
+    text-underline-offset: .25em;
+  }
+
+  .site-index__close {
+    justify-self: start;
+    min-block-size: 2.75rem;
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-fg);
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .site-index[data-state='open'] {
+      animation: index-in 240ms ease-out both;
+    }
+  }
+
+  @keyframes index-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>

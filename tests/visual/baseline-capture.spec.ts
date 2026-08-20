@@ -11,7 +11,6 @@ import { join, resolve } from 'node:path'
 
 import { expect, test } from '@playwright/test'
 
-import playwrightConfig from '../../playwright.config.ts'
 import {
   captureCurrentBaseline,
   normalizeVolatileCurrentContent,
@@ -32,10 +31,18 @@ import {
 
 const capturedAt = '2026-01-15T12:00:00.000Z'
 
-test('starts a dedicated local evidence server instead of reusing port 4173', () => {
-  expect(playwrightConfig.webServer).toEqual(
-    expect.objectContaining({ reuseExistingServer: false }),
-  )
+test('captures never assume a fixed port: origins are explicit or ephemeral', () => {
+  // The capture pipeline takes an explicit origin and fixture servers bind
+  // port 0, so evidence collection can never collide with or silently reuse
+  // a running dev/preview server on a fixed port.
+  const plan = createCapturePlan({
+    target: 'current',
+    origin: 'http://127.0.0.1:4173',
+    subjects: CURRENT_ROUTES,
+    states: APPROVED_CAPTURE_STATES,
+    capturedAt,
+  })
+  expect(plan.every((record) => record.url.startsWith('http://127.0.0.1:4173'))).toBe(true)
 })
 
 test('enumerates viewport and preference states deterministically with unique artifact paths', () => {

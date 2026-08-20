@@ -1,0 +1,73 @@
+---
+interface Props {
+  message: string;
+  dismissible?: boolean;
+}
+
+const { message, dismissible = true } = Astro.props;
+---
+
+<div class="error-notice" role="status" aria-live="polite" tabindex="-1" data-error-notice>
+  <p>{message}</p>
+  {dismissible && <button type="button" data-dismiss-error aria-label="Dismiss this message">Dismiss</button>}
+</div>
+
+<script>
+  const dismissErrorNotice = () => {
+    document.querySelectorAll<HTMLElement>('[data-dismiss-error]').forEach((button) => {
+      if (button.dataset.bound === 'true') return;
+      button.dataset.bound = 'true';
+      button.addEventListener('click', () => {
+        const notice = button.closest<HTMLElement>('[data-error-notice]');
+        notice?.remove();
+        // Return focus to the main content so keyboard users are not stranded.
+        document.querySelector<HTMLElement>('#main-content')?.focus();
+      });
+    });
+  };
+  dismissErrorNotice();
+  document.addEventListener('astro:page-load', dismissErrorNotice);
+</script>
+
+<style>
+  .error-notice {
+    position: fixed;
+    inset-block-end: var(--space-6);
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    z-index: var(--z-toast, 80);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    max-inline-size: min(34rem, calc(100vw - 2rem));
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-accent);
+    background: var(--color-bg-raised, #101014);
+    color: var(--color-fg);
+  }
+
+  .error-notice p {
+    margin: 0;
+    font-size: var(--text-body);
+  }
+
+  .error-notice button {
+    min-block-size: 2.5rem;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-accent-text);
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .error-notice {
+      animation: error-notice-in 220ms ease-out both;
+    }
+  }
+
+  @keyframes error-notice-in {
+    from { opacity: 0; translate: -50% 0.5rem; }
+    to { opacity: 1; translate: -50% 0; }
+  }
+</style>

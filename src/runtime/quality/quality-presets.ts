@@ -13,7 +13,7 @@ export const QUALITY_PROFILES: Readonly<Record<QualityTier, QualityProfile>> =
       dprCap: 1,
       targetFps: 0,
       particleMultiplier: 0,
-      postProcessing: 'none',
+      postProcessing: 'off',
       textureBudgetMb: 0,
       updateCadence: 0,
     }),
@@ -22,40 +22,33 @@ export const QUALITY_PROFILES: Readonly<Record<QualityTier, QualityProfile>> =
       dprCap: 1,
       targetFps: 30,
       particleMultiplier: 0.35,
-      postProcessing: 'none',
-      textureBudgetMb: 24,
-      updateCadence: 2,
+      postProcessing: 'off',
+      textureBudgetMb: 64,
+      updateCadence: 30,
     }),
     medium: Object.freeze({
       tier: 'medium',
       dprCap: 1.5,
-      targetFps: 50,
-      particleMultiplier: 0.7,
-      postProcessing: 'low',
-      textureBudgetMb: 64,
-      updateCadence: 1,
+      targetFps: 45,
+      particleMultiplier: 0.65,
+      postProcessing: 'minimal',
+      textureBudgetMb: 128,
+      updateCadence: 30,
     }),
     high: Object.freeze({
       tier: 'high',
       dprCap: 2,
       targetFps: 60,
       particleMultiplier: 1,
-      postProcessing: 'standard',
-      textureBudgetMb: 128,
-      updateCadence: 1,
+      postProcessing: 'full',
+      textureBudgetMb: 256,
+      updateCadence: 60,
     }),
   });
 
 /** Ordered worst to best; adaptation only ever steps one place at a time. */
 export const TIER_LADDER: readonly QualityTier[] = Object.freeze([
   'static',
-  'low',
-  'medium',
-  'high',
-]);
-
-/** Tiers the adaptive controller may move between once WebGL is available. */
-export const ADAPTIVE_LADDER: readonly QualityTier[] = Object.freeze([
   'low',
   'medium',
   'high',
@@ -70,20 +63,33 @@ export function tierIndex(tier: QualityTier): number {
 }
 
 export function lowerTier(tier: QualityTier): QualityTier {
-  const index = ADAPTIVE_LADDER.indexOf(tier);
-  if (index <= 0) return ADAPTIVE_LADDER[0];
-  return ADAPTIVE_LADDER[index - 1];
+  const index = TIER_LADDER.indexOf(tier);
+  if (index <= 1) return TIER_LADDER[0];
+  return TIER_LADDER[index - 1];
 }
 
 export function higherTier(tier: QualityTier, ceiling: QualityTier): QualityTier {
-  const index = ADAPTIVE_LADDER.indexOf(tier);
-  if (index < 0) return tier;
-  const ceilingIndex = ADAPTIVE_LADDER.indexOf(ceiling);
-  if (ceilingIndex < 0) return tier;
-  return ADAPTIVE_LADDER[Math.min(index + 1, ceilingIndex)];
+  const index = TIER_LADDER.indexOf(tier);
+  const ceilingIndex = TIER_LADDER.indexOf(ceiling);
+  if (index < 0 || ceilingIndex < 0) return tier;
+  return TIER_LADDER[Math.min(index + 1, ceilingIndex)];
 }
 
-/** Frame budget in milliseconds, with a small allowance above the target. */
+/**
+ * Clamps a device pixel ratio to the active profile cap. Non-finite input
+ * collapses to the conservative value 1 before clamping, so a broken
+ * `devicePixelRatio` report can never inflate the render target.
+ */
+export function clampDevicePixelRatio(
+  devicePixelRatio: number,
+  profile: QualityProfile,
+): number {
+  const finiteDpr = Number.isFinite(devicePixelRatio) ? devicePixelRatio : 1;
+  const safeDpr = Math.max(0.75, finiteDpr);
+  return Math.min(safeDpr, profile.dprCap);
+}
+
+/** Frame budget in milliseconds for the target, with a small tolerance. */
 export function budgetMsFor(targetFps: number, tolerance = 1.25): number {
   if (targetFps <= 0) return Number.POSITIVE_INFINITY;
   return (1000 / targetFps) * tolerance;

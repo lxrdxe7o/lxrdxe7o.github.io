@@ -85,6 +85,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* The `hidden` attribute must always win over display rules for replaced
+   media elements, or static-fallback toggling leaves the canvas visible. */
+[hidden] {
+  display: none !important;
+}
+
 img,
 picture,
 video,

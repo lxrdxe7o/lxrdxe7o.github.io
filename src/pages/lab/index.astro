@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LabIndex from '../../components/lab/LabIndex.astro';
+---
+
+<BaseLayout title="Lab — lxrdxe7o" description="Original interactive experiments by Ishraful Haque" canonical="/lab" routeId="lab">
+  <header class="page-heading"><p>Lab</p><h1>Experiments</h1><p>Original interactive studies that share the site's one renderer. Every experiment keeps a static fallback and keyboard-accessible controls.</p></header>
+  <LabIndex />
+</BaseLayout>
+<style>
+  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(52vh, 30rem); align-content: center; }
+  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
+  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
+</style>

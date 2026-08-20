@@ -1,0 +1,28 @@
+---
+/**
+ * Global Index opener. A restrained persistent control that opens the
+ * full-screen route Index from anywhere.
+ */
+---
+
+<button type="button" class="index-opener" data-index-open aria-label="Open navigation index">
+  Index
+</button>
+
+<style>
+  .index-opener {
+    min-block-size: 2.75rem;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-fg);
+    cursor: pointer;
+    font-family: var(--font-family-mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .index-opener:hover {
+    border-color: var(--color-accent);
+  }
+</style>

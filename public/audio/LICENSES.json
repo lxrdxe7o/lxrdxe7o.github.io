@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "description": "Original synthesized sound layer for the lxrdxe7o portfolio. Every clip is produced deterministically by scripts/audio/build-audio.ts; no third-party samples are used.",
+  "license": "CC0-1.0",
+  "licenseText": "Dedicated to the public domain by Ishraful Haque (lxrdxe7o).",
+  "clips": [
+    { "id": "ambience-field", "author": "Ishraful Haque (lxrdxe7o)", "tool": "scripts/audio/build-audio.ts" },
+    { "id": "ambience-editorial", "author": "Ishraful Haque (lxrdxe7o)", "tool": "scripts/audio/build-audio.ts" },
+    { "id": "cue-hover", "author": "Ishraful Haque (lxrdxe7o)", "tool": "scripts/audio/build-audio.ts" },
+    { "id": "cue-select", "author": "Ishraful Haque (lxrdxe7o)", "tool": "scripts/audio/build-audio.ts" },
+    { "id": "transition-route", "author": "Ishraful Haque (lxrdxe7o)", "tool": "scripts/audio/build-audio.ts" }
+  ]
+}

@@ -1,0 +1,48 @@
+---
+/**
+ * Oversized identity block for the home route. `lxrdxe7o` dominates;
+ * the professional title and human signature clarify without competing.
+ */
+interface Props {
+  mark: string;
+  title: string;
+  name: string;
+}
+
+const { mark, title, name } = Astro.props;
+---
+
+<section class="hero-identity" aria-labelledby="hero-identity-mark">
+  <p class="hero-identity__eyebrow">Portfolio — {name}</p>
+  <h1 class="hero-identity__mark" id="hero-identity-mark">{mark}</h1>
+  <p class="hero-identity__title">{title}</p>
+</section>
+
+<style>
+  .hero-identity {
+    display: grid;
+    gap: var(--space-4);
+    min-block-size: min(78vh, 46rem);
+    align-content: center;
+  }
+
+  .hero-identity__eyebrow {
+    color: var(--color-accent-text);
+    font: var(--text-mono)/1.5 var(--font-family-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .hero-identity__mark {
+    max-inline-size: 12ch;
+    font-size: clamp(4.5rem, 16vw, 11rem);
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    text-wrap: nowrap;
+  }
+
+  .hero-identity__title {
+    color: var(--color-fg-muted);
+    font-size: var(--text-body-lg);
+  }
+</style>

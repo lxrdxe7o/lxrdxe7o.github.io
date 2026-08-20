@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('/blog is a native Writing surface with one canonical destination', async ({ page }) => {
   await page.goto('/blog');
   await expect(page.getByRole('heading', { level: 1, name: 'Writing' })).toBeVisible();
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', '/writing');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/writing$/);
   await expect(page.locator('a[href^="http"]').filter({ hasText: /blog/i })).toHaveCount(0);
 });
 

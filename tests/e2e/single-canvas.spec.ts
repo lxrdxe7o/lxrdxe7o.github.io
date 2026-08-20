@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { enterSilently } from './gate';
 
 test('Astro route changes preserve one canvas and one renderer instance', async ({ page }) => {
   await page.goto('/');
+  await enterSilently(page);
 
   const canvas = page.locator('[data-experience-canvas]');
   const host = page.locator('[data-experience-canvas-host]');
@@ -15,7 +17,7 @@ test('Astro route changes preserve one canvas and one renderer instance', async 
     return value;
   });
 
-  await page.locator('a[href="/about"]').first().click();
+  await page.locator('.primary-nav__link[href="/about"]').click();
   await page.waitForURL('**/about');
   await expect(page.locator('[data-experience-canvas]')).toHaveCount(1);
   await expect(page.locator('[data-experience-canvas]')).toHaveAttribute(
@@ -27,7 +29,7 @@ test('Astro route changes preserve one canvas and one renderer instance', async 
     '1',
   );
 
-  await page.locator('a[href="/projects"]').first().click();
+  await page.locator('.primary-nav__link[href="/projects"]').click();
   await page.waitForURL('**/projects');
   await expect(page.locator('[data-experience-canvas]')).toHaveCount(1);
   await expect(page.locator('[data-experience-canvas]')).toHaveAttribute(

@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { enterSilently } from '../e2e/gate';
 
 /**
  * Visual regression coverage for the static shell (Task 6): the persistent
@@ -26,6 +27,7 @@ const ROUTE_ARCHETYPES: Array<{ name: string; path: string }> = [
 
 async function gotoAndSettle(page: Page, path: string): Promise<void> {
   await page.goto(path, { waitUntil: 'networkidle' });
+  await enterSilently(page);
   await page.evaluate(async () => {
     if ('fonts' in document) await document.fonts.ready;
   });

@@ -1,13 +1,32 @@
 ---
 import BrandMark from './BrandMark.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
+import IndexOpener from './IndexOpener.astro';
 ---
-<a href="#main-content" class="skip-link">Skip to content</a>
 <header class="site-header">
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="site-header__inner">
     <BrandMark />
     <div class="site-header__end">
       <PrimaryNavigation />
+      <IndexOpener />
     </div>
   </div>
 </header>
+
+<style>
+  .skip-link {
+    position: absolute;
+    inset-block-start: var(--space-3);
+    inset-inline-start: var(--space-3);
+    z-index: var(--z-header);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-strong);
+    translate: 0 -200%;
+  }
+
+  .skip-link:focus {
+    translate: 0 0;
+  }
+</style>

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
+import { enterSilently } from '../e2e/gate';
 
 /**
  * Accessibility coverage for the persistent shell built in Task 6: skip
@@ -13,6 +14,7 @@ const MIN_TARGET_SIZE_PX = 24; // WCAG 2.2 SC 2.5.8 Target Size (Minimum)
 test.describe('Skip link', () => {
   test('is the first tab stop and points at the main landmark', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
     await page.keyboard.press('Tab');
 
     const focused = page.locator(':focus');
@@ -23,6 +25,7 @@ test.describe('Skip link', () => {
 
   test('activating it moves focus into the main landmark', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
 
@@ -34,6 +37,7 @@ test.describe('Skip link', () => {
 test.describe('Keyboard order', () => {
   test('tabs through skip link, brand mark, then primary nav in document order', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
 
     const order: string[] = [];
     for (let i = 0; i < 4; i += 1) {
@@ -52,6 +56,7 @@ test.describe('Keyboard order', () => {
 
   test('every focusable shell control shows a visible focus indicator', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
     const controls = ['.skip-link', '.brand-mark', '.primary-nav__link', '.footer-nav__link', '.social-links__link'];
 
     for (const selector of controls) {
@@ -70,6 +75,7 @@ test.describe('Keyboard order', () => {
 test.describe('Target size', () => {
   test('primary nav, footer nav, and social links meet the 24x24 CSS px minimum', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
     const selectors = ['.primary-nav__link', '.footer-nav__link', '.social-links__link', '.brand-mark'];
 
     for (const selector of selectors) {
@@ -90,6 +96,7 @@ test.describe('Target size', () => {
 test.describe('Contrast and automated checks', () => {
   test('header and footer have no automatically detectable contrast or focus violations', async ({ page }) => {
     await page.goto('/');
+    await enterSilently(page);
     const results = await new AxeBuilder({ page })
       .include('.site-header')
       .include('.site-footer')

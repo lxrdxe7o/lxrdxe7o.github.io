@@ -1,0 +1,64 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperimentFallback from '../../components/lab/ExperimentFallback.astro';
+import { getExperiments } from '../../lib/content/getExperiments';
+
+export async function getStaticPaths() {
+  const experiments = await getExperiments({ includeDrafts: false });
+  return experiments.map((experiment) => ({
+    params: { slug: experiment.data.slug },
+    props: { experiment },
+  }));
+}
+
+interface Props {
+  experiment: CollectionEntry<'lab'>;
+}
+
+const { experiment } = Astro.props;
+const { Content } = await render(experiment);
+---
+
+<BaseLayout
+  title={`${experiment.data.title} — Lab — lxrdxe7o`}
+  description={`Interactive experiment: ${experiment.data.title}`}
+  canonical={`/lab/${experiment.data.slug}`}
+  routeId={`lab-${experiment.data.slug}`}
+>
+  <article class="lab-experiment" data-lab-experiment data-experiment-id={experiment.data.id} data-seed={experiment.data.seed}>
+    <header class="lab-experiment__heading">
+      <p>Experiment</p>
+      <h1>{experiment.data.title}</h1>
+    </header>
+    <div class="lab-experiment__body">
+      <Content />
+    </div>
+    <ExperimentFallback title={experiment.data.title} />
+  </article>
+</BaseLayout>
+
+<style>
+  .lab-experiment__heading {
+    display: grid;
+    gap: var(--space-4);
+    min-block-size: min(48vh, 28rem);
+    align-content: center;
+  }
+  .lab-experiment__heading > p {
+    color: var(--color-accent-text);
+    font: var(--text-mono)/1.5 var(--font-family-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+  h1 {
+    max-inline-size: 16ch;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: -0.04em;
+  }
+  .lab-experiment__body {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-section);
+  }
+</style>

@@ -3,9 +3,9 @@
   "target": "current",
   "source": {
     "kind": "local-current-site",
-    "origin": "http://127.0.0.1:4173"
+    "origin": "http://localhost:4321"
   },
-  "generatedAt": "2026-07-21T00:46:56.163Z",
+  "generatedAt": "2026-08-17T21:49:55.451Z",
   "approvedStates": [
     {
       "id": "desktop-pointer",
@@ -88,1517 +88,983 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/",
+      "url": "http://localhost:4321/",
       "artifactPath": "artifacts/baseline/current/desktop-pointer/home.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "lxrdxe7o — Full-Stack Developer",
         "headings": [
-          "Full-Stack Developer\nBuilding the Future"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Xero.dev"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "home",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nAvailable for new opportunities\nFull-Stack Developer\nBuilding the Future\n\nHi, I'm Ishraful Haque. I build modern, performant, and scalable applications with a passion for clean code.\n\nView Projects\n→\nGet in Touch",
-        "pointerCursorTargets": 14,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "about",
-        "path": "/about",
-        "label": "About"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/about",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/about.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "SUPERDESIGN",
-          "SUPERDESIGN"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 2,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "about",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nSD—PROTOCOL 01\nINVITE ONLY\nEARLY ACCESS\nSUPERDESIGN\nSUPERDESIGN\n\nA minimalist, editorial-inspired platform designed to convey quiet confidence and exclusivity. Built for those who value typographic impact and structured grid alignment over generic elements.\n\nBatch 003 Filling\nSUBMIT\nZero spam. Pure utility.\nWAITING LIST • WAITING LIST •",
-        "pointerCursorTargets": 13,
-        "scrollHeight": 1093,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          97,
-          193
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "projects",
-        "path": "/projects",
-        "label": "Projects"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/projects",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/projects.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚙Featured Projects",
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
           "KrakenVim",
-          "dotfiles",
-          "xero-shell",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
           "DeadDrop",
-          "hachi",
-          "mikeneko"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 0,
-        "audioElementCount": 0,
-        "routeTheme": "projects",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nMY WORK\n⚙Featured Projects\nKrakenVim\n\nA highly customizable Neovim configuration framework with LSP support, fuzzy finding, and a focus on productive workflows.\n\nLua\nNeovim\nLSP\nView on GitHub →\ndotfiles\n\nMy personal dotfiles repository — automated, modular, and extensible configuration management for Linux and macOS.\n\nBash\nZsh\nGit\nView on GitHub →\nxero-shell\n\nA feature-rich bash framework providing utilities, theming, and plugin management for terminal workflows.\n\nBash\nShell\nTerminal\nView on GitHub →\nDeadDrop\n\nA secure, anonymous message-sharing service with end-to-end encryption and self-destructing notes.\n\nTypeScript\nReact\nNode.js\nView on GitHub →\nhachi\n\nA lightweight HTTP server library in Rust with async support, routing, and middleware composition.\n\nRust\nAsync\nHTTP\nView on GitHub →\nmikeneko\n\nA modern IRC client built with Rust and a terminal-native TUI, featuring async communication and plugin support.\n\nRust\nTUI\nIRC\nView on GitHub →",
-        "pointerCursorTargets": 18,
-        "scrollHeight": 959,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          30,
-          59
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "experience",
-        "path": "/experience",
-        "label": "Experience"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/experience",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/experience.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◈Professional Journey",
-          "Full-Stack Developer",
-          "Frontend Developer",
-          "Introduction to Programming"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "experience",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nTIMELINE\n◈Professional Journey\n2023 - PRESENT\nFull-Stack Developer\nFreelance / Personal Projects\n\nBuilding modern web applications, contributing to open source, and exploring systems programming with Rust.\n\n2021 - 2023\nFrontend Developer\nVarious Projects\n\nDeveloped responsive web applications using React, TypeScript, and modern CSS frameworks.\n\n2020\nIntroduction to Programming\nSelf-taught\n\nStarted with Python and C, discovered a passion for systems programming and open source.",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "skills",
-        "path": "/skills",
-        "label": "Skills"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/skills",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/skills.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◉Technical Arsenal",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND",
-          "DEVOPS",
-          "TOOLS",
-          "3D & GRAPHICS"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "skills",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nTECHNOLOGIES\n◉Technical Arsenal\nLANGUAGES\nTypeScript\nRust\nPython\nLua\nBash\nGo\nFRONTEND\nReact\nNext.js\nThree.js\nFramer Motion\nTailwind CSS\nSASS\nBACKEND\nNode.js\nExpress\nFastAPI\nPostgreSQL\nRedis\nGraphQL\nDEVOPS\nDocker\nGitHub Actions\nNginx\nLinux\nVPS Management\nTOOLS\nNeovim\nVS Code\nGit\nLinux\nArch BTW\n3D & GRAPHICS\nThree.js\nReact Three Fiber\nGLSL\nBlender",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "uses",
-        "path": "/uses",
-        "label": "Uses"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/uses",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/uses.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⬡What I Use",
-          "Hardware",
-          "Software",
-          "Services",
-          "Workflow"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "uses",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nMY SETUP\n⬡What I Use\nHardware\nMacBook Pro M3\n\n16GB RAM, primary work machine\n\nLG 27\" 4K Monitor\n\nExternal display for productivity\n\nKeychron Q1 Pro\n\nMechanical keyboard with Gateron switches\n\nSoftware\nNeovim\n\nPrimary editor with custom configuration\n\nVS Code\n\nFor collaboration and debugging\n\nAlacritty\n\nGPU-accelerated terminal emulator\n\nArc Browser\n\nDaily driver for web browsing\n\nServices\nGitHub\n\nVersion control and collaboration\n\nVercel\n\nFrontend deployments and blog hosting\n\nCloudflare\n\nDNS and CDN management\n\nWorkflow\nZsh + Starship\n\nShell with minimal prompt\n\nTmux\n\nTerminal multiplexing\n\nObsidian\n\nNote-taking and knowledge management",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1195,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          148,
-          295
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/e7338ba1-b70b-4da6-ad6a-0db066d14c3c:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "notes",
-        "path": "/notes",
-        "label": "Notes"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/notes",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/notes.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◈Notes & Snippets",
-          "Rust Async Patterns",
-          "Neovim Config Deep Dive",
-          "Three.js Shader Tricks",
-          "TypeScript Performance Tips"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "notes",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nTHOUGHTS\n◈Notes & Snippets\nRust Async Patterns\n\nDeep dive into async/await, tokio runtime, and building concurrent systems in Rust.\n\n2025-03-15\nRust\nAsync\nSystems\nNeovim Config Deep Dive\n\nBuilding a productive Neovim configuration from scratch with LSP, treesitter, and custom keymaps.\n\n2025-02-28\nNeovim\nLua\nProductivity\nThree.js Shader Tricks\n\nAdvanced GLSL techniques for custom shaders, post-processing, and visual effects in Three.js.\n\n2025-01-10\nThree.js\nGLSL\nGraphics\nTypeScript Performance Tips\n\nOptimizing TypeScript codebases with strict mode, conditional types, and build performance.\n\n2024-12-05\nTypeScript\nPerformance",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/a7362faa-4f6f-4327-bc54-fe3dfd296cce:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "now",
-        "path": "/now",
-        "label": "Now"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/now",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/now.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚡What I'm Working On",
-          "Building",
-          "Learning",
-          "Reading"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "now",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nCURRENTLY\n⚡What I'm Working On\nBuilding\nThis Portfolio\n\nFull redesign with TanStack suite and unique 3D scenes per page\n\nhachi\n\nHTTP server library in Rust with async support\n\nLearning\nRust WASM\n\nWebAssembly compilation and browser interop\n\nSystem Design\n\nDistributed systems patterns and architecture\n\nReading\nStructure and Interpretation of Computer Programs (SICP)\n\nClassic CS text on computation and programming\n\nThe Rust Programming Language\n\nDeepening Rust knowledge",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 959,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          30,
-          59
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "contact",
-        "path": "/contact",
-        "label": "Contact"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/contact",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/contact.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◇Let's Connect"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "contact",
-        "focusedElement": "Ishraful Haque\n✦\nHome\n⚛\nAbout\n⚙\nProjects\n◈\nExperience\n◉\nSkills\n⬡\nUses\n◈\nNotes\n⚡\nNow\n◇\nContact\n✎\nBlog\nGET IN TOUCH\n◇Let's Connect\n\nI'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!\n\n✉\nEMAIL\nishrak7106@gmail.com\n⌥\nGITHUB\ngithub.com/lxrdxe7o\n⬡\nLINKEDIN\nlinkedin.com/in/ixrdxe7o\n𝕏\nTWITTER\ntwitter.com/lxrdxe7o",
-        "pointerCursorTargets": 16,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "blog",
-        "path": "/blog",
-        "label": "Blog"
-      },
-      "state": {
-        "id": "desktop-pointer",
-        "label": "Desktop pointer",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "pointer",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "https://lxrdxe7o.vercel.app/",
-      "artifactPath": "artifacts/baseline/current/desktop-pointer/blog.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "ARCHIVAL // XERO.DEV",
-        "headings": [
-          "TECHNICAL STATS",
-          "[MASKED DYNAMIC HEADING]",
-          "SYSTEMS & TOOLS",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND & INFRA",
-          "INTERESTS",
-          "DOTFILES",
-          "XERO-SHELL",
-          "DEADDROP",
-          "HACHI",
-          "KRAKENVIM",
-          "SHIRO-NEKOO-115",
-          "TORA-NEKO-311",
-          "MIKENEKO",
-          "KURO-NEKOO-215"
-        ],
-        "navigationLabels": [
-          "FILE NO. 01 //\nPROJECTS",
-          "FILE NO. 02 //\nABOUT",
-          "FILE NO. 03 //\nLAB",
-          "FILE NO. 04 //\nCONTACT",
-          "☾"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 0,
-        "audioElementCount": 0,
-        "routeTheme": null,
-        "focusedElement": "TECHNICAL STATS\nCURRENT TIME:\n[masked current time]\nLOCATION:\nDHAKA, BD\nSYSTEM:\nARCH LINUX KERNEL 6.18\nPROJECTS:\n9\nTECH STACK:\nTYPE SCRIPT\nNEXT.JS 16\nREACT 19\nCSS MODULES\nBUILD STATUS:\nSTABLE :: v3.0.2\nFILE NO. 01 //\nPROJECTS\nFILE NO. 02 //\nABOUT\nFILE NO. 03 //\nLAB\nFILE NO. 04 //\nCONTACT\n☾\nREF: XERO-DEV-07\nClass: ARCHIVAL\n[MASKED DYNAMIC HEADING]\n\n[masked dynamic text]\n\nDECLASSIFIED\nEVIDENCE BOARD // SKILLS & EXPERTISE\nEXHIBIT A\nSYSTEMS & TOOLS\nFIELD NOTES\nArch Linux\nHyprland WM\nNeovim\nTmux\nZsh\nREF-A001\nPG. 1/5\nEXHIBIT B\nLANGUAGES\nDOSSIER\nTypeScript\nRust\nLua\nPython\nGo\nREF-B002\nPG. 2/5\nEXHIBIT C\nFRONTEND\nINTEL REPORT\nReact 19\nNext.js 16\nCSS Modules\nFramer Motion\nThree.js\nREF-C003\nPG. 3/5\nEXHIBIT D\nBACKEND & INFRA\nOPERATIONS\nNode.js\nDocker\nPostgreSQL\nRedis\nNginx\nREF-D004\nPG. 4/5\nEXHIBIT E\nINTERESTS\nPERSONAL FILE\nCreative Coding\nSecurity Research\nUI/UX Design\nOpen Source\nSystem Design\nREF-E005\nPG. 5/5\nPRJ-080\nDOTFILES\n\nSystem configuration files for Neovim, Tmux, Zsh. Maintained for efficiency and aesthetics.\n\nCLASSIFIED\n// REV.00\nPRJ-081\nXERO-SHELL\n\nCustom shell environment with advanced autocompletion and theming.\n\nAPPROVED\nCLASSIFIED\n// REV.01\nPRJ-082\nDEADDROP\n\nSecure, ephemeral file sharing service with end-to-end encryption.\n\nAPPROVED\nCLASSIFIED\n// REV.02\nPRJ-083\nHACHI\n\nExperimental neural network project focusing on pattern recognition.\n\nCLASSIFIED\n// REV.03\nPRJ-084\nKRAKENVIM\n\nPerformance-oriented Neovim distribution. Lua-based configuration.\n\nAPPROVED\nCLASSIFIED\n// REV.04\nPRJ-085\nSHIRO-NEKOO-115\n\nFrontend design system exploration. White cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.00\nPRJ-086\nTORA-NEKO-311\n\nBackend microservices architecture prototype. Tiger cat theme.\n\nCLASSIFIED\n// REV.01\nPRJ-087\nMIKENEKO\n\nFull-stack application boilerplate. Calico cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.02\nPRJ-088\nKURO-NEKOO-215\n\nSecurity audit tools and scripts. Black cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.03",
-        "pointerCursorTargets": 2,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [
-          "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
-        ],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "home",
-        "path": "/",
-        "label": "Home"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/home.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "Full-Stack Developer\nBuilding the Future"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "home",
-        "focusedElement": "Ishraful Haque\nAvailable for new opportunities\nFull-Stack Developer\nBuilding the Future\n\nHi, I'm Ishraful Haque. I build modern, performant, and scalable applications with a passion for clean code.\n\nView Projects\n→\nGet in Touch",
-        "pointerCursorTargets": 14,
-        "scrollHeight": 844,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "about",
-        "path": "/about",
-        "label": "About"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/about",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/about.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "SUPER\nDESIGN",
-          "SUPER\nDESIGN"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 2,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "about",
-        "focusedElement": "Ishraful Haque\nSD—PROTOCOL 01\nINVITE ONLY\nEARLY ACCESS\nSUPER\nDESIGN\nSUPER\nDESIGN\n\nA minimalist, editorial-inspired platform designed to convey quiet confidence and exclusivity. Built for those who value typographic impact and structured grid alignment over generic elements.\n\nBatch 003 Filling\nSUBMIT\nZero spam. Pure utility.\nWAITING LIST • WAITING LIST •",
-        "pointerCursorTargets": 13,
-        "scrollHeight": 1161,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          159,
-          317
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "projects",
-        "path": "/projects",
-        "label": "Projects"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/projects",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/projects.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚙Featured Projects",
-          "KrakenVim",
-          "dotfiles",
-          "xero-shell",
-          "DeadDrop",
-          "hachi",
-          "mikeneko"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 0,
-        "audioElementCount": 0,
-        "routeTheme": "projects",
-        "focusedElement": "Ishraful Haque\nMY WORK\n⚙Featured Projects\nKrakenVim\n\nA highly customizable Neovim configuration framework with LSP support, fuzzy finding, and a focus on productive workflows.\n\nLua\nNeovim\nLSP\nView on GitHub →\ndotfiles\n\nMy personal dotfiles repository — automated, modular, and extensible configuration management for Linux and macOS.\n\nBash\nZsh\nGit\nView on GitHub →\nxero-shell\n\nA feature-rich bash framework providing utilities, theming, and plugin management for terminal workflows.\n\nBash\nShell\nTerminal\nView on GitHub →\nDeadDrop\n\nA secure, anonymous message-sharing service with end-to-end encryption and self-destructing notes.\n\nTypeScript\nReact\nNode.js\nView on GitHub →\nhachi\n\nA lightweight HTTP server library in Rust with async support, routing, and middleware composition.\n\nRust\nAsync\nHTTP\nView on GitHub →\nmikeneko\n\nA modern IRC client built with Rust and a terminal-native TUI, featuring async communication and plugin support.\n\nRust\nTUI\nIRC\nView on GitHub →",
-        "pointerCursorTargets": 18,
-        "scrollHeight": 1812,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          484,
-          968
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "experience",
-        "path": "/experience",
-        "label": "Experience"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/experience",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/experience.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◈Professional Journey",
-          "Full-Stack Developer",
-          "Frontend Developer",
-          "Introduction to Programming"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "experience",
-        "focusedElement": "Ishraful Haque\nTIMELINE\n◈Professional Journey\n2023 - PRESENT\nFull-Stack Developer\nFreelance / Personal Projects\n\nBuilding modern web applications, contributing to open source, and exploring systems programming with Rust.\n\n2021 - 2023\nFrontend Developer\nVarious Projects\n\nDeveloped responsive web applications using React, TypeScript, and modern CSS frameworks.\n\n2020\nIntroduction to Programming\nSelf-taught\n\nStarted with Python and C, discovered a passion for systems programming and open source.",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 844,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "skills",
-        "path": "/skills",
-        "label": "Skills"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/skills",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/skills.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◉Technical Arsenal",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND",
-          "DEVOPS",
-          "TOOLS",
-          "3D & GRAPHICS"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "skills",
-        "focusedElement": "Ishraful Haque\nTECHNOLOGIES\n◉Technical Arsenal\nLANGUAGES\nTypeScript\nRust\nPython\nLua\nBash\nGo\nFRONTEND\nReact\nNext.js\nThree.js\nFramer Motion\nTailwind CSS\nSASS\nBACKEND\nNode.js\nExpress\nFastAPI\nPostgreSQL\nRedis\nGraphQL\nDEVOPS\nDocker\nGitHub Actions\nNginx\nLinux\nVPS Management\nTOOLS\nNeovim\nVS Code\nGit\nLinux\nArch BTW\n3D & GRAPHICS\nThree.js\nReact Three Fiber\nGLSL\nBlender",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1134,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          145,
-          290
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "uses",
-        "path": "/uses",
-        "label": "Uses"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/uses",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/uses.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⬡What I Use",
-          "Hardware",
-          "Software",
-          "Services",
-          "Workflow"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "uses",
-        "focusedElement": "Ishraful Haque\nMY SETUP\n⬡What I Use\nHardware\nMacBook Pro M3\n\n16GB RAM, primary work machine\n\nLG 27\" 4K Monitor\n\nExternal display for productivity\n\nKeychron Q1 Pro\n\nMechanical keyboard with Gateron switches\n\nSoftware\nNeovim\n\nPrimary editor with custom configuration\n\nVS Code\n\nFor collaboration and debugging\n\nAlacritty\n\nGPU-accelerated terminal emulator\n\nArc Browser\n\nDaily driver for web browsing\n\nServices\nGitHub\n\nVersion control and collaboration\n\nVercel\n\nFrontend deployments and blog hosting\n\nCloudflare\n\nDNS and CDN management\n\nWorkflow\nZsh + Starship\n\nShell with minimal prompt\n\nTmux\n\nTerminal multiplexing\n\nObsidian\n\nNote-taking and knowledge management",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1888,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          522,
-          1044
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/a37938d3-8fe1-4708-8da9-f58640345c25:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "notes",
-        "path": "/notes",
-        "label": "Notes"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/notes",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/notes.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◈Notes & Snippets",
-          "Rust Async Patterns",
-          "Neovim Config Deep Dive",
-          "Three.js Shader Tricks",
-          "TypeScript Performance Tips"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "notes",
-        "focusedElement": "Ishraful Haque\nTHOUGHTS\n◈Notes & Snippets\nRust Async Patterns\n\nDeep dive into async/await, tokio runtime, and building concurrent systems in Rust.\n\n2025-03-15\nRust\nAsync\nSystems\nNeovim Config Deep Dive\n\nBuilding a productive Neovim configuration from scratch with LSP, treesitter, and custom keymaps.\n\n2025-02-28\nNeovim\nLua\nProductivity\nThree.js Shader Tricks\n\nAdvanced GLSL techniques for custom shaders, post-processing, and visual effects in Three.js.\n\n2025-01-10\nThree.js\nGLSL\nGraphics\nTypeScript Performance Tips\n\nOptimizing TypeScript codebases with strict mode, conditional types, and build performance.\n\n2024-12-05\nTypeScript\nPerformance",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 949,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          53,
-          105
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/7e455bde-cd92-428c-9f48-27364e92f32a:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "now",
-        "path": "/now",
-        "label": "Now"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/now",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/now.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚡What I'm Working On",
-          "Building",
-          "Learning",
-          "Reading"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "now",
-        "focusedElement": "Ishraful Haque\nCURRENTLY\n⚡What I'm Working On\nBuilding\nThis Portfolio\n\nFull redesign with TanStack suite and unique 3D scenes per page\n\nhachi\n\nHTTP server library in Rust with async support\n\nLearning\nRust WASM\n\nWebAssembly compilation and browser interop\n\nSystem Design\n\nDistributed systems patterns and architecture\n\nReading\nStructure and Interpretation of Computer Programs (SICP)\n\nClassic CS text on computation and programming\n\nThe Rust Programming Language\n\nDeepening Rust knowledge",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1175,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          166,
-          331
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "contact",
-        "path": "/contact",
-        "label": "Contact"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/contact",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/contact.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◇Let's Connect"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦Home",
-          "⚛About",
-          "⚙Projects",
-          "◈Experience",
-          "◉Skills",
-          "⬡Uses",
-          "◈Notes",
-          "⚡Now",
-          "◇Contact",
-          "✎Blog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "contact",
-        "focusedElement": "Ishraful Haque\nGET IN TOUCH\n◇Let's Connect\n\nI'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!\n\n✉\nEMAIL\nishrak7106@gmail.com\n⌥\nGITHUB\ngithub.com/lxrdxe7o\n⬡\nLINKEDIN\nlinkedin.com/in/ixrdxe7o\n𝕏\nTWITTER\ntwitter.com/lxrdxe7o",
-        "pointerCursorTargets": 16,
-        "scrollHeight": 844,
-        "viewportHeight": 844,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": true,
-        "touchPoints": 1,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "blog",
-        "path": "/blog",
-        "label": "Blog"
-      },
-      "state": {
-        "id": "mobile-touch",
-        "label": "Mobile touch",
-        "viewport": {
-          "width": 390,
-          "height": 844
-        },
-        "input": "touch",
-        "reducedMotion": "no-preference",
-        "touch": true,
-        "soundGate": false
-      },
-      "url": "https://lxrdxe7o.vercel.app/",
-      "artifactPath": "artifacts/baseline/current/mobile-touch/blog.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "ARCHIVAL // XERO.DEV",
-        "headings": [
-          "TECHNICAL STATS",
-          "[MASKED DYNAMIC HEADING]",
-          "SYSTEMS & TOOLS",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND & INFRA",
-          "INTERESTS",
-          "DOTFILES",
-          "XERO-SHELL",
-          "DEADDROP",
-          "HACHI",
-          "KRAKENVIM",
-          "SHIRO-NEKOO-115",
-          "TORA-NEKO-311",
-          "MIKENEKO",
-          "KURO-NEKOO-215"
-        ],
-        "navigationLabels": [
-          "PROJECTS",
+          "WORK",
           "ABOUT",
+          "Work",
+          "About",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
           "LAB",
-          "CONTACT",
-          "☾"
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 1,
+          "nav": 6,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
-        "canvasCount": 0,
+        "canvasCount": 1,
         "audioElementCount": 0,
         "routeTheme": null,
-        "focusedElement": "TECHNICAL STATS\n▼\nCURRENT TIME:\n[masked current time]\nLOCATION:\nDHAKA, BD\nSYSTEM:\nARCH LINUX KERNEL 6.18\nPROJECTS:\n9\nTECH STACK:\nTYPE SCRIPT\nNEXT.JS 16\nREACT 19\nCSS MODULES\nBUILD STATUS:\nSTABLE :: v3.0.2\nPROJECTS\nABOUT\nLAB\nCONTACT\n☾\nREF: XERO-DEV-07\nClass: ARCHIVAL\n[MASKED DYNAMIC HEADING]\n\n[masked dynamic text]\n\nDECLASSIFIED\nEVIDENCE BOARD // SKILLS & EXPERTISE\nEXHIBIT A\nSYSTEMS & TOOLS\nFIELD NOTES\nArch Linux\nHyprland WM\nNeovim\nTmux\nZsh\nREF-A001\nPG. 1/5\nEXHIBIT B\nLANGUAGES\nDOSSIER\nTypeScript\nRust\nLua\nPython\nGo\nREF-B002\nPG. 2/5\nEXHIBIT C\nFRONTEND\nINTEL REPORT\nReact 19\nNext.js 16\nCSS Modules\nFramer Motion\nThree.js\nREF-C003\nPG. 3/5\nEXHIBIT D\nBACKEND & INFRA\nOPERATIONS\nNode.js\nDocker\nPostgreSQL\nRedis\nNginx\nREF-D004\nPG. 4/5\nEXHIBIT E\nINTERESTS\nPERSONAL FILE\nCreative Coding\nSecurity Research\nUI/UX Design\nOpen Source\nSystem Design\nREF-E005\nPG. 5/5\nPRJ-080\nDOTFILES\n\nSystem configuration files for Neovim, Tmux, Zsh. Maintained for efficiency and aesthetics.\n\nCLASSIFIED\n// REV.00\nPRJ-081\nXERO-SHELL\n\nCustom shell environment with advanced autocompletion and theming.\n\nAPPROVED\nCLASSIFIED\n// REV.01\nPRJ-082\nDEADDROP\n\nSecure, ephemeral file sharing service with end-to-end encryption.\n\nAPPROVED\nCLASSIFIED\n// REV.02\nPRJ-083\nHACHI\n\nExperimental neural network project focusing on pattern recognition.\n\nCLASSIFIED\n// REV.03\nPRJ-084\nKRAKENVIM\n\nPerformance-oriented Neovim distribution. Lua-based configuration.\n\nAPPROVED\nCLASSIFIED\n// REV.04\nPRJ-085\nSHIRO-NEKOO-115\n\nFrontend design system exploration. White cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.00\nPRJ-086\nTORA-NEKO-311\n\nBackend microservices architecture prototype. Tiger cat theme.\n\nCLASSIFIED\n// REV.01\nPRJ-087\nMIKENEKO\n\nFull-stack application boilerplate. Calico cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.02\nPRJ-088\nKURO-NEKOO-215\n\nSecurity audit tools and scripts. Black cat theme.\n\nAPPROVED\nCLASSIFIED\n// REV.03",
-        "pointerCursorTargets": 15,
-        "scrollHeight": 844,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 1903,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          502,
+          1003
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "about",
+        "path": "/about",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/about",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/about.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "About — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Ishraful Haque",
+          "Ishraful Haque",
+          "Credits"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 2389,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          745,
+          1489
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "projects",
+        "path": "/projects",
+        "label": "Projects"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/projects",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/projects.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Work — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Projects"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 44,
+        "scrollHeight": 3679,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          1390,
+          2779
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "experience",
+        "path": "/experience",
+        "label": "Experience"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/experience",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/experience.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Experience — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Project record",
+          "Selected evidence",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 2213,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          657,
+          1313
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "skills",
+        "path": "/skills",
+        "label": "Skills"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/skills",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/skills.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Skills — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Capabilities in context",
+          "Evidence, not scores",
+          "Web publishing",
+          "Developer tooling",
+          "Terminal and systems work",
+          "Toolbox"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 41,
+        "scrollHeight": 2414,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          757,
+          1514
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "uses",
+        "path": "/uses",
+        "label": "Uses"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/uses",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/uses.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Uses — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Documented tools",
+          "Documented setup",
+          "EDITOR",
+          "WORKFLOW",
+          "PLATFORM",
+          "SERVICE"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 2118,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          609,
+          1218
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "notes",
+        "path": "/notes",
+        "label": "Notes"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/notes",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/notes.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Notes — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Notes",
+          "PUBLISHED NOTES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          277,
+          553
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "now",
+        "path": "/now",
+        "label": "Now"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/now",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/now.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Now — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Current public work",
+          "What is current"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 35,
+        "scrollHeight": 1630,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          365,
+          730
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "contact",
+        "path": "/contact",
+        "label": "Contact"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/contact",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/contact.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Contact — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "One direct path",
+          "Contact Ishraful Haque"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 1887,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          494,
+          987
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "blog",
+        "path": "/blog",
+        "label": "Blog"
+      },
+      "state": {
+        "id": "desktop-pointer",
+        "label": "Desktop pointer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "pointer",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/blog",
+      "artifactPath": "artifacts/baseline/current/desktop-pointer/blog.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Writing — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Writing",
+          "PUBLISHED ARTICLES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          277,
+          553
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/home.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "lxrdxe7o — Full-Stack Developer",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Xero.dev"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "Work",
+          "About",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 1,
+          "nav": 6,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 1842,
         "viewportHeight": 844,
         "horizontalOverflow": false,
         "reducedMotionMatches": false,
@@ -1606,14 +1072,842 @@
         "touchPoints": 1,
         "scrollMilestones": [
           0,
-          0,
-          0
+          499,
+          998
         ],
         "consoleErrors": [],
         "pageErrors": [],
-        "failedRequests": [
-          "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "about",
+        "path": "/about",
+        "label": "About"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/about",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/about.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "About — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Ishraful Haque",
+          "Ishraful Haque",
+          "Credits"
         ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 2372,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          764,
+          1528
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "projects",
+        "path": "/projects",
+        "label": "Projects"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/projects",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/projects.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Work — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Projects"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 44,
+        "scrollHeight": 3008,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          1082,
+          2164
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "experience",
+        "path": "/experience",
+        "label": "Experience"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/experience",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/experience.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Experience — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Project record",
+          "Selected evidence",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 2121,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          639,
+          1277
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "skills",
+        "path": "/skills",
+        "label": "Skills"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/skills",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/skills.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Skills — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Capabilities in context",
+          "Evidence, not scores",
+          "Web publishing",
+          "Developer tooling",
+          "Terminal and systems work",
+          "Toolbox"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 41,
+        "scrollHeight": 2981,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          1069,
+          2137
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "uses",
+        "path": "/uses",
+        "label": "Uses"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/uses",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/uses.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Uses — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Documented tools",
+          "Documented setup",
+          "EDITOR",
+          "WORKFLOW",
+          "PLATFORM",
+          "SERVICE"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 2229,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          693,
+          1385
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "notes",
+        "path": "/notes",
+        "label": "Notes"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/notes",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/notes.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Notes — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Notes",
+          "PUBLISHED NOTES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1343,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          250,
+          499
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "now",
+        "path": "/now",
+        "label": "Now"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/now",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/now.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Now — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Current public work",
+          "What is current"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 35,
+        "scrollHeight": 1538,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          347,
+          694
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "contact",
+        "path": "/contact",
+        "label": "Contact"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/contact",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/contact.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Contact — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "One direct path",
+          "Contact Ishraful Haque"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 1725,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          441,
+          881
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "blog",
+        "path": "/blog",
+        "label": "Blog"
+      },
+      "state": {
+        "id": "mobile-touch",
+        "label": "Mobile touch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "reducedMotion": "no-preference",
+        "touch": true,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/blog",
+      "artifactPath": "artifacts/baseline/current/mobile-touch/blog.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Writing — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Writing",
+          "PUBLISHED ARTICLES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "Enter without sound",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1369,
+        "viewportHeight": 844,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": true,
+        "touchPoints": 1,
+        "scrollMilestones": [
+          0,
+          263,
+          525
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
         "readiness": {
           "fontsReady": true,
           "networkIdle": true,
@@ -1640,40 +1934,60 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/",
+      "url": "http://localhost:4321/",
       "artifactPath": "artifacts/baseline/current/desktop-keyboard/home.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "lxrdxe7o — Full-Stack Developer",
         "headings": [
-          "Full-Stack Developer\nBuilding the Future"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Xero.dev"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "Work",
+          "About",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 1,
+          "nav": 6,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "home",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 14,
-        "scrollHeight": 900,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 1903,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": false,
@@ -1681,8 +1995,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          0,
-          0
+          502,
+          1003
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -1713,41 +2027,59 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/about",
+      "url": "http://localhost:4321/about",
       "artifactPath": "artifacts/baseline/current/desktop-keyboard/about.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "About — Ishraful Haque",
         "headings": [
-          "SUPERDESIGN",
-          "SUPERDESIGN"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Ishraful Haque",
+          "Ishraful Haque",
+          "Credits"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 2,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "about",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 13,
-        "scrollHeight": 1093,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 2389,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": false,
@@ -1755,8 +2087,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          97,
-          193
+          745,
+          1489
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -1787,46 +2119,57 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/projects",
+      "url": "http://localhost:4321/projects",
       "artifactPath": "artifacts/baseline/current/desktop-keyboard/projects.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Work — lxrdxe7o",
         "headings": [
-          "⚙Featured Projects",
-          "KrakenVim",
-          "dotfiles",
-          "xero-shell",
-          "DeadDrop",
-          "hachi",
-          "mikeneko"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Projects"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
-        "canvasCount": 0,
+        "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "projects",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 18,
-        "scrollHeight": 959,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 44,
+        "scrollHeight": 3679,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": false,
@@ -1834,8 +2177,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          30,
-          59
+          1390,
+          2779
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -1866,743 +2209,708 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/experience",
+      "url": "http://localhost:4321/experience",
       "artifactPath": "artifacts/baseline/current/desktop-keyboard/experience.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Experience — Ishraful Haque",
         "headings": [
-          "◈Professional Journey",
-          "Full-Stack Developer",
-          "Frontend Developer",
-          "Introduction to Programming"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "experience",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "skills",
-        "path": "/skills",
-        "label": "Skills"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/skills",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/skills.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◉Technical Arsenal",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND",
-          "DEVOPS",
-          "TOOLS",
-          "3D & GRAPHICS"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "skills",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "uses",
-        "path": "/uses",
-        "label": "Uses"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/uses",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/uses.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⬡What I Use",
-          "Hardware",
-          "Software",
-          "Services",
-          "Workflow"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "uses",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1195,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          148,
-          295
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/4d48f892-6d77-44b3-824d-47f1e7a7d275:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "notes",
-        "path": "/notes",
-        "label": "Notes"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/notes",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/notes.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◈Notes & Snippets",
-          "Rust Async Patterns",
-          "Neovim Config Deep Dive",
-          "Three.js Shader Tricks",
-          "TypeScript Performance Tips"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "notes",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/bff98b7f-800e-4507-88cb-65d485c0fabd:18:19)"
-        ],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "now",
-        "path": "/now",
-        "label": "Now"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/now",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/now.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚡What I'm Working On",
-          "Building",
-          "Learning",
-          "Reading"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "now",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 959,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          30,
-          59
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "contact",
-        "path": "/contact",
-        "label": "Contact"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/contact",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/contact.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "◇Let's Connect"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "contact",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 16,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "blog",
-        "path": "/blog",
-        "label": "Blog"
-      },
-      "state": {
-        "id": "desktop-keyboard",
-        "label": "Desktop keyboard-only",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "no-preference",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "https://lxrdxe7o.vercel.app/",
-      "artifactPath": "artifacts/baseline/current/desktop-keyboard/blog.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "ARCHIVAL // XERO.DEV",
-        "headings": [
-          "TECHNICAL STATS",
-          "[MASKED DYNAMIC HEADING]",
-          "SYSTEMS & TOOLS",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND & INFRA",
-          "INTERESTS",
-          "DOTFILES",
-          "XERO-SHELL",
-          "DEADDROP",
-          "HACHI",
-          "KRAKENVIM",
-          "SHIRO-NEKOO-115",
-          "TORA-NEKO-311",
-          "MIKENEKO",
-          "KURO-NEKOO-215"
-        ],
-        "navigationLabels": [
-          "FILE NO. 01 //\nPROJECTS",
-          "FILE NO. 02 //\nABOUT",
-          "FILE NO. 03 //\nLAB",
-          "FILE NO. 04 //\nCONTACT",
-          "☾"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 0,
-        "audioElementCount": 0,
-        "routeTheme": null,
-        "focusedElement": "FILE NO. 02 //\nABOUT",
-        "pointerCursorTargets": 2,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": false,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [
-          "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
-        ],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "home",
-        "path": "/",
-        "label": "Home"
-      },
-      "state": {
-        "id": "desktop-reduced-motion",
-        "label": "Desktop reduced motion",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "reduce",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/",
-      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/home.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "Full-Stack Developer\nBuilding the Future"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "home",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 14,
-        "scrollHeight": 900,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": true,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          0,
-          0
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "about",
-        "path": "/about",
-        "label": "About"
-      },
-      "state": {
-        "id": "desktop-reduced-motion",
-        "label": "Desktop reduced motion",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "reduce",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/about",
-      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/about.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "SUPERDESIGN",
-          "SUPERDESIGN"
-        ],
-        "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
-        ],
-        "landmarkCounts": {
-          "header": 0,
-          "nav": 2,
-          "main": 1,
-          "footer": 0
-        },
-        "canvasCount": 1,
-        "audioElementCount": 0,
-        "routeTheme": "about",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 13,
-        "scrollHeight": 1093,
-        "viewportHeight": 900,
-        "horizontalOverflow": false,
-        "reducedMotionMatches": true,
-        "coarsePointerMatches": false,
-        "touchPoints": 0,
-        "scrollMilestones": [
-          0,
-          97,
-          193
-        ],
-        "consoleErrors": [],
-        "pageErrors": [],
-        "failedRequests": [],
-        "readiness": {
-          "fontsReady": true,
-          "networkIdle": true,
-          "warnings": []
-        }
-      }
-    },
-    {
-      "target": "current",
-      "subject": {
-        "id": "projects",
-        "path": "/projects",
-        "label": "Projects"
-      },
-      "state": {
-        "id": "desktop-reduced-motion",
-        "label": "Desktop reduced motion",
-        "viewport": {
-          "width": 1440,
-          "height": 900
-        },
-        "input": "keyboard",
-        "reducedMotion": "reduce",
-        "touch": false,
-        "soundGate": false
-      },
-      "url": "http://127.0.0.1:4173/projects",
-      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/projects.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
-      "status": "captured",
-      "observation": {
-        "title": "xero - Developer Portfolio",
-        "headings": [
-          "⚙Featured Projects",
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Project record",
+          "Selected evidence",
+          "Xero.dev",
           "KrakenVim",
-          "dotfiles",
-          "xero-shell",
-          "DeadDrop",
-          "hachi",
-          "mikeneko"
+          "Hachi"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
-        "canvasCount": 0,
+        "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "projects",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 18,
-        "scrollHeight": 959,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 2213,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          657,
+          1313
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "skills",
+        "path": "/skills",
+        "label": "Skills"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/skills",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/skills.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Skills — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Capabilities in context",
+          "Evidence, not scores",
+          "Web publishing",
+          "Developer tooling",
+          "Terminal and systems work",
+          "Toolbox"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 41,
+        "scrollHeight": 2414,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          757,
+          1514
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "uses",
+        "path": "/uses",
+        "label": "Uses"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/uses",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/uses.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Uses — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Documented tools",
+          "Documented setup",
+          "EDITOR",
+          "WORKFLOW",
+          "PLATFORM",
+          "SERVICE"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 2118,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          609,
+          1218
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "notes",
+        "path": "/notes",
+        "label": "Notes"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/notes",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/notes.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Notes — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Notes",
+          "PUBLISHED NOTES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          277,
+          553
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "now",
+        "path": "/now",
+        "label": "Now"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/now",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/now.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Now — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Current public work",
+          "What is current"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 35,
+        "scrollHeight": 1630,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          365,
+          730
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "contact",
+        "path": "/contact",
+        "label": "Contact"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/contact",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/contact.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Contact — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "One direct path",
+          "Contact Ishraful Haque"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 1887,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          494,
+          987
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "blog",
+        "path": "/blog",
+        "label": "Blog"
+      },
+      "state": {
+        "id": "desktop-keyboard",
+        "label": "Desktop keyboard-only",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "no-preference",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/blog",
+      "artifactPath": "artifacts/baseline/current/desktop-keyboard/blog.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Writing — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Writing",
+          "PUBLISHED ARTICLES"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": false,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          277,
+          553
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "home",
+        "path": "/",
+        "label": "Home"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/",
+      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/home.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "lxrdxe7o — Full-Stack Developer",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Xero.dev"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "Work",
+          "About",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 1,
+          "nav": 6,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 1903,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -2610,8 +2918,190 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          36,
-          72
+          502,
+          1003
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "about",
+        "path": "/about",
+        "label": "About"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/about",
+      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/about.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "About — Ishraful Haque",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Ishraful Haque",
+          "Ishraful Haque",
+          "Credits"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 2389,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": true,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          745,
+          1489
+        ],
+        "consoleErrors": [],
+        "pageErrors": [],
+        "failedRequests": [],
+        "readiness": {
+          "fontsReady": true,
+          "networkIdle": true,
+          "warnings": []
+        }
+      }
+    },
+    {
+      "target": "current",
+      "subject": {
+        "id": "projects",
+        "path": "/projects",
+        "label": "Projects"
+      },
+      "state": {
+        "id": "desktop-reduced-motion",
+        "label": "Desktop reduced motion",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "input": "keyboard",
+        "reducedMotion": "reduce",
+        "touch": false,
+        "soundGate": false
+      },
+      "url": "http://localhost:4321/projects",
+      "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/projects.png",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
+      "status": "captured",
+      "observation": {
+        "title": "Work — lxrdxe7o",
+        "headings": [
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Projects"
+        ],
+        "navigationLabels": [
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
+        ],
+        "landmarkCounts": {
+          "header": 2,
+          "nav": 5,
+          "main": 1,
+          "footer": 1
+        },
+        "canvasCount": 1,
+        "audioElementCount": 0,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 44,
+        "scrollHeight": 3679,
+        "viewportHeight": 900,
+        "horizontalOverflow": false,
+        "reducedMotionMatches": true,
+        "coarsePointerMatches": false,
+        "touchPoints": 0,
+        "scrollMilestones": [
+          0,
+          1390,
+          2779
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -2642,43 +3132,61 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/experience",
+      "url": "http://localhost:4321/experience",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/experience.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Experience — Ishraful Haque",
         "headings": [
-          "◈Professional Journey",
-          "Full-Stack Developer",
-          "Frontend Developer",
-          "Introduction to Programming"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Project record",
+          "Selected evidence",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "experience",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 2213,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -2686,8 +3194,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          6,
-          11
+          657,
+          1313
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -2718,46 +3226,62 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/skills",
+      "url": "http://localhost:4321/skills",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/skills.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Skills — Ishraful Haque",
         "headings": [
-          "◉Technical Arsenal",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND",
-          "DEVOPS",
-          "TOOLS",
-          "3D & GRAPHICS"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Capabilities in context",
+          "Evidence, not scores",
+          "Web publishing",
+          "Developer tooling",
+          "Terminal and systems work",
+          "Toolbox"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "skills",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 41,
+        "scrollHeight": 2414,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -2765,8 +3289,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          0,
-          0
+          757,
+          1514
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -2797,44 +3321,62 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/uses",
+      "url": "http://localhost:4321/uses",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/uses.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Uses — lxrdxe7o",
         "headings": [
-          "⬡What I Use",
-          "Hardware",
-          "Software",
-          "Services",
-          "Workflow"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Documented tools",
+          "Documented setup",
+          "EDITOR",
+          "WORKFLOW",
+          "PLATFORM",
+          "SERVICE"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "uses",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 1195,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 39,
+        "scrollHeight": 2118,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -2842,20 +3384,16 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          148,
-          295
+          609,
+          1218
         ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/4c8c8f72-661a-4413-b09e-77f69b8fe111:18:19)"
-        ],
+        "consoleErrors": [],
         "pageErrors": [],
         "failedRequests": [],
         "readiness": {
           "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
+          "networkIdle": true,
+          "warnings": []
         }
       }
     },
@@ -2878,44 +3416,58 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/notes",
+      "url": "http://localhost:4321/notes",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/notes.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Notes — lxrdxe7o",
         "headings": [
-          "◈Notes & Snippets",
-          "Rust Async Patterns",
-          "Neovim Config Deep Dive",
-          "Three.js Shader Tricks",
-          "TypeScript Performance Tips"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Notes",
+          "PUBLISHED NOTES"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "notes",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 900,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -2923,20 +3475,16 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          0,
-          0
+          277,
+          553
         ],
-        "consoleErrors": [
-          "Failure loading font https://fonts.gstatic.com/s/spacemono/v12/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff Error\n    at request.onload (blob:http://127.0.0.1:4173/a0108427-d018-493f-815a-195939a1f3f5:18:19)"
-        ],
+        "consoleErrors": [],
         "pageErrors": [],
         "failedRequests": [],
         "readiness": {
           "fontsReady": true,
-          "networkIdle": false,
-          "warnings": [
-            "Network did not become idle within 15 seconds."
-          ]
+          "networkIdle": true,
+          "warnings": []
         }
       }
     },
@@ -2959,43 +3507,58 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/now",
+      "url": "http://localhost:4321/now",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/now.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Now — lxrdxe7o",
         "headings": [
-          "⚡What I'm Working On",
-          "Building",
-          "Learning",
-          "Reading"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Current public work",
+          "What is current"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "now",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 12,
-        "scrollHeight": 959,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 35,
+        "scrollHeight": 1630,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -3003,8 +3566,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          30,
-          59
+          365,
+          730
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -3035,40 +3598,58 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "http://127.0.0.1:4173/contact",
+      "url": "http://localhost:4321/contact",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/contact.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "xero - Developer Portfolio",
+        "title": "Contact — Ishraful Haque",
         "headings": [
-          "◇Let's Connect"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "One direct path",
+          "Contact Ishraful Haque"
         ],
         "navigationLabels": [
-          "Ishraful Haque",
-          "✦\nHome",
-          "⚛\nAbout",
-          "⚙\nProjects",
-          "◈\nExperience",
-          "◉\nSkills",
-          "⬡\nUses",
-          "◈\nNotes",
-          "⚡\nNow",
-          "◇\nContact",
-          "✎\nBlog"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
         "canvasCount": 1,
         "audioElementCount": 0,
-        "routeTheme": "contact",
-        "focusedElement": "✦\nHome",
-        "pointerCursorTargets": 16,
-        "scrollHeight": 900,
+        "routeTheme": null,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 38,
+        "scrollHeight": 1887,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -3076,8 +3657,8 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          0,
-          0
+          494,
+          987
         ],
         "consoleErrors": [],
         "pageErrors": [],
@@ -3108,49 +3689,58 @@
         "touch": false,
         "soundGate": false
       },
-      "url": "https://lxrdxe7o.vercel.app/",
+      "url": "http://localhost:4321/blog",
       "artifactPath": "artifacts/baseline/current/desktop-reduced-motion/blog.png",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "captured",
       "observation": {
-        "title": "ARCHIVAL // XERO.DEV",
+        "title": "Writing — lxrdxe7o",
         "headings": [
-          "TECHNICAL STATS",
-          "[MASKED DYNAMIC HEADING]",
-          "SYSTEMS & TOOLS",
-          "LANGUAGES",
-          "FRONTEND",
-          "BACKEND & INFRA",
-          "INTERESTS",
-          "DOTFILES",
-          "XERO-SHELL",
-          "DEADDROP",
-          "HACHI",
-          "KRAKENVIM",
-          "SHIRO-NEKOO-115",
-          "TORA-NEKO-311",
-          "MIKENEKO",
-          "KURO-NEKOO-215"
+          "lxrdxe7o",
+          "lxrdxe7o",
+          "Writing",
+          "PUBLISHED ARTICLES"
         ],
         "navigationLabels": [
-          "FILE NO. 01 //\nPROJECTS",
-          "FILE NO. 02 //\nABOUT",
-          "FILE NO. 03 //\nLAB",
-          "FILE NO. 04 //\nCONTACT",
-          "☾"
+          "Work",
+          "About",
+          "Experience",
+          "Skills",
+          "Uses",
+          "Writing",
+          "Notes",
+          "Lab",
+          "Now",
+          "Contact",
+          "Xero.dev",
+          "KrakenVim",
+          "Hachi",
+          "Mikeneko",
+          "Shiro Nekoo 115",
+          "DeadDrop",
+          "WORK",
+          "ABOUT",
+          "EXPERIENCE",
+          "SKILLS",
+          "USES",
+          "WRITING",
+          "NOTES",
+          "LAB",
+          "NOW",
+          "CONTACT"
         ],
         "landmarkCounts": {
-          "header": 0,
-          "nav": 1,
+          "header": 2,
+          "nav": 5,
           "main": 1,
-          "footer": 0
+          "footer": 1
         },
-        "canvasCount": 0,
+        "canvasCount": 1,
         "audioElementCount": 0,
         "routeTheme": null,
-        "focusedElement": "FILE NO. 02 //\nABOUT",
-        "pointerCursorTargets": 2,
-        "scrollHeight": 900,
+        "focusedElement": "lxrdxe7o — home",
+        "pointerCursorTargets": 36,
+        "scrollHeight": 1453,
         "viewportHeight": 900,
         "horizontalOverflow": false,
         "reducedMotionMatches": true,
@@ -3158,14 +3748,12 @@
         "touchPoints": 0,
         "scrollMilestones": [
           0,
-          0,
-          0
+          277,
+          553
         ],
         "consoleErrors": [],
         "pageErrors": [],
-        "failedRequests": [
-          "GET https://lxrdxe7o.vercel.app/ — net::ERR_ABORTED"
-        ],
+        "failedRequests": [],
         "readiness": {
           "fontsReady": true,
           "networkIdle": true,
@@ -3192,9 +3780,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/",
+      "url": "http://localhost:4321/",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/home.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3217,9 +3805,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/about",
+      "url": "http://localhost:4321/about",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/about.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3242,9 +3830,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/projects",
+      "url": "http://localhost:4321/projects",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/projects.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3267,9 +3855,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/experience",
+      "url": "http://localhost:4321/experience",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/experience.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3292,9 +3880,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/skills",
+      "url": "http://localhost:4321/skills",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/skills.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3317,9 +3905,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/uses",
+      "url": "http://localhost:4321/uses",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/uses.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3342,9 +3930,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/notes",
+      "url": "http://localhost:4321/notes",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/notes.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3367,9 +3955,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/now",
+      "url": "http://localhost:4321/now",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/now.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3392,9 +3980,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/contact",
+      "url": "http://localhost:4321/contact",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/contact.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     },
@@ -3417,9 +4005,9 @@
         "touch": false,
         "soundGate": true
       },
-      "url": "http://127.0.0.1:4173/blog",
+      "url": "http://localhost:4321/blog",
       "artifactPath": "artifacts/baseline/current/desktop-sound-gate/blog.gap.json",
-      "capturedAt": "2026-07-21T00:46:56.163Z",
+      "capturedAt": "2026-08-17T21:49:55.451Z",
       "status": "gap",
       "limitation": "The current portfolio has no sound-entry gate; this state is recorded as a baseline gap."
     }
