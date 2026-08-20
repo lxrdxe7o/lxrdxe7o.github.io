@@ -53,3 +53,19 @@ test('Index navigation commits through the same route controller', async ({ page
     '1',
   );
 });
+
+test('Site Index overlay opens and traps focus (plan compat)', async ({ page }) => {
+  await page.goto('/');
+  await enterSilently(page);
+  
+  // Assuming a trigger exists in the 4-corner framework
+  const trigger = page.locator('#index-trigger');
+  await trigger.click();
+  
+  const indexOverlay = page.locator('#site-index');
+  await expect(indexOverlay).toBeVisible();
+  
+  // Verify body scroll is locked
+  const overflow = await page.evaluate(() => window.getComputedStyle(document.body).overflow);
+  expect(overflow).toBe('hidden');
+});

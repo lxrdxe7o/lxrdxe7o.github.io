@@ -15,7 +15,7 @@ const projects = (await getProjects({ includeDrafts: false }))
   .slice(0, 6);
 ---
 
-<div class="site-index" data-site-index data-state="closed" role="dialog" aria-modal="true" aria-labelledby="site-index-title" hidden>
+<div id="site-index" class="site-index" data-site-index data-state="closed" role="dialog" aria-modal="true" aria-labelledby="site-index-title" hidden aria-hidden="true" inert>
   <div class="site-index__panel">
     <p class="site-index__label">Index</p>
     <h2 class="site-index__title" id="site-index-title">lxrdxe7o</h2>
@@ -47,7 +47,7 @@ const projects = (await getProjects({ includeDrafts: false }))
       </nav>
     )}
 
-    <button type="button" class="site-index__close" data-index-close aria-label="Close navigation index">Close</button>
+    <button type="button" id="index-close" class="site-index__close" data-index-close aria-label="Close navigation index">Close</button>
   </div>
 </div>
 
@@ -64,7 +64,11 @@ const projects = (await getProjects({ includeDrafts: false }))
     const setOpen = (open: boolean) => {
       index.hidden = !open;
       index.dataset.state = open ? 'open' : 'closed';
+      index.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) index.removeAttribute('inert');
+      else index.setAttribute('inert', '');
       document.documentElement.toggleAttribute('data-scroll-locked', open);
+      document.body.style.overflow = open ? 'hidden' : '';
       runtime?.setIndexOpen(open);
       if (open) closeButton?.focus();
       else openButton?.focus();
