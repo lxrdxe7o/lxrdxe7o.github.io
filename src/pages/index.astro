@@ -14,38 +14,57 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
   structuredData={[siteWebSiteData, sitePersonData]}
 >
   <div data-view="home" class="ui-work">
+    <div class="ui-work-center-stage">
+      <h2 class="ui-work-center-title c-color" id="center-title">
+        <!-- Swooping title container -->
+        <div class="ui-work-center-title-inner"></div>
+      </h2>
+      <div class="ui-work-center-cta" id="center-cta-container">
+        <SvgButton
+          id="center-cta"
+          href="#"
+          text="View project"
+          dataTransition="project"
+          dataSound=""
+          dataSoundClick=""
+        />
+      </div>
+    </div>
+
     <div class="ui-work-content">
       <div class="wrap">
         <div class="lg:grid grid-cols-24 gap-24">
-          <div class="col-span-24 lg:col-span-12 xl:col-span-10 col-start-1 lg:col-start-13 xl:col-start-15">
+          <!-- Move list to the far right -->
+          <div class="col-span-24 lg:col-span-6 xl:col-span-5 col-start-1 lg:col-start-17 xl:col-start-19">
             <div class="ui-title ts-m c-color">
               <span class="ui-title-inner">Index</span>
             </div>
 
-            <ul class="ui-work-ul" id="project-list">
-              {PROJECT_CARDS.map((project, idx) => (
-                <li
-                  class={`c-color ${idx === 0 ? 'is-selected' : ''}`}
-                  data-slug={project.slug}
-                  data-index={idx}
-                  data-color={project.color}
-                >
-                  <div class="ui-work-a" data-sound="" data-sound-click="">
-                    <span>{project.title}</span>
-                  </div>
-                  <div class="ui-work-cta">
-                    <SvgButton
-                      href={`/projects/${project.slug}`}
-                      text="View project"
-                      dataTransition="project"
-                      dataSound=""
-                      dataSoundClick=""
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div class="ui-work-list-wrapper" id="project-list-wrapper">
+              <ul class="ui-work-ul" id="project-list">
+                {PROJECT_CARDS.map((project, idx) => (
+                  <li
+                    class={`c-color ${idx === 0 ? 'is-selected' : ''}`}
+                    data-slug={project.slug}
+                    data-index={idx}
+                    data-color={project.color}
+                    data-title={project.title}
+                  >
+                    <div class="ui-work-a" data-sound="" data-sound-click="">
+                      <span>{project.title}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="ui-progressbar ui-progressbar--work c-color">
+        <div class="ui-progressbar-items" id="project-progressbar-items">
+          {PROJECT_CARDS.map((project, idx) => (
+            <div class={`ui-progressbar-item ${idx === 0 ? 'is-active' : ''}`} data-index={idx}></div>
+          ))}
         </div>
       </div>
     </div>
@@ -54,46 +73,135 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
   <script>
     function setupHomeIndex() {
       const list = document.getElementById('project-list');
-      if (!list) return;
+      const wrapper = document.getElementById('project-list-wrapper');
+      const centerTitleInner = document.querySelector('.ui-work-center-title-inner');
+      const centerCta = document.querySelector('.ui-work-center-cta a') as HTMLAnchorElement;
+      
+      if (!list || !centerTitleInner || !centerCta || !wrapper) return;
 
       const items = list.querySelectorAll<HTMLLIElement>('li');
+      const total = items.length;
+      let currentIndex = 0;
+      let targetIndexFloat = 0;
 
-      items.forEach((item) => {
-        const idx = Number(item.dataset.index);
-        const color = item.dataset.color;
+      // Lock body scroll
+      document.body.style.overflow = 'hidden';
 
-        item.addEventListener('mouseenter', () => {
-          window.dispatchEvent(
-            new CustomEvent('carousel:focus', {
-              detail: { index: idx, slug: item.dataset.slug },
-            })
-          );
-          if (color) {
-            document.documentElement.style.setProperty('--accent-current', color);
-          }
-          items.forEach((it) => it.classList.remove('is-selected'));
-          item.classList.add('is-selected');
-        });
-      });
+      // Set initial state
+      updateCenterStage(0, 0);
 
-      // Synchronize when carousel rotates via wheel or drag
-      window.addEventListener('carousel:activeChange', (e: Event) => {
-        const customEvent = e as CustomEvent<{ index: number; slug: string }>;
-        if (!customEvent.detail) return;
-        const activeIdx = customEvent.detail.index;
+      function updateCenterStage(newIndex: number, direction: number) {
+        if (newIndex === currentIndex && direction !== 0) return;
+        
+        const nextItem = items[newIndex];
+        const nextTitle = nextItem.dataset.title;
+        const nextSlug = nextItem.dataset.slug;
+        const nextColor = nextItem.dataset.color;
 
+        // Update list styles and position them as a vertical ticker
         items.forEach((it, i) => {
-          if (i === activeIdx) {
-            it.classList.add('is-selected');
-            const col = it.dataset.color;
-            if (col) {
-              document.documentElement.style.setProperty('--accent-current', col);
-            }
+          // Calculate relative difference with wrapping
+          let relativeDiff = (i - newIndex) % total;
+          if (relativeDiff > total / 2) relativeDiff -= total;
+          if (relativeDiff < -total / 2) relativeDiff += total;
+
+          // Position vertically (each item is offset by 2.5rem)
+          it.style.transform = `translateY(${relativeDiff * 2.5}rem)`;
+          it.classList.toggle('is-selected', i === newIndex);
+          
+          // Fade out items that are far away from the center
+          if (Math.abs(relativeDiff) > 3) {
+            it.style.opacity = '0';
+            it.style.pointerEvents = 'none';
+          } else if (i !== newIndex) {
+            it.style.opacity = '0.3';
+            it.style.pointerEvents = 'auto';
           } else {
-            it.classList.remove('is-selected');
+            it.style.opacity = '1';
+            it.style.pointerEvents = 'auto';
           }
         });
+
+        const pbItems = document.querySelectorAll('.ui-progressbar-item');
+        pbItems.forEach((pb, i) => pb.classList.toggle('is-active', i === newIndex));
+
+        if (nextColor) {
+          document.documentElement.style.setProperty('--accent-current', nextColor);
+        }
+
+        // Swooping animation for the title
+        if (direction !== 0) {
+          // Outgoing
+          const outDir = direction > 0 ? -100 : 100;
+          const oldSpans = centerTitleInner.querySelectorAll('span');
+          oldSpans.forEach(span => {
+            span.style.transform = `translateX(${outDir}%)`;
+            span.style.opacity = '0';
+            setTimeout(() => span.remove(), 400);
+          });
+        }
+
+        // Incoming
+        const inDir = direction > 0 ? 100 : (direction < 0 ? -100 : 0);
+        const newSpan = document.createElement('span');
+        newSpan.textContent = nextTitle || '';
+        newSpan.style.transform = `translateX(${inDir}%)`;
+        newSpan.style.opacity = '0';
+        centerTitleInner.appendChild(newSpan);
+
+        // Force reflow
+        void newSpan.offsetWidth;
+        newSpan.style.transform = 'translateX(0)';
+        newSpan.style.opacity = '1';
+
+        // Update CTA link
+        centerCta.href = `/projects/${nextSlug}`;
+
+        currentIndex = newIndex;
+
+        // Dispatch for 3D scene
+        window.dispatchEvent(
+          new CustomEvent('carousel:focus', {
+            detail: { index: newIndex, slug: nextSlug },
+          })
+        );
+      }
+
+      function handleWheel(e: WheelEvent) {
+        // Dynamic sensitivity: trackpads have small deltaY, traditional wheels have ~100
+        const isTrackpad = Math.abs(e.deltaY) < 40;
+        const sensitivity = isTrackpad ? 0.03 : 0.008;
+        
+        targetIndexFloat += e.deltaY * sensitivity;
+        
+        let nextIndex = Math.round(targetIndexFloat) % total;
+        if (nextIndex < 0) nextIndex += total;
+        
+        if (nextIndex !== currentIndex) {
+          updateCenterStage(nextIndex, Math.sign(e.deltaY));
+        }
+      }
+
+      window.addEventListener('wheel', handleWheel, { passive: true });
+
+      // Click to focus
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          const idx = Number(item.dataset.index);
+          const dir = idx > currentIndex ? 1 : -1;
+          
+          // Sync targetIndexFloat so wheel scroll continues correctly
+          targetIndexFloat = idx;
+          
+          updateCenterStage(idx, dir);
+        });
       });
+
+      // Cleanup when navigating away
+      document.addEventListener('astro:before-preparation', () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('wheel', handleWheel);
+      }, { once: true });
     }
 
     setupHomeIndex();

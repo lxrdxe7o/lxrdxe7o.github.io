@@ -153,7 +153,6 @@ function createFallbackTexture(project: ProjectCardData): Texture {
 }
 
 const vertexShader = `
-  uniform float uCurvature;
   uniform float uHover;
   varying vec2 vUv;
   varying vec3 vNormal;
@@ -162,10 +161,6 @@ const vertexShader = `
   void main() {
     vUv = uv;
     vec3 pos = position;
-    
-    // Cylindrical curvature along X axis
-    float bend = pos.x * 0.45;
-    pos.z -= bend * bend * uCurvature;
     
     vec4 worldPos = modelMatrix * vec4(pos, 1.0);
     vWorldPosition = worldPos.xyz;
@@ -181,35 +176,74 @@ const fragmentShader = `
   uniform float uHover;
   uniform float uTime;
   uniform float uAlpha;
-  uniform float uChromatic;
+  uniform vec2 uPointer;
   varying vec2 vUv;
   varying vec3 vNormal;
   varying vec3 vWorldPosition;
 
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+  }
+
   void main() {
     vec2 uv = vUv;
     
-    // Chromatic aberration on motion / hover
-    float shift = 0.0025 * (1.0 + uHover * 2.0 + uChromatic * 3.0);
-    float r = texture2D(uTexture, uv + vec2(shift, 0.0)).r;
-    float g = texture2D(uTexture, uv).g;
-    float b = texture2D(uTexture, uv - vec2(shift, 0.0)).b;
-    vec4 tex = vec4(r, g, b, 1.0);
-
-    // Subtle edge fade & border
-    vec2 edge = smoothstep(0.0, 0.04, uv) * smoothstep(1.0, 0.96, uv);
-    float border = edge.x * edge.y;
-
-    vec3 finalColor = tex.rgb;
-    // Ambient hover tint
-    finalColor = mix(finalColor, uColor, 0.06 + uHover * 0.15);
-    finalColor *= (0.75 + border * 0.25);
+    // Matrix cubes effect
+    vec2 gridCount = vec2(64.0, 36.0); // 16:9 ratio grid
     
-    // Light depth shading
-    float light = dot(vNormal, normalize(vec3(0.3, 0.6, 1.0))) * 0.2 + 0.85;
-    finalColor *= light;
-
-    gl_FragColor = vec4(finalColor, uAlpha);
+    // Only apply grid logic if hover is active to save performance and keep image perfectly intact
+    if (uHover > 0.001) {
+      vec2 gridUv = floor(uv * gridCount) / gridCount;
+      vec2 cellUv = fract(uv * gridCount);
+      
+      // Distance to pointer for local hover effect
+      // Normalize pointer from screen space (-1 to 1) to UV space (0 to 1)
+      vec2 pointerUv = uPointer * 0.5 + 0.5;
+      pointerUv.y = 1.0 - pointerUv.y; // Flip Y for WebGL vs DOM
+      
+      float dist = distance(gridUv, pointerUv);
+      
+      // Scatter radius
+      float scatter = smoothstep(0.3, 0.0, dist) * uHover;
+      
+      if (scatter > 0.01) {
+        float n = hash(gridUv);
+        
+        // Offset the fetch UV based on noise and scatter (Z-depth pushing)
+        float zPush = (n - 0.5) * scatter * 0.15;
+        vec2 fetchUv = gridUv + vec2(zPush);
+        
+        vec4 tex = texture2D(uTexture, fetchUv);
+        
+        // 3D Bevel/Extrusion shading
+        float border = 0.02 + scatter * 0.15;
+        float left = smoothstep(0.0, border, cellUv.x);
+        float bottom = smoothstep(0.0, border, cellUv.y);
+        float right = smoothstep(1.0, 1.0 - border, cellUv.x);
+        float top = smoothstep(1.0, 1.0 - border, cellUv.y);
+        
+        float shadow = left * bottom * right * top;
+        
+        vec3 finalColor = tex.rgb * (0.8 + shadow * 0.2);
+        
+        // Fake lighting on edges
+        if (cellUv.y > 1.0 - border) finalColor += vec3(0.15 * scatter);
+        if (cellUv.x < border) finalColor -= vec3(0.1 * scatter);
+        if (cellUv.x > 1.0 - border) finalColor -= vec3(0.2 * scatter);
+        
+        // Mix in brand color slightly
+        finalColor = mix(finalColor, uColor, scatter * 0.2);
+        
+        gl_FragColor = vec4(finalColor, uAlpha);
+      } else {
+        vec4 tex = texture2D(uTexture, uv);
+        gl_FragColor = vec4(tex.rgb, uAlpha);
+      }
+    } else {
+      vec4 tex = texture2D(uTexture, uv);
+      gl_FragColor = vec4(tex.rgb, uAlpha);
+    }
+    
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
   }
@@ -397,7 +431,7 @@ export class ProjectCarouselScene extends BaseScene {
     this.carouselGroup.position.set(-2.2, 0, 0);
 
     const cardGeometry = this.scope.track(
-      new PlaneGeometry(4.4, 2.75, 32, 16),
+      new PlaneGeometry(8.8, 4.95, 64, 36),
       'geometry'
     );
 
@@ -428,8 +462,7 @@ export class ProjectCarouselScene extends BaseScene {
             uHover: { value: 0.0 },
             uTime: { value: 0.0 },
             uAlpha: { value: 1.0 },
-            uCurvature: { value: 0.4 },
-            uChromatic: { value: 0.0 },
+            uPointer: { value: new Vector2() },
           },
           side: DoubleSide,
           transparent: true,
@@ -441,12 +474,11 @@ export class ProjectCarouselScene extends BaseScene {
       const cardMesh = new Mesh(cardGeometry, material);
       this.carouselGroup.add(cardMesh);
 
-      const angle = idx * this.cardAngleSpan;
       this.cards.push({
         mesh: cardMesh,
         data: project,
-        targetAngle: angle,
-        currentAngle: angle,
+        targetAngle: idx, // Reuse this field to store index
+        currentAngle: idx,
       });
     });
 
@@ -741,32 +773,16 @@ export class ProjectCarouselScene extends BaseScene {
   private bindWindowEvents(): void {
     if (typeof window === 'undefined') return;
 
-    // Wheel listener for carousel rotation
-    const onWheel = (e: WheelEvent) => {
-      // Rotate carousel based on vertical delta
-      const delta = e.deltaY * 0.0015;
-      this.targetProgress += delta;
-      this.scrollVelocity = delta;
+    // Track scroll velocity for chromatic aberration
+    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+      this.scrollVelocity = delta * 0.05; // Scale it appropriately
+      lastScrollY = currentScrollY;
     };
 
-    // Pointer drag listeners
-    const onPointerDown = (e: PointerEvent) => {
-      this.isDragging = true;
-      this.dragStartX = e.clientX;
-      this.dragStartProgress = this.targetProgress;
-    };
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (!this.isDragging) return;
-      const deltaX = (e.clientX - this.dragStartX) / window.innerWidth;
-      this.targetProgress = this.dragStartProgress - deltaX * 3.5;
-    };
-
-    const onPointerUp = () => {
-      this.isDragging = false;
-    };
-
-    // External focus event from list hover
+    // External focus event from list hover/intersection
     const onFocusProject = (e: Event) => {
       const customEvent = e as CustomEvent<{ index: number; slug: string }>;
       if (customEvent.detail && typeof customEvent.detail.index === 'number') {
@@ -774,30 +790,23 @@ export class ProjectCarouselScene extends BaseScene {
       }
     };
 
-    window.addEventListener('wheel', onWheel, { passive: true });
-    window.addEventListener('pointerdown', onPointerDown, { passive: true });
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    window.addEventListener('pointerup', onPointerUp, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('carousel:focus', onFocusProject);
 
     this.unbindEvents.push(() => {
-      window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('pointerdown', onPointerDown);
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('carousel:focus', onFocusProject);
     });
   }
 
   public scrollToIndex(index: number): void {
     const total = PROJECT_CARDS.length;
-    const targetTheta = (index % total) * this.cardAngleSpan;
+    // Find closest path to the index considering wrapping
+    let diff = index - (this.targetProgress % total);
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
     
-    // Find closest angular distance
-    const currentAngle = this.targetProgress * this.cardAngleSpan;
-    const diff = targetTheta - (currentAngle % (Math.PI * 2));
-    let shortest = Math.atan2(Math.sin(diff), Math.cos(diff));
-    this.targetProgress += shortest / this.cardAngleSpan;
+    this.targetProgress += diff;
   }
 
   private updateAccentColor(hex: string): void {
@@ -828,7 +837,7 @@ export class ProjectCarouselScene extends BaseScene {
       this.bgModel.rotation.z += this.scrollVelocity * 0.3;
       
       this.bgUniforms.uTime.value = time;
-    this.bgUniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+      this.bgUniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
       this.bgUniforms.uPointer.value.copy(this.pointerPos);
       this.bgUniforms.uScroll.value = this.scrollVelocity;
     }
@@ -845,42 +854,41 @@ export class ProjectCarouselScene extends BaseScene {
 
     let closestIdx = 0;
     let closestDist = Infinity;
+    const total = PROJECT_CARDS.length;
 
     this.cards.forEach((card, idx) => {
-      // Calculate angle on the circle
-      const baseAngle = idx * this.cardAngleSpan;
-      const angle = baseAngle - this.currentProgress * this.cardAngleSpan;
-      card.currentAngle = angle;
+      // Calculate relative position with wrapping
+      let relativeDiff = (idx - this.currentProgress) % total;
+      if (relativeDiff > total / 2) relativeDiff -= total;
+      if (relativeDiff < -total / 2) relativeDiff += total;
 
-      // Position along cylinder arc in 3D
-      const x = Math.sin(angle) * this.radius;
-      const z = Math.cos(angle) * this.radius - this.radius;
-      const y = Math.sin(angle * 2.0 + time * 0.5) * 0.15;
+      // Position horizontally
+      const x = relativeDiff * 14.0; // 14 units apart so they slide in completely from off-screen
+      const z = -Math.abs(relativeDiff) * 3.0; // Push inactive ones back
+      const y = Math.sin(time * 0.5 + idx) * 0.1;
 
       card.mesh.position.set(x, y, z);
-      card.mesh.rotation.y = angle;
+      card.mesh.rotation.set(0, 0, 0); // Flat facing camera
 
-      // Calculate distance to front view (angle close to 0)
-      const normAngle = Math.atan2(Math.sin(angle), Math.cos(angle));
-      const distToFront = Math.abs(normAngle);
-
+      const distToFront = Math.abs(relativeDiff);
       if (distToFront < closestDist) {
         closestDist = distToFront;
         closestIdx = idx;
       }
 
       // Proximity scaling & focus
-      const focusFactor = Math.max(0, 1 - distToFront / 1.5);
       const isCenter = distToFront < 0.35;
       
-      const targetHover = isCenter ? 0.85 : 0.0;
+      // We pass hover based on whether it's center and actively hovered by pointer
+      // We'll just set uHover to 1.0 if it's the center card, and the shader uses distance to uPointer
+      const targetHover = isCenter ? 1.0 : 0.0;
       const curHover = card.mesh.material.uniforms.uHover.value;
       card.mesh.material.uniforms.uHover.value += (targetHover - curHover) * 0.1;
       card.mesh.material.uniforms.uTime.value = time;
-      card.mesh.material.uniforms.uChromatic.value = Math.abs(this.scrollVelocity);
+      card.mesh.material.uniforms.uPointer.value.copy(this.pointerPos);
       
-      // Card opacity fades when behind or far away
-      const targetAlpha = Math.cos(normAngle) > -0.2 ? Math.max(0.2, Math.cos(normAngle)) : 0.0;
+      // Card opacity fades when moving away
+      const targetAlpha = Math.max(0.0, 1.0 - Math.abs(relativeDiff) * 0.5);
       card.mesh.material.uniforms.uAlpha.value = targetAlpha;
       card.mesh.visible = targetAlpha > 0.01;
     });
@@ -889,15 +897,6 @@ export class ProjectCarouselScene extends BaseScene {
       this.activeIndex = closestIdx;
       const activeProject = PROJECT_CARDS[closestIdx];
       this.updateAccentColor(activeProject.color);
-
-      // Dispatch event to sync list in HTML
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(
-          new CustomEvent('carousel:activeChange', {
-            detail: { index: closestIdx, slug: activeProject.slug },
-          })
-        );
-      }
     }
 
     // Gentle camera parallax
@@ -915,7 +914,7 @@ export class ProjectCarouselScene extends BaseScene {
       this.carouselGroup.position.set(0, 0.8, -2);
       this.camera.position.z = 13;
     } else {
-      this.carouselGroup.position.set(-2.4, 0, 0);
+      this.carouselGroup.position.set(0, 0, 0);
       this.camera.position.z = 11;
     }
   }

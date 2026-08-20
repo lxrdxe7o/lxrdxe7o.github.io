@@ -542,6 +542,23 @@
    6. Shell Footer & Floating Bottom Nav (.ui-footer, .ui-nav)
    ========================================================================== */
 
+.ui-progressbar {
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+@media (min-width: 64rem) {
+  .ui-progressbar {
+    left: 4rem;
+  }
+}
+
 .ui-footer {
   position: fixed;
   bottom: 0;
@@ -883,3 +900,117 @@
 
 
 
+
+/* Home Center Stage */
+.ui-work-center-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ui-work-center-title {
+  font-family: var(--font-family-sans);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin: 0;
+  overflow: hidden; /* For swoop effect */
+  position: relative;
+  height: 1.2em; /* Fit the text */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.ui-work-center-title-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ui-work-center-title-inner span {
+  position: absolute;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  white-space: nowrap;
+}
+
+.ui-work-center-cta {
+  pointer-events: auto;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fade-in 1s ease forwards 0.5s;
+}
+
+/* Override list font size and fix it */
+.ui-work-ul {
+  font-size: var(--text-sm) !important;
+}
+
+.ui-work-ul li {
+  padding-block: 0.5rem !important;
+}
+
+/* Force list item size */
+.ui-work-ul .ui-work-a span {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+}
+
+.ui-work-center-title {
+  color: white !important; /* Force white for testing */
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ui-work-center-title {
+  overflow: visible !important;
+  font-size: 6rem !important;
+  color: #fff !important;
+  z-index: 99 !important;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
+.ui-work-ul li:not(.is-selected) {
+  
+  color: var(--color-fg) !important;
+}
+.ui-work-ul li.is-selected {
+  
+  color: var(--accent-current) !important;
+  font-weight: 500;
+}
+
+/* Infinite Ticker for the right list */
+.ui-work-ul {
+  position: relative;
+  height: 50vh; /* Give it some height so items can spread */
+  display: flex;
+  align-items: center;
+}
+
+.ui-work-ul li {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -1rem; /* Half of height */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, color 0.3s ease;
+  width: 100%;
+  text-align: right;
+  padding-right: 2rem !important;
+}
+
+.ui-work-center-title-inner span {
+  display: block; /* Ensure it takes up space correctly */
+}

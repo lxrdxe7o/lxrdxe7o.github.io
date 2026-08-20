@@ -9,21 +9,15 @@
 ---
 
 <div class="loader" data-loader data-loader-state="idle">
-  <p class="loader__mark">lxrdxe7o</p>
-  <div
-    class="loader__track"
-    data-loader-bar
-    role="progressbar"
-    aria-labelledby="loader-label"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    aria-valuenow="0"
-  >
-    <span class="loader__fill"></span>
+  <div class="preloader-progress">
+    <svg class="preloader-progress-circles" width="462" height="462" viewBox="0 0 462 462" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="preloader-progress-outline" opacity="0.4" cx="231" cy="231" r="224" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"></circle>
+      <circle class="preloader-progress-circle" data-loader-bar opacity="0.5" cx="231" cy="231" r="230" fill="none" stroke="currentColor" stroke-width="1"></circle>
+    </svg>
+    <div class="preloader-progress-text">
+      <div class="preloader-progress-text-inner"><span data-loader-value>0</span>%</div>
+    </div>
   </div>
-  <p class="loader__status" id="loader-label">
-    Loading <span data-loader-value>0</span>%
-  </p>
 </div>
 
 <style>
@@ -32,53 +26,53 @@
     inset: 0;
     z-index: var(--z-loader, 90);
     display: none;
-    grid-template-rows: 1fr auto auto;
-    align-content: end;
-    gap: var(--space-4);
-    padding: var(--space-8);
+    place-items: center;
     background: var(--color-bg);
   }
 
-  /* Only the loading phases reveal the overlay; no JS means no phase. */
   :global(:root[data-runtime-phase='booting']) .loader,
-  :global(:root[data-runtime-phase='loading']) .loader {
+  :global(:root[data-runtime-phase='loading']) .loader,
+  :global(:root[data-runtime-phase='entry-gate']) .loader {
     display: grid;
   }
 
-  .loader__mark {
-    align-self: end;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-
-  .loader__track {
+  .preloader-progress {
     position: relative;
-    block-size: 1px;
-    inline-size: 100%;
-    background: var(--color-border);
+    width: min(462px, 90vw);
+    height: min(462px, 90vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .loader__fill {
+  .preloader-progress-circles {
     position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-    display: block;
-    inline-size: calc(var(--loader-progress, 0) * 100%);
-    background: var(--color-accent);
-    transition: inline-size 180ms linear;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
-  .loader__status {
+  .preloader-progress-circle {
+    stroke-dasharray: 1445;
+    stroke-dashoffset: calc(1445 - (1445 * var(--loader-progress, 0)));
+    transition: stroke-dashoffset 180ms linear;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  .preloader-progress-text {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 1rem;
     color: var(--color-fg-muted);
-    font-family: var(--font-family-mono);
-    font-size: var(--text-mono);
-    font-variant-numeric: tabular-nums;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .loader__fill {
-      transition: none;
-    }
+  /* Hide the text and progress circle when we reach entry-gate */
+  :global(:root[data-runtime-phase='entry-gate']) .preloader-progress-text,
+  :global(:root[data-runtime-phase='entry-gate']) .preloader-progress-circle {
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
 </style>

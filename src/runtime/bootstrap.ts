@@ -245,16 +245,22 @@ export function bootstrapExperience(): void {
   /* --------------------------------------------------- interactive sound cues */
 
   const onSoundHover = (event: Event) => {
-    const target = (event.target as Element | null)?.closest<HTMLElement>('[data-sound]');
-    if (target) {
-      audio.playCue('cue-hover');
+    const el = event.target as Element;
+    if (el && typeof el.closest === 'function') {
+      const target = el.closest<HTMLElement>('[data-sound]');
+      if (target) {
+        audio.playCue('cue-hover');
+      }
     }
   };
 
   const onSoundClick = (event: Event) => {
-    const target = (event.target as Element | null)?.closest<HTMLElement>('[data-sound-click]');
-    if (target) {
-      audio.playCue('cue-select');
+    const el = event.target as Element;
+    if (el && typeof el.closest === 'function') {
+      const target = el.closest<HTMLElement>('[data-sound-click]');
+      if (target) {
+        audio.playCue('cue-select');
+      }
     }
   };
 
@@ -304,7 +310,7 @@ export function bootstrapExperience(): void {
   }
 
   const onEntryClick = (event: Event) => {
-    const control = (event.target as Element | null)?.closest<HTMLElement>('[data-entry]');
+    const el = event.target as Element; const control = (el && typeof el.closest === 'function') ? el.closest<HTMLElement>('[data-entry]') : null;
     if (!control) return;
     const mode = control.dataset.entry === 'sound' ? 'sound' : 'silent';
     void enter(mode);
@@ -334,7 +340,7 @@ export function bootstrapExperience(): void {
   /* ------------------------------------------------------------ mute control */
 
   const onMuteClick = (event: Event) => {
-    const control = (event.target as Element | null)?.closest<HTMLElement>('[data-mute-control]');
+    const el2 = event.target as Element; const control = (el2 && typeof el2.closest === 'function') ? el2.closest<HTMLElement>('[data-mute-control]') : null;
     if (!control) return;
     runtime.setMuted(readSnapshot().audioState !== 'muted');
   };
