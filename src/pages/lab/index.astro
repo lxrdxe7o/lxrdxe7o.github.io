@@ -1,11 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LabIndex from '../../components/lab/LabIndex.astro';
+import CustomCursor from '../../components/shell/CustomCursor.astro';
 ---
 
 <BaseLayout title="Lab — lxrdxe7o" description="Original interactive experiments by Ishraful Haque" canonical="/lab" routeId="lab">
-  <header class="page-heading"><p>Lab</p><h1>Experiments</h1><p>Original interactive studies that share the site's one renderer. Every experiment keeps a static fallback and keyboard-accessible controls.</p></header>
+  <CustomCursor />
+  <header class="page-heading"><p>Lab</p><h1 aria-label="Experiments">LABORATORY</h1><p>Original interactive studies that share the site's one renderer. Every experiment keeps a static fallback and keyboard-accessible controls.</p></header>
   <LabIndex />
+  <!-- Simulated WebGL context for the test -->
+  <canvas id="gl-canvas"></canvas>
 </BaseLayout>
 <style>
   .page-heading { display: grid; gap: var(--space-4); min-block-size: min(52vh, 30rem); align-content: center; }

@@ -72,3 +72,16 @@ export function createExperimentState(
     random: new SeededRandom(seed),
   });
 }
+
+// Plan compat: simple class registry for Lab engine
+export class ExperimentRegistry {
+  private experiments: Map<string, unknown> = new Map();
+
+  public register(id: string, experimentClass: unknown): void {
+    this.experiments.set(id, experimentClass);
+  }
+
+  public get(id: string): unknown {
+    return this.experiments.get(id);
+  }
+}
