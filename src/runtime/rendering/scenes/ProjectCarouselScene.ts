@@ -468,29 +468,100 @@ export class ProjectCarouselScene extends BaseScene {
             return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
           }
 
+          float noise(in vec2 st) {
+              vec2 i = floor(st);
+              vec2 f = fract(st);
+
+              float a = hash(i);
+              float b = hash(i + vec2(1.0, 0.0));
+              float c = hash(i + vec2(0.0, 1.0));
+              float d = hash(i + vec2(1.0, 1.0));
+
+              vec2 u = f*f*(3.0-2.0*f);
+
+              return mix(a, b, u.x) +
+                      (c - a)* u.y * (1.0 - u.x) +
+                      (d - b) * u.x * u.y;
+          }
+
+          float fbm(in vec2 st) {
+              float v = 0.0;
+              float a = 0.5;
+              vec2 shift = vec2(100.0);
+              mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));
+              for (int i = 0; i < 5; ++i) {
+                  v += a * noise(st);
+                  st = rot * st * 2.0 + shift;
+                  a *= 0.5;
+              }
+              return v;
+          }
+
           void main() {
-            vec2 uv = vUv * 2.0 - 1.0;
-            float dist = length(uv);
+            vec2 uv = vUv;
+            float time = uTime * 0.15;
             
-            // Vignette
-            float vignette = 1.0 - smoothstep(0.3, 1.5, dist);
+            float horizon = 0.35;
             
-            // Very subtle noise (Grain)
-            float noise = hash(vUv * 200.0 + uTime) * 0.015;
+            vec3 skyColor = vec3(0.05, 0.07, 0.1);
+            vec3 cloudColor = vec3(0.15, 0.2, 0.25);
+            vec3 oceanColor = vec3(0.02, 0.04, 0.06);
+            vec3 waveColor = vec3(0.1, 0.15, 0.2);
             
-            // Barely visible Scanlines
-            float scanline = sin(vUv.y * 1000.0 - uTime * 5.0) * 0.005;
+            vec3 finalColor = vec3(0.0);
             
-            // Abstract slow-moving gradient light
-            float glow = sin(vUv.x * 2.0 + uTime * 0.2) * cos(vUv.y * 1.5 - uTime * 0.15) * 0.05;
+            if (uv.y > horizon) {
+                // Sky
+                vec2 skyUv = uv;
+                skyUv.x += time * 0.2;
+                float depth = (uv.y - horizon);
+                skyUv.y /= (depth + 0.5); // fake perspective
+                
+                float n = fbm(skyUv * 3.0 - time * 0.5);
+                float n2 = fbm(skyUv * 6.0 + time * 0.3);
+                
+                float clouds = smoothstep(0.3, 0.8, n * 0.7 + n2 * 0.3);
+                finalColor = mix(skyColor, cloudColor, clouds);
+                
+                // Hazy horizon glow
+                float haze = 1.0 - smoothstep(0.0, 0.4, depth);
+                finalColor = mix(finalColor, vec3(0.2, 0.25, 0.3), haze * 0.5);
+            } else {
+                // Ocean
+                float depth = (horizon - uv.y);
+                vec2 oceanUv = uv;
+                
+                // Water perspective
+                oceanUv.x = (uv.x - 0.5) / (depth + 0.01) + 0.5;
+                oceanUv.y = 1.0 / (depth + 0.01);
+                
+                oceanUv.x += time * 0.5;
+                oceanUv.y -= time * 2.0;
+                
+                float n = fbm(oceanUv * 1.5);
+                float n2 = fbm(oceanUv * 4.0 - time);
+                
+                float waves = smoothstep(0.4, 0.8, n * 0.6 + n2 * 0.4);
+                finalColor = mix(oceanColor, waveColor, waves);
+                
+                // Horizon haze reflection
+                float haze = 1.0 - smoothstep(0.0, 0.2, depth);
+                finalColor = mix(finalColor, vec3(0.15, 0.2, 0.25), haze * 0.8);
+                
+                // Distance fade
+                float distFade = smoothstep(0.0, 0.1, depth);
+                finalColor *= distFade;
+            }
             
-            vec3 color = vec3(0.01, 0.02, 0.04);
-            color += vec3(0.1, 0.3, 0.5) * glow;
-            color *= vignette;
-            color += noise;
-            color += scanline;
+            // Subtle global vignette and grain
+            float dist = length(uv - 0.5);
+            float vignette = 1.0 - smoothstep(0.4, 1.0, dist);
+            finalColor *= vignette * 1.2;
             
-            gl_FragColor = vec4(color, 1.0);
+            float nGrain = hash(uv * 200.0 + uTime) * 0.015;
+            finalColor += nGrain;
+
+            gl_FragColor = vec4(finalColor, 1.0);
             #include <tonemapping_fragment>
             #include <colorspace_fragment>
           }
@@ -599,9 +670,9 @@ export class ProjectCarouselScene extends BaseScene {
             if (dist > 0.5) discard;
             // Soft glowing dot
             float alpha = smoothstep(0.5, 0.0, dist) * (0.2 + vRandom * 0.4);
-            // Cyan/Blue tech colors
-            vec3 color = mix(vec3(0.2, 0.8, 1.0), vec3(0.5, 0.2, 1.0), vRandom);
-            gl_FragColor = vec4(color, alpha);
+            // Muted slate/white particles for atmospheric mist/spray
+            vec3 color = mix(vec3(0.4, 0.45, 0.5), vec3(0.6, 0.65, 0.7), vRandom);
+            gl_FragColor = vec4(color, alpha * 0.4);
             #include <tonemapping_fragment>
             #include <colorspace_fragment>
           }
@@ -617,7 +688,7 @@ export class ProjectCarouselScene extends BaseScene {
       'material'
     );
     this.particles = new Points(particleGeo, particleMat);
-    // this.scene.add(this.particles);
+    this.scene.add(this.particles);
 
     this.bindWindowEvents();
     this.updateAccentColor(PROJECT_CARDS[0].color);
