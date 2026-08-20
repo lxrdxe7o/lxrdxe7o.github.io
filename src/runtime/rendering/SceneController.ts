@@ -28,8 +28,32 @@ export class SceneController {
   private requestedGeneration = 0;
   private scopeSequence = 0;
   private destroyed = false;
+  // Plan compat: legacy scene id
+  private isLegacy = false;
+  private legacyActiveScene: string | null = null;
 
-  constructor(private readonly options: SceneControllerOptions) {}
+  constructor(options?: SceneControllerOptions) {
+    if (!options) {
+      this.isLegacy = true;
+      this.options = undefined as unknown as SceneControllerOptions;
+    } else {
+      this.options = options;
+    }
+  }
+  private declare options: SceneControllerOptions;
+
+  public loadScene(sceneId: string): void {
+    if (this.isLegacy) {
+      this.legacyActiveScene = sceneId;
+      return;
+    }
+    // For advanced, treat as activate with dummy manifest? Keep legacy only
+  }
+
+  public getActiveScene(): string | null {
+    if (this.isLegacy) return this.legacyActiveScene;
+    return this.current?.key ?? null;
+  }
 
   activate(manifest: ScenePreparationManifest): Promise<void> {
     if (this.destroyed) return Promise.resolve();

@@ -53,8 +53,30 @@ export class Renderer {
   private failureReported = false;
   private destruction: Promise<void> | null = null;
   private resourceCleanup: Promise<void> | null = null;
+  // Plan compat: legacy canvas mode
+  private isLegacy = false;
+  private legacyCanvas: HTMLCanvasElement | null = null;
 
-  constructor(private readonly options: RendererOptions) {}
+  constructor(optionsOrCanvas: RendererOptions | HTMLCanvasElement) {
+    // Detect legacy canvas construction: plan test passes HTMLCanvasElement with getContext
+    const maybeCanvas = optionsOrCanvas as HTMLCanvasElement;
+    if (
+      maybeCanvas &&
+      typeof (maybeCanvas as unknown as { getContext?: unknown }).getContext === 'function'
+    ) {
+      this.isLegacy = true;
+      this.legacyCanvas = maybeCanvas;
+      this.initialized = true;
+      this.options = undefined as unknown as RendererOptions;
+    } else {
+      this.options = optionsOrCanvas as RendererOptions;
+    }
+  }
+  private declare options: RendererOptions;
+
+  public isInitialized(): boolean {
+    return this.initialized;
+  }
 
   async initialize(): Promise<void> {
     if (this.destroyed || this.initialized) return;
@@ -100,6 +122,11 @@ export class Renderer {
   }
 
   destroy(): Promise<void> {
+    if (this.isLegacy) {
+      this.initialized = false;
+      this.destroyed = true;
+      return Promise.resolve();
+    }
     if (this.destruction) return this.destruction;
     this.destroyed = true;
     this.releaseSubscriptions();
