@@ -499,67 +499,94 @@ export class ProjectCarouselScene extends BaseScene {
 
           void main() {
             vec2 uv = vUv;
-            float time = uTime * 0.15;
+            // Fix aspect ratio distortion (assuming roughly 16:9)
+            vec2 st = uv;
+            st.x *= 1.6;
             
-            float horizon = 0.35;
+            float time = uTime * 0.05;
             
-            vec3 skyColor = vec3(0.05, 0.07, 0.1);
-            vec3 cloudColor = vec3(0.15, 0.2, 0.25);
-            vec3 oceanColor = vec3(0.02, 0.04, 0.06);
-            vec3 waveColor = vec3(0.1, 0.15, 0.2);
+            float horizon = 0.25; // Lower horizon
+            
+            // Icy blue color palette
+            vec3 darkBlue = vec3(0.06, 0.12, 0.22);
+            vec3 midBlue = vec3(0.2, 0.35, 0.5);
+            vec3 lightBlue = vec3(0.55, 0.7, 0.85);
+            vec3 highlight = vec3(0.8, 0.9, 1.0);
             
             vec3 finalColor = vec3(0.0);
             
             if (uv.y > horizon) {
-                // Sky
-                vec2 skyUv = uv;
-                skyUv.x += time * 0.2;
+                // SKY
                 float depth = (uv.y - horizon);
-                skyUv.y /= (depth + 0.5); // fake perspective
+                vec2 skyUv = st;
                 
-                float n = fbm(skyUv * 3.0 - time * 0.5);
-                float n2 = fbm(skyUv * 6.0 + time * 0.3);
+                // Parallax/Perspective for sky
+                skyUv.y /= (depth + 0.1); 
+                skyUv.x += time * 0.5;
                 
-                float clouds = smoothstep(0.3, 0.8, n * 0.7 + n2 * 0.3);
-                finalColor = mix(skyColor, cloudColor, clouds);
+                // Massive clouds
+                float n = fbm(skyUv * 1.5 - time * 0.2);
+                float n2 = fbm(skyUv * 3.0 + time * 0.1);
                 
-                // Hazy horizon glow
-                float haze = 1.0 - smoothstep(0.0, 0.4, depth);
-                finalColor = mix(finalColor, vec3(0.2, 0.25, 0.3), haze * 0.5);
+                // Create puffy shapes with sharp highlights and soft shadows
+                float cloudMask = smoothstep(0.2, 0.8, n * 0.8 + n2 * 0.2);
+                float shadowMask = smoothstep(0.1, 0.7, fbm(skyUv * 1.5 - time * 0.2 + vec2(0.2, 0.2)));
+                
+                vec3 skyBase = mix(darkBlue, midBlue, uv.y);
+                vec3 cloudVol = mix(midBlue, lightBlue, cloudMask);
+                cloudVol = mix(cloudVol, highlight, smoothstep(0.6, 0.9, cloudMask - shadowMask * 0.5));
+                
+                finalColor = mix(skyBase, cloudVol, cloudMask * (0.5 + depth));
+                
+                // Massive thick haze at the horizon
+                float haze = 1.0 - smoothstep(0.0, 0.5, depth);
+                finalColor = mix(finalColor, lightBlue, haze * 0.9);
+                
             } else {
-                // Ocean
+                // OCEAN
                 float depth = (horizon - uv.y);
-                vec2 oceanUv = uv;
+                vec2 oceanUv = st;
                 
-                // Water perspective
-                oceanUv.x = (uv.x - 0.5) / (depth + 0.01) + 0.5;
-                oceanUv.y = 1.0 / (depth + 0.01);
+                // Extreme perspective for ocean floor
+                oceanUv.x = (st.x - 0.8) / (depth + 0.02) + 0.8;
+                oceanUv.y = 1.0 / (depth + 0.02);
                 
                 oceanUv.x += time * 0.5;
-                oceanUv.y -= time * 2.0;
+                oceanUv.y -= time * 3.0; // Flow towards camera
                 
-                float n = fbm(oceanUv * 1.5);
-                float n2 = fbm(oceanUv * 4.0 - time);
+                float n = fbm(oceanUv * 0.8);
+                float n2 = fbm(oceanUv * 2.5 - time * 2.0);
                 
-                float waves = smoothstep(0.4, 0.8, n * 0.6 + n2 * 0.4);
-                finalColor = mix(oceanColor, waveColor, waves);
+                float waves = smoothstep(0.3, 0.8, n * 0.7 + n2 * 0.3);
                 
-                // Horizon haze reflection
-                float haze = 1.0 - smoothstep(0.0, 0.2, depth);
-                finalColor = mix(finalColor, vec3(0.15, 0.2, 0.25), haze * 0.8);
+                vec3 waterBase = mix(darkBlue * 0.5, midBlue, waves * 0.6);
                 
-                // Distance fade
-                float distFade = smoothstep(0.0, 0.1, depth);
-                finalColor *= distFade;
+                // Highlight reflections on wave peaks
+                float reflection = smoothstep(0.6, 0.9, waves);
+                vec3 waterColor = mix(waterBase, highlight, reflection * 0.5);
+                
+                finalColor = waterColor;
+                
+                // Horizon haze reflecting the sky
+                float haze = 1.0 - smoothstep(0.0, 0.3, depth);
+                finalColor = mix(finalColor, lightBlue, haze);
+                
+                // Distance fade out to dark
+                float distFade = smoothstep(0.0, 0.05, depth);
+                finalColor = mix(midBlue, finalColor, distFade);
             }
             
-            // Subtle global vignette and grain
-            float dist = length(uv - 0.5);
-            float vignette = 1.0 - smoothstep(0.4, 1.0, dist);
-            finalColor *= vignette * 1.2;
+            // Dramatic lighting / Vignette
+            float dist = length(uv - vec2(0.5, 0.4));
+            float vignette = 1.0 - smoothstep(0.3, 1.2, dist);
+            finalColor *= (0.6 + vignette * 0.6);
             
-            float nGrain = hash(uv * 200.0 + uTime) * 0.015;
-            finalColor += nGrain;
+            // Ambient glow in center
+            float centerGlow = 1.0 - smoothstep(0.0, 0.6, dist);
+            finalColor += highlight * centerGlow * 0.15;
+            
+            float nGrain = hash(uv * 300.0 + uTime) * 0.025;
+            finalColor += vec3(nGrain);
 
             gl_FragColor = vec4(finalColor, 1.0);
             #include <tonemapping_fragment>
