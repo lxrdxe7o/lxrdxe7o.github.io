@@ -18,6 +18,10 @@ export interface InputSnapshot {
   readonly modality: PointerModality;
   readonly focusVisible: boolean;
   readonly inactiveMs: number;
+  // Plan compat: normalized clip-space coordinates for WebGL layer
+  readonly x: number;
+  readonly y: number;
+  readonly isPressed: boolean;
 }
 
 export const IDLE_INPUT: InputSnapshot = Object.freeze({
@@ -26,6 +30,9 @@ export const IDLE_INPUT: InputSnapshot = Object.freeze({
   modality: 'none',
   focusVisible: false,
   inactiveMs: 0,
+  x: 0,
+  y: 0,
+  isPressed: false,
 });
 
 /**
@@ -59,10 +66,75 @@ export class InputManager {
   private frameHandle: number | null = null;
   private started = false;
   private destroyed = false;
+  // Plan compat: legacy viewport size + clip-space state
+  private isLegacy = false;
+  private legacyWidth = 1;
+  private legacyHeight = 1;
+  private legacySnapshot: InputSnapshot = IDLE_INPUT;
+  private environment: InputEnvironment;
 
-  constructor(private readonly environment: InputEnvironment) {}
+  constructor(environmentOrWidth: InputEnvironment | number, height?: number) {
+    if (typeof environmentOrWidth === 'number' && typeof height === 'number') {
+      this.isLegacy = true;
+      this.legacyWidth = environmentOrWidth;
+      this.legacyHeight = height;
+      this.legacySnapshot = { ...IDLE_INPUT };
+      // Dummy environment for legacy — never used for listeners
+      this.environment = {
+        now: () => performance.now(),
+        requestFrame: (cb) => 0 as unknown as number,
+        cancelFrame: () => {},
+        measureViewport: () => ({ width: this.legacyWidth, height: this.legacyHeight, dpr: 1 }),
+        onPointer: () => () => {},
+        onKeyboard: () => () => {},
+        onViewportChange: () => () => {},
+      };
+      this.snapshot = this.legacySnapshot;
+    } else {
+      this.environment = environmentOrWidth as InputEnvironment;
+    }
+  }
+
+  // Plan compat: viewport resize
+  public updateViewport(width: number, height: number): void {
+    if (this.isLegacy) {
+      this.legacyWidth = width;
+      this.legacyHeight = height;
+      return;
+    }
+    this.viewport.set(width, height, 1);
+  }
+
+  // Plan compat: normalize pointer to clip space
+  public handlePointerEvent(e: { clientX: number; clientY: number; type?: string }): void {
+    if (!this.isLegacy) {
+      // For advanced mode, also support direct call by forwarding to pointer signal via legacy normalization
+      const x = (e.clientX / this.viewport.read().width) * 2 - 1 || (e.clientX / 1) * 2 - 1;
+      const y = -(e.clientY / this.viewport.read().height) * 2 + 1 || -(e.clientY / 1) * 2 + 1;
+      // Update legacy-like snapshot for compat while preserving advanced snapshot
+      this.snapshot = Object.freeze({
+        ...this.snapshot,
+        x,
+        y,
+        isPressed: e.type === 'pointerdown' ? true : e.type === 'pointerup' ? false : this.snapshot.isPressed,
+      });
+      return;
+    }
+    const x = (e.clientX / this.legacyWidth) * 2 - 1;
+    const y = -(e.clientY / this.legacyHeight) * 2 + 1;
+    const isPressed = e.type === 'pointerdown' ? true : e.type === 'pointerup' ? false : this.legacySnapshot.isPressed;
+    this.legacySnapshot = Object.freeze({
+      ...this.legacySnapshot,
+      x,
+      y,
+      isPressed,
+      pointer: { ...this.legacySnapshot.pointer, x, y } as PointerSignalState,
+    });
+    this.snapshot = this.legacySnapshot;
+  }
 
   start(): void {
+    if (this.isLegacy) return;
     if (this.started || this.destroyed) return;
     this.started = true;
 
@@ -161,8 +233,10 @@ export class InputManager {
       modality: pointer.modality,
       focusVisible: keyboard.focusVisible,
       inactiveMs: pointer.inactiveMs,
+      x: pointer.x,
+      y: pointer.y,
+      isPressed: pointer.pressed,
     });
-
     for (const subscriber of [...this.subscribers]) {
       try {
         subscriber(this.snapshot);
