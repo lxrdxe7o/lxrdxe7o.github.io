@@ -81,7 +81,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
 
       const items = list.querySelectorAll<HTMLLIElement>('li');
       const total = items.length;
-      let currentIndex = 0;
+      let currentIndex = -1;
       let targetIndexFloat = 0;
 
       // Lock body scroll
@@ -91,7 +91,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
       updateCenterStage(0, 0);
 
       function updateCenterStage(newIndex: number, direction: number) {
-        if (newIndex === currentIndex && direction !== 0) return;
+        if (newIndex === currentIndex) return;
         
         const nextItem = items[newIndex];
         const nextTitle = nextItem.dataset.title;
