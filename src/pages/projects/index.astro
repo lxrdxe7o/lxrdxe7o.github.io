@@ -1,13 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectIndex from '../../components/projects/ProjectIndex.astro';
+import CustomCursor from '../../components/shell/CustomCursor.astro';
 ---
 
 <BaseLayout title="Work — lxrdxe7o" description="Selected independent software work by Ishraful Haque" canonical="/projects" routeId="projects">
+  <CustomCursor />
+  <div id="work-carousel">
+    <!-- Server-rendered fallback list, client-side hijacks this -->
+    <div class="carousel-slide active">
+      <h2>PROJECT_01 // DOSSIER</h2>
+    </div>
+  </div>
   <header class="page-heading"><p>Work</p><h1>Projects</h1><p>Independent software work with verified roles, years, and links. Flagship case studies lead; secondary work follows the same factual rules.</p></header>
   <ProjectIndex />
 </BaseLayout>
 <style>
+  /* Ensure viewport lock */
+  :global(body) {
+    overflow: hidden;
+  }
+  
+  #work-carousel {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .page-heading { display: grid; gap: var(--space-4); min-block-size: min(56vh, 32rem); align-content: center; }
   .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
   h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
