@@ -22,6 +22,7 @@ import {
   Object3D,
   AmbientLight,
   DirectionalLight,
+  SRGBColorSpace,
 } from 'three';
 
 import type { ResourceScope } from '../ResourceTracker';
@@ -146,6 +147,7 @@ function createFallbackTexture(project: ProjectCardData): Texture {
   ctx.fillRect(80, 500, 48, 4);
 
   const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
   texture.needsUpdate = true;
   return texture;
 }
@@ -208,6 +210,8 @@ const fragmentShader = `
     finalColor *= light;
 
     gl_FragColor = vec4(finalColor, uAlpha);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
   }
 `;
 
@@ -344,8 +348,8 @@ export class ProjectCarouselScene extends BaseScene {
           float pointerDist = distance(uv, uPointer * 0.5 + 0.5);
           float pointerEffect = smoothstep(0.5, 0.0, pointerDist) * 2.0;
           
-          float displacement = noise * (1.0 + abs(uScroll) * 5.0 + pointerEffect);
-          transformed += normal * displacement * 0.8;
+          float displacement = noise * (0.2 + abs(uScroll) * 1.5 + pointerEffect * 0.5);
+          transformed += normal * displacement * 0.4;
           `
         );
         
@@ -401,7 +405,7 @@ export class ProjectCarouselScene extends BaseScene {
       if (project.textureUrl) {
         texture = textureLoader.load(
           project.textureUrl,
-          () => {},
+          (t) => { t.colorSpace = SRGBColorSpace; },
           undefined,
           () => {
             // Fallback on load error
@@ -471,11 +475,11 @@ export class ProjectCarouselScene extends BaseScene {
             // Vignette
             float vignette = 1.0 - smoothstep(0.3, 1.5, dist);
             
-            // Noise (Grain)
-            float noise = hash(vUv * 200.0 + uTime) * 0.05;
+            // Very subtle noise (Grain)
+            float noise = hash(vUv * 200.0 + uTime) * 0.015;
             
-            // Subtle Scanlines
-            float scanline = sin(vUv.y * 1000.0 - uTime * 5.0) * 0.015;
+            // Barely visible Scanlines
+            float scanline = sin(vUv.y * 1000.0 - uTime * 5.0) * 0.005;
             
             // Abstract slow-moving gradient light
             float glow = sin(vUv.x * 2.0 + uTime * 0.2) * cos(vUv.y * 1.5 - uTime * 0.15) * 0.05;
@@ -487,6 +491,8 @@ export class ProjectCarouselScene extends BaseScene {
             color += scanline;
             
             gl_FragColor = vec4(color, 1.0);
+            #include <tonemapping_fragment>
+            #include <colorspace_fragment>
           }
         `,
         uniforms: { uTime: { value: 0 } },
@@ -532,6 +538,8 @@ export class ProjectCarouselScene extends BaseScene {
             vec3 color = vec3(0.2, 0.6, 1.0) * line * fade * 0.4;
             
             gl_FragColor = vec4(color, color.r); // Alpha tied to color intensity
+            #include <tonemapping_fragment>
+            #include <colorspace_fragment>
           }
         `,
         uniforms: { uTime: { value: 0 } },
@@ -594,6 +602,8 @@ export class ProjectCarouselScene extends BaseScene {
             // Cyan/Blue tech colors
             vec3 color = mix(vec3(0.2, 0.8, 1.0), vec3(0.5, 0.2, 1.0), vRandom);
             gl_FragColor = vec4(color, alpha);
+            #include <tonemapping_fragment>
+            #include <colorspace_fragment>
           }
         `,
         uniforms: {

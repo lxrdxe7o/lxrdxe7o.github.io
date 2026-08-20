@@ -1,6 +1,5 @@
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+
+
 import { Vector2 } from 'three';
 import {
   ACESFilmicToneMapping,
@@ -27,9 +26,6 @@ import type {
 
 class ThreeRendererBackend implements RendererBackend {
   readonly renderer: WebGLRenderer;
-  private composer: EffectComposer | null = null;
-  private renderPass: RenderPass | null = null;
-  private bloomPass: UnrealBloomPass | null = null;
 
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new WebGLRenderer({
@@ -50,30 +46,14 @@ class ThreeRendererBackend implements RendererBackend {
 
   setPixelRatio(value: number): void {
     this.renderer.setPixelRatio(value);
-    if (this.composer) this.composer.setPixelRatio(value);
   }
 
   setSize(width: number, height: number): void {
     this.renderer.setSize(width, height, false);
-    if (this.composer) this.composer.setSize(width, height);
   }
 
   render(scene: unknown, camera: unknown): void {
-    if (!this.composer) {
-      this.composer = new EffectComposer(this.renderer);
-      this.renderPass = new RenderPass(scene as Scene, camera as Camera);
-      this.renderPass.clearColor = new Color(0x050306);
-      this.renderPass.clearAlpha = 1.0;
-      this.composer.addPass(this.renderPass);
-      this.bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 0.3, 0.4, 0.85);
-      this.composer.addPass(this.bloomPass);
-    } else {
-      if (this.renderPass) {
-        this.renderPass.scene = scene as Scene;
-        this.renderPass.camera = camera as Camera;
-      }
-    }
-    this.composer.render();
+    this.renderer.render(scene as Scene, camera as Camera);
   }
 
   forceContextLoss(): void {
@@ -81,7 +61,6 @@ class ThreeRendererBackend implements RendererBackend {
   }
 
   dispose(): void {
-    if (this.composer) this.composer.dispose();
     this.renderer.dispose();
   }
 }
