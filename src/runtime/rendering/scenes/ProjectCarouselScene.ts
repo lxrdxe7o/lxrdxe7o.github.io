@@ -229,6 +229,8 @@ export class ProjectCarouselScene extends BaseScene {
   }> = [];
 
   private particles: Points | null = null;
+  private bgMesh: Mesh<PlaneGeometry, ShaderMaterial> | null = null;
+  private gridMesh: Mesh<PlaneGeometry, ShaderMaterial> | null = null;
   private currentProgress = 0;
   private targetProgress = 0;
   private scrollVelocity = 0;
@@ -314,38 +316,160 @@ export class ProjectCarouselScene extends BaseScene {
       });
     });
 
-    // Background floating particle cloud
-    const particleCount = manifest.reducedMotion ? 200 : 600;
+    // 1. Immersive Deep Background (Camera attached)
+    const bgGeo = this.scope.track(new PlaneGeometry(100, 100), 'geometry');
+    const bgMat = this.scope.track(
+      new ShaderMaterial({
+        vertexShader: `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float uTime;
+          varying vec2 vUv;
+          
+          float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+          }
+
+          void main() {
+            vec2 uv = vUv * 2.0 - 1.0;
+            float dist = length(uv);
+            
+            // Vignette
+            float vignette = 1.0 - smoothstep(0.3, 1.5, dist);
+            
+            // Noise (Grain)
+            float noise = hash(vUv * 200.0 + uTime) * 0.05;
+            
+            // Subtle Scanlines
+            float scanline = sin(vUv.y * 1000.0 - uTime * 5.0) * 0.015;
+            
+            // Abstract slow-moving gradient light
+            float glow = sin(vUv.x * 2.0 + uTime * 0.2) * cos(vUv.y * 1.5 - uTime * 0.15) * 0.05;
+            
+            vec3 color = vec3(0.01, 0.02, 0.04);
+            color += vec3(0.1, 0.3, 0.5) * glow;
+            color *= vignette;
+            color += noise;
+            color += scanline;
+            
+            gl_FragColor = vec4(color, 1.0);
+          }
+        `,
+        uniforms: { uTime: { value: 0 } },
+        depthWrite: false,
+        depthTest: false,
+      }),
+      'material'
+    );
+    this.bgMesh = new Mesh(bgGeo, bgMat);
+    this.bgMesh.position.set(0, 0, -40); // Push far back
+    this.camera.add(this.bgMesh);
+    this.scene.add(this.camera); // Ensure camera is in scene to render its children
+
+    // 2. Data Floor Grid
+    const gridGeo = this.scope.track(new PlaneGeometry(80, 80, 1, 1), 'geometry');
+    const gridMat = this.scope.track(
+      new ShaderMaterial({
+        vertexShader: `
+          varying vec3 vWorldPosition;
+          void main() {
+            vec4 worldPos = modelMatrix * vec4(position, 1.0);
+            vWorldPosition = worldPos.xyz;
+            gl_Position = projectionMatrix * viewMatrix * worldPos;
+          }
+        `,
+        fragmentShader: `
+          uniform float uTime;
+          varying vec3 vWorldPosition;
+          
+          void main() {
+            vec2 coord = vWorldPosition.xz * 0.4;
+            coord.y -= uTime * 0.2; // Move grid forward
+            
+            vec2 grid = fract(coord);
+            float line = step(0.96, grid.x) + step(0.96, grid.y);
+            line = clamp(line, 0.0, 1.0);
+            
+            // Distance fade
+            float dist = length(vWorldPosition.xz);
+            float fade = 1.0 - smoothstep(5.0, 35.0, dist);
+            
+            // Glowing cyan/blue grid
+            vec3 color = vec3(0.2, 0.6, 1.0) * line * fade * 0.4;
+            
+            gl_FragColor = vec4(color, color.r); // Alpha tied to color intensity
+          }
+        `,
+        uniforms: { uTime: { value: 0 } },
+        transparent: true,
+        blending: AdditiveBlending,
+        depthWrite: false,
+      }),
+      'material'
+    );
+    this.gridMesh = new Mesh(gridGeo, gridMat);
+    this.gridMesh.rotation.x = -Math.PI / 2;
+    this.gridMesh.position.y = -3.5;
+    this.scene.add(this.gridMesh);
+
+    // 3. Background floating particle cloud (Enhanced)
+    const particleCount = manifest.reducedMotion ? 400 : 1200;
     const particlePositions = new Float32Array(particleCount * 3);
+    const particleRandoms = new Float32Array(particleCount);
     for (let i = 0; i < particleCount; i++) {
-      particlePositions[i * 3] = (Math.random() - 0.5) * 30;
+      particlePositions[i * 3] = (Math.random() - 0.5) * 40;
       particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 5;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
+      particleRandoms[i] = Math.random();
     }
     const particleGeo = this.scope.track(new BufferGeometry(), 'geometry');
     particleGeo.setAttribute('position', new BufferAttribute(particlePositions, 3));
+    particleGeo.setAttribute('aRandom', new BufferAttribute(particleRandoms, 1));
+    
     const particleMat = this.scope.track(
       new ShaderMaterial({
         vertexShader: `
           uniform float uTime;
+          uniform float uVelocity;
+          attribute float aRandom;
+          varying float vRandom;
+          
           void main() {
+            vRandom = aRandom;
             vec3 pos = position;
-            pos.y += sin(uTime * 0.2 + position.x) * 0.3;
+            // Float upwards and drift
+            pos.y += sin(uTime * 0.15 + aRandom * 10.0) * 0.5 + uTime * 0.2 * (aRandom + 0.5);
+            // Wrap around Y axis
+            pos.y = mod(pos.y + 10.0, 20.0) - 10.0;
+            
+            // React to scroll velocity
+            pos.x += uVelocity * aRandom * 10.0;
+            
             vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-            gl_PointSize = (14.0 / -mvPosition.z);
+            gl_PointSize = (12.0 / -mvPosition.z) * (aRandom + 0.5);
             gl_Position = projectionMatrix * mvPosition;
           }
         `,
         fragmentShader: `
+          varying float vRandom;
           void main() {
             float dist = length(gl_PointCoord - vec2(0.5));
             if (dist > 0.5) discard;
-            float alpha = smoothstep(0.5, 0.0, dist) * 0.35;
-            gl_FragColor = vec4(0.8, 0.85, 0.95, alpha);
+            // Soft glowing dot
+            float alpha = smoothstep(0.5, 0.0, dist) * (0.2 + vRandom * 0.4);
+            // Cyan/Blue tech colors
+            vec3 color = mix(vec3(0.2, 0.8, 1.0), vec3(0.5, 0.2, 1.0), vRandom);
+            gl_FragColor = vec4(color, alpha);
           }
         `,
         uniforms: {
           uTime: { value: 0.0 },
+          uVelocity: { value: 0.0 },
         },
         transparent: true,
         blending: AdditiveBlending,
@@ -449,8 +573,15 @@ export class ProjectCarouselScene extends BaseScene {
     this.scrollVelocity *= 0.9;
 
     const time = frame.elapsed;
+    if (this.bgMesh) {
+      this.bgMesh.material.uniforms.uTime.value = time;
+    }
+    if (this.gridMesh) {
+      this.gridMesh.material.uniforms.uTime.value = time;
+    }
     if (this.particles) {
       (this.particles.material as ShaderMaterial).uniforms.uTime.value = time;
+      (this.particles.material as ShaderMaterial).uniforms.uVelocity.value = this.scrollVelocity;
     }
 
     let closestIdx = 0;
@@ -541,10 +672,20 @@ export class ProjectCarouselScene extends BaseScene {
       this.carouselGroup.remove(card.mesh);
     });
     this.cards.length = 0;
+    
+    if (this.bgMesh) {
+      this.camera.remove(this.bgMesh);
+      this.bgMesh = null;
+    }
+    if (this.gridMesh) {
+      this.scene.remove(this.gridMesh);
+      this.gridMesh = null;
+    }
     if (this.particles) {
       this.scene.remove(this.particles);
       this.particles = null;
     }
+    
     this.scene.clear();
   }
 }
