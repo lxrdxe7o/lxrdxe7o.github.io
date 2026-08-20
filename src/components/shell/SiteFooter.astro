@@ -1,29 +1,54 @@
 ---
-import { secondaryLinks } from '../../data/navigation';
-import SocialLinks from './SocialLinks.astro';
-
-const currentPath = Astro.url.pathname;
+import PrimaryNavigation from './PrimaryNavigation.astro';
 ---
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <nav aria-label="Secondary">
-      <ul class="footer-nav__list">
-        {secondaryLinks.map((link) => (
+
+<footer class="ui-footer">
+  <div class="wrap">
+    <div class="grid grid-cols-24 gap-24 items-center">
+      <!-- Left side: Social Links -->
+      <div class="col-span-12 lg:col-span-8">
+        <ul class="flex items-center gap-24 ts-m">
           <li>
             <a
-              href={link.href}
-              class="footer-nav__link"
-              aria-current={currentPath.startsWith(link.href) ? 'page' : undefined}
+              class="social-a c-color"
+              href="https://github.com/lxrdxe7o"
+              target="_blank"
+              rel="noopener"
+              data-sound=""
+              data-sound-click=""
             >
-              {link.label}
+              <span>GitHub</span>
             </a>
           </li>
-        ))}
-      </ul>
-    </nav>
-    <div class="site-footer__meta-group">
-      <SocialLinks />
-      <p class="footer-meta">&copy; {new Date().getFullYear()} Ishraful Haque</p>
+          <li>
+            <a
+              class="social-a c-color"
+              href="https://twitter.com/lxrdxe7o"
+              target="_blank"
+              rel="noopener"
+              data-sound=""
+              data-sound-click=""
+            >
+              <span>Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="social-a c-color"
+              href="mailto:contact@lxrdxe7o.me"
+              data-sound=""
+              data-sound-click=""
+            >
+              <span>contact@lxrdxe7o.me</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right side: Work / About Floating Navigation -->
+      <div class="col-span-12 lg:col-span-6 lg:col-start-19 flex justify-between lg:justify-end">
+        <PrimaryNavigation />
+      </div>
     </div>
   </div>
 </footer>

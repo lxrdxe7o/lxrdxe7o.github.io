@@ -1,6 +1,25 @@
 ---
 ---
 
+<style is:global>
+  [data-experience-canvas-host] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: -1;
+    pointer-events: auto;
+  }
+  
+  [data-experience-canvas] {
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none;
+  }
+</style>
+
 <div
   data-experience-canvas-host
   data-renderer-mode="static"
@@ -9,9 +28,10 @@
   transition:persist="experience-canvas"
 >
   <canvas data-experience-canvas aria-hidden="true"></canvas>
-  <p data-renderer-fallback role="status" aria-live="polite" hidden>
+  <p data-renderer-fallback class="u-visually-hidden" role="status" aria-live="polite" hidden>
     The interactive background is unavailable. All portfolio content remains accessible.
   </p>
+
 </div>
 
 <script>

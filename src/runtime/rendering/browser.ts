@@ -152,6 +152,8 @@ export class BrowserRenderingAdapter implements RenderingAdapter {
   }
 }
 
+import { ProjectCarouselScene } from './scenes/ProjectCarouselScene';
+
 export function createBrowserRenderer(
   surface: RenderingSurface,
   runtime: ExperienceRuntime,
@@ -167,8 +169,12 @@ export function createBrowserRenderer(
         createScene: ({ manifest, scope }) => {
           if (manifest.qualityTier === 'static') return new StaticScene(scope, manifest.route);
           if (manifest.route.startsWith('/lab')) return new FieldExperiment(scope, manifest.route);
+          if (manifest.route === '/' || manifest.route.startsWith('/projects')) {
+            return new ProjectCarouselScene(scope, manifest.route);
+          }
           return new HomeScene(scope, manifest.route);
         },
       }),
   });
 }
+

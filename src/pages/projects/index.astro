@@ -1,35 +1,101 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectIndex from '../../components/projects/ProjectIndex.astro';
-import CustomCursor from '../../components/shell/CustomCursor.astro';
+import SvgButton from '../../components/shared/SvgButton.astro';
+import { PROJECT_CARDS } from '../../runtime/rendering/scenes/ProjectCarouselScene';
+import { siteWebSiteData, sitePersonData } from '../../lib/seo/metadata';
 ---
 
-<BaseLayout title="Work — lxrdxe7o" description="Selected independent software work by Ishraful Haque" canonical="/projects" routeId="projects">
-  <CustomCursor />
-  <div id="work-carousel">
-    <!-- Server-rendered fallback list, client-side hijacks this -->
-    <div class="carousel-slide active">
-      <h2>PROJECT_01 // DOSSIER</h2>
+<BaseLayout
+  title="Work — Ishraful Haque"
+  description="Selected independent software projects and developer tooling by Ishraful Haque (lxrdxe7o)."
+  canonical="/projects"
+  routeId="projects"
+  frame="wide"
+  structuredData={[siteWebSiteData, sitePersonData]}
+>
+  <div data-view="home" class="ui-work">
+    <div class="ui-work-content">
+      <div class="wrap">
+        <div class="lg:grid grid-cols-24 gap-24">
+          <div class="col-span-24 lg:col-span-12 xl:col-span-10 col-start-1 lg:col-start-13 xl:col-start-15">
+            <div class="ui-title ts-m c-color">
+              <span class="ui-title-inner">Index</span>
+            </div>
+
+            <ul class="ui-work-ul" id="project-list-projects">
+              {PROJECT_CARDS.map((project, idx) => (
+                <li
+                  class={`c-color ${idx === 0 ? 'is-selected' : ''}`}
+                  data-slug={project.slug}
+                  data-index={idx}
+                  data-color={project.color}
+                >
+                  <div class="ui-work-a" data-sound="" data-sound-click="">
+                    <span>{project.title}</span>
+                  </div>
+                  <div class="ui-work-cta">
+                    <SvgButton
+                      href={`/projects/${project.slug}`}
+                      text="View project"
+                      dataTransition="project"
+                      dataSound=""
+                      dataSoundClick=""
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <header class="page-heading"><p>Work</p><h1>Projects</h1><p>Independent software work with verified roles, years, and links. Flagship case studies lead; secondary work follows the same factual rules.</p></header>
-  <ProjectIndex />
+
+  <script>
+    function setupWorkIndex() {
+      const list = document.getElementById('project-list-projects');
+      if (!list) return;
+
+      const items = list.querySelectorAll<HTMLLIElement>('li');
+
+      items.forEach((item) => {
+        const idx = Number(item.dataset.index);
+        const color = item.dataset.color;
+
+        item.addEventListener('mouseenter', () => {
+          window.dispatchEvent(
+            new CustomEvent('carousel:focus', {
+              detail: { index: idx, slug: item.dataset.slug },
+            })
+          );
+          if (color) {
+            document.documentElement.style.setProperty('--accent-current', color);
+          }
+          items.forEach((it) => it.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+        });
+      });
+
+      window.addEventListener('carousel:activeChange', (e: Event) => {
+        const customEvent = e as CustomEvent<{ index: number; slug: string }>;
+        if (!customEvent.detail) return;
+        const activeIdx = customEvent.detail.index;
+
+        items.forEach((it, i) => {
+          if (i === activeIdx) {
+            it.classList.add('is-selected');
+            const col = it.dataset.color;
+            if (col) {
+              document.documentElement.style.setProperty('--accent-current', col);
+            }
+          } else {
+            it.classList.remove('is-selected');
+          }
+        });
+      });
+    }
+
+    setupWorkIndex();
+    document.addEventListener('astro:page-load', setupWorkIndex);
+  </script>
 </BaseLayout>
-<style>
-  /* Ensure viewport lock */
-  :global(body) {
-    overflow: hidden;
-  }
-  
-  #work-carousel {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(56vh, 32rem); align-content: center; }
-  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
-  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
-  h1 + p { max-inline-size: 68ch; color: var(--color-fg-muted); font-size: var(--text-body-lg); }
-</style>

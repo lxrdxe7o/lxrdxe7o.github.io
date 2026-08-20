@@ -1,24 +1,47 @@
 ---
-import { primaryLinks } from '../../data/navigation';
-
 const currentPath = Astro.url.pathname;
-
-function isCurrent(href: string): boolean {
-  return href === '/' ? currentPath === '/' : currentPath.startsWith(href);
-}
+const isWork = currentPath === '/' || currentPath.startsWith('/projects');
+const isAbout = currentPath.startsWith('/about');
 ---
-<nav aria-label="Primary site navigation">
-  <ul class="primary-nav__list">
-    {primaryLinks.map((link) => (
-      <li>
-        <a
-          href={link.href}
-          class="primary-nav__link"
-          aria-current={isCurrent(link.href) ? 'page' : undefined}
-        >
-          {link.label}
-        </a>
-      </li>
-    ))}
-  </ul>
+
+<nav class="ui-nav-bottom" aria-label="Primary site navigation">
+  <a
+    class={`ui-nav-a c-color ${isWork ? 'is-active' : ''}`}
+    href="/"
+    data-slug="home"
+    data-sound=""
+    data-sound-click=""
+    aria-current={isWork ? 'page' : undefined}
+  >
+    <span class="ui-nav-a-inner">
+      <span class="ui-nav-a-icon">
+        <svg class="c-icon-arrow-xs" width="6" height="6" viewBox="0 0 6 6">
+          <rect rx="1" ry="1" width="2" height="2" fill="currentColor"></rect>
+          <rect rx="1" ry="1" x="3.4" y="2" width="2" height="2" fill="currentColor"></rect>
+          <rect rx="1" ry="1" y="4" width="2" height="2" fill="currentColor"></rect>
+        </svg>
+      </span>
+      <span class="ui-nav-a-title">Work</span>
+    </span>
+  </a>
+
+  <a
+    class={`ui-nav-a c-color ${isAbout ? 'is-active' : ''}`}
+    href="/about"
+    data-slug="about"
+    data-sound=""
+    data-sound-click=""
+    aria-current={isAbout ? 'page' : undefined}
+  >
+    <span class="ui-nav-a-inner">
+      <span class="ui-nav-a-icon">
+        <svg class="c-icon-arrow-xs" width="6" height="6" viewBox="0 0 6 6">
+          <rect rx="1" ry="1" width="2" height="2" fill="currentColor"></rect>
+          <rect rx="1" ry="1" x="3.4" y="2" width="2" height="2" fill="currentColor"></rect>
+          <rect rx="1" ry="1" y="4" width="2" height="2" fill="currentColor"></rect>
+        </svg>
+      </span>
+      <span class="ui-nav-a-title">About</span>
+    </span>
+  </a>
 </nav>

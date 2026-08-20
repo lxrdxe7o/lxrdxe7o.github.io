@@ -7,35 +7,35 @@
  * beyond `:root` — it declares values, `base.css` applies them.
  */
 :root {
-  /* ---- Primitive: neutral scale (warm graphite, not cool gray) ---- */
-  --neutral-950: #0a0a0b;
-  --neutral-900: #111113;
-  --neutral-800: #191a1c;
-  --neutral-700: #26272a;
-  --neutral-600: #3a3b3f;
-  --neutral-500: #5c5d61;
-  --neutral-400: #85868a;
-  --neutral-300: #b3b3b6;
-  --neutral-200: #d4d3cf;
+  /* ---- Primitive: neutral scale (warm dark void) ---- */
+  --neutral-950: #08080a;
+  --neutral-900: #101014;
+  --neutral-800: #18181d;
+  --neutral-700: #25262c;
+  --neutral-600: #3b3c43;
+  --neutral-500: #5c5e66;
+  --neutral-400: #888a93;
+  --neutral-300: #bcbcbc;
+  --neutral-200: #dcdcd9;
   --neutral-100: #ece9e2;
-  --neutral-050: #f5f3ee;
+  --neutral-050: #f7f6f2;
 
-  /* ---- Primitive: crimson scale (the one accent) ---- */
-  --crimson-900: #33100e;
-  --crimson-700: #7a2521;
-  --crimson-600: #a4302a;
-  --crimson-500: #c4372f;
-  --crimson-400: #d8493f;
-  --crimson-300: #e8776d;
+  /* ---- Primitive: accent scale ---- */
+  --crimson-500: #ff3b38;
+  --crimson-400: #ff524f;
+  --crimson-300: #ff7572;
+  
+  /* Dynamic accent color (updated per project / theme) */
+  --accent-current: #bcbcbc;
+  --accent-default: #ff3b38;
 
   /* ---- Primitive: type ---- */
-  --font-family-sans:
-    'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-  --font-family-mono:
-    'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono',
-    monospace;
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
 
-  /* ---- Primitive: spacing (4px base) ---- */
+  /* ---- Primitive: spacing ---- */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -46,7 +46,6 @@
   --space-16: 4rem;
   --space-24: 6rem;
   --space-32: 8rem;
-  --space-48: 12rem;
 
   /* ---- Semantic: color ---- */
   --color-bg: var(--neutral-950);
@@ -56,80 +55,35 @@
   --color-fg: var(--neutral-050);
   --color-fg-muted: var(--neutral-400);
   --color-fg-subtle: var(--neutral-500);
-  --color-accent: var(--crimson-500);
+  --color-accent: var(--accent-default);
   --color-accent-hover: var(--crimson-400);
-  --color-accent-muted: var(--crimson-700);
-  /* AA-safe (6.87:1 on --color-bg) crimson for use as small text — the raw
-     accent (3.71:1) only clears the non-text 3:1 threshold, so borders,
-     dots, and fills use --color-accent while any text treatment uses this. */
   --color-accent-text: var(--crimson-300);
   --color-focus-ring: var(--crimson-400);
-  --color-selection-bg: var(--crimson-700);
+  --color-selection-bg: rgba(255, 59, 56, 0.35);
   --color-selection-fg: var(--neutral-050);
 
-  /* ---- Semantic: type scale (fluid, viewport-aware) ---- */
-  --text-display: clamp(3.25rem, 2.25rem + 6vw, 9rem);
-  --text-h1: clamp(2.25rem, 1.6rem + 3vw, 4.25rem);
-  --text-h2: clamp(1.625rem, 1.35rem + 1.4vw, 2.5rem);
-  --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --text-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-  --text-body: 1rem;
-  --text-small: 0.875rem;
-  --text-mono: 0.8125rem;
+  /* ---- Easing & Durations ---- */
+  --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.3s;
+  --duration-base: 0.6s;
+  --duration-slow: 1.2s;
+  --opacity-dimmed: 0.7;
 
-  --leading-tight: 1.05;
-  --leading-snug: 1.25;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.7;
-
-  --tracking-tight: -0.02em;
-  --tracking-normal: 0em;
-  --tracking-wide: 0.08em;
-
-  /* ---- Semantic: layout ---- */
-  --content-max-width: 76rem;
+  /* ---- Semantic: layout & layers ---- */
+  --content-max-width: 100rem;
   --measure: 38rem;
-  --space-section: clamp(4rem, 3rem + 5vw, 9rem);
-  --space-inline: clamp(1.25rem, 1rem + 2.5vw, 3rem);
+  --space-section: clamp(3rem, 2.5rem + 4vw, 7rem);
+  --space-inline: clamp(1.25rem, 1rem + 2vw, 2.5rem);
 
-  /* ---- Semantic: border / shape ---- */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --border-width-hairline: 1px;
-
-  /* ---- Semantic: layering ---- */
+  --z-canvas: 0;
+  --z-ui: 10;
   --z-header: 40;
+  --z-nav: 50;
   --z-transition: 80;
   --z-loader: 90;
-  --z-entry-gate: 95;
+  --z-mobile-nav: 95;
   --z-skip-link: 100;
-
-  /* ---- Component: header ---- */
-  --header-block-size: clamp(3.5rem, 3rem + 1.5vw, 4.5rem);
 }
 
-/* ---- Plan compat: Four-corner & cyberpunk aliases ---- */
-/* The full token system above remains the source of truth; this block
- * ensures the minimal plan-specified custom properties exist verbatim so
- * Four-Corner components and legacy checks resolve. We expose the exact
- * plan hex values while preserving the richer semantic palette via
- * --color-fg / --neutral-* primitives. The literal plan values are set
- * here so `getComputedStyle` and file-content checks both pass. */
-:root {
-  --color-bg: #050505;
-  --color-text: #ffffff;
-  --color-accent: #ff2a2a;
-  --font-mono: 'JetBrains Mono', monospace;
-  --spacing-edge: 2rem;
-}
-
-/* Preserve original semantic aliases for existing components that use
- * --color-fg / --color-accent-hover etc. Map them to plan literals where
- * appropriate, keeping the neutral scale intact for other uses. */
-:root {
-  --color-fg: var(--color-text);
-  --color-accent-hover: #ff3b3b;
-  --cyberpunk-bg: #050505;
-  --cyberpunk-text: #ffffff;
-  --cyberpunk-accent: #ff2a2a;
-}

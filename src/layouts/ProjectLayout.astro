@@ -2,14 +2,9 @@
 import type { CollectionEntry } from 'astro:content';
 import type { MediaManifest } from '../types/media';
 import BaseLayout from './BaseLayout.astro';
-import ProjectHero from '../components/projects/ProjectHero.astro';
-import ProjectSynopsis from '../components/projects/ProjectSynopsis.astro';
-import ProjectFacts from '../components/projects/ProjectFacts.astro';
+import SvgLink from '../components/shared/SvgLink.astro';
 import ProjectMedia from '../components/projects/ProjectMedia.astro';
-import ProjectNarrative from '../components/projects/ProjectNarrative.astro';
-import NextProject from '../components/projects/NextProject.astro';
-import ContactPanel from '../components/content/ContactPanel.astro';
-import { classifyProject, selectProjectHeroAsset } from '../data/projects';
+import { PROJECT_CARDS } from '../runtime/rendering/scenes/ProjectCarouselScene';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -18,36 +13,121 @@ interface Props {
 }
 
 const { project, nextProject, mediaManifest } = Astro.props;
-const hero = selectProjectHeroAsset(mediaManifest);
-const presentation = classifyProject(project.data.slug) ?? 'archive';
+const cardData = PROJECT_CARDS.find((c) => c.slug === project.data.slug);
+const projectColor = cardData?.color ?? '#ff3b38';
 ---
+
 <BaseLayout
-  title={`${project.data.title} — lxrdxe7o`}
+  title={`${project.data.title} — Ishraful Haque`}
   description={project.data.summary}
   canonical={`/projects/${project.data.slug}`}
   routeId={`project-${project.data.slug}`}
+  frame="wide"
 >
-  <article class="project-case-study" data-project-presentation={presentation}>
-    <ProjectHero project={project.data} hero={hero} presentation={presentation} />
-    <ProjectSynopsis project={project.data} />
-    <ProjectFacts project={project.data} />
-    <ProjectMedia manifest={mediaManifest} excludeAssetId={hero?.id} />
-    <ProjectNarrative><slot /></ProjectNarrative>
-    {project.data.credits?.length && (
-      <section class="project-credits" aria-labelledby="project-credits-heading">
-        <h2 id="project-credits-heading">Credits</h2>
-        <ul>{project.data.credits.map((credit: string) => <li>{credit}</li>)}</ul>
-      </section>
-    )}
-    {nextProject && <NextProject title={nextProject.data.title} slug={nextProject.data.slug} />}
-    <ContactPanel compact={true} />
-  </article>
-</BaseLayout>
+  <div
+    data-view="project"
+    class="ui-project"
+    data-project={project.data.slug}
+    style={`--accent-current: ${projectColor};`}
+  >
+    <!-- Top Return Header -->
+    <div class="ui-project-header c-color">
+      <div class="wrap">
+        <SvgLink
+          text="To index"
+          href="/"
+          dataTransition="work"
+          dataSound=""
+          dataSoundClick=""
+        />
+      </div>
+    </div>
 
-<style>
-  .project-case-study { inline-size: 100%; }
-  .project-credits { padding-block: var(--space-section); border-bottom: 1px solid var(--color-border); }
-  .project-credits h2 { font: var(--text-mono)/1.5 var(--font-family-mono); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
-  .project-credits ul { margin-top: var(--space-6); }
-  .project-credits li { padding-block: var(--space-3); border-top: 1px solid var(--color-border); }
-</style>
+    <div class="wrap wrap--md">
+      <div class="lg:grid grid-cols-24 gap-24">
+        <div class="col-span-24 lg:col-span-20 lg:col-start-5 ui-project-content">
+          <!-- Project Title -->
+          <div class="ui-project-title">
+            <h1 class="ts-2 c-color">
+              <span>{project.data.title}</span>
+            </h1>
+          </div>
+
+          <!-- Project Media Section -->
+          {mediaManifest && (
+            <div class="ui-project-media">
+              <ProjectMedia manifest={mediaManifest} />
+            </div>
+          )}
+
+          <!-- Project Metadata Facts -->
+          <div class="ui-project-info">
+            <div class="ui-project-info-grid">
+              {project.data.type && (
+                <div class="ui-project-info-item">
+                  <h4>Category</h4>
+                  <p>{project.data.type}</p>
+                </div>
+              )}
+              {project.data.technologies?.length > 0 && (
+                <div class="ui-project-info-item">
+                  <h4>Technologies</h4>
+                  <p>{project.data.technologies.join(', ')}</p>
+                </div>
+              )}
+              {project.data.year && (
+                <div class="ui-project-info-item">
+                  <h4>Year</h4>
+                  <p>{project.data.year}</p>
+                </div>
+              )}
+              {project.data.repository && (
+                <div class="ui-project-info-item">
+                  <h4>Repository</h4>
+                  <p>
+                    <a href={project.data.repository} target="_blank" rel="noopener">
+                      GitHub Source ↗
+                    </a>
+                  </p>
+                </div>
+              )}
+              {project.data.url && (
+                <div class="ui-project-info-item">
+                  <h4>Live Website</h4>
+                  <p>
+                    <a href={project.data.url} target="_blank" rel="noopener">
+                      Launch Project ↗
+                    </a>
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Narrative / Documentation Body -->
+          <div class="ui-project-text ts-p">
+            <slot />
+          </div>
+
+          <!-- Next Project Navigation -->
+          {nextProject && (
+            <div class="ui-project-footer">
+              <SvgLink
+                text={`Next project: ${nextProject.data.title}`}
+                href={`/projects/${nextProject.data.slug}`}
+                dataTransition="project"
+                dataSound=""
+                dataSoundClick=""
+                reverse={true}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ projectColor }}>
+    document.documentElement.style.setProperty('--accent-current', projectColor);
+  </script>
+</BaseLayout>

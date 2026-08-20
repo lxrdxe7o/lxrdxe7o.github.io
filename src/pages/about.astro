@@ -1,22 +1,128 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Biography from '../components/about/Biography.astro';
-import Recognition from '../components/about/Recognition.astro';
-import Collaborators from '../components/about/Collaborators.astro';
-import Credits from '../components/about/Credits.astro';
-import CustomCursor from '../components/shell/CustomCursor.astro';
+import { credits } from '../data/profile';
+import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
 ---
-<BaseLayout title="About — Ishraful Haque" description="Verified profile and project context for Ishraful Haque" canonical="/about" routeId="about">
-  <CustomCursor />
-  <header class="page-heading"><p>About</p><h1>ABOUT</h1><p>A factual profile assembled from approved identity and public project evidence.</p></header>
-  <Biography />
-  <Recognition />
-  <Collaborators />
-  <Credits />
+
+<BaseLayout
+  title="About — Ishraful Haque (lxrdxe7o)"
+  description="Background, technical stack, expertise, and open-source record of Ishraful Haque (lxrdxe7o)."
+  canonical="/about"
+  routeId="about"
+  frame="wide"
+  structuredData={[siteWebSiteData, sitePersonData]}
+>
+  <div data-view="about" class="ui-about">
+    <div class="wrap wrap--md">
+      <!-- Hero Section -->
+      <div class="ui-about-hero lg:grid grid-cols-24 gap-24">
+        <div class="ui-about-hero-visual lg:col-span-8 lg:col-start-6 xl:col-span-7 xl:col-start-6"></div>
+        <div class="col-span-24 lg:col-start-14 lg:col-span-10 xl:col-span-8 xl:col-start-14">
+          <h1 class="ui-title ts-m c-color">
+            <span class="ui-title-inner">About me</span>
+          </h1>
+          <div class="ui-about-intro">
+            <div class="ts-1">
+              <div class="line"><div class="line-inner">Full-Stack Developer &</div></div>
+              <div class="line"><div class="line-inner">Software Architect</div></div>
+            </div>
+            <div class="ts-p">
+              <div class="line"><div class="line-inner">Independent software engineer publishing creative web systems,</div></div>
+              <div class="line"><div class="line-inner">developer tooling, terminal workflows, and 3D graphics.</div></div>
+            </div>
+            <div class="ts-p">
+              <div class="line"><div class="line-inner">Focused on high-performance architecture, thoughtful typography,</div></div>
+              <div class="line"><div class="line-inner">and minimalist digital experiences.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills & Expertise 2-column block -->
+      <div class="ui-about-collab flex flex-col md:grid md:grid-cols-24">
+        <div class="ui-about-brands md:col-span-9 lg:col-span-8 lg:col-start-6 xl:col-start-6">
+          <h2 class="ts-m">Technologies & Languages</h2>
+          <p class="ts-p">
+            TypeScript, Rust, Lua, C, Go,<br />
+            Astro, React, Next.js, Three.js, WebGL,<br />
+            Neovim, Linux, Tailwind CSS, Docker.<br />
+          </p>
+        </div>
+        <div class="ui-about-agencies md:col-span-9 md:col-start-13 lg:col-span-8 lg:col-start-14 xl:col-start-14">
+          <h2 class="ts-m">Areas of Expertise</h2>
+          <p class="ts-p">
+            Full-Stack Systems Architecture,<br />
+            High-Performance Web Engines,<br />
+            Developer Tooling & CLI Ecosystems,<br />
+            Interactive 3D Web Experiences.
+          </p>
+        </div>
+      </div>
+
+      <!-- Open Source Record -->
+      <div class="ui-about-recognition lg:grid grid-cols-24 gap-24">
+        <div class="col-span-24 lg:col-span-16 lg:col-start-6">
+          <h2 class="ts-m">Open Source & Public Record</h2>
+          <div class="c-list ts-m">
+            <div class="c-list-section md:grid grid-cols-16 gap-x-24 gap-y-12">
+              <div class="c-list-section-title">Developer Tooling</div>
+              <div class="c-list-items">
+                <div class="c-list-item">
+                  <div class="c-list-item-title">Krakenvim (Neovim / Lua)</div>
+                  <div class="c-list-item-amount">Featured</div>
+                </div>
+                <div class="c-list-item">
+                  <div class="c-list-item-title">Hachi (Terminal / Rust)</div>
+                  <div class="c-list-item-amount">v1.0</div>
+                </div>
+                <div class="c-list-item">
+                  <div class="c-list-item-title">Dotfiles (UNIX System Config)</div>
+                  <div class="c-list-item-amount">Maintained</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-list-section md:grid grid-cols-16 gap-x-24 gap-y-12">
+              <div class="c-list-section-title">Web & Publishing</div>
+              <div class="c-list-items">
+                <div class="c-list-item">
+                  <div class="c-list-item-title">Xero Dev (TypeScript)</div>
+                  <div class="c-list-item-amount">Active</div>
+                </div>
+                <div class="c-list-item">
+                  <div class="c-list-item-title">lxrdxe7o.me Portfolio</div>
+                  <div class="c-list-item-amount">V-003</div>
+                </div>
+                <div class="c-list-item">
+                  <div class="c-list-item-title">Deaddrop (Encrypted Utility)</div>
+                  <div class="c-list-item-amount">Public</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credits & Colophon -->
+      <div class="ui-about-recognition lg:grid grid-cols-24 gap-24">
+        <div class="col-span-24 lg:col-span-16 lg:col-start-6">
+          <h2 class="ts-m">Colophon & Credits</h2>
+          <div class="c-list ts-m">
+            {credits.map((credit) => (
+              <div class="c-list-section md:grid grid-cols-16 gap-x-24 gap-y-12">
+                <div class="c-list-section-title">{credit.category}</div>
+                <div class="c-list-items">
+                  <div class="c-list-item">
+                    <div class="c-list-item-title">{credit.name}</div>
+                    <div class="c-list-item-amount">{credit.note}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </BaseLayout>
-<style>
-  .page-heading { display: grid; gap: var(--space-4); min-block-size: min(60vh, 36rem); align-content: center; }
-  .page-heading > p:first-child { color: var(--color-accent-text); font: var(--text-mono)/1.5 var(--font-family-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
-  h1 { max-inline-size: 14ch; font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.04em; }
-  h1 + p { color: var(--color-fg-muted); font-size: var(--text-body-lg); }
-</style>

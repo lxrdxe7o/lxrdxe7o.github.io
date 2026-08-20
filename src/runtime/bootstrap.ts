@@ -242,6 +242,25 @@ export function bootstrapExperience(): void {
   };
   document.addEventListener('visibilitychange', onVisibilityChange);
 
+  /* --------------------------------------------------- interactive sound cues */
+
+  const onSoundHover = (event: Event) => {
+    const target = (event.target as Element | null)?.closest<HTMLElement>('[data-sound]');
+    if (target) {
+      audio.playCue('cue-hover');
+    }
+  };
+
+  const onSoundClick = (event: Event) => {
+    const target = (event.target as Element | null)?.closest<HTMLElement>('[data-sound-click]');
+    if (target) {
+      audio.playCue('cue-select');
+    }
+  };
+
+  document.addEventListener('mouseenter', onSoundHover, { capture: true, passive: true });
+  document.addEventListener('click', onSoundClick, { capture: true, passive: true });
+
   /* --------------------------------------------------------- entry gate UI */
 
   function revealEntryGate(): void {
@@ -310,6 +329,7 @@ export function bootstrapExperience(): void {
     audio.setMode('enabled');
     if (audio.unlock()) audio.crossfadeRoute(readSnapshot().route);
   }
+
 
   /* ------------------------------------------------------------ mute control */
 

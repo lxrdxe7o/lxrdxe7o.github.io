@@ -1,32 +1,144 @@
 ---
-import BrandMark from './BrandMark.astro';
-import PrimaryNavigation from './PrimaryNavigation.astro';
-import IndexOpener from './IndexOpener.astro';
+interface Props {
+  version?: string;
+  availability?: string;
+}
+
+const {
+  version = 'V-003',
+  availability = 'Available for opportunities',
+} = Astro.props;
 ---
-<header class="site-header">
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  <div class="site-header__inner">
-    <BrandMark />
-    <div class="site-header__end">
-      <PrimaryNavigation />
-      <IndexOpener />
+
+<header class="ui-header">
+  <div class="ui-header-secondary">
+    <div class="wrap">
+      <div class="grid grid-cols-24 gap-24">
+        <div class="col-span-4">
+          <div class="ui-header-version ts-m">
+            <a href="/" class="c-color" data-sound="" data-sound-click="">
+              {version}
+            </a>
+          </div>
+        </div>
+
+        <div class="col-span-7 xl:col-span-6 lg:col-start-17 xl:col-start-19">
+          <div class="ui-header-availability ts-m c-color">
+            <span class="ui-header-part-inner">
+              {availability}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-header-primary">
+    <div class="wrap">
+      <div class="grid grid-cols-24 gap-24">
+        <div class="col-span-4">
+          <a href="/" class="ui-header-name c-color" aria-label="Ishraful Haque" data-sound="" data-sound-click="">
+            <span class="ui-header-part-outer"><span class="ui-header-part-inner">Ishraful</span></span>
+            <span class="ui-header-part-outer"><span class="ui-header-part-inner">Haque</span></span>
+          </a>
+        </div>
+        <div class="col-span-4 col-start-5">
+          <div class="ui-header-description c-color">
+            <span class="ui-header-part-outer"><span class="ui-header-part-inner">Full-Stack</span></span>
+            <span class="ui-header-part-outer"><span class="ui-header-part-inner">Developer</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-header-mobile lg:hidden">
+    <div class="ui-nav-mobile c-color">
+      <button class="ui-nav-mobile-toggle" aria-label="Toggle navigation menu" id="mobile-menu-toggle" data-sound="" data-sound-click="">
+        <svg class="ui-nav-mobile-toggle-icon" width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <rect
+            class="ui-nav-mobile-toggle-icon-rect"
+            x="0.5"
+            y="0.5"
+            width="55"
+            height="55"
+            stroke="currentColor"
+            stroke-opacity="0.4"
+            stroke-dasharray="2 2"
+          ></rect>
+          <g class="ui-nav-mobile-toggle-icon-lines">
+            <line class="ui-nav-mobile-toggle-icon-line" x1="20" y1="23.5" x2="36" y2="23.5" stroke="currentColor"></line>
+            <line class="ui-nav-mobile-toggle-icon-line" x1="20" y1="27.5" x2="36" y2="27.5" stroke="currentColor"></line>
+            <line class="ui-nav-mobile-toggle-icon-line" x1="20" y1="31.5" x2="36" y2="31.5" stroke="currentColor"></line>
+          </g>
+        </svg>
+      </button>
+
+      <div class="ui-nav-mobile-content" id="mobile-menu-drawer">
+        <div class="ui-nav-mobile-content-main">
+          <div class="wrap">
+            <a class="ui-nav-mobile-a c-color" href="/" data-slug="home">
+              <span class="ui-nav-mobile-a-inner">
+                <span class="ui-nav-mobile-a-title">Work</span>
+              </span>
+            </a>
+            <a class="ui-nav-mobile-a c-color" href="/about" data-slug="about">
+              <span class="ui-nav-mobile-a-inner">
+                <span class="ui-nav-mobile-a-title">About</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="ui-nav-mobile-content-footer">
+          <div class="wrap">
+            <ul class="ui-nav-mobile-content-footer-links ts-m flex gap-24">
+              <li>
+                <a class="social-a c-color" href="https://github.com/lxrdxe7o" target="_blank" rel="noopener">
+                  <span>GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a class="social-a c-color" href="https://twitter.com/lxrdxe7o" target="_blank" rel="noopener">
+                  <span>Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a class="social-a c-color" href="mailto:contact@lxrdxe7o.me">
+                  <span>E-mail</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<style>
-  .skip-link {
-    position: absolute;
-    inset-block-start: var(--space-3);
-    inset-inline-start: var(--space-3);
-    z-index: var(--z-header);
-    padding: var(--space-2) var(--space-4);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border-strong);
-    translate: 0 -200%;
+<script is:inline>
+  function setupMobileMenu() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    if (!toggle || !drawer) return;
+
+    toggle.onclick = function() {
+      drawer.classList.toggle('is-open');
+    };
+
+    const links = drawer.querySelectorAll('a');
+    links.forEach(function(link) {
+      link.onclick = function() {
+        drawer.classList.remove('is-open');
+      };
+    });
   }
 
-  .skip-link:focus {
-    translate: 0 0;
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+  } else {
+    setupMobileMenu();
   }
-</style>
+  document.addEventListener('astro:page-load', setupMobileMenu);
+</script>
+

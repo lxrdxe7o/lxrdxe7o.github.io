@@ -72,11 +72,12 @@ html {
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  background: var(--color-bg);
 }
 
 body {
   min-height: 100dvh;
-  background: var(--color-bg);
+  background: transparent;
   color: var(--color-fg);
   font-family: var(--font-family-sans);
   font-size: var(--text-body);
@@ -154,20 +155,19 @@ ol {
   padding-inline-start: 0;
 }
 
-/* Baseline vertical rhythm for raw flow content (headings/paragraphs/lists
-   rendered directly in a route, before a task-specific component replaces
-   them — e.g. the Projects/Notes index lists before Task 15/18 land). */
-main :where(h1, h2, h3, p, ul, ol) + :where(h1, h2, h3, p, ul, ol) {
+/* Baseline vertical rhythm for prose and article flows */
+:where(article, .prose) :where(h1, h2, h3, p, ul, ol) + :where(h1, h2, h3, p, ul, ol) {
   margin-top: var(--space-6);
 }
 
-main li + li {
-  margin-top: var(--space-8);
+:where(article, .prose) li + li {
+  margin-top: var(--space-4);
 }
 
-main li > :where(h2, h3) + p {
+:where(article, .prose) li > :where(h2, h3) + p {
   margin-top: var(--space-2);
 }
+
 
 /* Prose links (article/note/case-study bodies) get an underline; chrome
    (nav/footer/cards) opts in to its own link treatment deliberately. */

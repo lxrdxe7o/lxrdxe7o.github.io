@@ -1,237 +1,885 @@
 /**
- * Component-level styling for the persistent shell: skip link, header,
- * brand mark, primary navigation, availability, social links, the route
- * frame layout primitive, and the footer. All values are sourced from
- * tokens.css — no component here declares its own color or spacing.
+ * Component styling matching the Rogier De Boeve architecture.
+ * Features 24-col typography, signature SVG buttons/links, split text states,
+ * headers, navigation, work index, project detail, and about layout.
  */
 
-/* ---- Skip link ---- */
-.skip-link {
+/* ==========================================================================
+   1. Typography Tokens (.ts-m, .ts-1, .ts-2, .ts-3, .ts-p) & Dynamic Accent
+   ========================================================================== */
+
+.c-color {
+  color: var(--accent-current, #bcbcbc);
+  transition: color 0.5s var(--expo-out);
+}
+
+.ts-m {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ts-1 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-size: clamp(2rem, 1.5rem + 3.5vw, 3.25rem);
+}
+
+.ts-2 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 1.35rem + 2vw, 2.5rem);
+}
+
+.ts-3 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-size: clamp(1.25rem, 1.1rem + 1vw, 1.625rem);
+}
+
+.ts-p {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+  color: var(--neutral-300);
+}
+
+.ts-p a {
+  display: inline-block;
+  color: var(--neutral-100);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.ts-p a:hover {
+  color: var(--accent-current, #ffffff);
+}
+
+.ts-p a::after {
+  content: "";
   position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  z-index: var(--z-skip-link);
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-accent);
-  color: var(--neutral-050);
-  font-family: var(--font-family-mono);
-  font-size: var(--text-small);
-  border-radius: var(--radius-sm);
-  transform: translateY(-150%);
-  transition: transform var(--duration-fast) var(--ease-standard);
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-size: 0.3125rem 1px;
+  background-repeat: repeat no-repeat;
+  background-position: 0 100%;
+  background-image: linear-gradient(90deg, currentColor, currentColor 50%, transparent 50%, transparent 100%);
+  opacity: 0.5;
 }
 
-.skip-link:focus-visible {
-  transform: translateY(0);
+.line {
+  display: block;
+  overflow: hidden;
 }
 
-/* ---- Header ---- */
-.site-header {
-  position: sticky;
+.line-inner {
+  display: block;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+/* ==========================================================================
+   2. Icons (.c-icon-arrow, .c-icon-arrow-xs)
+   ========================================================================== */
+
+.c-icon-arrow {
+  --icon-size: 1.75rem;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: block;
+  overflow: visible;
+}
+
+.c-icon-arrow-xs {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-icon-arrow-shape {
+  transform-origin: center;
+}
+
+/* ==========================================================================
+   3. Signature Button (.c-button)
+   ========================================================================== */
+
+.c-button {
+  height: 1.875rem;
+  padding-inline-end: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.c-button-bg {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  opacity: 0.4;
+  transition: opacity 0.3s linear;
+  pointer-events: none;
+}
+
+.c-button-bg svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.c-button-bg-static {
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+
+.c-button-bg-hover {
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.c-button-text {
+  position: relative;
+  padding: 0 0.75rem 0.0625rem;
+  overflow: hidden;
+  transition: transform 1.2s var(--expo-out);
+}
+
+.c-button-text-outer {
+  display: block;
+  overflow: hidden;
+}
+
+.c-button-text-inner {
+  display: block;
+  position: relative;
+}
+
+.c-button-text-static {
+  display: block;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-button-text-hover {
+  display: block;
+  position: absolute;
+  left: 0;
   top: 0;
-  z-index: var(--z-header);
-  background: var(--color-bg);
-  border-bottom: var(--border-width-hairline) solid var(--color-border);
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
 }
 
-.site-header__inner {
+.c-button-icon {
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-button-icon line {
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  opacity: 0.4;
+}
+
+.c-button-icon--before {
+  right: auto;
+  left: 0;
+  transform: translate(-100%);
+  opacity: 0;
+}
+
+.c-button-icon--after {
+  right: 0;
+  transform: translate(0);
+  opacity: 1;
+}
+
+/* Hover States for .c-button */
+.c-button:hover .c-button-bg {
+  opacity: 0.85;
+}
+
+.c-button:hover .c-button-bg-static {
+  opacity: 0;
+}
+
+.c-button:hover .c-button-bg-hover {
+  opacity: 1;
+}
+
+.c-button:hover .c-button-text {
+  transform: translate(1.75rem);
+}
+
+.c-button:hover .c-button-text-static {
+  transform: translateY(-105%);
+  opacity: 0;
+}
+
+.c-button:hover .c-button-text-hover {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.c-button:hover .c-button-icon--before {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.c-button:hover .c-button-icon--after {
+  transform: translate(1.75rem);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   4. Signature Link (.c-link) for "To index" and "Next project"
+   ========================================================================== */
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.c-link-icon {
+  width: 1.875rem;
+  height: 1.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 1.2s var(--expo-out);
+}
+
+.c-link-icon-bg {
+  position: absolute;
+  inset: 1px;
+}
+
+.c-link .c-icon-arrow-border {
+  opacity: 0.4;
+  transition: opacity 0.3s linear;
+}
+
+.c-link .c-icon-arrow-border-hover {
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.c-link-icon-static {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-link-icon-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(105%);
+  opacity: 0;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-link-text {
+  padding-inline-start: 0.75rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.c-link-text-outer {
+  display: block;
+  overflow: hidden;
+}
+
+.c-link-text-inner {
+  display: block;
+  position: relative;
+}
+
+.c-link-text-static {
+  display: block;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-link-text-hover {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 1.2s var(--expo-out), opacity 1.2s var(--expo-out);
+}
+
+.c-link:hover .c-icon-arrow-border {
+  opacity: 0;
+}
+
+.c-link:hover .c-icon-arrow-border-hover {
+  opacity: 0.9;
+}
+
+.c-link:hover .c-link-icon-static {
+  transform: translate(-105%);
+  opacity: 0;
+}
+
+.c-link:hover .c-link-icon-hover {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.c-link:hover .c-link-text-static {
+  transform: translateY(-105%);
+  opacity: 0;
+}
+
+.c-link:hover .c-link-text-hover {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   5. Shell Header (.ui-header)
+   ========================================================================== */
+
+.ui-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-header);
+  pointer-events: none;
+  padding-top: 1.5rem;
+}
+
+.ui-header * {
+  pointer-events: all;
+}
+
+.ui-header-secondary {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .ui-header-secondary {
+    display: block;
+  }
+}
+
+
+.ui-header-secondary {
+  margin-bottom: 0.75rem;
+}
+
+.ui-header-version {
+  display: inline-block;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.ui-header-version:hover {
+  opacity: 1;
+}
+
+.ui-header-availability {
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ui-header-availability::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-default);
+  box-shadow: 0 0 8px var(--accent-default);
+}
+
+.ui-header-primary {
+  margin-top: 0.25rem;
+}
+
+.ui-header-name {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.ui-header-description {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  opacity: 0.75;
+}
+
+.ui-header-part-outer {
+  display: block;
+  overflow: hidden;
+}
+
+.ui-header-part-inner {
+  display: block;
+}
+
+/* Mobile Toggle and Drawer */
+.ui-nav-mobile-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.ui-nav-mobile-toggle-icon {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.ui-nav-mobile-content {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 999;
+  background: #060608;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem 2rem 3rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s var(--expo-out), opacity 0.6s var(--expo-out);
+}
+
+
+.ui-nav-mobile-content.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ui-nav-mobile-a {
+  display: block;
+  font-size: 2.25rem;
+  font-family: var(--font-sans);
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.ui-nav-mobile-a.is-active {
+  color: var(--color-fg);
+}
+
+/* ==========================================================================
+   6. Shell Footer & Floating Bottom Nav (.ui-footer, .ui-nav)
+   ========================================================================== */
+
+.ui-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-nav);
+  pointer-events: none;
+  padding-bottom: 1.5rem;
+}
+
+.ui-footer * {
+  pointer-events: all;
+}
+
+@media (max-width: 63.99rem) {
+  .ui-footer {
+    display: none;
+  }
+}
+
+
+.social-a {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.social-a:hover {
+  opacity: 1;
+  color: var(--neutral-050);
+}
+
+.ui-nav-bottom {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ui-nav-a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.ui-nav-a:hover {
+  opacity: 1;
+}
+
+.ui-nav-a.is-active {
+  opacity: 1;
+  color: var(--neutral-050);
+  pointer-events: none;
+}
+
+.ui-nav-a-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.ui-nav-a-icon {
+  display: inline-flex;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ui-nav-a.is-active .ui-nav-a-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   7. Home View & Project Index (.ui-work)
+   ========================================================================== */
+
+.ui-work {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+}
+
+.ui-work-content {
+  position: relative;
+  width: 100%;
+}
+
+.ui-title {
+  margin-bottom: 1.5rem;
+  opacity: 0.75;
+}
+
+.ui-work-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ui-work-ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  block-size: var(--header-block-size);
-  max-width: var(--content-max-width);
-  margin-inline: auto;
-  padding-inline: var(--space-inline);
+  padding-block: 0.75rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
-.site-header__end {
+.ui-work-ul li:hover,
+.ui-work-ul li.is-selected {
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+
+.ui-work-a {
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  transition: transform 0.3s var(--expo-out), color 0.3s ease;
+}
+
+.ui-work-ul li:hover .ui-work-a {
+  transform: translateX(0.375rem);
+}
+
+.ui-work-cta {
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.ui-work-ul li:hover .ui-work-cta,
+.ui-work-ul li.is-selected .ui-work-cta {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   8. Project Detail View (.ui-project)
+   ========================================================================== */
+
+.ui-project {
+  position: relative;
+  min-height: 100dvh;
+  padding-top: 7rem;
+  padding-bottom: 8rem;
+}
+
+.ui-project-header {
+  margin-bottom: 2.5rem;
+}
+
+.ui-project-content {
+  position: relative;
+}
+
+.ui-project-title {
+  margin-bottom: 2.5rem;
+}
+
+.ui-project-media {
+  margin-block: 3rem;
+}
+
+.ui-project-media-item {
+  margin-bottom: 2.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ui-project-media-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ui-project-info {
+  margin-top: 3rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 2rem;
+}
+
+.ui-project-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.ui-project-info-item h4 {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  margin-bottom: 0.375rem;
+}
+
+.ui-project-info-item p {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--neutral-100);
+}
+
+.ui-project-footer {
+  margin-top: 5rem;
+  padding-top: 2.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
   display: flex;
-  align-items: center;
-  gap: var(--space-6);
+  justify-content: flex-end;
 }
 
-/* ---- Brand mark ---- */
-.brand-mark {
-  display: inline-flex;
+/* ==========================================================================
+   9. About View (.ui-about)
+   ========================================================================== */
+
+.ui-about {
+  position: relative;
+  min-height: 100dvh;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.ui-about-hero {
+  margin-bottom: 4rem;
+}
+
+.ui-about-intro {
+  margin-top: 1.5rem;
+}
+
+.ui-about-intro .ts-1 {
+  margin-bottom: 2rem;
+}
+
+.ui-about-intro .ts-p + .ts-p {
+  margin-top: 1.25rem;
+}
+
+.ui-about-collab {
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  gap: 2.5rem;
+}
+
+.ui-about-collab h2,
+.ui-about-recognition h2 {
+  margin-bottom: 1rem;
+  opacity: 0.75;
+}
+
+.ui-about-recognition {
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+/* Minimalist List (.c-list) */
+.c-list {
+  margin-top: 1.5rem;
+}
+
+.c-list-section {
+  padding-block: 1rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.c-list-section-title {
+  font-family: var(--font-mono);
+  opacity: 0.6;
+}
+
+.c-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.c-list-item {
+  display: flex;
   align-items: baseline;
-  gap: 0.15em;
-  padding-block: var(--space-2);
-  font-family: var(--font-family-mono);
-  font-size: var(--text-body);
-  font-weight: 500;
-  color: var(--color-fg);
-  border-radius: var(--radius-sm);
+  justify-content: space-between;
 }
 
-.brand-mark:hover {
-  color: var(--color-accent-text);
+.c-list-item-title {
+  font-family: var(--font-mono);
+  color: var(--neutral-100);
 }
 
-.brand-mark__cursor {
-  display: inline-block;
-  inline-size: 0.5em;
-  block-size: 1em;
-  background: var(--color-accent);
-  transform: translateY(0.1em);
+.c-list-item-amount {
+  font-family: var(--font-mono);
+  opacity: 0.6;
 }
 
-/* ---- Primary navigation ---- */
-.primary-nav__list {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
+/* Background WebGL Container */
+.gl {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--z-canvas);
+  pointer-events: none;
 }
 
-.primary-nav__link {
-  display: inline-block;
-  font-family: var(--font-family-mono);
-  font-size: var(--text-mono);
-  font-weight: 500;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-fg-muted);
-  padding-block: var(--space-2);
-  border-bottom: var(--border-width-hairline) solid transparent;
-  transition:
-    color var(--duration-fast) var(--ease-standard),
-    border-color var(--duration-fast) var(--ease-standard);
+.gl canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.primary-nav__link:hover {
-  color: var(--color-fg);
-}
 
-.primary-nav__link[aria-current='page'] {
-  color: var(--color-accent-text);
-  border-color: var(--color-accent);
-}
-
-/* ---- Availability ---- */
-.availability {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-family-mono);
-  font-size: var(--text-mono);
-  color: var(--color-fg-muted);
-}
-
-.availability__dot {
-  inline-size: 0.5rem;
-  block-size: 0.5rem;
-  border-radius: 50%;
-  background: var(--color-fg-subtle);
-  flex-shrink: 0;
-}
-
-.availability__dot[data-status='available'] {
-  background: var(--color-accent);
-}
-
-/* ---- Social links ---- */
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.social-links__link {
-  display: inline-block;
-  padding-block: var(--space-2);
-  font-family: var(--font-family-mono);
-  font-size: var(--text-mono);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-fg-muted);
-  transition: color var(--duration-fast) var(--ease-standard);
-}
-
-.social-links__link:hover {
-  color: var(--color-accent-text);
-}
-
-/* ---- Route frame ---- */
+/* Route Frame */
 .route-frame {
-  max-width: var(--content-max-width);
-  margin-inline: auto;
-  padding-inline: var(--space-inline);
-  padding-block: var(--space-section);
+  width: 100%;
 }
 
 .route-frame--wide {
   max-width: none;
+  padding: 0;
+  margin: 0;
 }
 
-.route-frame--prose {
-  max-width: var(--measure);
-}
 
-/* ---- Footer ---- */
-.site-footer {
-  border-top: var(--border-width-hairline) solid var(--color-border);
-}
 
-.site-footer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  max-width: var(--content-max-width);
-  margin-inline: auto;
-  padding-inline: var(--space-inline);
-  padding-block: var(--space-8);
-}
-
-@media (min-width: 48rem) {
-  .site-footer__inner {
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-}
-
-.footer-nav__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-1) var(--space-4);
-}
-
-.footer-nav__link {
-  display: inline-block;
-  padding-block: var(--space-2);
-  font-family: var(--font-family-mono);
-  font-size: var(--text-mono);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-fg-muted);
-  transition: color var(--duration-fast) var(--ease-standard);
-}
-
-.footer-nav__link:hover {
-  color: var(--color-accent-text);
-}
-
-.footer-nav__link[aria-current='page'] {
-  color: var(--color-accent-text);
-}
-
-.site-footer__meta-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-
-@media (min-width: 48rem) {
-  .site-footer__meta-group {
-    align-items: flex-end;
-    text-align: right;
-  }
-}
-
-.footer-meta {
-  font-family: var(--font-family-mono);
-  font-size: var(--text-mono);
-  color: var(--color-fg-muted);
-}

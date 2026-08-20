@@ -1,0 +1,99 @@
+---
+interface Props {
+  text: string;
+  href: string;
+  class?: string;
+  dataTransition?: string;
+  dataSound?: string;
+  dataSoundClick?: string;
+  reverse?: boolean;
+}
+
+const {
+  text,
+  href,
+  class: className = '',
+  dataTransition = 'work',
+  dataSound = '',
+  dataSoundClick = '',
+  reverse = false,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class={`c-link ${className}`}
+  data-transition={dataTransition}
+  data-sound={dataSound}
+  data-sound-click={dataSoundClick}
+>
+  <span class="c-link-icon">
+    <span class="c-link-icon-bg">
+      <svg class="c-icon-arrow" width="28" height="28" viewBox="0 0 28 28">
+        <rect
+          class="c-icon-arrow-border"
+          x="0"
+          y="0"
+          width="28"
+          height="28"
+          fill="transparent"
+          stroke="currentColor"
+          stroke-dasharray="2 2"
+          stroke-width="1"
+        ></rect>
+        <rect
+          class="c-icon-arrow-border-hover"
+          x="0"
+          y="0"
+          width="28"
+          height="28"
+          fill="transparent"
+          stroke="currentColor"
+          stroke-width="1"
+        ></rect>
+      </svg>
+    </span>
+    <span class="c-link-icon-static">
+      <svg
+        class="c-icon-arrow"
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        style={reverse ? '' : 'transform: rotate(180deg);'}
+      >
+        <g class="c-icon-arrow-shape" fill="currentColor">
+          <rect rx="1" ry="1" x="11.3" y="11" width="2" height="2"></rect>
+          <rect rx="1" ry="1" x="14.7" y="13" width="2" height="2"></rect>
+          <rect rx="1" ry="1" x="11.3" y="15" width="2" height="2"></rect>
+        </g>
+      </svg>
+    </span>
+    <span class="c-link-icon-hover">
+      <svg
+        class="c-icon-arrow"
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        style={reverse ? '' : 'transform: rotate(180deg);'}
+      >
+        <g class="c-icon-arrow-shape" fill="currentColor">
+          <rect rx="1" ry="1" x="11.3" y="11" width="2" height="2"></rect>
+          <rect rx="1" ry="1" x="14.7" y="13" width="2" height="2"></rect>
+          <rect rx="1" ry="1" x="11.3" y="15" width="2" height="2"></rect>
+        </g>
+      </svg>
+    </span>
+  </span>
+  <span class="c-link-text">
+    <span class="c-link-text-outer">
+      <span class="c-link-text-inner">
+        <span class="c-link-text-static">
+          <span>{text}</span>
+        </span>
+        <span class="c-link-text-hover">
+          <span>{text}</span>
+        </span>
+      </span>
+    </span>
+  </span>
+</a>

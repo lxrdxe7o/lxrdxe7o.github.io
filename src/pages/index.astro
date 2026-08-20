@@ -1,42 +1,102 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroIdentity from '../components/shell/HeroIdentity.astro';
-import HeroMeta from '../components/shell/HeroMeta.astro';
-import WorkPrompt from '../components/shell/WorkPrompt.astro';
-import CustomCursor from '../components/shell/CustomCursor.astro';
-import HomeHero from '../components/shell/HomeHero.astro';
-import { profileValue } from '../data/profile';
-import { nowStatus } from '../data/now';
+import SvgButton from '../components/shared/SvgButton.astro';
+import { PROJECT_CARDS } from '../runtime/rendering/scenes/ProjectCarouselScene';
 import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
-import { getProjects } from '../lib/content/getProjects';
-
-const mark = profileValue('mark') ?? 'lxrdxe7o';
-const title = profileValue('title') ?? 'Full-Stack Developer';
-const name = profileValue('name') ?? 'Ishraful Haque';
-const flagship = (await getProjects({ includeDrafts: false })).find(
-  (project) => project.data.featured === 1,
-);
 ---
 
 <BaseLayout
-  title="lxrdxe7o — Full-Stack Developer"
-  description="Portfolio of Ishraful Haque (lxrdxe7o), a full-stack developer publishing independent software work."
+  title="Ishraful Haque — Full-Stack Developer & Software Architect"
+  description="Independent software record and portfolio of Ishraful Haque (lxrdxe7o), creative developer and full-stack software engineer."
   canonical="/"
   routeId="home"
+  frame="wide"
   structuredData={[siteWebSiteData, sitePersonData]}
 >
-  <CustomCursor />
-  <HomeHero />
-  <section class="home-hero" data-scroll-section="home-hero" aria-labelledby="home-identity">
-    <HeroIdentity {mark} {title} {name} />
-    <HeroMeta availabilityLabel={nowStatus.label} />
-  </section>
-  {flagship && <WorkPrompt title={flagship.data.title} slug={flagship.data.slug} summary={flagship.data.summary} />}
-</BaseLayout>
+  <div data-view="home" class="ui-work">
+    <div class="ui-work-content">
+      <div class="wrap">
+        <div class="lg:grid grid-cols-24 gap-24">
+          <div class="col-span-24 lg:col-span-12 xl:col-span-10 col-start-1 lg:col-start-13 xl:col-start-15">
+            <div class="ui-title ts-m c-color">
+              <span class="ui-title-inner">Index</span>
+            </div>
 
-<style>
-  .home-hero {
-    display: grid;
-    gap: var(--space-8);
-  }
-</style>
+            <ul class="ui-work-ul" id="project-list">
+              {PROJECT_CARDS.map((project, idx) => (
+                <li
+                  class={`c-color ${idx === 0 ? 'is-selected' : ''}`}
+                  data-slug={project.slug}
+                  data-index={idx}
+                  data-color={project.color}
+                >
+                  <div class="ui-work-a" data-sound="" data-sound-click="">
+                    <span>{project.title}</span>
+                  </div>
+                  <div class="ui-work-cta">
+                    <SvgButton
+                      href={`/projects/${project.slug}`}
+                      text="View project"
+                      dataTransition="project"
+                      dataSound=""
+                      dataSoundClick=""
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setupHomeIndex() {
+      const list = document.getElementById('project-list');
+      if (!list) return;
+
+      const items = list.querySelectorAll<HTMLLIElement>('li');
+
+      items.forEach((item) => {
+        const idx = Number(item.dataset.index);
+        const color = item.dataset.color;
+
+        item.addEventListener('mouseenter', () => {
+          window.dispatchEvent(
+            new CustomEvent('carousel:focus', {
+              detail: { index: idx, slug: item.dataset.slug },
+            })
+          );
+          if (color) {
+            document.documentElement.style.setProperty('--accent-current', color);
+          }
+          items.forEach((it) => it.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+        });
+      });
+
+      // Synchronize when carousel rotates via wheel or drag
+      window.addEventListener('carousel:activeChange', (e: Event) => {
+        const customEvent = e as CustomEvent<{ index: number; slug: string }>;
+        if (!customEvent.detail) return;
+        const activeIdx = customEvent.detail.index;
+
+        items.forEach((it, i) => {
+          if (i === activeIdx) {
+            it.classList.add('is-selected');
+            const col = it.dataset.color;
+            if (col) {
+              document.documentElement.style.setProperty('--accent-current', col);
+            }
+          } else {
+            it.classList.remove('is-selected');
+          }
+        });
+      });
+    }
+
+    setupHomeIndex();
+    document.addEventListener('astro:page-load', setupHomeIndex);
+  </script>
+</BaseLayout>
