@@ -170,7 +170,9 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
       function handleWheel(e: WheelEvent) {
         // Dynamic sensitivity: trackpads have small deltaY, traditional wheels have ~100
         const isTrackpad = Math.abs(e.deltaY) < 40;
-        const sensitivity = isTrackpad ? 0.03 : 0.008;
+        
+        // Drastically reduce sensitivity for smoother, slower scrolling
+        const sensitivity = isTrackpad ? 0.004 : 0.003;
         
         targetIndexFloat += e.deltaY * sensitivity;
         
