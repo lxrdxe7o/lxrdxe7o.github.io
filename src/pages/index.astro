@@ -89,6 +89,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
 
       // Set initial state
       updateCenterStage(0, 0);
+      window.dispatchEvent(new CustomEvent('carousel:scroll', { detail: { progress: 0 } }));
 
       function updateCenterStage(newIndex: number, direction: number) {
         if (newIndex === currentIndex) return;
@@ -100,16 +101,13 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
 
         // Update list styles and position them as a vertical ticker
         items.forEach((it, i) => {
-          // Calculate relative difference with wrapping
           let relativeDiff = (i - newIndex) % total;
           if (relativeDiff > total / 2) relativeDiff -= total;
           if (relativeDiff < -total / 2) relativeDiff += total;
 
-          // Position vertically (each item is offset by 2.5rem)
           it.style.transform = `translateY(${relativeDiff * 2.5}rem)`;
           it.classList.toggle('is-selected', i === newIndex);
           
-          // Fade out items that are far away from the center
           if (Math.abs(relativeDiff) > 3) {
             it.style.opacity = '0';
             it.style.pointerEvents = 'none';
@@ -129,9 +127,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
           document.documentElement.style.setProperty('--accent-current', nextColor);
         }
 
-        // Swooping animation for the title
         if (direction !== 0) {
-          // Outgoing
           const outDir = direction > 0 ? -100 : 100;
           const oldSpans = centerTitleInner.querySelectorAll('span');
           oldSpans.forEach(span => {
@@ -141,7 +137,6 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
           });
         }
 
-        // Incoming
         const inDir = direction > 0 ? 100 : (direction < 0 ? -100 : 0);
         const newSpan = document.createElement('span');
         newSpan.textContent = nextTitle || '';
@@ -149,29 +144,16 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         newSpan.style.opacity = '0';
         centerTitleInner.appendChild(newSpan);
 
-        // Force reflow
         void newSpan.offsetWidth;
         newSpan.style.transform = 'translateX(0)';
         newSpan.style.opacity = '1';
 
-        // Update CTA link
         centerCta.href = `/projects/${nextSlug}`;
-
         currentIndex = newIndex;
-
-        // Dispatch for 3D scene
-        window.dispatchEvent(
-          new CustomEvent('carousel:focus', {
-            detail: { index: newIndex, slug: nextSlug },
-          })
-        );
       }
 
       function handleWheel(e: WheelEvent) {
-        // Dynamic sensitivity: trackpads have small deltaY, traditional wheels have ~100
         const isTrackpad = Math.abs(e.deltaY) < 40;
-        
-        // Drastically reduce sensitivity for smoother, slower scrolling
         const sensitivity = isTrackpad ? 0.0015 : 0.001;
         
         targetIndexFloat += e.deltaY * sensitivity;
@@ -182,6 +164,13 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         if (nextIndex !== currentIndex) {
           updateCenterStage(nextIndex, Math.sign(e.deltaY));
         }
+
+        // Sync 1:1 scroll progress to 3D scene
+        window.dispatchEvent(
+          new CustomEvent('carousel:scroll', {
+            detail: { progress: targetIndexFloat }
+          })
+        );
       }
 
       window.addEventListener('wheel', handleWheel, { passive: true });
@@ -192,10 +181,14 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
           const idx = Number(item.dataset.index);
           const dir = idx > currentIndex ? 1 : -1;
           
-          // Sync targetIndexFloat so wheel scroll continues correctly
           targetIndexFloat = idx;
-          
           updateCenterStage(idx, dir);
+          
+          window.dispatchEvent(
+            new CustomEvent('carousel:scroll', {
+              detail: { progress: targetIndexFloat }
+            })
+          );
         });
       });
 

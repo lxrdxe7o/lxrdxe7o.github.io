@@ -782,31 +782,21 @@ export class ProjectCarouselScene extends BaseScene {
       lastScrollY = currentScrollY;
     };
 
-    // External focus event from list hover/intersection
-    const onFocusProject = (e: Event) => {
-      const customEvent = e as CustomEvent<{ index: number; slug: string }>;
-      if (customEvent.detail && typeof customEvent.detail.index === 'number') {
-        this.scrollToIndex(customEvent.detail.index);
+    // External scroll event from DOM for 1:1 native scroll lock
+    const onCarouselScroll = (e: Event) => {
+      const customEvent = e as CustomEvent<{ progress: number }>;
+      if (customEvent.detail && typeof customEvent.detail.progress === 'number') {
+        this.targetProgress = customEvent.detail.progress;
       }
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('carousel:focus', onFocusProject);
+    window.addEventListener('carousel:scroll', onCarouselScroll);
 
     this.unbindEvents.push(() => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('carousel:focus', onFocusProject);
+      window.removeEventListener('carousel:scroll', onCarouselScroll);
     });
-  }
-
-  public scrollToIndex(index: number): void {
-    const total = PROJECT_CARDS.length;
-    // Find closest path to the index considering wrapping
-    let diff = index - (this.targetProgress % total);
-    if (diff > total / 2) diff -= total;
-    if (diff < -total / 2) diff += total;
-    
-    this.targetProgress += diff;
   }
 
   private updateAccentColor(hex: string): void {
