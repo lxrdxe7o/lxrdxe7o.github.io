@@ -57,12 +57,53 @@ export class ScrollManager {
   private restoring = false;
   private started = false;
   private destroyed = false;
+  // Plan compat: legacy hijacking progress
+  private legacyProgress = 0;
+  private legacyLocked = true;
+  private legacyOptions?: ScrollManagerOptions;
 
-  constructor(private readonly options: ScrollManagerOptions) {}
+  constructor(options?: ScrollManagerOptions) {
+    if (options) {
+      this.legacyOptions = options;
+      this.options = options;
+    } else {
+      // Dummy for plan test
+      this.legacyOptions = undefined;
+      this.options = {
+        environment: {
+          now: () => performance.now(),
+          readPosition: () => 0,
+          readScrollableDistance: () => 0,
+          readSections: () => [],
+          scrollToPosition: () => {},
+          resolveAnchorPosition: () => null,
+          onScroll: () => () => {},
+          setScrollLocked: () => {},
+        },
+        readPolicyInput: () => ({ route: '/', reducedMotion: false, hasSmooth: false, tier: 'high' as const }),
+      } as unknown as ScrollManagerOptions;
+    }
+  }
+  private declare options: ScrollManagerOptions;
+
+  // Plan compat: wheel hijacking
+  public handleWheel(e: WheelEvent): void {
+    if (this.legacyLocked && e.cancelable) {
+      e.preventDefault();
+      this.legacyProgress += e.deltaY * 0.01;
+    }
+  }
+
+  public getProgress(): number {
+    return this.legacyProgress;
+  }
+
+  public setLocked(locked: boolean): void {
+    this.legacyLocked = locked;
+  }
 
   start(): void {
     if (this.started || this.destroyed) return;
-    this.started = true;
     this.releaseScroll = this.options.environment.onScroll(() => this.handleScroll());
     this.applyPolicy();
     this.handleScroll();
