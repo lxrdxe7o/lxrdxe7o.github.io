@@ -37,10 +37,22 @@ export class AudioManager {
   private unlocked = false;
   private ambience: ActiveClip | null = null;
   private destroyed = false;
+  // Plan compat: legacy simple allowed/muted
+  private isLegacy = false;
+  private legacyAllowed = false;
+  private legacyMuted = false;
 
-  constructor(private readonly options: AudioManagerOptions) {
+  constructor(options?: AudioManagerOptions) {
+    if (!options) {
+      this.isLegacy = true;
+      this.fadeMs = DEFAULT_FADE_MS;
+      this.options = undefined as unknown as AudioManagerOptions;
+      return;
+    }
+    this.options = options;
     this.fadeMs = options.fadeMs ?? DEFAULT_FADE_MS;
   }
+  private declare options: AudioManagerOptions;
 
   getSnapshot(): AudioSnapshot {
     if (this.destroyed) return SILENT_SNAPSHOT;
@@ -62,6 +74,10 @@ export class AudioManager {
    * here — and only here — is what guarantees no autoplay attempt.
    */
   unlock(): boolean {
+    if (this.isLegacy) {
+      this.legacyAllowed = true;
+      return true;
+    }
     if (this.destroyed || this.unlocked) return this.unlocked;
     if (this.mode !== 'enabled') return false;
 
@@ -81,6 +97,16 @@ export class AudioManager {
     }
   }
 
+  public isAllowed(): boolean {
+    if (this.isLegacy) return this.legacyAllowed;
+    return this.unlocked;
+  }
+
+  public isMuted(): boolean {
+    if (this.isLegacy) return this.legacyMuted;
+    return this.muted;
+  }
+
   /** `silent` releases everything; `enabled` only permits future playback. */
   setMode(mode: AudioMode): void {
     if (this.destroyed || mode === this.mode) return;
@@ -93,6 +119,10 @@ export class AudioManager {
   }
 
   setMuted(muted: boolean): void {
+    if (this.isLegacy) {
+      this.legacyMuted = muted;
+      return;
+    }
     if (this.destroyed || muted === this.muted) return;
     this.muted = muted;
     this.engine?.setMuted(muted);
