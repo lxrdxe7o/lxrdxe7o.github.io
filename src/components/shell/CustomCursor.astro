@@ -1,0 +1,34 @@
+---
+---
+
+<div id="custom-cursor"></div>
+
+<style>
+  #custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Hide native cursor when custom is active */
+  :global(body:hover) {
+    cursor: none;
+  }
+</style>
+
+<script>
+  // Simple fallback DOM script if InputManager isn't directly bound yet
+  document.addEventListener('pointermove', (e) => {
+    const cursor = document.getElementById('custom-cursor');
+    if (cursor) {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    }
+  });
+</script>

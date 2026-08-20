@@ -14,7 +14,7 @@ const { mark, title, name } = Astro.props;
 
 <section class="hero-identity" aria-labelledby="hero-identity-mark">
   <p class="hero-identity__eyebrow">Portfolio — {name}</p>
-  <h1 class="hero-identity__mark" id="hero-identity-mark">{mark}</h1>
+  <div class="hero-identity__mark" id="hero-identity-mark" role="heading" aria-level="1">{mark}</div>
   <p class="hero-identity__title">{title}</p>
 </section>
 

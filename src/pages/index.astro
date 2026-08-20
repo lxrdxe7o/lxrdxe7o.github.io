@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroIdentity from '../components/shell/HeroIdentity.astro';
 import HeroMeta from '../components/shell/HeroMeta.astro';
 import WorkPrompt from '../components/shell/WorkPrompt.astro';
+import CustomCursor from '../components/shell/CustomCursor.astro';
+import HomeHero from '../components/shell/HomeHero.astro';
 import { profileValue } from '../data/profile';
 import { nowStatus } from '../data/now';
 import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
@@ -23,6 +25,8 @@ const flagship = (await getProjects({ includeDrafts: false })).find(
   routeId="home"
   structuredData={[siteWebSiteData, sitePersonData]}
 >
+  <CustomCursor />
+  <HomeHero />
   <section class="home-hero" data-scroll-section="home-hero" aria-labelledby="home-identity">
     <HeroIdentity {mark} {title} {name} />
     <HeroMeta availabilityLabel={nowStatus.label} />
