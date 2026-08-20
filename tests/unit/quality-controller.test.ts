@@ -188,3 +188,14 @@ describe('QualityController', () => {
     expect(onChange).toHaveBeenCalledWith(QUALITY_PROFILES.static, QUALITY_PROFILES.high);
   });
 });
+
+// Plan compat: minimal quality downgrade after sustained slow frames
+import { test, expect as expectPlan } from 'vitest';
+test('Quality downgrades from High to Medium after sustained frame drops', () => {
+  const controller = new QualityController();
+  expectPlan(controller.getTier()).toBe('High');
+  for (let i = 0; i < 30; i++) {
+    controller.reportFrameTime(33);
+  }
+  expectPlan(controller.getTier()).toBe('Medium');
+});

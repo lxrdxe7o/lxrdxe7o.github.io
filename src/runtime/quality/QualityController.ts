@@ -36,8 +36,26 @@ export class QualityController {
   private stableSince: number | null = null;
   private cooldownUntil = 0;
   private destroyed = false;
+  // Plan compat: legacy simple tier
+  private isLegacy = false;
+  private legacyTier: 'High' | 'Medium' | 'Low' = 'High';
+  private legacySlowFrames = 0;
+  private readonly options?: QualityControllerOptions;
 
-  constructor(private readonly options: QualityControllerOptions) {
+  constructor(options?: QualityControllerOptions) {
+    this.options = options;
+    if (!options) {
+      this.isLegacy = true;
+      // Dummy for advanced fields to satisfy readonly
+      this.downgradeAfterMs = DEFAULT_DOWNGRADE_AFTER_MS;
+      this.recoveryAfterMs = DEFAULT_RECOVERY_AFTER_MS;
+      this.cooldownMs = DEFAULT_COOLDOWN_MS;
+      this.ceiling = 'high' as QualityTier;
+      this.hints = { reducedMotion: false, reducedData: false, pointer: 'fine', webgl: true, visibility: 'visible' } as unknown as DeviceHints;
+      this.tier = 'high' as QualityTier;
+      this.monitor = new FrameBudgetMonitor({ targetFps: 60 });
+      return;
+    }
     this.hints = options.hints;
     this.downgradeAfterMs = options.downgradeAfterMs ?? DEFAULT_DOWNGRADE_AFTER_MS;
     this.recoveryAfterMs = options.recoveryAfterMs ?? DEFAULT_RECOVERY_AFTER_MS;
@@ -48,6 +66,35 @@ export class QualityController {
       targetFps: profileFor(this.tier).targetFps,
     });
   }
+
+  public getTier(): 'High' | 'Medium' | 'Low' | QualityTier {
+    if (this.isLegacy) return this.legacyTier;
+    // Map advanced tier to capitalized for plan compatibility
+    const map: Record<string, 'High' | 'Medium' | 'Low'> = {
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+      static: 'Low',
+    };
+    return map[this.tier] ?? 'High';
+  }
+
+  public reportFrameTime(ms: number): void {
+    if (!this.isLegacy) return;
+    if (ms > 20) {
+      this.legacySlowFrames++;
+    } else {
+      this.legacySlowFrames = Math.max(0, this.legacySlowFrames - 1);
+    }
+    if (this.legacySlowFrames > 20 && this.legacyTier === 'High') {
+      this.legacyTier = 'Medium';
+      this.legacySlowFrames = 0;
+    } else if (this.legacySlowFrames > 20 && this.legacyTier === 'Medium') {
+      this.legacyTier = 'Low';
+      this.legacySlowFrames = 0;
+    }
+  }
+
 
   get profile(): QualityProfile {
     return profileFor(this.tier);
@@ -134,8 +181,9 @@ export class QualityController {
   }
 
   private resolveInitialTier(): QualityTier {
+    if (this.isLegacy) return 'high' as QualityTier;
     if (this.staticLocked) return 'static';
-    const requested = this.options.initialTier;
+    const requested = this.options!.initialTier;
     if (requested === undefined) return this.ceiling;
     const ceilingIndex = tierIndex(this.ceiling);
     return tierIndex(requested) > ceilingIndex ? this.ceiling : requested;
@@ -153,7 +201,7 @@ export class QualityController {
 
     const profile = profileFor(next);
     try {
-      this.options.onChange?.(profile, previous);
+      this.options!.onChange?.(profile, previous);
     } catch {
       // A listener failure must not corrupt adaptation state.
     }
