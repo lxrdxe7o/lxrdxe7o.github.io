@@ -172,7 +172,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         const isTrackpad = Math.abs(e.deltaY) < 40;
         
         // Drastically reduce sensitivity for smoother, slower scrolling
-        const sensitivity = isTrackpad ? 0.004 : 0.003;
+        const sensitivity = isTrackpad ? 0.0015 : 0.001;
         
         targetIndexFloat += e.deltaY * sensitivity;
         
