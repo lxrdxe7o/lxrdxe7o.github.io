@@ -107,53 +107,43 @@ function createFallbackTexture(project: ProjectCardData): Texture {
   canvas.height = 800;
   const ctx = canvas.getContext('2d')!;
 
-  // Dark gradient background
-  const grad = ctx.createLinearGradient(0, 0, 1280, 800);
-  grad.addColorStop(0, '#0c0d12');
-  grad.addColorStop(1, '#050508');
-  ctx.fillStyle = grad;
+  // Deep premium background
+  ctx.fillStyle = '#060608';
   ctx.fillRect(0, 0, 1280, 800);
 
-  // Subtle grid lines
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x < 1280; x += 64) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, 800);
-    ctx.stroke();
-  }
-  for (let y = 0; y < 800; y += 64) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(1280, y);
-    ctx.stroke();
-  }
-
-  // Accent glow
-  const rad = ctx.createRadialGradient(640, 400, 50, 640, 400, 500);
-  rad.addColorStop(0, project.color + '22');
+  // Subtle ambient glow from the project's color
+  const rad = ctx.createRadialGradient(640, 800, 100, 640, 800, 800);
+  rad.addColorStop(0, project.color + '1a'); // 10% opacity
   rad.addColorStop(1, 'transparent');
   ctx.fillStyle = rad;
   ctx.fillRect(0, 0, 1280, 800);
 
-  // Card text
-  ctx.fillStyle = project.color;
-  ctx.font = '500 24px "JetBrains Mono", monospace';
-  ctx.fillText('LXRDXE7O // ARCHIVE', 80, 120);
+  // Fine noise texture overlay for physical feel
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.015)';
+  for (let i = 0; i < 1280; i += 4) {
+    for (let j = 0; j < 800; j += 4) {
+      if (Math.random() > 0.5) ctx.fillRect(i, j, 2, 2);
+    }
+  }
 
+  // Draw an elegant frame
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(40, 40, 1200, 720);
+
+  // Main Typography - High contrast, confident, no generic eyebrows
   ctx.fillStyle = '#ffffff';
-  ctx.font = '600 64px "Geist", sans-serif';
-  ctx.fillText(project.title, 80, 420);
+  ctx.font = '500 84px "Geist", sans-serif';
+  ctx.fillText(project.title, 80, 620);
 
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+  // Category in subtle muted text
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
   ctx.font = '400 28px "Geist", sans-serif';
-  ctx.fillText(project.category, 80, 480);
+  ctx.fillText(project.category, 80, 680);
 
-  // Bottom code accent
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  ctx.font = '400 20px "JetBrains Mono", monospace';
-  ctx.fillText(`STATUS: PUBLIC // TARGET: ${project.slug}`, 80, 720);
+  // Small brand color accent block instead of text eyebrow
+  ctx.fillStyle = project.color;
+  ctx.fillRect(80, 500, 48, 4);
 
   const texture = new CanvasTexture(canvas);
   texture.needsUpdate = true;
@@ -385,9 +375,9 @@ export class ProjectCarouselScene extends BaseScene {
       this.bgModel.scale.set(0.8, 0.8, 0.8);
       this.bgModel.position.set(0, 0, -6);
       
-      const ambient = new AmbientLight(0xffffff, 1.5);
+      const ambient = new AmbientLight(0xffffff, 0.4);
       this.scene.add(ambient);
-      const dirLight = new DirectionalLight(0xaaccff, 3.5);
+      const dirLight = new DirectionalLight(0xaaccff, 1.2);
       dirLight.position.set(5, 5, 5);
       this.scene.add(dirLight);
 
@@ -723,10 +713,6 @@ export class ProjectCarouselScene extends BaseScene {
     }
     if (this.bgMesh) {
       this.bgMesh.material.uniforms.uTime.value = time;
-    }
-    if (this.bgModel) {
-      this.scene.remove(this.bgModel);
-      this.bgModel = null;
     }
     if (this.gridMesh) {
       this.gridMesh.material.uniforms.uTime.value = time;

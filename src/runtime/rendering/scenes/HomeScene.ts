@@ -31,14 +31,14 @@ export class HomeScene extends BaseScene {
     this.scene.fog = new FogExp2(0x050306, 0.03);
 
     // Add lighting for the model
-    const ambient = new AmbientLight(0xffffff, 1.2);
+    const ambient = new AmbientLight(0xffffff, 0.4);
     this.scene.add(ambient);
 
-    const dirLight = new DirectionalLight(0xaaccff, 2.5);
+    const dirLight = new DirectionalLight(0xaaccff, 1.2);
     dirLight.position.set(5, 5, 5);
     this.scene.add(dirLight);
     
-    const dirLight2 = new DirectionalLight(0xffccaa, 1.5);
+    const dirLight2 = new DirectionalLight(0xffccaa, 0.8);
     dirLight2.position.set(-5, -5, -5);
     this.scene.add(dirLight2);
   }

@@ -65,7 +65,7 @@ class ThreeRendererBackend implements RendererBackend {
       this.renderPass.clearColor = new Color(0x050306);
       this.renderPass.clearAlpha = 1.0;
       this.composer.addPass(this.renderPass);
-      this.bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 1.2, 0.4, 0.6);
+      this.bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 0.3, 0.4, 0.85);
       this.composer.addPass(this.bloomPass);
     } else {
       if (this.renderPass) {
