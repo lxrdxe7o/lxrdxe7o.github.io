@@ -216,3 +216,18 @@ describe('writing / note / experiment schemas', () => {
     expect(result.success).toBe(false);
   });
 });
+
+// Plan compat: getProjects returns typed entries and filters drafts
+import { getProjects } from '../../src/lib/content/getProjects';
+
+describe('getProjects (plan compat)', () => {
+  it('returns typed entries and filters out drafts', async () => {
+    const projects = await getProjects();
+    expect(Array.isArray(projects)).toBe(true);
+    if (projects.length > 0) {
+      const p = projects[0];
+      expect(typeof p.data.title).toBe('string');
+      expect(p.data.draft).toBeFalsy();
+    }
+  });
+});
