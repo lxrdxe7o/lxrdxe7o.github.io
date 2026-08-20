@@ -233,7 +233,8 @@ export class ProjectCarouselScene extends BaseScene {
   private bgUniforms = {
     uTime: { value: 0 },
     uPointer: { value: new Vector2() },
-    uScroll: { value: 0 }
+    uScroll: { value: 0 },
+    uResolution: { value: new Vector2(1, 1) }
   };
   private currentProgress = 0;
   private targetProgress = 0;
@@ -462,8 +463,9 @@ export class ProjectCarouselScene extends BaseScene {
         `,
         fragmentShader: `
           uniform float uTime;
+          uniform vec2 uResolution;
           varying vec2 vUv;
-          
+
           float hash(vec2 p) {
             return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
           }
@@ -499,19 +501,19 @@ export class ProjectCarouselScene extends BaseScene {
 
           void main() {
             vec2 uv = vUv;
-            // Fix aspect ratio distortion (assuming roughly 16:9)
             vec2 st = uv;
-            st.x *= 1.6;
+            float aspect = uResolution.x / uResolution.y;
+            st.x *= aspect;
             
             float time = uTime * 0.05;
             
-            float horizon = 0.25; // Lower horizon
+            float horizon = 0.45; // Move horizon up to show more ocean
             
-            // Icy blue color palette
-            vec3 darkBlue = vec3(0.06, 0.12, 0.22);
-            vec3 midBlue = vec3(0.2, 0.35, 0.5);
-            vec3 lightBlue = vec3(0.55, 0.7, 0.85);
-            vec3 highlight = vec3(0.8, 0.9, 1.0);
+            // Deep cinematic dark palette
+            vec3 darkBlue = vec3(0.005, 0.015, 0.03);
+            vec3 midBlue = vec3(0.02, 0.05, 0.1);
+            vec3 lightBlue = vec3(0.08, 0.15, 0.25);
+            vec3 highlight = vec3(0.2, 0.35, 0.5);
             
             vec3 finalColor = vec3(0.0);
             
@@ -521,69 +523,69 @@ export class ProjectCarouselScene extends BaseScene {
                 vec2 skyUv = st;
                 
                 // Parallax/Perspective for sky
-                skyUv.y /= (depth + 0.1); 
-                skyUv.x += time * 0.5;
+                skyUv.y /= (depth + 0.05); 
+                skyUv.x += time * 0.3;
                 
                 // Massive clouds
-                float n = fbm(skyUv * 1.5 - time * 0.2);
-                float n2 = fbm(skyUv * 3.0 + time * 0.1);
+                float n = fbm(skyUv * 1.5 - time * 0.1);
+                float n2 = fbm(skyUv * 3.0 + time * 0.2);
                 
-                // Create puffy shapes with sharp highlights and soft shadows
-                float cloudMask = smoothstep(0.2, 0.8, n * 0.8 + n2 * 0.2);
-                float shadowMask = smoothstep(0.1, 0.7, fbm(skyUv * 1.5 - time * 0.2 + vec2(0.2, 0.2)));
+                float cloudMask = smoothstep(0.2, 0.8, n * 0.7 + n2 * 0.3);
                 
                 vec3 skyBase = mix(darkBlue, midBlue, uv.y);
+                
+                // Cloud volume
                 vec3 cloudVol = mix(midBlue, lightBlue, cloudMask);
-                cloudVol = mix(cloudVol, highlight, smoothstep(0.6, 0.9, cloudMask - shadowMask * 0.5));
+                finalColor = mix(skyBase, cloudVol, cloudMask * min(1.0, depth * 5.0));
                 
-                finalColor = mix(skyBase, cloudVol, cloudMask * (0.5 + depth));
-                
-                // Massive thick haze at the horizon
-                float haze = 1.0 - smoothstep(0.0, 0.5, depth);
-                finalColor = mix(finalColor, lightBlue, haze * 0.9);
+                // Haze at the horizon
+                float haze = 1.0 - smoothstep(0.0, 0.2, depth);
+                finalColor = mix(finalColor, midBlue, haze);
                 
             } else {
                 // OCEAN
                 float depth = (horizon - uv.y);
                 vec2 oceanUv = st;
                 
-                // Extreme perspective for ocean floor
-                oceanUv.x = (st.x - 0.8) / (depth + 0.02) + 0.8;
+                // Perspective for ocean floor
+                oceanUv.x = (st.x - aspect * 0.5) / (depth + 0.02);
                 oceanUv.y = 1.0 / (depth + 0.02);
                 
-                oceanUv.x += time * 0.5;
-                oceanUv.y -= time * 3.0; // Flow towards camera
+                oceanUv.x += time * 0.2;
+                oceanUv.y -= time * 1.5; 
                 
-                float n = fbm(oceanUv * 0.8);
-                float n2 = fbm(oceanUv * 2.5 - time * 2.0);
+                // Water ripples
+                float n = fbm(oceanUv * vec2(2.0, 0.5));
+                float n2 = fbm(oceanUv * vec2(5.0, 1.0) - time * 2.0);
                 
-                float waves = smoothstep(0.3, 0.8, n * 0.7 + n2 * 0.3);
+                float waves = smoothstep(0.3, 0.7, n * 0.6 + n2 * 0.4);
                 
-                vec3 waterBase = mix(darkBlue * 0.5, midBlue, waves * 0.6);
+                vec3 waterBase = darkBlue;
+                vec3 waterColor = mix(waterBase, midBlue, waves * 0.5);
                 
-                // Highlight reflections on wave peaks
+                // Reflections
                 float reflection = smoothstep(0.6, 0.9, waves);
-                vec3 waterColor = mix(waterBase, highlight, reflection * 0.5);
+                waterColor = mix(waterColor, lightBlue, reflection * 0.6);
                 
                 finalColor = waterColor;
                 
                 // Horizon haze reflecting the sky
-                float haze = 1.0 - smoothstep(0.0, 0.3, depth);
-                finalColor = mix(finalColor, lightBlue, haze);
+                float haze = 1.0 - smoothstep(0.0, 0.15, depth);
+                finalColor = mix(finalColor, midBlue, haze);
                 
-                // Distance fade out to dark
-                float distFade = smoothstep(0.0, 0.05, depth);
-                finalColor = mix(midBlue, finalColor, distFade);
+                // Distance fade out to dark at the extreme bottom
+                float distFade = smoothstep(0.0, 0.1, depth);
+                finalColor *= distFade;
             }
             
             // Dramatic lighting / Vignette
-            float dist = length(uv - vec2(0.5, 0.4));
-            float vignette = 1.0 - smoothstep(0.3, 1.2, dist);
-            finalColor *= (0.6 + vignette * 0.6);
+            float dist = length(uv - vec2(0.5, 0.5));
+            float vignette = 1.0 - smoothstep(0.2, 1.0, dist);
+            finalColor *= (0.5 + vignette * 0.5);
             
             // Ambient glow in center
-            float centerGlow = 1.0 - smoothstep(0.0, 0.6, dist);
-            finalColor += highlight * centerGlow * 0.15;
+            float centerGlow = 1.0 - smoothstep(0.0, 0.4, dist);
+            finalColor += highlight * centerGlow * 0.3;
             
             float nGrain = hash(uv * 300.0 + uTime) * 0.025;
             finalColor += vec3(nGrain);
@@ -593,7 +595,7 @@ export class ProjectCarouselScene extends BaseScene {
             #include <colorspace_fragment>
           }
         `,
-        uniforms: { uTime: { value: 0 } },
+        uniforms: this.bgUniforms,
         depthWrite: false,
         depthTest: false,
       }),
@@ -810,12 +812,23 @@ export class ProjectCarouselScene extends BaseScene {
     this.scrollVelocity *= 0.9;
 
     const time = frame.elapsed;
+    if (this.bgMesh) {
+      // Scale bgMesh to exactly fit the camera frustum at z=-40
+      const aspect = window.innerWidth / window.innerHeight;
+      const fov = 45;
+      const distance = 40;
+      const frustumHeight = 2 * distance * Math.tan((fov / 2) * (Math.PI / 180));
+      const frustumWidth = frustumHeight * aspect;
+      this.bgMesh.scale.set(frustumWidth / 100, frustumHeight / 100, 1);
+    }
+
     if (this.bgModel) {
       this.bgModel.rotation.y = time * 0.05;
       this.bgModel.rotation.x = Math.sin(time * 0.2) * 0.1;
       this.bgModel.rotation.z += this.scrollVelocity * 0.3;
       
       this.bgUniforms.uTime.value = time;
+    this.bgUniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
       this.bgUniforms.uPointer.value.copy(this.pointerPos);
       this.bgUniforms.uScroll.value = this.scrollVelocity;
     }
