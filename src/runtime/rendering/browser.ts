@@ -1,8 +1,12 @@
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { Vector2 } from 'three';
 import {
   ACESFilmicToneMapping,
   SRGBColorSpace,
   WebGLRenderer,
-  type Camera,
+  Color, type Camera,
   type Scene,
 } from 'three';
 
@@ -23,6 +27,9 @@ import type {
 
 class ThreeRendererBackend implements RendererBackend {
   readonly renderer: WebGLRenderer;
+  private composer: EffectComposer | null = null;
+  private renderPass: RenderPass | null = null;
+  private bloomPass: UnrealBloomPass | null = null;
 
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new WebGLRenderer({
@@ -37,20 +44,36 @@ class ThreeRendererBackend implements RendererBackend {
     });
     this.renderer.outputColorSpace = SRGBColorSpace;
     this.renderer.toneMapping = ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 0.92;
+    this.renderer.toneMappingExposure = 1.0;
     this.renderer.setClearColor(0x050306, 1);
   }
 
   setPixelRatio(value: number): void {
     this.renderer.setPixelRatio(value);
+    if (this.composer) this.composer.setPixelRatio(value);
   }
 
   setSize(width: number, height: number): void {
     this.renderer.setSize(width, height, false);
+    if (this.composer) this.composer.setSize(width, height);
   }
 
   render(scene: unknown, camera: unknown): void {
-    this.renderer.render(scene as Scene, camera as Camera);
+    if (!this.composer) {
+      this.composer = new EffectComposer(this.renderer);
+      this.renderPass = new RenderPass(scene as Scene, camera as Camera);
+      this.renderPass.clearColor = new Color(0x050306);
+      this.renderPass.clearAlpha = 1.0;
+      this.composer.addPass(this.renderPass);
+      this.bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 1.2, 0.4, 0.6);
+      this.composer.addPass(this.bloomPass);
+    } else {
+      if (this.renderPass) {
+        this.renderPass.scene = scene as Scene;
+        this.renderPass.camera = camera as Camera;
+      }
+    }
+    this.composer.render();
   }
 
   forceContextLoss(): void {
@@ -58,6 +81,7 @@ class ThreeRendererBackend implements RendererBackend {
   }
 
   dispose(): void {
+    if (this.composer) this.composer.dispose();
     this.renderer.dispose();
   }
 }
