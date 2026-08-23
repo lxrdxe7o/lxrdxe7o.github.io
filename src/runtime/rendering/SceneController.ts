@@ -134,7 +134,15 @@ export class SceneController {
   }
 
   render(renderer: RendererBackend): void {
-    const state = this.current?.scene.getRenderState();
+    const scene = this.current?.scene;
+    if (!scene) return;
+    
+    if (scene.customRender && renderer.getRenderer) {
+      scene.customRender(renderer.getRenderer());
+      return;
+    }
+
+    const state = scene.getRenderState();
     if (state) renderer.render(state.scene, state.camera);
   }
 

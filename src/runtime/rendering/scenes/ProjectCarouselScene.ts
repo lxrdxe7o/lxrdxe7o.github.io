@@ -22,7 +22,11 @@ import {
   AmbientLight,
   DirectionalLight,
   SRGBColorSpace,
+  WebGLRenderer,
 } from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 
 import type { ResourceScope } from '../ResourceTracker';
 import type {
@@ -100,6 +104,84 @@ export const PROJECT_CARDS: readonly ProjectCardData[] = [
     color: '#4ade80',
   },
 ];
+
+const VolumetricFogShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uTime: { value: 0 },
+    uScroll: { value: 0 },
+    uColor: { value: new Color() },
+    uResolution: { value: new Vector2() },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float uTime;
+    uniform float uScroll;
+    uniform vec3 uColor;
+    uniform vec2 uResolution;
+    varying vec2 vUv;
+
+    // FBM Noise
+    float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
+    float noise(vec2 st) {
+        vec2 i = floor(st); vec2 f = fract(st);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+    }
+    float fbm(vec2 st) {
+        float v = 0.0, a = 0.5;
+        mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+        for (int i = 0; i < 5; ++i) {
+            v += a * noise(st);
+            st = rot * st * 2.0 + vec2(100.0);
+            a *= 0.5;
+        }
+        return v;
+    }
+
+    void main() {
+      vec4 texel = texture2D(tDiffuse, vUv);
+      
+      // Screen coordinates
+      vec2 st = vUv;
+      st.x *= uResolution.x / uResolution.y;
+
+      // Distance from center (project card area)
+      vec2 center = vec2(0.5 * (uResolution.x / uResolution.y), 0.5);
+      float dist = distance(st, center);
+
+      // Scroll reactivity
+      vec2 scrollOffset = vec2(0.0, uScroll * 2.0);
+      
+      // Heavy borders, clear center
+      float fogMask = smoothstep(0.15, 0.7, dist);
+      
+      // FBM Wisps
+      vec2 fogUv = st * 3.0 + vec2(uTime * 0.2) + scrollOffset;
+      float wisp = fbm(fogUv);
+      float wisp2 = fbm(fogUv * 0.5 - vec2(uTime * 0.1));
+      float fogDensity = mix(wisp, wisp2, 0.5) * fogMask;
+      
+      // Boost density at edges heavily
+      fogDensity = pow(fogDensity, 0.8) * 1.5;
+      fogDensity = clamp(fogDensity, 0.0, 1.0);
+
+      // Color tinting
+      vec3 lightBase = mix(vec3(0.35, 0.42, 0.55), uColor * 0.65, 0.5);
+      vec3 highlight = mix(vec3(0.65, 0.72, 0.82), uColor * 1.4, 0.45);
+      vec3 fogColor = mix(lightBase, highlight, wisp);
+
+      gl_FragColor = vec4(mix(texel.rgb, fogColor, fogDensity * 0.95), texel.a);
+    }
+  `
+};
 
 function createFallbackTexture(project: ProjectCardData): Texture {
   const canvas = document.createElement('canvas');
@@ -279,6 +361,9 @@ export class ProjectCarouselScene extends BaseScene {
   private scrollVelocity = 0;
   private activeIndex = 0;
   private pointerPos = new Vector2(0, 0);
+
+  private composer: EffectComposer | null = null;
+  private fogPass: ShaderPass | null = null;
 
   private unbindEvents: Array<() => void> = [];
 
@@ -576,7 +661,7 @@ export class ProjectCarouselScene extends BaseScene {
 
           void main() {
             vec2 uv = vUv;
-            vec2 parallax = uPointer * 0.04;
+            vec2 parallax = uPointer * 0.005;
             vec2 st = uv + parallax;
 
             float aspect = uResolution.x / uResolution.y;
@@ -1067,6 +1152,12 @@ export class ProjectCarouselScene extends BaseScene {
       pMat.uniforms.uVelocity.value = this.scrollVelocity;
       pMat.uniforms.uAccentColor.value.lerp(this.targetColor, 0.05);
     }
+    
+    if (this.fogPass) {
+      this.fogPass.uniforms.uTime.value = time;
+      this.fogPass.uniforms.uScroll.value = this.scrollVelocity;
+      this.fogPass.uniforms.uColor.value.copy(this.targetColor);
+    }
 
     let closestIdx = 0;
     let closestDist = Infinity;
@@ -1142,6 +1233,13 @@ export class ProjectCarouselScene extends BaseScene {
       this.carouselGroup.position.set(0, 0, 0);
       this.camera.position.z = 11;
     }
+
+    if (this.composer) {
+      this.composer.setSize(viewport.width, viewport.height);
+    }
+    if (this.fogPass) {
+      this.fogPass.uniforms.uResolution.value.set(viewport.width, viewport.height);
+    }
   }
 
   protected onPointer(position: PointerPosition): void {
@@ -1151,6 +1249,16 @@ export class ProjectCarouselScene extends BaseScene {
   protected onDispose(): void {
     this.unbindEvents.forEach((unbind) => unbind());
     this.unbindEvents = [];
+    
+    if (this.composer) {
+      this.composer.dispose();
+      this.composer = null;
+    }
+    if (this.fogPass) {
+      this.fogPass.dispose();
+      this.fogPass = null;
+    }
+
     this.cards.forEach((card) => {
       this.carouselGroup.remove(card.mesh);
     });
@@ -1170,5 +1278,21 @@ export class ProjectCarouselScene extends BaseScene {
     }
     
     this.scene.clear();
+  }
+
+  customRender(renderer: WebGLRenderer): void {
+    if (!this.composer) {
+      this.composer = new EffectComposer(renderer);
+      const renderPass = new RenderPass(this.scene, this.camera);
+      this.composer.addPass(renderPass);
+      
+      this.fogPass = new ShaderPass(VolumetricFogShader);
+      this.composer.addPass(this.fogPass);
+      
+      const size = renderer.getSize(new Vector2());
+      this.fogPass.uniforms.uResolution.value.set(size.x, size.y);
+    }
+    
+    this.composer.render();
   }
 }

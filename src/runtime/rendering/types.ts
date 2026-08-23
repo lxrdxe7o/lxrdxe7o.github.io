@@ -54,6 +54,7 @@ export interface SceneState {
   exit(next: SceneState | null): void | Promise<void>;
   dispose(): void;
   getRenderState(): SceneRenderState | null;
+  customRender?(renderer: unknown): void;
 }
 
 export interface SceneFactoryContext {
@@ -70,6 +71,7 @@ export interface RendererBackend {
   render(scene: unknown, camera: unknown): void;
   dispose(): void;
   forceContextLoss?(): void;
+  getRenderer?(): unknown;
 }
 
 export interface SurfaceDataset {

@@ -56,6 +56,10 @@ class ThreeRendererBackend implements RendererBackend {
     this.renderer.render(scene as Scene, camera as Camera);
   }
 
+  getRenderer(): WebGLRenderer {
+    return this.renderer;
+  }
+
   forceContextLoss(): void {
     this.renderer.forceContextLoss();
   }
