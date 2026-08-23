@@ -62,7 +62,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
       </div>
       <div class="ui-progressbar ui-progressbar--work c-color">
         <div class="ui-progressbar-items" id="project-progressbar-items">
-          {PROJECT_CARDS.map((project, idx) => (
+          {PROJECT_CARDS.map((_, idx) => (
             <div class={`ui-progressbar-item ${idx === 0 ? 'is-active' : ''}`} data-index={idx}></div>
           ))}
         </div>
@@ -129,7 +129,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
 
         if (direction !== 0) {
           const outDir = direction > 0 ? -100 : 100;
-          const oldSpans = centerTitleInner.querySelectorAll('span');
+          const oldSpans = centerTitleInner!.querySelectorAll('span');
           oldSpans.forEach(span => {
             span.style.transform = `translateX(${outDir}%)`;
             span.style.opacity = '0';
@@ -142,7 +142,7 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         newSpan.textContent = nextTitle || '';
         newSpan.style.transform = `translateX(${inDir}%)`;
         newSpan.style.opacity = '0';
-        centerTitleInner.appendChild(newSpan);
+        centerTitleInner!.appendChild(newSpan);
 
         void newSpan.offsetWidth;
         newSpan.style.transform = 'translateX(0)';
@@ -158,12 +158,8 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         
         targetIndexFloat += e.deltaY * sensitivity;
         
-        let nextIndex = Math.round(targetIndexFloat) % total;
-        if (nextIndex < 0) nextIndex += total;
-        
-        if (nextIndex !== currentIndex) {
-          updateCenterStage(nextIndex, Math.sign(e.deltaY));
-        }
+        // We no longer update the DOM title immediately. We just update the target progress.
+        // The 3D scene will emit 'carousel:active_change' when a new card is centered.
 
         // Sync 1:1 scroll progress to 3D scene
         window.dispatchEvent(
@@ -179,10 +175,11 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
       items.forEach((item) => {
         item.addEventListener('click', () => {
           const idx = Number(item.dataset.index);
-          const dir = idx > currentIndex ? 1 : -1;
+          let diff = (idx - targetIndexFloat) % total;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
           
-          targetIndexFloat = idx;
-          updateCenterStage(idx, dir);
+          targetIndexFloat += diff;
           
           window.dispatchEvent(
             new CustomEvent('carousel:scroll', {
@@ -192,14 +189,23 @@ import { siteWebSiteData, sitePersonData } from '../lib/seo/metadata';
         });
       });
 
+      // Listen to 3D scene updates for synchronization
+      const onActiveChange = (e: Event) => {
+        const customEvent = e as CustomEvent<{ index: number, direction: number }>;
+        if (customEvent.detail && typeof customEvent.detail.index === 'number') {
+          updateCenterStage(customEvent.detail.index, customEvent.detail.direction);
+        }
+      };
+      window.addEventListener('carousel:active_change', onActiveChange);
+
       // Cleanup when navigating away
       document.addEventListener('astro:before-preparation', () => {
         document.body.style.overflow = '';
         window.removeEventListener('wheel', handleWheel);
+        window.removeEventListener('carousel:active_change', onActiveChange);
       }, { once: true });
     }
 
-    setupHomeIndex();
     document.addEventListener('astro:page-load', setupHomeIndex);
   </script>
 </BaseLayout>

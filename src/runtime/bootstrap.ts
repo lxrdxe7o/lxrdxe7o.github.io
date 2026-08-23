@@ -330,6 +330,13 @@ export function bootstrapExperience(): void {
     }
 
     runtime.enter(mode);
+    
+    // Prevent ghost clicks on touch devices that might activate the center-cta underneath
+    document.body.style.pointerEvents = 'none';
+    setTimeout(() => {
+      document.body.style.pointerEvents = '';
+    }, 400);
+
     if (mode !== 'sound') return;
 
     audio.setMode('enabled');

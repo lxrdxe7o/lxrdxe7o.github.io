@@ -10,6 +10,7 @@ interface Props {
   dataSoundClick?: string;
   width?: number;
   height?: number;
+  id?: string;
 }
 
 const {
@@ -23,12 +24,14 @@ const {
   dataSoundClick = '',
   width = 133,
   height = 25,
+  id,
 } = Astro.props;
 
 const Tag = href ? 'a' : 'button';
 ---
 
 <Tag
+  id={id}
   href={href}
   class={`c-button ${className}`}
   target={target}

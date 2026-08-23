@@ -55,7 +55,6 @@ export class Renderer {
   private resourceCleanup: Promise<void> | null = null;
   // Plan compat: legacy canvas mode
   private isLegacy = false;
-  private legacyCanvas: HTMLCanvasElement | null = null;
 
   constructor(optionsOrCanvas: RendererOptions | HTMLCanvasElement) {
     // Detect legacy canvas construction: plan test passes HTMLCanvasElement with getContext
@@ -65,7 +64,6 @@ export class Renderer {
       typeof (maybeCanvas as unknown as { getContext?: unknown }).getContext === 'function'
     ) {
       this.isLegacy = true;
-      this.legacyCanvas = maybeCanvas;
       this.initialized = true;
       this.options = undefined as unknown as RendererOptions;
     } else {
@@ -132,9 +130,10 @@ export class Renderer {
     this.releaseSubscriptions();
     this.loop?.destroy();
     this.loop = null;
-    this.releaseBackend();
-    this.mode = 'static';
-    this.destruction = this.releaseControllerAndResources();
+    this.destruction = (async () => {
+      await this.releaseControllerAndResources();
+      this.releaseBackend();
+    })();
     return this.destruction;
   }
 
@@ -231,6 +230,7 @@ export class Renderer {
   }
 
   private activateFallback(error: unknown): void {
+    console.error('[Renderer] Fallback activated due to error:', error);
     if (this.destroyed) return;
     if (this.failed) {
       this.options.adapter.present(this.options.surface, 'static');
@@ -243,8 +243,10 @@ export class Renderer {
     this.mode = 'static';
     this.loop?.destroy();
     this.loop = null;
-    this.releaseBackend();
-    void this.releaseControllerAndResources();
+    void (async () => {
+      await this.releaseControllerAndResources();
+      this.releaseBackend();
+    })();
     this.options.adapter.present(this.options.surface, 'static');
     if (!this.failureReported) {
       this.failureReported = true;

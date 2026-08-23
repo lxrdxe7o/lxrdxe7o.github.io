@@ -81,8 +81,8 @@ export class InputManager {
       this.legacySnapshot = { ...IDLE_INPUT };
       // Dummy environment for legacy — never used for listeners
       this.environment = {
-        now: () => performance.now(),
-        requestFrame: (cb) => 0 as unknown as number,
+        now: () => 0,
+        requestFrame: (_) => 0 as unknown as number,
         cancelFrame: () => {},
         measureViewport: () => ({ width: this.legacyWidth, height: this.legacyHeight, dpr: 1 }),
         onPointer: () => () => {},

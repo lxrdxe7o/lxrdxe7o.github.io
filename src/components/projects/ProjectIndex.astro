@@ -36,7 +36,7 @@ const flagged = projects.map((project) => {
             {entry.data.featured ? String(entry.data.featured).padStart(2, '0') : '—'}
           </span>
           <span class="project-index__body">
-            <span class="project-index__title">{entry.data.title}</span>
+            <span class="project-index__title" transition:name={`title-${entry.data.slug}`}>{entry.data.title}</span>
             <span class="project-index__meta">
               {entry.data.roles.join(', ')}
               {entry.data.year ? ` · ${entry.data.year}` : ''}

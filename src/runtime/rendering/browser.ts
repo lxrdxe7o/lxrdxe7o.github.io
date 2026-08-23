@@ -5,7 +5,7 @@ import {
   ACESFilmicToneMapping,
   SRGBColorSpace,
   WebGLRenderer,
-  Color, type Camera,
+  type Camera,
   type Scene,
 } from 'three';
 
@@ -102,27 +102,25 @@ export class BrowserRenderingAdapter implements RenderingAdapter {
   }
 
   subscribePointer(
-    surface: RenderingSurface,
+    _surface: RenderingSurface,
     listener: (position: PointerPosition) => void,
   ): () => void {
-    const host = surface.host as HTMLElement;
     const move = (event: PointerEvent): void => {
-      const bounds = host.getBoundingClientRect();
-      const width = Math.max(1, bounds.width);
-      const height = Math.max(1, bounds.height);
+      const width = Math.max(1, window.innerWidth);
+      const height = Math.max(1, window.innerHeight);
       listener({
-        x: Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / width) * 2 - 1)),
-        y: Math.max(-1, Math.min(1, -(((event.clientY - bounds.top) / height) * 2 - 1))),
+        x: Math.max(-1, Math.min(1, (event.clientX / width) * 2 - 1)),
+        y: Math.max(-1, Math.min(1, -((event.clientY / height) * 2 - 1))),
       });
     };
     const reset = (): void => listener({ x: 0, y: 0 });
-    host.addEventListener('pointermove', move, { passive: true });
-    host.addEventListener('pointerleave', reset, { passive: true });
-    host.addEventListener('pointercancel', reset, { passive: true });
+    window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerleave', reset, { passive: true });
+    window.addEventListener('pointercancel', reset, { passive: true });
     return () => {
-      host.removeEventListener('pointermove', move);
-      host.removeEventListener('pointerleave', reset);
-      host.removeEventListener('pointercancel', reset);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerleave', reset);
+      window.removeEventListener('pointercancel', reset);
     };
   }
 

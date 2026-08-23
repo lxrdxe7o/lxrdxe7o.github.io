@@ -12,7 +12,6 @@ import {
   PerspectiveCamera,
   PlaneGeometry,
   Points,
-  RawShaderMaterial,
   Scene,
   ShaderMaterial,
   Texture,
@@ -177,6 +176,7 @@ const fragmentShader = `
   uniform float uTime;
   uniform float uAlpha;
   uniform vec2 uPointer;
+  uniform float uScroll;
   varying vec2 vUv;
   varying vec3 vNormal;
   varying vec3 vWorldPosition;
@@ -188,6 +188,11 @@ const fragmentShader = `
   void main() {
     vec2 uv = vUv;
     
+    // Add scroll distortion
+    float scrollDistort = uScroll * 1.5;
+    uv.y += sin(uv.x * 10.0 + uTime) * scrollDistort * 0.05;
+    uv.x += cos(uv.y * 10.0 + uTime) * scrollDistort * 0.05;
+    
     // Matrix cubes effect
     vec2 gridCount = vec2(64.0, 36.0); // 16:9 ratio grid
     
@@ -196,14 +201,12 @@ const fragmentShader = `
       vec2 gridUv = floor(uv * gridCount) / gridCount;
       vec2 cellUv = fract(uv * gridCount);
       
-      // Distance to pointer for local hover effect
-      // Normalize pointer from screen space (-1 to 1) to UV space (0 to 1)
-      vec2 pointerUv = uPointer * 0.5 + 0.5;
+      // Use distance from the center of the card for the hover effect
+      // since the pointer is in screen space and the card is projected.
+      float dist = distance(gridUv, vec2(0.5));
       
-      float dist = distance(gridUv, pointerUv);
-      
-      // Scatter radius
-      float scatter = smoothstep(0.3, 0.0, dist) * uHover;
+      // Scatter radius based on hover intensity and distance from center
+      float scatter = smoothstep(0.7, 0.0, dist) * uHover;
       
       if (scatter > 0.01) {
         float n = hash(gridUv);
@@ -263,22 +266,19 @@ export class ProjectCarouselScene extends BaseScene {
   private bgMesh: Mesh<PlaneGeometry, ShaderMaterial> | null = null;
   private gridMesh: Mesh<PlaneGeometry, ShaderMaterial> | null = null;
   private bgModel: Object3D | null = null;
+  private targetColor = new Color(PROJECT_CARDS[0].color);
   private bgUniforms = {
     uTime: { value: 0 },
     uPointer: { value: new Vector2() },
     uScroll: { value: 0 },
-    uResolution: { value: new Vector2(1, 1) }
+    uResolution: { value: new Vector2(1, 1) },
+    uColor: { value: new Color(PROJECT_CARDS[0].color) }
   };
   private currentProgress = 0;
   private targetProgress = 0;
   private scrollVelocity = 0;
   private activeIndex = 0;
   private pointerPos = new Vector2(0, 0);
-  private isDragging = false;
-  private dragStartX = 0;
-  private dragStartProgress = 0;
-  private readonly radius = 9.5;
-  private readonly cardAngleSpan = (Math.PI * 2) / PROJECT_CARDS.length;
 
   private unbindEvents: Array<() => void> = [];
 
@@ -426,8 +426,8 @@ export class ProjectCarouselScene extends BaseScene {
     const textureLoader = new TextureLoader();
 
     this.scene.add(this.carouselGroup);
-    // Position carousel to left side on desktop, center on mobile
-    this.carouselGroup.position.set(-2.2, 0, 0);
+    // Position carousel to center on both desktop and mobile
+    this.carouselGroup.position.set(0, 0, 0);
 
     const cardGeometry = this.scope.track(
       new PlaneGeometry(8.8, 4.95, 64, 36),
@@ -462,6 +462,7 @@ export class ProjectCarouselScene extends BaseScene {
             uTime: { value: 0.0 },
             uAlpha: { value: 1.0 },
             uPointer: { value: new Vector2() },
+            uScroll: { value: 0.0 },
           },
           side: DoubleSide,
           transparent: true,
@@ -495,6 +496,8 @@ export class ProjectCarouselScene extends BaseScene {
         fragmentShader: `
           uniform float uTime;
           uniform vec2 uResolution;
+          uniform vec2 uPointer;
+          uniform vec3 uColor;
           varying vec2 vUv;
 
           float hash(vec2 p) {
@@ -532,95 +535,102 @@ export class ProjectCarouselScene extends BaseScene {
 
           void main() {
             vec2 uv = vUv;
-            vec2 st = uv;
+            
+            // Pointer parallax
+            vec2 parallax = uPointer * 0.05;
+            vec2 st = uv + parallax;
+            
             float aspect = uResolution.x / uResolution.y;
             st.x *= aspect;
             
             float time = uTime * 0.05;
+            float horizon = 0.45 - parallax.y * 0.1; 
             
-            float horizon = 0.45; // Move horizon up to show more ocean
-            
-            // Deep cinematic dark palette
-            vec3 darkBlue = vec3(0.005, 0.015, 0.03);
-            vec3 midBlue = vec3(0.02, 0.05, 0.1);
-            vec3 lightBlue = vec3(0.08, 0.15, 0.25);
-            vec3 highlight = vec3(0.2, 0.35, 0.5);
+            // Derive palette from uColor
+            vec3 darkBase = uColor * 0.05; 
+            vec3 midBase = uColor * 0.2;
+            vec3 lightBase = uColor * 0.5;
+            vec3 highlight = uColor * 1.2;
             
             vec3 finalColor = vec3(0.0);
             
             if (uv.y > horizon) {
-                // SKY
+                // VOLUMETRIC SKY/CLOUDS
                 float depth = (uv.y - horizon);
                 vec2 skyUv = st;
                 
-                // Parallax/Perspective for sky
                 skyUv.y /= (depth + 0.05); 
-                skyUv.x += time * 0.3;
+                skyUv.x += time * 0.2 + parallax.x;
                 
-                // Massive clouds
                 float n = fbm(skyUv * 1.5 - time * 0.1);
                 float n2 = fbm(skyUv * 3.0 + time * 0.2);
                 
-                float cloudMask = smoothstep(0.2, 0.8, n * 0.7 + n2 * 0.3);
+                float cloudMask = smoothstep(0.1, 0.9, n * 0.6 + n2 * 0.4);
                 
-                vec3 skyBase = mix(darkBlue, midBlue, uv.y);
+                vec3 skyBase = mix(vec3(0.01), darkBase, depth);
                 
-                // Cloud volume
-                vec3 cloudVol = mix(midBlue, lightBlue, cloudMask);
-                finalColor = mix(skyBase, cloudVol, cloudMask * min(1.0, depth * 5.0));
+                // Back-lit volumetric look
+                vec3 cloudVol = mix(midBase, highlight, cloudMask * 0.5);
+                finalColor = mix(skyBase, cloudVol, cloudMask * min(1.0, depth * 8.0));
                 
-                // Haze at the horizon
-                float haze = 1.0 - smoothstep(0.0, 0.2, depth);
-                finalColor = mix(finalColor, midBlue, haze);
+                // Horizon haze
+                float haze = 1.0 - smoothstep(0.0, 0.15, depth);
+                finalColor = mix(finalColor, highlight * 0.5, haze);
                 
             } else {
-                // OCEAN
+                // RIPPLED GLOSSY FLOOR (Liquid/Sand)
                 float depth = (horizon - uv.y);
-                vec2 oceanUv = st;
+                vec2 floorUv = st;
                 
-                // Perspective for ocean floor
-                oceanUv.x = (st.x - aspect * 0.5) / (depth + 0.02);
-                oceanUv.y = 1.0 / (depth + 0.02);
+                floorUv.x = (st.x - aspect * 0.5 + parallax.x * 0.5) / (depth + 0.02);
+                floorUv.y = 1.0 / (depth + 0.02);
                 
-                oceanUv.x += time * 0.2;
-                oceanUv.y -= time * 1.5; 
+                floorUv.x += time * 0.1;
+                floorUv.y -= time * 0.5; 
                 
-                // Water ripples
-                float n = fbm(oceanUv * vec2(2.0, 0.5));
-                float n2 = fbm(oceanUv * vec2(5.0, 1.0) - time * 2.0);
+                // Ripples
+                float n = fbm(floorUv * vec2(3.0, 1.0));
+                float n2 = fbm(floorUv * vec2(6.0, 2.0) - time * 1.5);
                 
-                float waves = smoothstep(0.3, 0.7, n * 0.6 + n2 * 0.4);
+                float ripples = smoothstep(0.2, 0.8, n * 0.7 + n2 * 0.3);
                 
-                vec3 waterBase = darkBlue;
-                vec3 waterColor = mix(waterBase, midBlue, waves * 0.5);
+                vec3 floorBase = darkBase * 0.5;
+                vec3 floorColor = mix(floorBase, midBase, ripples * 0.6);
                 
-                // Reflections
-                float reflection = smoothstep(0.6, 0.9, waves);
-                waterColor = mix(waterColor, lightBlue, reflection * 0.6);
+                // Specular glints (reflective wet look)
+                float specular = smoothstep(0.65, 0.8, ripples) * (1.0 - smoothstep(0.75, 0.9, ripples));
+                floorColor += highlight * specular * 1.5 * (1.0 - depth);
                 
-                finalColor = waterColor;
+                // Reflections of the sky clouds
+                float reflection = smoothstep(0.4, 0.9, ripples);
+                floorColor = mix(floorColor, lightBase, reflection * 0.3);
                 
-                // Horizon haze reflecting the sky
-                float haze = 1.0 - smoothstep(0.0, 0.15, depth);
-                finalColor = mix(finalColor, midBlue, haze);
+                finalColor = floorColor;
                 
-                // Distance fade out to dark at the extreme bottom
-                float distFade = smoothstep(0.0, 0.1, depth);
+                // Horizon haze
+                float haze = 1.0 - smoothstep(0.0, 0.1, depth);
+                finalColor = mix(finalColor, highlight * 0.5, haze);
+                
+                float distFade = smoothstep(0.0, 0.2, depth);
                 finalColor *= distFade;
             }
             
-            // Dramatic lighting / Vignette
-            float dist = length(uv - vec2(0.5, 0.5));
+            // Dramatic Vignette & Chromatic Aberration
+            vec2 center = vec2(0.5);
+            float dist = length(uv - center);
+            
+            // Apply vignette
             float vignette = 1.0 - smoothstep(0.2, 1.0, dist);
-            finalColor *= (0.5 + vignette * 0.5);
+            finalColor *= (0.3 + vignette * 0.7);
             
-            // Ambient glow in center
-            float centerGlow = 1.0 - smoothstep(0.0, 0.4, dist);
-            finalColor += highlight * centerGlow * 0.3;
+            // Center glow (colored)
+            float centerGlow = 1.0 - smoothstep(0.0, 0.6, dist);
+            finalColor += highlight * centerGlow * 0.15;
             
-            float nGrain = hash(uv * 300.0 + uTime) * 0.025;
+            // Film Grain
+            float nGrain = hash(uv * vec2(100.0, 300.0) + uTime) * 0.035;
             finalColor += vec3(nGrain);
-
+            
             gl_FragColor = vec4(finalColor, 1.0);
             #include <tonemapping_fragment>
             #include <colorspace_fragment>
@@ -832,6 +842,7 @@ export class ProjectCarouselScene extends BaseScene {
     }
     if (this.bgMesh) {
       this.bgMesh.material.uniforms.uTime.value = time;
+      this.bgUniforms.uColor.value.lerp(this.targetColor, 0.05);
     }
     if (this.gridMesh) {
       this.gridMesh.material.uniforms.uTime.value = time;
@@ -852,9 +863,9 @@ export class ProjectCarouselScene extends BaseScene {
       if (relativeDiff < -total / 2) relativeDiff += total;
 
       // Position horizontally
-      const x = relativeDiff * 14.0; // 14 units apart so they slide in completely from off-screen
+      const x = relativeDiff * 25.0; // 25 units apart so they slide in completely from off-screen
       const z = -Math.abs(relativeDiff) * 3.0; // Push inactive ones back
-      const y = Math.sin(time * 0.5 + idx) * 0.1;
+      const y = 0; // Lock vertically, no floating animation
 
       card.mesh.position.set(x, y, z);
       card.mesh.rotation.set(0, 0, 0); // Flat facing camera
@@ -875,23 +886,32 @@ export class ProjectCarouselScene extends BaseScene {
       card.mesh.material.uniforms.uHover.value += (targetHover - curHover) * 0.1;
       card.mesh.material.uniforms.uTime.value = time;
       card.mesh.material.uniforms.uPointer.value.copy(this.pointerPos);
+      card.mesh.material.uniforms.uScroll.value = this.scrollVelocity;
       
       // Card opacity fades when moving away
-      const targetAlpha = Math.max(0.0, 1.0 - Math.abs(relativeDiff) * 0.5);
+      const targetAlpha = Math.max(0.0, 1.0 - Math.abs(relativeDiff) * 1.2);
       card.mesh.material.uniforms.uAlpha.value = targetAlpha;
       card.mesh.visible = targetAlpha > 0.01;
     });
 
     if (closestIdx !== this.activeIndex) {
+      const direction = this.targetProgress > this.currentProgress ? 1 : -1;
       this.activeIndex = closestIdx;
       const activeProject = PROJECT_CARDS[closestIdx];
       this.updateAccentColor(activeProject.color);
+      this.targetColor.set(activeProject.color);
+      
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('carousel:active_change', {
+          detail: { index: closestIdx, direction }
+        }));
+      }
     }
 
-    // Gentle camera parallax
-    this.camera.position.x = this.pointerPos.x * 0.4;
-    this.camera.position.y = this.pointerPos.y * 0.3;
-    this.camera.lookAt(new Vector3(-0.5, 0, 0));
+    // Lock camera perfectly in the center
+    this.camera.position.x = 0;
+    this.camera.position.y = 0;
+    this.camera.lookAt(new Vector3(0, 0, 0));
   }
 
   protected onResize(viewport: Viewport): void {

@@ -3,7 +3,6 @@ import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/shell/SiteHeader.astro';
 import SiteFooter from '../components/shell/SiteFooter.astro';
 import RouteFrame from '../components/shell/RouteFrame.astro';
-import RuntimeStatePanel from '../components/shell/RuntimeStatePanel.astro';
 import ExperienceCanvas from '../components/shell/ExperienceCanvas.astro';
 import Loader from '../components/shell/Loader.astro';
 import EntryGate from '../components/shell/EntryGate.astro';
@@ -123,7 +122,6 @@ const seoPath = canonical ?? Astro.url.pathname;
         aria-live="polite"
         transition:persist="runtime-announcer"
       ></p>
-      {import.meta.env.DEV && <RuntimeStatePanel />}
     </div>
     <SiteHeader />
     <main id="main-content" tabindex="-1">

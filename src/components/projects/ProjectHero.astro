@@ -14,7 +14,7 @@ const { project, hero, presentation } = Astro.props;
 <header class="project-hero">
   <div class="project-hero__copy">
     <p class="project-hero__eyebrow">{presentation === 'flagship' ? 'Selected project' : 'Project archive'}</p>
-    <h1>{project.title}</h1>
+    <h1 transition:name={`title-${project.slug}`}>{project.title}</h1>
     <p class="project-hero__summary">{project.summary}</p>
   </div>
   {hero && <ProjectPicture asset={hero} eager={true} class="project-hero__media" />}
