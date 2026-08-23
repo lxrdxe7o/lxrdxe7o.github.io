@@ -585,15 +585,15 @@ export class ProjectCarouselScene extends BaseScene {
             float time = uTime * 0.04;
             float horizon = 0.42 - parallax.y * 0.08;
 
-            /* ── Color Palette (muted, cinematic) ────────────── */
+            /* ── Color Palette (bright, luminous, airy) ─────── */
             vec3 accentNorm = normalize(uColor + 0.001);
             float accentLum = dot(uColor, vec3(0.299, 0.587, 0.114));
-            // Desaturate and darken the accent for atmosphere
-            vec3 darkBase   = mix(vec3(0.02, 0.025, 0.04), uColor * 0.06, 0.7);
-            vec3 midBase    = mix(vec3(0.06, 0.08, 0.12),  uColor * 0.18, 0.6);
-            vec3 lightBase  = mix(vec3(0.15, 0.18, 0.25),  uColor * 0.4,  0.5);
-            vec3 highlight  = mix(vec3(0.5, 0.55, 0.6),    uColor * 1.2,  0.5);
-            vec3 fogColor   = mix(vec3(0.08, 0.1, 0.14),   uColor * 0.25, 0.5);
+            // Bright, soft palette to match the reference's luminous blue atmosphere
+            vec3 darkBase   = mix(vec3(0.06, 0.08, 0.14), uColor * 0.12, 0.6);
+            vec3 midBase    = mix(vec3(0.18, 0.22, 0.35),  uColor * 0.35, 0.55);
+            vec3 lightBase  = mix(vec3(0.35, 0.42, 0.55),  uColor * 0.65, 0.5);
+            vec3 highlight  = mix(vec3(0.65, 0.72, 0.82),  uColor * 1.4,  0.45);
+            vec3 fogColor   = mix(vec3(0.22, 0.28, 0.38),  uColor * 0.45, 0.5);
 
             vec3 finalColor = vec3(0.0);
 
@@ -629,10 +629,10 @@ export class ProjectCarouselScene extends BaseScene {
                 lowClouds = smoothstep(0.25, 0.65, lowClouds);
                 float lowMask = (1.0 - smoothstep(0.0, 0.25, depth)); // Only near horizon
 
-                // Composite cloud density
-                float cloudDensity = smoothstep(0.3, 0.72, cloudMain);
+                // Composite cloud density — softer thresholds for diffuse, wispy look
+                float cloudDensity = smoothstep(0.2, 0.8, cloudMain);
                 cloudDensity = max(cloudDensity, cirrus * normalizedDepth);
-                cloudDensity = max(cloudDensity, lowClouds * lowMask);
+                cloudDensity = max(cloudDensity, lowClouds * lowMask * 0.8);
                 cloudDensity = clamp(cloudDensity, 0.0, 1.0);
 
                 // Cloud edge for rim lighting / subsurface scatter
@@ -640,19 +640,19 @@ export class ProjectCarouselScene extends BaseScene {
                 float cloudEdge2 = smoothstep(0.15, 0.4, lowClouds) - smoothstep(0.5, 0.75, lowClouds);
                 cloudEdge = max(cloudEdge, cloudEdge2 * lowMask);
 
-                // Sky gradient
-                vec3 skyDeep = darkBase * 0.4;
-                vec3 skyMid  = mix(darkBase, midBase, 0.3);
-                vec3 skyColor = mix(skyMid, skyDeep, smoothstep(0.0, 0.5, depth));
+                // Sky gradient — brighter, more luminous
+                vec3 skyDeep = mix(darkBase, midBase, 0.3);
+                vec3 skyMid  = mix(midBase, lightBase, 0.3);
+                vec3 skyColor = mix(skyMid, skyDeep, smoothstep(0.0, 0.55, depth));
 
-                // Cloud shading with depth
-                vec3 cloudShadow = darkBase * 0.5;
-                vec3 cloudLit    = mix(midBase, lightBase, 0.6);
-                float cloudLight = smoothstep(0.3, 0.8, cloudMain * 0.5 + 0.5);
+                // Cloud shading — softer, brighter clouds
+                vec3 cloudShadow = mix(darkBase, midBase, 0.4);
+                vec3 cloudLit    = mix(lightBase, highlight, 0.3);
+                float cloudLight = smoothstep(0.25, 0.75, cloudMain * 0.5 + 0.5);
                 vec3 cloudCore   = mix(cloudShadow, cloudLit, cloudLight);
 
-                // Subsurface scattering on cloud edges
-                vec3 cloudScatter = highlight * cloudEdge * 1.8;
+                // Soft subsurface scattering on cloud edges
+                vec3 cloudScatter = highlight * cloudEdge * 1.2;
                 vec3 cloudFinal   = cloudCore + cloudScatter;
 
                 // Cirrus is brighter, thinner
@@ -660,16 +660,18 @@ export class ProjectCarouselScene extends BaseScene {
                 cloudFinal = mix(cloudFinal, cirrusColor, cirrus * normalizedDepth * 0.5);
 
                 // Atmospheric perspective
-                float horizonFade = smoothstep(0.0, 0.15, depth);
+                float horizonFade = smoothstep(0.0, 0.35, depth);
                 finalColor = mix(skyColor, cloudFinal, cloudDensity * horizonFade);
 
-                // Thick horizon haze band
-                vec3 hazeColor = mix(fogColor, lightBase * 0.7, 0.4);
-                finalColor = mix(hazeColor, finalColor, horizonFade);
+                // Horizon haze band — soft, luminous
+                vec3 hazeColor = mix(fogColor, lightBase * 0.8, 0.55);
+                float hazeDensity = 1.0 - smoothstep(0.0, 0.35, depth);
+                hazeDensity = hazeDensity * hazeDensity;
+                finalColor = mix(finalColor, hazeColor, hazeDensity);
 
-                // Upper sky darkening
-                float upperDark = smoothstep(0.6, 0.0, depth);
-                finalColor *= (0.6 + upperDark * 0.4);
+                // Very subtle upper sky darkening (keep it bright)
+                float upperDark = smoothstep(0.55, 0.0, depth);
+                finalColor *= (0.82 + upperDark * 0.18);
 
             } else {
                 /* ════════ OCEAN: Reflective, calm water ════════ */
@@ -709,15 +711,15 @@ export class ProjectCarouselScene extends BaseScene {
                 float spec = pow(max(dot(reflect(-lightDir, normal), viewDir), 0.0), 48.0);
                 float spec2 = pow(max(dot(reflect(-lightDir, normal), viewDir), 0.0), 8.0);
 
-                // Water color gradient by depth
-                vec3 waterDeep    = darkBase * 0.25;
-                vec3 waterShallow = midBase * 0.7;
+                // Water color gradient by depth — softer, brighter
+                vec3 waterDeep    = mix(darkBase, midBase, 0.35);
+                vec3 waterShallow = mix(midBase, lightBase, 0.4);
                 vec3 waterColor   = mix(waterDeep, waterShallow, smoothstep(0.0, 0.8, totalWaves));
 
-                // Broad specular shimmer
-                waterColor += highlight * spec2 * 0.4 * smoothstep(0.0, 0.3, depth);
-                // Sharp specular glints
-                waterColor += highlight * spec * 2.5 * smoothstep(0.0, 0.4, depth);
+                // Broad specular shimmer (softer)
+                waterColor += highlight * spec2 * 0.25 * smoothstep(0.0, 0.3, depth);
+                // Specular glints (gentler)
+                waterColor += highlight * spec * 1.2 * smoothstep(0.0, 0.4, depth);
 
                 // Subsurface scattering on wave crests
                 float sss = smoothstep(0.55, 0.95, totalWaves);
@@ -739,31 +741,53 @@ export class ProjectCarouselScene extends BaseScene {
 
                 finalColor = waterColor;
 
-                // Horizon fog blend (thick mist band)
-                float horizonFade = smoothstep(0.0, 0.25, depth);
-                vec3 horizonMist = mix(fogColor, lightBase * 0.6, 0.35);
-                finalColor = mix(horizonMist, finalColor, horizonFade);
+                // Horizon fog — bright, luminous mist
+                float horizonFade = smoothstep(0.0, 0.35, depth);
+                vec3 horizonMist = mix(fogColor, lightBase * 0.8, 0.55);
+                float mistDensity = 1.0 - horizonFade;
+                mistDensity = mistDensity * mistDensity;
+                finalColor = mix(finalColor, horizonMist, mistDensity);
 
                 // Distance fade
-                finalColor *= smoothstep(0.0, 0.04, depth);
+                finalColor *= smoothstep(0.0, 0.03, depth);
             }
+
+            /* ════════ GLOBAL VOLUMETRIC FOG BAND ════════ */
+            // Thick animated fog centered on the horizon that completely obscures it
+            float fogDist = abs(uv.y - horizon);
+            float fogBand = 1.0 - smoothstep(0.0, 0.22, fogDist);
+            fogBand = fogBand * fogBand * fogBand; // Cubic falloff — very thick in center
+
+            // Animated fog wisps using FBM
+            vec2 fogUv = vec2(st.x * 2.0 + time * 0.3, (uv.y - horizon) * 8.0);
+            float fogWisps = fbm(fogUv, 5) * 0.5 + 0.5;
+            float fogWisps2 = fbm(fogUv * 0.6 + vec2(time * 0.15, 3.7), 4) * 0.5 + 0.5;
+            float fogShape = mix(fogWisps, fogWisps2, 0.4);
+
+            // Fog color: bright luminous mist
+            vec3 denseFogColor = mix(fogColor, lightBase * 0.85, 0.6);
+            denseFogColor += highlight * 0.1;
+
+            // Apply shaped fog — thickest at horizon, wisps at edges
+            float finalFog = fogBand * (0.65 + fogShape * 0.35);
+            finalFog = clamp(finalFog, 0.0, 1.0);
+            finalColor = mix(finalColor, denseFogColor, finalFog * 0.88);
 
             /* ════════ GOD RAYS ════════ */
             float rays = godRays(uv, time);
-            finalColor += highlight * rays * 0.6;
+            finalColor += highlight * rays * 0.5;
 
             /* ════════ POST-PROCESSING ════════ */
             vec2 center = vec2(0.5);
             float dist = length(uv - center);
 
-            // Heavy cinematic vignette
-            float vignette = 1.0 - smoothstep(0.15, 1.1, dist);
-            vignette = vignette * vignette; // Squared for stronger falloff
-            finalColor *= (0.05 + vignette * 0.95);
+            // Soft cinematic vignette (keep it bright like the reference)
+            float vignette = 1.0 - smoothstep(0.3, 1.3, dist);
+            finalColor *= (0.45 + vignette * 0.55);
 
-            // Subtle center glow
-            float centerGlow = 1.0 - smoothstep(0.0, 0.6, dist);
-            finalColor += highlight * centerGlow * 0.06;
+            // Center luminous glow
+            float centerGlow = 1.0 - smoothstep(0.0, 0.7, dist);
+            finalColor += highlight * centerGlow * 0.1;
 
             // Chromatic Aberration
             vec2 caDir = normalize(uv - center) * dist * dist;
