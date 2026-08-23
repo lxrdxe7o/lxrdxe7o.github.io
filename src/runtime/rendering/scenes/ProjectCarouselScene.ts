@@ -500,32 +500,30 @@ export class ProjectCarouselScene extends BaseScene {
           uniform vec3 uColor;
           varying vec2 vUv;
 
+          // High quality hash
           float hash(vec2 p) {
-            return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+            return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
           }
 
+          // Smooth value noise
           float noise(in vec2 st) {
               vec2 i = floor(st);
               vec2 f = fract(st);
-
-              float a = hash(i);
-              float b = hash(i + vec2(1.0, 0.0));
-              float c = hash(i + vec2(0.0, 1.0));
-              float d = hash(i + vec2(1.0, 1.0));
-
               vec2 u = f*f*(3.0-2.0*f);
-
-              return mix(a, b, u.x) +
-                      (c - a)* u.y * (1.0 - u.x) +
-                      (d - b) * u.x * u.y;
+              return mix(
+                mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), u.x),
+                mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), u.x),
+                u.y
+              );
           }
 
+          // Standard FBM for clouds
           float fbm(in vec2 st) {
               float v = 0.0;
               float a = 0.5;
               vec2 shift = vec2(100.0);
               mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));
-              for (int i = 0; i < 5; ++i) {
+              for (int i = 0; i < 6; ++i) { // 6 octaves
                   v += a * noise(st);
                   st = rot * st * 2.0 + shift;
                   a *= 0.5;
@@ -533,10 +531,27 @@ export class ProjectCarouselScene extends BaseScene {
               return v;
           }
 
+          // Ridged FBM for sharp ocean waves
+          float ridgedFbm(vec2 p) {
+              float v = 0.0;
+              float a = 0.5;
+              float weight = 1.0;
+              mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));
+              for (int i = 0; i < 5; i++) {
+                  float n = noise(p);
+                  // Invert and sharpen
+                  n = 1.0 - abs(n * 2.0 - 1.0);
+                  n *= n;
+                  v += a * n * weight;
+                  weight = clamp(n * 2.0, 0.0, 1.0);
+                  p = rot * p * 2.0;
+                  a *= 0.5;
+              }
+              return v;
+          }
+
           void main() {
             vec2 uv = vUv;
-            
-            // Pointer parallax
             vec2 parallax = uPointer * 0.05;
             vec2 st = uv + parallax;
             
@@ -546,88 +561,109 @@ export class ProjectCarouselScene extends BaseScene {
             float time = uTime * 0.05;
             float horizon = 0.45 - parallax.y * 0.1; 
             
-            // Derive palette from uColor
+            // Dynamic palette
             vec3 darkBase = uColor * 0.05; 
             vec3 midBase = uColor * 0.2;
             vec3 lightBase = uColor * 0.5;
-            vec3 highlight = uColor * 1.2;
+            vec3 highlight = uColor * 1.5;
             
             vec3 finalColor = vec3(0.0);
             
             if (uv.y > horizon) {
-                // VOLUMETRIC SKY/CLOUDS
+                // REALISTIC DOMAIN-WARPED CLOUDS
                 float depth = (uv.y - horizon);
                 vec2 skyUv = st;
                 
-                skyUv.y /= (depth + 0.05); 
-                skyUv.x += time * 0.2 + parallax.x;
+                skyUv.y /= (depth + 0.1); 
+                skyUv.x += time * 0.3 + parallax.x;
                 
-                float n = fbm(skyUv * 1.5 - time * 0.1);
-                float n2 = fbm(skyUv * 3.0 + time * 0.2);
+                // Domain warping creates wispy, blown-out cloud structures
+                vec2 q = vec2(0.0);
+                q.x = fbm(skyUv + vec2(0.0, time * 0.1));
+                q.y = fbm(skyUv + vec2(5.2, 1.3));
                 
-                float cloudMask = smoothstep(0.1, 0.9, n * 0.6 + n2 * 0.4);
+                vec2 r = vec2(0.0);
+                r.x = fbm(skyUv + 4.0 * q + vec2(1.7, 9.2) + time * 0.15);
+                r.y = fbm(skyUv + 4.0 * q + vec2(8.3, 2.8));
                 
-                vec3 skyBase = mix(vec3(0.01), darkBase, depth);
+                float cloudNoise = fbm(skyUv + 4.0 * r);
                 
-                // Back-lit volumetric look
-                vec3 cloudVol = mix(midBase, highlight, cloudMask * 0.5);
-                finalColor = mix(skyBase, cloudVol, cloudMask * min(1.0, depth * 8.0));
+                float cloudDensity = smoothstep(0.3, 0.7, cloudNoise);
+                // Extract edges for light scattering
+                float cloudEdge = smoothstep(0.2, 0.5, cloudNoise) - smoothstep(0.5, 0.8, cloudNoise);
                 
-                // Horizon haze
-                float haze = 1.0 - smoothstep(0.0, 0.15, depth);
-                finalColor = mix(finalColor, highlight * 0.5, haze);
+                vec3 skyColor = mix(vec3(0.005), darkBase, depth);
+                vec3 cloudCore = mix(midBase, lightBase, cloudDensity);
+                
+                // Subsurface light scattering on cloud rims
+                vec3 cloudScatter = highlight * cloudEdge * 1.5;
+                vec3 cloudFinal = cloudCore + cloudScatter;
+                
+                // Atmospheric depth fade
+                float horizonFade = smoothstep(0.0, 0.2, depth);
+                finalColor = mix(skyColor, cloudFinal, cloudDensity * horizonFade);
+                
+                // Thick ambient haze near horizon
+                finalColor = mix(finalColor, lightBase * 0.6, 1.0 - horizonFade);
                 
             } else {
-                // RIPPLED GLOSSY FLOOR (Liquid/Sand)
+                // REALISTIC NORMAL-MAPPED OCEAN
                 float depth = (horizon - uv.y);
                 vec2 floorUv = st;
                 
                 floorUv.x = (st.x - aspect * 0.5 + parallax.x * 0.5) / (depth + 0.02);
                 floorUv.y = 1.0 / (depth + 0.02);
                 
-                floorUv.x += time * 0.1;
-                floorUv.y -= time * 0.5; 
+                vec2 waterUv = floorUv;
+                waterUv.x += time * 0.5;
+                waterUv.y -= time * 2.0; 
                 
-                // Ripples
-                float n = fbm(floorUv * vec2(3.0, 1.0));
-                float n2 = fbm(floorUv * vec2(6.0, 2.0) - time * 1.5);
+                // Layered ridged noise for choppy waves
+                float waves = ridgedFbm(waterUv * vec2(1.5, 0.5));
+                float wavesSecondary = ridgedFbm(waterUv * vec2(3.0, 1.5) - time * 0.5);
+                float totalWaves = mix(waves, wavesSecondary, 0.5);
                 
-                float ripples = smoothstep(0.2, 0.8, n * 0.7 + n2 * 0.3);
+                // Procedural bump mapping for specular reflections
+                float eps = 0.02;
+                float h0 = ridgedFbm(waterUv);
+                float hX = ridgedFbm(waterUv + vec2(eps, 0.0));
+                float hY = ridgedFbm(waterUv + vec2(0.0, eps));
+                vec3 normal = normalize(vec3(h0 - hX, eps, h0 - hY));
                 
-                vec3 floorBase = darkBase * 0.5;
-                vec3 floorColor = mix(floorBase, midBase, ripples * 0.6);
+                vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
+                float spec = pow(max(dot(reflect(-lightDir, normal), vec3(0.0, 1.0, 0.0)), 0.0), 32.0);
                 
-                // Specular glints (reflective wet look)
-                float specular = smoothstep(0.65, 0.8, ripples) * (1.0 - smoothstep(0.75, 0.9, ripples));
-                floorColor += highlight * specular * 1.5 * (1.0 - depth);
+                vec3 waterDeep = darkBase * 0.3;
+                vec3 waterShallow = midBase;
+                vec3 waterColor = mix(waterDeep, waterShallow, smoothstep(0.0, 1.0, totalWaves));
                 
-                // Reflections of the sky clouds
-                float reflection = smoothstep(0.4, 0.9, ripples);
-                floorColor = mix(floorColor, lightBase, reflection * 0.3);
+                // Sun glints on waves
+                waterColor += highlight * spec * 2.0 * smoothstep(0.0, 0.5, depth);
                 
-                finalColor = floorColor;
+                // Subsurface scattering on wave crests
+                float sss = smoothstep(0.6, 1.0, totalWaves);
+                waterColor += lightBase * sss * 0.8;
                 
-                // Horizon haze
-                float haze = 1.0 - smoothstep(0.0, 0.1, depth);
-                finalColor = mix(finalColor, highlight * 0.5, haze);
+                finalColor = waterColor;
                 
-                float distFade = smoothstep(0.0, 0.2, depth);
-                finalColor *= distFade;
+                // Horizon fog blend
+                float horizonFade = smoothstep(0.0, 0.3, depth);
+                finalColor = mix(lightBase * 0.6, finalColor, horizonFade);
+                
+                // Distance fade to black
+                finalColor *= smoothstep(0.0, 0.05, depth);
             }
             
-            // Dramatic Vignette & Chromatic Aberration
+            // Post-Processing
             vec2 center = vec2(0.5);
             float dist = length(uv - center);
             
-            // Apply vignette
-            float vignette = 1.0 - smoothstep(0.2, 1.0, dist);
-            finalColor *= (0.3 + vignette * 0.7);
+            float vignette = 1.0 - smoothstep(0.2, 1.2, dist);
+            finalColor *= (0.1 + vignette * 0.9);
             
-            // Center glow (colored)
-            float centerGlow = 1.0 - smoothstep(0.0, 0.6, dist);
-            finalColor += highlight * centerGlow * 0.15;
+            float centerGlow = 1.0 - smoothstep(0.0, 0.5, dist);
+            finalColor += highlight * centerGlow * 0.1;
             
-            // Film Grain
             float nGrain = hash(uv * vec2(100.0, 300.0) + uTime) * 0.035;
             finalColor += vec3(nGrain);
             
