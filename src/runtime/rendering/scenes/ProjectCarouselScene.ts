@@ -549,6 +549,13 @@ export class ProjectCarouselScene extends BaseScene {
               }
               return v;
           }
+          
+          // Get ocean wave height
+          float getWaves(vec2 uv, float time) {
+              float waves = ridgedFbm(uv * vec2(1.5, 0.5));
+              float wavesSecondary = ridgedFbm(uv * vec2(3.0, 1.5) - time * 0.5);
+              return mix(waves, wavesSecondary, 0.5);
+          }
 
           void main() {
             vec2 uv = vUv;
@@ -619,16 +626,14 @@ export class ProjectCarouselScene extends BaseScene {
                 waterUv.y -= time * 2.0; 
                 
                 // Layered ridged noise for choppy waves
-                float waves = ridgedFbm(waterUv * vec2(1.5, 0.5));
-                float wavesSecondary = ridgedFbm(waterUv * vec2(3.0, 1.5) - time * 0.5);
-                float totalWaves = mix(waves, wavesSecondary, 0.5);
+                float totalWaves = getWaves(waterUv, time);
                 
                 // Procedural bump mapping for specular reflections
-                float eps = 0.02;
-                float h0 = ridgedFbm(waterUv);
-                float hX = ridgedFbm(waterUv + vec2(eps, 0.0));
-                float hY = ridgedFbm(waterUv + vec2(0.0, eps));
-                vec3 normal = normalize(vec3(h0 - hX, eps, h0 - hY));
+                float eps = 0.05;
+                float h0 = totalWaves;
+                float hX = getWaves(waterUv + vec2(eps, 0.0), time);
+                float hY = getWaves(waterUv + vec2(0.0, eps), time);
+                vec3 normal = normalize(vec3(h0 - hX, eps * 1.5, h0 - hY));
                 
                 vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
                 float spec = pow(max(dot(reflect(-lightDir, normal), vec3(0.0, 1.0, 0.0)), 0.0), 32.0);
